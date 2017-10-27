@@ -1,0 +1,144 @@
+{% extends 'public/layout.html' %}
+
+{% block breadcrumb %}
+
+    用户管理 / <a href="{% url 'group_list' %}"><strong class="active">用户组列表</strong></a>
+
+{% endblock %}
+
+{% block body %}
+<!-- 组用户列表 -->
+<table class="table table-striped table-bordered table-hover " id="group_user_table">
+<thead>
+    <tr>
+        <h3 class="text-center" data-id="{{ group_obj.id }}" id="group_id">组{{ group_obj.name }}用户成员列表</h3>
+    </tr>
+    <tr>
+        <th class="text-center">序号</th>
+        <th class="text-center">用户名</th>
+        <th class="text-center">状态</th>
+        <th class="text-center">操作</th>
+    </tr>
+</thead>
+<tbody>
+   {% for u in object_list %}
+        <tr class="gradeX">
+                <td class="text-center">{{ forloop.counter }}</td>
+                <td class="text-center">{{ u.username }}</td>
+                {% if u.is_active == True %}
+                    <td class="text-center" style="color:green">正常</td>
+                {% else %}
+                    <td class="text-center" style="color:red">禁用</td>
+                {% endif %}
+                <td class="text-center">
+                    <button data-id="{{ u.id }}" class="btn btn-sm btn-danger group_user_delete">从组中删除成员</button>
+                </td>
+         </tr>
+    {% endfor %}
+ </tbody>
+ </table>
+<!-- 组用户列表结束-->
+
+<!-- 列表分页 -->
+    <div class="text-center">
+        <ul class="pagination">
+            <li class="disabled"><a href="#">总页数: {{ page_obj.paginator.num_pages }}</a></li>
+
+            {% if page_obj.number != 1 %}
+                <li><a href={% url "group_user_list" %}?gid={{ group_obj.id }}&page=1>首页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">首页</a></li>
+            {% endif %}
+
+            {% if page_obj.has_previous %}
+                <li><a href={% url "group_user_list" %}?gid={{ group_obj.id }}&page={{ page_obj.previous_page_number }}>上一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">上一页</a></li>
+            {% endif %}
+
+            {% for page in page_obj.paginator.page_range %}
+               {% if page == page_obj.number %}
+                  <li class="active"><a href={% url "group_user_list" %}?gid={{ group_obj.id }}&page={{ page }}>{{ page }}</a></li>
+               {% else %}
+                  <li><a href={% url "group_user_list" %}?gid={{ group_obj.id }}&page={{ page }}>{{ page }}</a></li>
+               {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href={% url "group_user_list" %}?gid={{ group_obj.id }}&page={{ page_obj.next_page_number }}>下一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">下一页</a></li>
+            {% endif %}
+
+            {% if page_obj.number != page_obj.paginator.num_pages %}
+                <li><a href={% url "group_user_list" %}?gid={{ group_obj.id }}&page={{ page_obj.paginator.num_pages }}>末页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">末页</a></li>
+            {% endif %}
+
+            <li class="disabled"><a href="#">总条数: {{ page_obj.paginator.count }}</a></li>
+        </ul>
+    </div>
+<!-- 分页结束 -->
+
+
+<!-- 删除模态框 -->
+<div class="modal fade" id='deleteModal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">删除</h4>
+      </div>
+      <div class="modal-body">
+        <p style="color:red"><b>你确定要删除吗?</b></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>                                                                         
+        <button type="button" class="btn btn-warning del-sure" data-uid='' data-gid=''>确认</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- 模态框结束 -->
+
+
+{% endblock %}
+
+{% block js %}
+<script>
+
+$(".group_user_delete").click(function(){
+    var uid = $(this).attr('data-id')
+    var gid = $("#group_id").attr('data-id')
+    $("#deleteModal").modal('show')
+    $(".del-sure").attr({'data-uid':uid,'data-gid':gid})
+});
+
+$(".del-sure").click(function(){
+    uid = $(this).attr('data-uid')
+    gid = $(this).attr('data-gid')
+    $("#deleteModal").modal('hide')
+    var data_str = {'uid':uid,'gid':gid}
+    var url = "{% url 'group_user_delete' %}"
+    $.post(url,data_str,function(data){
+        if(data.result==0){
+            swal({
+                title: "Good",
+                type: "success",
+                text: data.msg,
+                confirmButtonText: "确定"
+                },
+                function(){
+                   location.reload()
+                }     
+            )
+        }else{
+            swal("Oh,MyGod",data.msg,"error")
+        }
+    })
+    return false;
+})
+
+</script>
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends "public/layout.html" %}
+
+{% block breadcrumb %}
+
+    资产管理 / <a href="{% url 'idc_list' %}"><strong class="active">IDC 管理</strong></a>
+
+{% endblock %}
+
+{% block body %}
+
+<!-- 添加IDC -->
+<div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-10">
+                 <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>填写IDC信息</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form id="IdcAddForm" class="form-horizontal nice-validator n-yellow Formvalid" novalidate="novalidate">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="name" class="col-sm-2 control-label  ">IDC字母简称<span class="red-fonts ">*</span></label>
+                                <div class="col-sm-6">
+                                    <input id="name" name="name" placeholder="name" type="text" class="form-control" aria-required="true">
+                                 </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="cn_name" class="col-sm-2 control-label">中文名<span class="red-fonts">*</span></label>
+                                <div class="col-sm-6">
+                                    <input id="cn_name" name="cn_name" placeholder="cn_name" type="text" class="form-control" aria-required="true">
+                                 </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="user" class="col-sm-2 control-label">联系人<span class="red-fonts">*</span></label>
+                                <div class="col-sm-6">
+                                    <input id="user" name="user" placeholder="user" type="text" class="form-control" aria-required="true">
+                                 </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="phone" class="col-sm-2 control-label">电话<span class="red-fonts">*</span></label>
+                                <div class="col-sm-6">
+                                  <input id="phone" name="phone" placeholder="phone" type="text" class="form-control" aria-required="true">
+                                 </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="email" class="col-sm-2 control-label">邮箱<span class="red-fonts">*</span></label>
+                                <div class="col-sm-6">
+                                    <input id="email" name="email" placeholder="email" type="text" class="form-control" aria-required="true">
+                                 </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="address" class="col-sm-2 control-label">地址<span class="red-fonts">*</span></label>
+                                <div class="col-sm-6">
+                                     <input id="address" name="address" placeholder="address" type="text" class="form-control" aria-required="true">
+                                </div>
+                            </div>
+                            
+                            <div class="hr-line-dashed"></div>
+                            <div style="color:red" class="text-center" id="errmsg"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-4">
+                                    <button id="submit_button" class="btn btn-primary">添加</button>
+                                    <button class="btn btn-warning" type="reset">取消</button>
+                                    <button class="btn btn-info" type="reset">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- 添加IDC结束 -->
+
+{% endblock %}
+
+
+{% block js %}
+
+<script>
+
+<!-- 添加IDC JS -->
+$("#submit_button").click(function(){
+    var data_str = $("#IdcAddForm").serialize()
+    var url = "{% url 'idc_add' %}"
+    $.post(url,data_str,function(data){
+        if(data.result==0){
+           swal({
+                title: "Good Job",
+                text: data.msg,
+                type: "success",
+                confirmButtonText:"确定"
+                },
+                function(){
+                    location.href = "{% url 'idc_list' %}"
+                }
+            )
+        }else{
+            swal("Oh,My God",data.msg,"error")
+        }
+    });
+    return false;
+});
+<!-- 结束 -->
+</script>
+
+{% endblock %}

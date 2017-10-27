@@ -1,0 +1,357 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+<title>莴笋运维管理平台</title>
+
+<!--官方 CSS 部分-->
+<link rel="shortcut icon" href="/static/img/facio.ico" type="image/x-icon">
+<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/css/style.css" rel="stylesheet">
+
+<!--plugins-->
+<link href="/static/plugin/Font-Awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet">
+<link href="/static/js/layer-v2.4/layer/skin/layer.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/static/plugin/sweetalert-master/dist/sweetalert.css">
+<link rel="stylesheet" type="text/css" href="/static/plugin/dataTables/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/static/plugin/jquery-ui-1.12.1/jquery-ui.css">
+<link rel="stylesheet" href="/static/plugin/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" type="text/css"/>
+<!--
+<link rel="stylesheet" href="/static/plugin/jQuery-File-Upload-9.18.0/css/jquery.fileupload.css" type="text/css"/>
+<link rel="stylesheet" href="/static/plugin/jQuery-File-Upload-9.18.0/css/jquery.fileupload-ui.css" type="text/css"/>
+-->
+<link href="/static/plugin/metismenu/metismenu.min.css" rel="stylesheet">
+<link href="/static/plugin/chosen/css/chosen.min.css" rel="stylesheet" type="text/css">
+<link href="/static/plugin/chosen/css/chosen-bootstrap.css" rel="stylesheet" type="text/css">
+
+<!--官方 CSS 结束-->
+
+<!--自定义 CSS 部分-->
+<style type="text/css">
+  .Validform_right {color:green} 
+  .Validform_wrong {color:red}
+  .multiselect-selected {color:red}
+  .nav-label {font-size: 16px}
+</style>
+
+{% block css %} 
+{% endblock%}
+
+<!--自定义 CSS 结束-->
+
+
+<!-- 官方JS 部分-->
+<script src="/static/js/jquery-3.2.1.min.js"></script>
+<script src="/static/js/jquery.cookie.js"></script>
+
+<!--plugins-->
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/layer-v2.4/layer/layer.js"></script>
+<script src="/static/plugin/sweetalert-master/dist/sweetalert.min.js"></script>
+<script src="/static/js/Validform_v5.3.2_min.js"></script>
+<script src="/static/plugin/passwordStrength/js/passwordStrength.js"></script>
+<script src="/static/plugin/dataTables/dataTables.min.js"></script>
+<script src="/static/plugin/dataTables/dataTables.bootstrap.min.js"></script>
+<script src="/static/plugin/jquery-ui-1.12.1/jquery-ui.js"></script>
+<script src="/static/plugin/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
+<script src="/static/plugin/jQuery-File-Upload-9.18.0/js/jquery.fileupload.js"></script>
+<script src="/static/plugin/jQuery-File-Upload-9.18.0/js/vendor/jquery.ui.widget.js"></script>
+<script src="/static/plugin/jQuery-File-Upload-9.18.0/js/jquery.iframe-transport.js"></script>
+<script src="/static/plugin/jQuery-File-Upload-9.18.0/js/cors/jquery.xdr-transport.js"></script>
+<!--
+<script src="/static/plugin/jQuery-File-Upload-9.18.0/js/jquery.fileupload-ui.js"></script>
+-->
+<script src='/static/plugin/parsley/parsley.min.js'></script>
+<script src='/static/js/opsweb.js'></script>
+<script src="/static/plugin/metismenu/metismenu.min.js"></script>
+<script src="/static/plugin/chosen/chosen.jquery.min.js"></script>
+
+<!--官方 JS 部分结束-->
+
+<!--HTML 正文部分-->
+</head>
+
+<body>
+<!--整个页面的框架-->
+<div id="wrapper">
+        
+<!--左边导航-->
+<nav class="navbar-default navbar-static-side" role="navigation">
+<div class="sidebar-collapse">
+
+<ul class="nav" id="side-menu">            
+<!--左边栏头像部分-->
+<li class="nav-header">
+    <div class="dropdown profile-element">
+        <span>
+            <p align="center"> <img alt="image" style='text-align:center' class="img-circle" width="60" height="60" src="/static/img/wosun.png">
+        </span>
+	</br>
+	</br>
+        <span style='text-align:center' class="text-muted text-xs block">
+            	<strong class="font-bold">{{ user.username }} | </strong>
+                {{ user.email }}
+         </span>
+    </div>
+</li>
+<!--左边栏头像部分结束-->
+
+
+<!--左边菜单栏开始-->
+
+<!--大盘-->
+<li>
+<a href="/"><i class="fa fa-dashboard"></i><span class="nav-label">Dashboard</span></a>
+</li>
+<!--大盘结束-->
+
+<!--用户管理-->
+<li> 
+    <a href="#"><i class="fa fa-user fa-fw" ></i><span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level  collapse">
+        <li>
+            <a href="{% url 'user_list' %}" class="menu-link">用户列表</a>
+            <a href="{% url 'group_list' %}" class="menu-link">用户组列表</a>
+            <a href="{% url 'permission_list' %}" class="menu-link">权限列表</a>
+        </li>
+    </ul>
+</li>
+<!--用户管理 end-->
+
+<!--资产管理-->
+<li>
+    <a href="#" ><i class="fa fa-database fa-fw"></i><span class="nav-label">资源管理</span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse" >
+            <li>
+                <a href="#" class="menu-link">服务器管理</a>
+            </li>
+            <li>
+                <a href="#" class="menu-link">业务线管理</a>
+            </li>
+            <li>
+                <a href="{% url 'idc_list' %}" class="menu-link">IDC管理</a>
+            </li>
+        </ul>
+            
+</li> 
+<!--资产管理结束-->
+
+<!--监控管理-->
+<li>
+    <a href="#"><i class="fa fa-bar-chart"></i> <span class="nav-label">监控系统</span><span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level collapse" >
+        <li>
+            <a href="#">同步主机到zabbix</a>
+        </li>
+        <li>
+            <a href="#">模板绑定</a>
+        </li>
+    </ul>
+</li>
+<!--监控管理结束-->
+
+<!--发布管理-->
+<li>
+    <a href="#"><i class="fa fa-eye-slash"></i> <span class="nav-label">发布系统</span><span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level collapse">
+        <li>
+	        <a href="#">发布工单</a>
+        </li>
+        <li> 
+	        <a href="#">发布操作</a>
+        </li>
+        <li> 
+	        <a href="#">发布历史</a>
+        </li>
+    </ul>
+</li>
+<!--发布管理结束-->         
+
+<!--数据库管理-->
+<li>
+    <a href="#"><i class="fa fa-database"></i> <span class="nav-label">数据库管理</span><span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level collapse">
+        <li>
+	        <a href="#">数据库工单</a>
+        </li>
+        <li> 
+	        <a href="#">数据库操作</a>
+        </li>
+    </ul>
+</li>
+<!--数据库管理结束-->
+
+<!--小工具-->
+<li>
+    <a><i class="fa fa-deafness"></i> <span class="nav-label">第三方工具</span><span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level collapse">
+        <li> 
+            <a href="#">IP 138</a>
+        </li>
+        <li>
+            <a href="#">天气预报</a>
+        </li>
+        <li>
+            <a href="#">json 格式转换</a>
+        </li>
+        <li>
+            <a href="#">豆瓣图书</a>
+        </li>
+        <li>
+            <a href="#">豆瓣电影</a>
+        </li>
+        <li>
+            <a href="#">知乎</a>
+        </li>
+    </ul>
+</li>
+<!--小工具结束-->
+ 
+</ul> 
+</div>
+</nav>  <!--左边导航结束-->
+<!--左边导航点击自动弹出下拉菜单-->
+
+
+<!--右边的整体-->
+<div id="page-wrapper" class="gray-bg" style="min-height:100%">
+
+<!--右边导航第一层-->
+<div class="row border-botto">
+   <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+       <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"> <i class="fa fa-bars"></i></a>
+    </div>
+
+    <div id='data-haha' class='col-md-offset-4 col-md-2 text-success' style='height:60px;vertical-align:middle;line-height:60px' role='alert'>欢迎回来...</div>
+
+    <ul class="nav navbar-top-links navbar-right">
+        <li>
+            <span class="m-r-sm text-muted welcome-message" style="font-size:18px">莴笋运维管理平台</span>
+        </li>
+        <li>
+            <a href="{% url 'user_logout' %}" style="font-size:18px">
+                <i class="fa fa-sign-out"></i>
+                Log out
+            </a>
+        </li> 
+    </ul>
+   </nav>
+</div>
+
+
+<!--右边第二层面包导航-->
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-12" style="height:20px;line-height:20px;">
+        <ol class="breadcrumb">
+            <li style="margin:10px">
+                   {% block breadcrumb %}
+                   {% endblock %}
+            </li>
+        </ol>
+    </div>
+</div> <!--右边导航结束-->
+
+<!--正文部分分了三层-->
+<div class="wrapper wrapper-content">
+
+    <div class="row">
+         <div class="col-sm-12 border-bottom white-bg dashboard-header" style="margin-left:15px;">
+                {% block body %}
+                {% endblock %}
+
+         </div>
+    </div>
+    <br>
+
+
+</div> <!--wrapper-content-->
+
+
+
+<!--页面尾部-->
+<div class="footer fixed">
+    <div class="pull-right">
+        Version <strong>0.3.1</strong> GPL.
+    </div>
+    <div>
+        <strong>Copyright</strong>  Watsons.com.cn  Team © 2017-2046
+    </div>
+</div>
+
+</div>  <!--page-wrapper-->
+</div>   <!--wrapper-->
+
+
+<!-- 自定义 JS 部分-->
+    <script>
+        $("#data-haha").hide(3000).show(3000)
+    </script>
+
+    <script>
+        function apply_menu(obj){
+            obj.parent('li').addClass("active").parent('ul').addClass('in').attr("aria-expanded","true").siblings('a').attr("aria-expanded","true").parent("li").addClass("active")
+        }
+        $(function(){
+            $("#side-menu").metisMenu();
+        })
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }   
+                }
+            }
+            return cookieValue;
+        }
+
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+    
+        var csrftoken = getCookie('csrftoken');        
+
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        }); 
+
+        $(function ($) {
+            var menu = $(".menu-link");
+            var __activeId=$.cookie('__isActiveMenu');
+            if(__activeId!="undefined"&&__activeId){
+                $(menu[__activeId]).addClass("active");
+                $(menu[__activeId]).parent().parent().attr("aria-expanded","true");
+                $(menu[__activeId]).parent().parent().attr("class","nav nav-second-level collapse in");
+                $(menu[__activeId]).parent().parent().parent().addClass("active");
+            }
+
+            menu.each(function (e, n) {
+                $(n).click(function () {
+                    $.cookie('__isActiveMenu',e,{ expires: 7, path: '/' });
+                    window.location.href=$(this).attr("href");
+                })
+            })
+
+        }); 
+
+    </script>
+
+    {% block js %}
+    {% endblock %}
+
+<!--自定义 JS 结束-->
+
+</body>
+</html>

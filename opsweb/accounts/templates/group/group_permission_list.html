@@ -1,0 +1,214 @@
+{% extends "public/layout.html" %}
+
+{% block breadcrumb %}
+    用户管理 / <a href="{% url 'group_list' %}"><strong class="active">用户组列表</strong></a>
+{% endblock %}
+
+{% block body %}
+
+<!-- 组权限列表 -->
+<table class="table table-striped table-bordered table-hover " id="group_permission_list_table">
+<caption>
+    <button class="btn btn-primary" style="text-align:light" id="group_permission_add_btn"> 添加权限</button>
+</caption>
+<thead>
+    <tr>
+        <h3 class="text-center">组 {{ group_obj.name }} 权限列表</h3>
+    </tr>    
+    <tr>
+        <th class="text-center">序号</th>
+        <th class="text-center">app</th>
+        <th class="text-center">model</th>
+        <th class="text-center">codename</th>
+        <th class="text-center">name</th>
+        <th class="text-center">操作</th>
+    </tr>
+</thead>
+<tbody>
+   {% for p in object_list %}
+        <tr class="gradeX">
+                <td class="text-center">{{ forloop.counter }}</td>
+                <td class="text-center">{{ p.content_type.app_label }}</td>
+                <td class="text-center">{{ p.content_type.model }}</td>
+                <td class="text-center">{{ p.codename }}</td>
+                <td class="text-center">{{ p.name }}</td>
+                <td class="text-center">
+                    <button data-id="{{ p.id }}" class="btn btn-sm btn-danger del-btn">删除</button>
+                </td>
+         </tr>
+    {% endfor %}
+ </tbody>
+ </table>
+<!-- 组权限列表结束-->
+
+<!-- 列表分页 -->
+    <div class="text-center">
+        <ul class="pagination">
+            <li class="disabled"><a href="#">总页数: {{ page_obj.paginator.num_pages }}</a></li>
+        
+            {% if page_obj.number != 1 %}
+                <li><a href={% url "group_permission_list" %}?gid={{ group_obj.id }}&page=1>首页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">首页</a></li>
+            {% endif %}
+
+            {% if page_obj.has_previous %}
+                <li><a href={% url "group_permission_list" %}?gid={{ group_obj.id }}&page={{ page_obj.previous_page_number }}>上一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">上一页</a></li>
+            {% endif %}
+
+            {% for page in page_obj.paginator.page_range %}
+               {% if page == page_obj.number %}
+                  <li class="active"><a href={% url "group_permission_list" %}?gid={{ group_obj.id }}&page={{ page }}>{{ page }}</a></li>
+               {% else %}
+                  <li><a href={% url "group_permission_list" %}?gid={{ group_obj.id }}&page={{ page }}>{{ page }}</a></li>
+               {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href={% url "group_permission_list" %}?gid={{ group_obj.id }}&page={{ page_obj.next_page_number }}>下一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">下一页</a></li>
+            {% endif %}
+
+            {% if page_obj.number != page_obj.paginator.num_pages %}
+                <li><a href={% url "group_permission_list" %}?gid={{ group_obj.id }}&page={{ page_obj.paginator.num_pages }}>末页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">末页</a></li>
+            {% endif %}
+
+            <li class="disabled"><a href="#">总条数: {{ page_obj.paginator.count }}</a></li>
+        </ul>
+    </div>
+<!-- 分页结束 -->
+
+<!-- 为组添加权限 模态框-->
+<div id="group_permission_add_modal"  class="modal fade" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span ariaa-hidden="true">&times;</span></button>
+                <h3 class="modal-title">添加权限</h3>
+            </div> <!--modal-header end-->
+            <div class="modal-body">
+                <form class="form-horizontal" id="group_permission_add_form">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{ group_obj.id }}">
+                    <div class="form-group"> 
+                        <label for="group_permissions" class="col-sm-3 control-label  ">Group-Permissions<span class="red-fonts ">*</span></label>
+                        <div class="col-sm-8">
+                            <select name="group_permissions" id="group_permissions" multiple="multiple" class="form-control">
+                                {% for perm_obj in g_exclude_perms_list %}
+                                    <option value="{{ perm_obj.id }}">{{ perm_obj.content_type.app_label }} - {{ perm_obj.content_type.model }} : {{ perm_obj.name }}</option>
+                                {% endfor %}
+                            </select>   
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" id="group_permission_add_submit">提交</button>
+                        <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+                    </div>  
+                </form>
+            </div> <!--modal-body end -->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div> <!--modal end-->
+
+<!-- 模态框结束-->
+
+<!-- 删除 组权限 模态框-->
+<div class="modal fade" id='group_permission_del_modal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title">删除</h4>
+      </div>
+      <div class="modal-body">
+        <p style="color:red"><b>你确认要删除吗?</b></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-warning del-sure" data-id=''>确认</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--删除模态框结束-->
+
+
+{% endblock %}
+
+{% block js %}
+<script>
+
+$("#group_permission_add_btn").click(function(){
+    $("#group_permission_add_modal").modal("show")
+});
+
+$("#group_permission_add_submit").click(function(){
+    var form_data = $("#group_permission_add_form").serialize()
+    var url = "{% url 'group_permission_list' %}"
+    $("#group_permission_add_modal").modal("hide")
+    $.post(url,form_data,function(data){
+        if(data.result==0){
+            swal({
+                title: "Good Job",
+                text: data.msg,
+                type: "success",
+                confirmButtonText:"确定"
+                },
+                function(){
+                    location.reload()
+                }
+            )
+        }else{
+            swal("Oh,My God",data.msg,"error")
+        } 
+    });
+    return false;
+});
+
+$("#group_permissions").multiselect({
+        enableFiltering: true,
+        buttonWidth: '100%',
+        maxHeight: 200,
+        nonSelectedText: '请选择权限 app - model : name',
+        selectedClass: 'multiselect-selected',
+        delimiterText: ';',
+        enableCaseInsensitiveFiltering: true,
+});
+$("#group_permissions").multiselect('refresh');  
+
+$(".del-btn").click(function(){
+    var perm_id = $(this).attr('data-id')
+    $("#group_permission_del_modal").modal('show')
+    $(".del-sure").attr('data-id',perm_id)
+});
+
+$(".del-sure").click(function(){
+    var perm_id = $(this).attr('data-id')
+    var gid = "{{ group_obj.id }}"
+    var url = "{% url 'group_permission_delete' %}?gid=" + gid + "&perm_id=" + perm_id
+    $("#group_permission_del_modal").modal('hide')
+    $.getJSON(url,function(data){
+        if(data['result']==0){
+                swal({
+                    title: "Good",
+                    type: "success",
+                    text: data['msg'],
+                    confirmButtonText: "确定"
+                    },
+                    function(){
+                        location.reload()
+                    }
+                )
+            }else{
+                swal("Oh,MyGod",data['msg'],"error")
+            } 
+    });
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends "public/layout.html" %}
+
+{% block breadcrumb %}
+    用户管理 / <a href="{% url 'permission_list' %}"><strong class="active">权限列表</strong></a>
+{% endblock %}
+
+{% block body %}
+
+<!-- 添加权限 -->
+<div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-10">
+                 <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>填写权限信息</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form id="PermAddForm" class="form-horizontal nice-validator n-yellow Formvalid" novalidate="novalidate">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="app_model" class="col-sm-2 control-label  ">App-Model<span class="red-fonts ">*</span></label>
+                                <div class="col-sm-6">
+                                    <select name="app_model" id="app_model" class="form-control">
+                                        {% for contenttype_obj in contenttype_obj_list %}
+                                            <option value="{{ contenttype_obj.id }}">{{ contenttype_obj.app_label }} - {{ contenttype_obj.model }}</option>
+                                        {% endfor %}
+                                    </select>   
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="codename" class="col-sm-2 control-label">CodeName<span class="red-fonts">*</span></label>
+                                <div class="col-sm-6">
+                                    <input id="codename" name="codename" placeholder="codename" type="text" class="form-control" aria-required="true">
+                                 </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="name" class="col-sm-2 control-label">Name<span class="red-fonts">*</span></label>
+                                <div class="col-sm-6">
+                                    <input id="name" name="name" placeholder="name" type="text" class="form-control" aria-required="true">
+                                 </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-4">
+                                    <button id="submit_button" class="btn btn-primary">添加</button>
+                                    <button class="btn btn-warning" type="reset">取消</button>
+                                    <button class="btn btn-info" type="reset">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- 添加权限结束 -->
+
+{% endblock %}
+
+{% block js %}
+<script>
+
+$("#app_model").multiselect({
+        enableFiltering: true,
+        buttonWidth: '100%',
+        maxHeight: 200,
+        nonSelectedText: '请选择app-model',
+        selectedClass: 'multiselect-selected',
+        delimiterText: ';',
+        enableCaseInsensitiveFiltering: true,
+});
+$("#app_model").multiselect('refresh');    
+
+
+$("#submit_button").click(function(){
+    var form_data = $("#PermAddForm").serialize()
+    var url = "{% url 'permission_add' %}"
+
+    $.post(url,form_data,function(data){
+        if(data.result==0){
+            swal({
+                    title: "Good",
+                    type: "success",
+                    text: data['msg'],
+                    confirmButtonText: "确定"
+                    },
+                    function(){
+                        location.href="{% url 'permission_list' %}"
+                    }
+                )
+            }else{
+                swal("Oh,MyGod",data['msg'],"error")
+            }  
+    });
+    return false;
+});
+</script>
+{% endblock %}
