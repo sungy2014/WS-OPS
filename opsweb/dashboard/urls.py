@@ -20,5 +20,6 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.index_view,name="index"),
+    url(r'^$', views.IndexView.as_view(),name="index"),
+    url(r'^test/$', views.TestView.as_view(),name="test"),
 ]
