@@ -18,5 +18,5 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^add/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/$',views.hello_world,name='hello_world'),
+    url(r'^([0-9])/$',views.hello_world,name='hello_world'),
 ]

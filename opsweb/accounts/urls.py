@@ -17,37 +17,10 @@ Including another URLconf
 
 from django.conf.urls import include, url
 from django.contrib import admin
-from . import views,user,group,permission
+from . import views
 
 urlpatterns = [
-    url(r'^login/$', views.LoginView.as_view(),name="user_login"),
-    url(r'^logout/$', views.LogoutView.as_view(),name="user_logout"),
-    url(r'^user/list$', user.UserListView.as_view(),name="user_list"),
-    url(r'^user/',include([
-        url(r'^modify/',include([
-            url(r'^status/$',user.UserModifyStatusView.as_view(),name="user_modify_status"),
-            url(r'^group/$',user.UserModifyGroupView.as_view(),name="user_modify_group"),
-        ])),
-    ])),
-
-    url(r'^group/',include([
-        url(r'^list/$',group.GroupListView.as_view(),name="group_list"),
-        url(r'^add/$',group.GroupAddView.as_view(),name="group_add"),
-        url(r'^delete/$',group.GroupDeleteView.as_view(),name="group_delete"),
-        url(r'^user/',include([
-            url(r'^list/$',group.GroupUserListView.as_view(),name="group_user_list"),
-            url(r'^delete/$',group.GroupUserDeleteView.as_view(),name="group_user_delete"),
-        ])),
-        url(r'^permission/',include([
-            url(r'^list/$',group.GroupPermissionListView.as_view(),name="group_permission_list"),
-            url(r'^delete/$',group.GroupPermissionDeleteView.as_view(),name="group_permission_delete"),
-        ])),
-    ])),
-
-    url(r'^permission/',include([
-        url(r'^list/$',permission.PermissionListView.as_view(),name="permission_list"),
-        url(r'^change/name/$',permission.PermissionChangeNameView.as_view(),name="permission_change_name"),
-        url(r'^add/$',permission.PermissionAddView.as_view(),name="permission_add"),
-        url(r'^delete/$',permission.PermissionDeleteView.as_view(),name="permission_delete"),
-    ])),
+    url(r'^login/$', views.login_view,name="user_login"),
+    url(r'^logout/$', views.logout_view,name="user_logout"),
+    url(r'^user/user_list$', views.logout_view,name="user_list"),
 ]
