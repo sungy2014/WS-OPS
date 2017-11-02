@@ -16,3 +16,17 @@ class MobileTest(models.Model):
 
     class Meta:
         db_table = "mobile"
+
+class Person(models.Model):
+    name = models.CharField("姓名",max_length=20,null=True)
+    technique = models.CharField("技术种类",max_length=20,null=True)
+
+    class Meta:
+        db_table = "person"
+
+class Job(models.Model):
+    workname = models.CharField("工作岗位",max_length=20,null=True)
+    persons = models.ManyToManyField(Person)
+
+    class Meta:
+        db_table = "job"

@@ -24,6 +24,8 @@
     <tr>
         <th class="text-center">序号</th>
         <th class="text-center">用户名</th>
+        <th class="text-center">中文名</th>
+        <th class="text-center">手机号</th>
         <th class="text-center">邮箱</th>
         <th class="text-center">状态</th>
         <th class="text-center">最近登录</th>
@@ -35,6 +37,8 @@
         <tr class="gradeX">
                 <td class="text-center">{{ forloop.counter }}</td>
                 <td class="text-center">{{ p.username }}</td>
+                <td class="text-center">{{ p.userextend.cn_name }}</td>
+                <td class="text-center">{{ p.userextend.phone }}</td>
                 <td class="text-center">{{ p.email }}</td>
                 {% if p.is_active == True %}
                     <td class="text-center" style="color:green">正常</td>
