@@ -17,10 +17,13 @@ class Server_IDC(models.Model):
     swap_size = models.CharField("SWAP 空间大小",max_length=10,null=True)
     disk_size = models.CharField("物理磁盘大小",max_length=50,null=True)
     part_mount = models.CharField("分区挂载情况",max_length=100,null=True)
+    sn_code = models.CharField("服务器SN号",max_length=20,null=True,unique=True)
+    cabinet_num = models.CharField("机柜编号",max_length=20,null=True)
     idc = models.CharField("归属机房",max_length=50,null=True)
     status = models.DecimalField("服务器状态:0-在线,1-下线",max_digits=1,decimal_places=0,null=False)
     online_time = models.DateTimeField("服务器上架时间",max_length=50,null=True)
     offline_time = models.DateTimeField("服务器下架时间",max_length=50,null=True)
+    last_update_time = models.DateTimeField("最后一次更新时间",max_length=50,null=True)
 
     class Meta:
         db_table = "server_idc"

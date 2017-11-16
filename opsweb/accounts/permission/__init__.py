@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User,Group,Permission,ContentType
 from django.views.generic import TemplateView,View,ListView
 from django.http import JsonResponse,HttpResponse
-
+from accounts.forms import PermissionAddForm
+import json
 
 class PermissionListView(ListView):
     template_name = "permission/permission_list.html"
@@ -108,29 +109,22 @@ class PermissionAddView(TemplateView):
         return context
 
     def post(self,request):
-        content_type_id = request.POST.get("app_model",None)
-        codename = request.POST.get("codename",None)
-        name = request.POST.get("name",None)
-        ret = {'result':0}
+        ret = {'result':0,'msg':None}
+        perms_form = PermissionAddForm(request.POST)
         
-        try:
-            content_type_obj = ContentType.objects.get(id__exact=content_type_id)
-        except ContentType.DoesNotExist:
+        if not perms_form.is_valid():
             ret['result'] = 1
-            ret['msg'] = "ContentType ID 不存在"
+            ret['msg'] = json.dumps(json.loads(perms_form.errors.as_json(escape_html=False)),ensure_ascii=False)
             return JsonResponse(ret)
 
-        if codename and codename.strip() and name and name.strip():
-            try:
-                Permission.objects.create(codename=codename,name=name,content_type=content_type_obj)
-            except Exception as e:
-                ret['result'] = 1
-                ret['msg'] = e.args
-            else:
-                ret['msg'] = "权限创建成功"
-        else:
+        try:
+            perm = Permission(**perms_form.cleaned_data)
+        except Exception as e:
             ret['result'] = 1
-            ret['msg'] = "codename/name 不能为空"
+            ret['msg'] = e.args
+        else:
+            perm.save()
+            ret['msg'] = "权限创建成功"
         return JsonResponse(ret)
 
 

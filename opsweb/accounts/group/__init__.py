@@ -3,6 +3,8 @@ from django.contrib.auth.models import Group,User,Permission
 from django.http import HttpResponse,JsonResponse,Http404
 from django.db.utils import IntegrityError
 from django.core.paginator import Paginator
+from accounts.forms import GroupAddForm
+import json
 
 
 class GroupListView(ListView):
@@ -13,19 +15,16 @@ class GroupListView(ListView):
 
 class GroupAddView(View):
     def post(self,request):
-        name = request.POST.get('name',None)
         ret = {'result':0,'msg':None}
-        if not name:
+        group_form = GroupAddForm(request.POST)
+        if not group_form.is_valid():
             ret['result'] = 1
-            ret['msg'] = "组名不能为空"
+            ret['msg'] = json.dumps(json.loads(group_form.errors.as_json(escape_html=False)),ensure_ascii=False)
             return JsonResponse(ret)
         try:
-            group = Group(name=name)
+            group = Group(**group_form.cleaned_data)
             group.save()
-            ret['msg'] = "组添加成功"
-        except IntegrityError:
-            ret['result'] = 1
-            ret['msg'] = "该用户组已经存在"
+            ret['msg'] = "组 %s 添加成功" %(group_form.cleaned_data.get("name"))
         except Exception as e:
             ret['result'] = 1
             ret['msg'] = e.args

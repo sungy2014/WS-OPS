@@ -29,9 +29,9 @@
                         <form id="PermAddForm" class="form-horizontal nice-validator n-yellow Formvalid" novalidate="novalidate">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="app_model" class="col-sm-2 control-label  ">App-Model<span class="red-fonts ">*</span></label>
+                                <label for="content_type" class="col-sm-2 control-label  ">App-Model<span class="red-fonts ">*</span></label>
                                 <div class="col-sm-6">
-                                    <select name="app_model" id="app_model" class="form-control">
+                                    <select name="content_type" id="content_type" class="form-control">
                                         {% for contenttype_obj in contenttype_obj_list %}
                                             <option value="{{ contenttype_obj.id }}">{{ contenttype_obj.app_label }} - {{ contenttype_obj.model }}</option>
                                         {% endfor %}

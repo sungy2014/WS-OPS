@@ -6,7 +6,8 @@ from django.contrib.auth.decorators import login_required,permission_required
 from django.shortcuts import reverse
 #from django.contrib.auth.mixins import PermissionRequiredMixin
 from accounts.permission.permission_required_mixin import PermissionRequiredMixin
-
+from resources.forms import IdcAddForm
+import json
 
 class IdcListView(PermissionRequiredMixin,ListView):
     permission_required = "resources.add_idc"
@@ -20,21 +21,20 @@ class IdcAddView(TemplateView):
     template_name = 'idc/idc_add.html'
 
     def post(self,request):
-        idc_data = request.POST.dict()
-        del idc_data['csrfmiddlewaretoken']
-        print("idc_data:",idc_data)
         ret = {'result':0,'msg': None}
-        if not idc_data['name'].strip('') or not idc_data['cn_name'].strip('') or not idc_data['address'].strip(''):
+        idc_form = IdcAddForm(request.POST)
+        if not idc_form.is_valid():
             ret['result'] = 1
-            ret['msg'] = "IDC简称/中文名/地址不能为空"
+            ret['msg'] = json.dumps(json.loads(idc_form.errors.as_json(escape_html=False)),ensure_ascii=False)
             return JsonResponse(ret)
         try:
-            idc = IDC(**idc_data)
+            print("clean_data:",idc_form.cleaned_data)
+            idc = IDC(**idc_form.cleaned_data)
             idc.save()
-            ret['msg'] = "IDC %s 添加成功" %(idc_data['cn_name'])
+            ret['msg'] = "IDC %s 添加成功" %(idc_form.cleaned_data.get('cn_name'))
         except Exception as e:
             ret['result'] = 1
-            ret['msg'] = e.agrs
+            ret['msg'] = e.args
         return JsonResponse(ret)
 
 class IdcDeleteView(View):
