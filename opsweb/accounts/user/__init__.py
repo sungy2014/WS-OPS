@@ -1,4 +1,4 @@
-from django.views.generic import ListView,View
+from django.views.generic import ListView,View,TemplateView
 from django.contrib.auth.models import User,Group
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse,HttpResponse
@@ -111,3 +111,5 @@ class UserModifyGroupView(View):
         ret['msg'] = "组修改成功"
         return JsonResponse(ret)
 
+class UserAddView(TemplateView):
+    template_name = "user/user_add.html"

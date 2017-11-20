@@ -1,0 +1,108 @@
+{% extends "public/layout.html" %}
+
+{% block breadcrumb %} 
+    用户管理 / <strong class="active">添加用户</strong>
+{% endblock %}
+
+{% block body %}
+<div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-10">
+                 <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>填写基本信息</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form id="UserAddForm" class="form-horizontal nice-validator n-yellow Formvalid" novalidate="novalidate">
+                            <div class="form-group">
+                                <label for="username" class="col-sm-2 control-label  ">用户名<span class="red-fonts ">*</span></label>
+                                <div class="col-sm-6">
+                                    <input id="username" name="username" placeholder="username" type="text" class="form-control" aria-required="true">
+                                 </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="cn_name" class="col-sm-2 control-label">中文名<span class="red-fonts">*</span></label>
+                                <div class="col-sm-6">
+                                    <input id="cn_name" name="cn_name" placeholder="cn_name" type="text" class="form-control" aria-required="true">
+                                 </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="password" class="col-sm-2 control-label">密码<span class="red-fonts">*</span></label>
+                                <div class="col-sm-6">
+                                    <input id="password" name="password" placeholder="password" type="password" class="form-control" aria-required="true">
+                                 </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="password_again" class="col-sm-2 control-label">重复密码<span class="red-fonts">*</span></label>
+                                <div class="col-sm-6">
+                                  <input id="password_again" name="password_again" placeholder="password_again" type="password" class="form-control" aria-required="true">
+                                 </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="phone" class="col-sm-2 control-label">手机号<span class="red-fonts">*</span></label>
+                                <div class="col-sm-6">
+                                    <input id="phone" name="phone" placeholder="phone" type="text" class="form-control" aria-required="true">
+                                 </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label for="email" class="col-sm-2 control-label">邮箱<span class="red-fonts">*</span></label>
+                                <div class="col-sm-6">
+                                     <input id="email" name="email" placeholder="email" type="text" class="form-control" aria-required="true">
+                                </div>
+                            </div>
+                            
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group"><label class="col-sm-2 control-label">状态<span class="red-fonts">*</span></label>
+				 <div class="col-sm-8">
+                                    <div class="col-sm-2">
+                                        <div class="radio i-checks">
+                                            <label><input type="radio" value="0" class="status" name="status" checked="">正常</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-sm-2">
+                                        <div class="radio i-checks">
+                                            <label><input type="radio" value="1" class="status" name="status">锁定</label>
+                                        </div>
+                                    </div>
+				 </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button id="user_add_submit" class="btn btn-primary">注册</button>
+                                    <button class="btn btn-warning" type="reset">取消</button>
+				                    <button class="btn btn-info" type="reset">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

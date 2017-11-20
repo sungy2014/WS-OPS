@@ -28,6 +28,7 @@ urlpatterns = [
             url(r'^status/$',user.UserModifyStatusView.as_view(),name="user_modify_status"),
             url(r'^group/$',user.UserModifyGroupView.as_view(),name="user_modify_group"),
         ])),
+        url(r'^add/$',user.UserAddView.as_view(),name="user_add"),
     ])),
 
     url(r'^group/',include([
