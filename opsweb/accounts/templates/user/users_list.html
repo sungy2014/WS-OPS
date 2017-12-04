@@ -1,0 +1,412 @@
+{% extends "public/layout.html" %}
+
+{% block breadcrumb %}
+    用户管理 / <strong class="active">用户列表</strong>
+{% endblock %}
+
+{% block body %}
+
+<!-- 用户列表 -->
+<table class="table table-striped table-bordered table-hover " id="user_list_table">
+<caption>
+    <div>
+        <form class="form-inline">
+            {% csrf_token %}
+            <a href="{% url 'users_add' %}" class="btn btn-primary" style="text-align:light"> 注册用户</a>
+            <button type="submit" class="btn btn-primary" style="float:right">搜索</button>
+            <div class="form-group" style="text-align:right;float: right;margin-right: 10px;">
+                 <input type="text" class="form-control" name="search" value="{{ search }}" placeholder="用户名">
+            </div>
+        </form> 
+    </div>
+</caption>
+<thead>
+    <tr>
+        <th class="text-center">序号</th>
+        <th class="text-center">用户名</th>
+        <th class="text-center">中文名</th>
+        <th class="text-center">手机号</th>
+        <th class="text-center">邮箱</th>
+        <th class="text-center">状态</th>
+        <th class="text-center">最近登录</th>
+        <th class="text-center">操作</th>
+    </tr>
+</thead>
+<tbody>
+   {% for p in object_list %}
+        <tr class="gradeX">
+                <td class="text-center">{{ forloop.counter }}</td>
+                <td class="text-center">{{ p.username }}</td>
+                <td class="text-center">{{ p.userextend.cn_name }}</td>
+                <td class="text-center">{{ p.userextend.phone }}</td>
+                <td class="text-center">{{ p.email }}</td>
+                {% if p.is_active == True %}
+                    <td class="text-center" style="color:green">正常</td>
+                {% else %}
+                    <td class="text-center" style="color:red">锁定</td>
+                {% endif %}
+                <td class="text-center">{{ p.last_login|date:"Y-m-d H:i:s"  }}</td>
+                <td class="text-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1">编辑<span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#" data-id="{{ p.id }}" class="users_change_btn">修改用户信息</a></li>
+                                <li><a href="#" data-id="{{ p.id }}" class="users_changepwd_btn">修改用户密码</a></li>
+                                <li><a data-id="{{ p.id }}" href="#" class="users_group_modify">修改所属组</a></li>
+                                <li><a data-id="{{ p.id }}" href="#" class="users_delete">删除用户</a></li>
+                            </ul>
+                        </div> 
+                        {% if p.is_active == True %}
+                            <button data-id="{{ p.id }}" class="btn btn-sm btn-warning users_list_status">锁定</button>
+                        {% else %}
+                            <button data-id="{{ p.id }}" class="btn btn-sm btn-info users_list_status">激活</button>
+                        {% endif %}
+                </td>
+         </tr>
+    {% endfor %}
+ </tbody>
+ </table>
+<!-- 用户列表结束-->
+
+<!-- 列表分页 -->
+    <div class="text-center">
+        <ul class="pagination">
+            <li class="disabled"><a href="#">总页数: {{ page_obj.paginator.num_pages }}</a></li>
+
+            {% if page_obj.number != 1 %}
+                <li><a href={% url "users_list" %}?page=1{{ search_uri }}>首页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">首页</a></li>
+            {% endif %}
+
+            {% if page_obj.has_previous %}
+                <li><a href={% url "users_list" %}?page={{ page_obj.previous_page_number }}{{ search_uri }}>上一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">上一页</a></li>
+            {% endif %}
+
+            {% for page in page_range %}
+               {% if page == page_obj.number %}
+                  <li class="active"><a href={% url "users_list" %}?page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% else %}
+                  <li><a href={% url "users_list" %}?page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href={% url "users_list" %}?page={{ page_obj.next_page_number }}{{ search_uri }}>下一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">下一页</a></li>
+            {% endif %}
+            
+            {% if page_obj.number != page_obj.paginator.num_pages %}
+                <li><a href={% url "users_list" %}?page={{ page_obj.paginator.num_pages }}{{ search_uri }}>末页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">末页</a></li>
+            {% endif %}
+
+            <li class="disabled"><a href="#">总条数: {{ page_obj.paginator.count }}</a></li>
+        </ul>
+    </div>
+<!-- 分页结束 -->
+
+<!-- 修改用户组信息模态框-->
+<div id="user_group_modal"  class="modal fade" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span ariaa-hidden="true">&times;</span></button>
+                <h3 class="modal-title">修改用户所属组</h3>
+            </div> <!--modal-header end-->
+            <div class="modal-body">
+                <form class="form-horizontal" id="user_group_form">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" id='user_id'>
+                    <div class="form-group"> 
+                        <label for="group_name" class="col-sm-2 control-label text-right">组名<span class="red-fonts">*</span></label>
+                        <div  class="col-sm-8">
+                            <select name="group_name" id="group_name" multiple="multiple" class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" id="user_group_submit" data-id='' >提交</button>
+                        <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+                    </div>  
+                </form>
+            </div> <!--modal-body end -->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div> <!--modal end-->
+
+<!-- 修改用户组信息结束-->
+
+
+<!--更新个人信息模态窗-->
+<div id="UserEditModal"  class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span ariaa-hidden="true">&times;</span></button>
+       <h3 class="modal-title">修改个人资料</h3>
+     </div> <!--modal-header end-->
+     <div class="modal-body">
+     <form class="form-horizontal" id="UserUpdateForm">
+        {% csrf_token %}
+        <input type="hidden" name="id" id="uid_change" readonly="readonly">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">用户名</label>
+             <div  class="col-sm-9">
+                <input  name="username" id="username_change" class="form-control" readonly="readonly">
+            </div> 
+        </div> <!-- name  end-->
+        <div class="form-group" >
+             <label class="col-sm-2 control-label">中文名</label>
+             <div class="col-sm-9">
+                <input name="cn_name" id="cn_name_change" class="form-control">
+            </div> 
+        </div> <!--name_cn  end-->
+        <div class="form-group">
+            <label class="col-sm-2 control-label">email</label>
+             <div class="col-sm-9">
+                <input class="form-control" id="email_change" name="email">
+            </div> 
+        </div> <!--email  end-->
+        <div class="form-group">
+            <label class="col-sm-2 control-label">手机号</label>
+             <div class="col-sm-9">
+                <input class="form-control" id="phone_change" name="phone">
+            </div>  
+        </div> <!--mobile  end-->
+        <div class="form-group">
+            <div class="modal-footer">
+            <button class="btn btn-primary"  id="user_change_btn" >更新</button>
+            <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+            <button class="btn btn-info" type="reset">重置</button>
+            </div> 
+      </div><!--button end-->
+    </form><!--form end-->
+  </div> <!--modal-body end -->
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div> <!--modal end-->
+<!--模态窗结束-->
+
+<!--更新密码模态窗-->
+<div id="UpdatePasswdModal"  class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span ariaa-hidden="true">&times;</span></button>
+                <h3 class="modal-title">修改个人密码</h3>
+            </div> <!--modal-header end-->
+            <div class="modal-body">
+                <form class="form-horizontal" id="UpdatePasswdForm">
+                    {% csrf_token %}
+                    <div class="form-group"> 
+                        <input class="form-control" type="hidden" name="id" readonly="readonly" >
+                    </div> <!-- login_name end-->
+                    <div class="form-group"> 
+                        <label class="col-sm-2 control-label">新密码</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" type="password"  name="password" placeholder="password">
+                        </div> 
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">重复密码</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" type="password"  name="password_again" placeholder="password_again">
+                        </div> 
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" id = "update_password_btn" >更新</button>
+                        <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+                        <button class="btn btn-info" type="reset">重置</button>
+                    </div>  
+                </form><!--form end--> 
+            </div> <!--modal-body end -->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div> <!--modal end-->
+<!--模态窗结束-->
+
+<!--删除用户-->
+<div class="modal fade" id='UserDeleteModal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">删除</h4>
+            </div>
+            <div class="modal-body">
+                <p style="color:red"><b>你确认要删除吗?</b></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>                                                                         
+                <button type="button" class="btn btn-warning del-sure" data-id=''>确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 删除用户结束-->
+
+{% endblock %}
+
+{% block js %}
+
+<script>
+$(".users_list_status").click(function(){
+        var str = {"id":$(this).attr("data-id")}
+        var url="{% url "users_modify_status" %}"
+        $.post(url,str,function(data){
+                if(data['result']==0){
+                    swal({
+                        title: "Good Job",
+                        text: data["msg"],
+                        type: "success",
+                        confirmButtonText:"确定"
+                        },
+                        function(){
+                            location.reload()
+                        }
+                    )
+                }else{
+                    swal("Oh,My God",data["msg"],"error")
+                }
+            }
+        )
+        return false;
+});
+
+<!--更新用户组-->
+$(".users_group_modify").click(function(){
+    $("#user_group_modal").modal('show')
+    var uid = $(this).attr('data-id')
+    var url = "{% url 'users_modify_group' %}?id="+uid
+    $.getJSON(url,function(data){
+        if(data.result==0){
+            var g_list = data.group_list
+            var u_g = data.user_group 
+            var option_html = ""
+            $.each(g_list,function(k,v){
+                option_html  += '<option value="'+v.id+'">'+v.name+'</option>'
+            })
+            $("#group_name").html(option_html)
+            $.each(u_g,function(k,v){
+                $("#group_name option[value='"+v.id+"']").attr("selected","selected")
+            })
+            $("#user_id").val(uid)
+            multiselect_group()
+        }else{
+            swal("Oh,MyGod",data.msg,'error')
+        }
+    })
+    return false
+});
+
+function multiselect_group(){
+    $("#group_name").multiselect({
+        enableFiltering: true,
+        maxHeight: 200,
+        buttonWidth: '100%',
+        nonSelectedText: '请选择组名',
+        delimiterText: ';',
+        selectedClass: 'multiselect-selected',
+        enableCaseInsensitiveFiltering: true,
+    });
+    $("#group_name").multiselect('refresh');
+};
+
+$("#user_group_submit").click(function(){
+    $("#user_group_modal").modal('hide')
+    var u_group = $("#user_group_form").serialize()
+    var url = "{% url 'users_modify_group' %}"
+    $.post(url,u_group,function(data){
+        if(data.result==0){
+            swal({
+                title: "Good Job",
+                text: data.msg,
+                type: "success",
+                confirmButtonText:"确定"
+                },
+                function(){
+                    location.reload()
+                }
+            )
+        }else{
+            swal("Oh,My God",data.msg,"error")
+        }    
+    });
+    return false;
+});
+<!--更新用户组结束-->
+
+<!--更新用户信息-->
+$(".users_change_btn").click(function(){
+    var id = $(this).attr("data-id")
+    $("#UserUpdateForm input[name='id']").val(id)
+    $("#UserEditModal").modal("show")
+});
+<!--更新用户信息结束-->
+
+<!--更新用户密码-->
+$(".users_changepwd_btn").click(function(){
+    var id = $(this).attr("data-id")
+    $("#UpdatePasswdForm input[name='id']").val(id)
+    $("#UpdatePasswdModal").modal("show")
+});
+
+$("#update_password_btn").click(function(){
+    $('#UpdatePasswdModal').modal('hide')
+    var str = $("#UpdatePasswdForm").serialize()
+    var url = "{% url 'user_info_change_passwd' %}"
+    $.post(url,str,function(data){
+           if (data['result']==0){
+                swal({
+                    title:"Good",
+                    text:data.msg,
+                    type:'success',
+                    confirmButtonText:"确定"
+                    },
+                    function(){
+                        location.reload()
+                    });
+           }else{
+                swal("Oh,My God",data.msg,"error")
+           }
+      });
+      return false
+});
+
+<!--更新密码结束-->
+
+<!--删除用户--->
+$(".users_delete").click(function(){
+    var user_id = $(this).attr("data-id")
+    $("#UserDeleteModal").modal("show")
+    $(".del-sure").attr('data-id',user_id)
+});
+
+$(".del-sure").click(function(){
+    $("#UserDeleteModal").modal("hide")
+    var uid = $(this).attr('data-id')
+    var url = "{% url 'users_delete' %}?uid=" + uid
+    $.getJSON(url,function(data){
+       swal({
+             title:"Good",
+             text:"Delete Success",
+             type:'success',
+             confirmButtonText:"确定"
+             },
+             function(){
+                location.reload()
+           })
+   })
+})  
+<!--删除用户结束-->
+
+</script>
+
+{% endblock %}

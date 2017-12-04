@@ -22,13 +22,22 @@ from . import views,user,group,permission
 urlpatterns = [
     url(r'^login/$', views.LoginView.as_view(),name="user_login"),
     url(r'^logout/$', views.LogoutView.as_view(),name="user_logout"),
-    url(r'^user/list$', user.UserListView.as_view(),name="user_list"),
-    url(r'^user/',include([
+    url(r'^users/',include([
         url(r'^modify/',include([
-            url(r'^status/$',user.UserModifyStatusView.as_view(),name="user_modify_status"),
-            url(r'^group/$',user.UserModifyGroupView.as_view(),name="user_modify_group"),
+            url(r'^status/$',user.UserModifyStatusView.as_view(),name="users_modify_status"),
+            url(r'^group/$',user.UserModifyGroupView.as_view(),name="users_modify_group"),
         ])),
-        url(r'^add/$',user.UserAddView.as_view(),name="user_add"),
+        url(r'^list/$', user.UserListView.as_view(),name="users_list"),
+        url(r'^add/$',user.UserAddView.as_view(),name="users_add"),
+        url(r'^delete/$',user.UserDeleteView.as_view(),name="users_delete"),
+    ])),
+
+    url(r'^user/',include([
+        url(r'^info/',include([
+            url(r'^$',user.UserInfoView.as_view(),name="user_info"),
+            url(r'^change/$',user.UserInfoChangeView.as_view(),name="user_info_change"),
+            url(r'^changepwd/$',user.UserInfoChangePwdView.as_view(),name="user_info_change_passwd"),
+        ])),
     ])),
 
     url(r'^group/',include([

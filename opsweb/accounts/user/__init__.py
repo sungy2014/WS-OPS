@@ -2,9 +2,12 @@ from django.views.generic import ListView,View,TemplateView
 from django.contrib.auth.models import User,Group
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse,HttpResponse
+from accounts.forms import UserAddForm,UserInfoChangePwdForm,UserInfoChangeForm
+from accounts.models import UserExtend
+import json
 
 class UserListView(LoginRequiredMixin,ListView):
-    template_name = "user/userlist.html"
+    template_name = "user/users_list.html"
     model = User
     paginate_by = 10
     # page_total 是指前端要显示的总页数
@@ -62,7 +65,7 @@ class UserListView(LoginRequiredMixin,ListView):
 
 class UserModifyStatusView(View):
     def post(self,request,*args,**kwargs):
-        id = request.POST.get("id",None)
+        id = request.POST.get("id",0)
         ret={'result':0}
         try:
             user = User.objects.get(id=id)
@@ -76,7 +79,7 @@ class UserModifyStatusView(View):
 
 class UserModifyGroupView(View):
     def get(self,request):
-        uid = request.GET.get('id',None)
+        uid = request.GET.get('id',0)
         ret = {'result':0,'msg':None}
         try:
             user = User.objects.get(id=uid)
@@ -112,4 +115,126 @@ class UserModifyGroupView(View):
         return JsonResponse(ret)
 
 class UserAddView(TemplateView):
-    template_name = "user/user_add.html"
+    template_name = "user/users_add.html"
+
+    def post(self,request):
+        ret = {"result":0,"msg":None}
+        user_form = UserAddForm(request.POST)
+
+        if not user_form.is_valid():
+            ret["result"] = 1
+            ret["msg"] = json.dumps(json.loads(user_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+            return JsonResponse(ret)
+    
+        try:
+            user_info = user_form.cleaned_data
+            ue_obj = UserExtend()
+            user = User.objects.create_user(user_info.get('username'),user_info.get("email"),user_info.get("password"))
+            ue_obj.user = user
+            user.userextend.cn_name = user_info.get('cn_name')
+            user.userextend.phone = user_info.get('phone')
+        except Exception as e:
+            ret["result"] = 1
+            ret["msg"] = e.args
+        else:
+            user.userextend.save()
+            ret["msg"] = "新用户 %s 注册成功" %(user_info.get('username'))
+
+        return JsonResponse(ret)
+
+class UserDeleteView(View):
+    def get(self,request):
+        ret = {"result":0,"msg":None}
+        uid = request.GET.get("uid",0)
+
+        try:
+            user_obj = User.objects.get(id__exact=uid)
+        except User.DoesNotExist:
+            ret["result"] = 1
+            ret["msg"] = "该用户不存在"
+            return JsonResponse(ret)
+
+        try:
+            user_obj.delete()
+        except Exception as e:
+            ret["result"] = 1
+            ret["msg"] = e.args
+        else:
+            ret["msg"] = "用户 %s 删除成功" %(user_obj.username)
+
+        return JsonResponse(ret)
+
+class UserInfoView(TemplateView):
+    template_name = "user/user_info.html"
+
+    def get_context_data(self,**kwargs):
+        context = super(UserInfoView,self).get_context_data(**kwargs)
+        username = self.request.user
+        try:
+            user_obj = User.objects.get(username__exact=username)
+        except:
+            pass
+        else:
+            context['user_info'] = user_obj
+        return context
+
+class UserInfoChangeView(View):
+    def post(self,request):
+        ret = {"result":0,"msg":None}
+        uid = request.POST.get("id",0)
+        user_change_form = UserInfoChangeForm(request.POST)
+        if not user_change_form.is_valid():
+            ret["result"] = 1
+            ret["msg"] = json.dumps(json.loads(user_change_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+            return JsonResponse(ret)
+        try:
+            user_obj = User.objects.get(id__exact=uid)
+        except User.DoesNotExist:
+            ret["result"] = 1
+            ret["msg"] = "该用户ID %s 不存在,请刷新重试......" %(uid)
+            return JsonResponse(ret)
+        try:
+            user_obj.email = user_change_form.cleaned_data.get("email")
+            user_obj.userextend.cn_name = user_change_form.cleaned_data.get("cn_name")
+            user_obj.userextend.phone = user_change_form.cleaned_data.get("phone")
+            user_obj.save(update_fields=["email"])
+            user_obj.userextend.save(update_fields=["cn_name","phone","last_change_time"])
+        except Exception as e:
+            ret["result"] = 1
+            ret["msg"] = e.args
+        else:
+            ret["msg"] = "用户 %s 更新信息成功" %(User.objects.get(id__exact=uid).username)
+
+        return JsonResponse(ret)
+
+
+'''
+用户个人中心 和 用户列表中的"更新密码"共用此逻辑
+'''
+class UserInfoChangePwdView(View):
+    def post(self,request):
+        ret = {"result":0,"msg":None}
+        uid = request.POST.get("id",0)
+        user_changepwd_form = UserInfoChangePwdForm(request.POST)
+        if not user_changepwd_form.is_valid():
+            ret["result"] = 1
+            ret["msg"] = json.dumps(json.loads(user_changepwd_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+            return JsonResponse(ret)
+        try:
+            user_obj = User.objects.get(id__exact=uid)
+        except User.DoesNotExist:
+            ret["result"] = 1
+            ret["msg"] = "该用户ID %s 不存在,请刷新重试......" %(uid)
+            return JsonResponse(ret)
+            
+        try:
+            user_obj.set_password(user_changepwd_form.cleaned_data.get('password'))
+            user_obj.save(update_fields=['password'])
+            user_obj.userextend.save(update_fields=["last_change_time"])
+        except Exception as e:
+            ret["result"] = 1
+            ret["msg"] = e.args
+        else:
+            ret["msg"] = "用户%s 更新密码成功,需要重新登录......" %(user_obj.username)
+
+        return JsonResponse(ret)

@@ -91,7 +91,7 @@
 	</br>
 	</br>
         <span style='text-align:center' class="text-muted text-xs block">
-            	<strong class="font-bold">{{ user.username }} | </strong>
+            	<strong class="font-bold"><a href="{% url 'user_info' %}">{{ user.username }}</a> | </strong>
                 {{ user.userextend.cn_name }}
          </span>
     </div>
@@ -112,7 +112,8 @@
     <a href="#"><i class="fa fa-user fa-fw" ></i><span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
     <ul class="nav nav-second-level  collapse">
         <li>
-            <a href="{% url 'user_list' %}" class="menu-link">用户列表</a>
+            <a href="{% url 'user_info' %}" class="menu-link">个人中心</a>
+            <a href="{% url 'users_list' %}" class="menu-link">用户列表</a>
             <a href="{% url 'group_list' %}" class="menu-link">用户组列表</a>
             <a href="{% url 'permission_list' %}" class="menu-link">权限列表</a>
         </li>
@@ -258,7 +259,7 @@
 <div class="wrapper wrapper-content">
 
     <div class="row">
-         <div class="col-sm-12 border-bottom white-bg dashboard-header" style="margin-left:15px;">
+         <div class="col-sm-12 border-bottom white-bg dashboard-header" style="margin-left:15px;height:100%">
                 {% block body %}
                 {% endblock %}
 
