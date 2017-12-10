@@ -178,7 +178,29 @@ class UserInfoView(TemplateView):
             context['user_info'] = user_obj
         return context
 
+'''
+用户个人中心 和 用户列表中的"更新用户信息"共用此逻辑
+'''
 class UserInfoChangeView(View):
+
+    def get(self,request):
+        ret = {"result":0,"msg":None}
+        user_info = {}
+        uid = request.GET.get("id",0)
+        try:
+            user_obj = User.objects.get(id__exact=uid)
+        except User.DoesNotExist:
+            ret["result"] = 1
+            ret["msg"] = "该用户ID %s 不存在" %(uid)
+        else:
+            user_info['username'] = user_obj.username
+            user_info['email'] = user_obj.email
+            user_info['cn_name'] = user_obj.userextend.cn_name
+            user_info['phone'] = user_obj.userextend.phone
+            ret["user_obj"] = user_info
+
+        return JsonResponse(ret)
+
     def post(self,request):
         ret = {"result":0,"msg":None}
         uid = request.POST.get("id",0)

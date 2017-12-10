@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
+import os,sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+sys.path.insert(0, os.path.join(BASE_DIR, 'utils'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -41,6 +42,7 @@ INSTALLED_APPS = (
     'accounts',
     'dashboard',
     'resources',
+    'api',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -103,7 +105,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)

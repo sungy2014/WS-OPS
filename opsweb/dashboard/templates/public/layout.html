@@ -17,10 +17,6 @@
 <link rel="stylesheet" type="text/css" href="/static/plugin/dataTables/dataTables.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/static/plugin/jquery-ui-1.12.1/jquery-ui.css">
 <link rel="stylesheet" href="/static/plugin/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" type="text/css"/>
-<!--
-<link rel="stylesheet" href="/static/plugin/jQuery-File-Upload-9.18.0/css/jquery.fileupload.css" type="text/css"/>
-<link rel="stylesheet" href="/static/plugin/jQuery-File-Upload-9.18.0/css/jquery.fileupload-ui.css" type="text/css"/>
--->
 <link href="/static/plugin/metismenu/metismenu.min.css" rel="stylesheet">
 <link href="/static/plugin/chosen/css/chosen.min.css" rel="stylesheet" type="text/css">
 <link href="/static/plugin/chosen/css/chosen-bootstrap.css" rel="stylesheet" type="text/css">
@@ -126,10 +122,16 @@
     <a href="#" ><i class="fa fa-database fa-fw"></i><span class="nav-label">资源管理</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse" >
             <li>
-                <a href="#" class="menu-link">服务器管理</a>
+                <a href="#" class="menu-link">CMDB-IDC</a>
             </li>
             <li>
-                <a href="#" class="menu-link">业务线管理</a>
+                <a href="#" class="menu-link">CMDB-Aliyun</a>
+            </li>
+            <li>
+                <a href="#" class="menu-link">服务器-IDC</a>
+            </li>
+            <li>
+                <a href="{% url 'server_aliyun_list' %}" class="menu-link">服务器-Aliyun</a>
             </li>
             <li>
                 <a href="{% url 'idc_list' %}" class="menu-link">IDC管理</a>

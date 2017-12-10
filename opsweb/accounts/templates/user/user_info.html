@@ -21,6 +21,7 @@
                         <tr><td class='text-center'>中文名</td><td class='text-center'>{{user_info.userextend.cn_name}}</td></tr>
                         <tr><td class='text-center'>邮箱</td><td class='text-center'>{{user_info.email}}</td></tr>
                         <tr><td class='text-center'>手机号</td><td class='text-center'>{{user_info.userextend.phone}}</td></tr>
+                        <tr><td class='text-center'>注册时间</td><td class='text-center'>{{user_info.date_joined | date:"Y-m-d H:i:s" }}</td></tr>
                         <tr><td class='text-center'>最近登陆时间</td><td class='text-center'>{{user_info.last_login | date:"Y-m-d H:i:s" }}</td></tr>
                         <tr><td class='text-center'>最近修改时间</td><td class='text-center'>{{user_info.userextend.last_change_time | date:"Y-m-d H:i:s" }}</td></tr>
                     </table>
@@ -125,6 +126,8 @@
 {% block js %}
 
 <script>
+
+<!--更新用户信息-->
 $("#edit").click(function(){
     $('#UserEditModal').modal('show')  
 })
@@ -148,11 +151,13 @@ $("#user_update_btn").click(function(){
       });
       return false
 });
+<!--更新用户信息结-->
 
+<!--更改密码-->
 $("#passwd").click(function(){
     $('#UpdatePasswdModal').modal('show')  
 })
-/*用户自己修改密码*/
+
 $("#update_password_btn").click(function(){
     $('#UpdatePasswdModal').modal('hide')
     var str = $("#UpdatePasswdForm").serialize()
@@ -174,6 +179,7 @@ $("#update_password_btn").click(function(){
       });
       return false
 });
+<!--更改密码结束-->
 
 </script>
 {% endblock %}

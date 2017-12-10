@@ -346,8 +346,40 @@ $("#user_group_submit").click(function(){
 <!--更新用户信息-->
 $(".users_change_btn").click(function(){
     var id = $(this).attr("data-id")
+    var url = "{% url 'user_info_change' %}?id=" + id
     $("#UserUpdateForm input[name='id']").val(id)
+    $.getJSON(url,function(data){
+        if (data.result==0){
+            $("#username_change").val(data.user_obj.username)
+            $("#cn_name_change").val(data.user_obj.cn_name)
+            $("#email_change").val(data.user_obj.email)
+            $("#phone_change").val(data.user_obj.phone)
+        }else{
+                swal("Oh,My God",data.msg,"error")
+        } 
+    });
     $("#UserEditModal").modal("show")
+});
+
+$("#user_change_btn").click(function(){
+    $('#UserEditModal').modal('hide')
+    var str = $("#UserUpdateForm").serialize()
+    var url = "{% url 'user_info_change' %}"  
+    $.post(url,str,function(data){
+        if(data.result == 0){  
+            swal({
+                   title:"success",
+                   text:"更新成功",
+                   type:"success",
+                   confirmButtonText:'确定'
+                   },function(){
+                       location.reload()
+                   })
+         }else{
+                   swal("Oh,MyGod",data.msg,"error")
+         }
+      });
+      return false
 });
 <!--更新用户信息结束-->
 
@@ -396,7 +428,7 @@ $(".del-sure").click(function(){
     $.getJSON(url,function(data){
        swal({
              title:"Good",
-             text:"Delete Success",
+             text:data.msg,
              type:'success',
              confirmButtonText:"确定"
              },

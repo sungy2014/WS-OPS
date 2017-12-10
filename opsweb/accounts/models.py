@@ -9,6 +9,9 @@ class UserExtend(models.Model):
     phone = models.CharField("手机号",max_length=11,null=False)
     last_change_time = models.DateTimeField("最后修改时间",auto_now=True)
 
+    def __str__(self):
+        return self.cn_name
+
     class Meta:
         db_table = "user_extend"
     
