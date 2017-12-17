@@ -7,10 +7,19 @@
 {% block body %} 
 
 <div class="col-sm-12">
-    <a href="#" id="server_add_btn" class="btn btn-sm btn-primary">添加服务器</a> 
-    </br>
-    </br>
     <table class="table table-striped table-bordered table-hover " id="editable">
+        <caption>
+            <div>
+                <form class="form-inline">
+                    {% csrf_token %}
+                    <a href="#"class="btn btn-primary" id="server_add_btn" style="text-align:light">添加服务器</a>
+                    <button type="submit" class="btn btn-primary" style="float:right">搜索</button>
+                    <div class="form-group" style="text-align:right;float: right;margin-right: 10px;">
+                        <input type="text" class="form-control" name="search" value="{{ search }}" placeholder="私网IP | 公网IP | 主机名">
+                    </div>
+                </form> 
+            </div>
+        </caption> 
         <thead>
             <tr>
                 <th class="text-center">私网 IP</th>
@@ -20,7 +29,6 @@
                 <th class="text-center">所属环境</th>
                 <th class="text-center">配置信息</th>
                 <th class="text-center">磁盘信息</th>
-                <th class="text-center">机房</th>
                 <th class="text-center">可用区</th>
                 <th class="text-center">状态</th>
                 <th class="text-center">监控状态</th>
@@ -39,11 +47,10 @@
                 <td class="text-center">{{ server_obj.get_env_display }}</td>
                 <td class="text-center">{{ server_obj.cpu_count }}<br>{{ server_obj.mem }}<br>{{ server_obj.os_version }}</td>
                 <td>{{ server_obj.disk|safe }}</td>
-                <td class="text-center">{{ server_obj.idc.cn_name }}</td>
                 <td class="text-center">{{ server_obj.zone }}</td>
                 <td class="text-center">{{ server_obj.get_status_display }}</td>
                 <td class="text-center">{{ server_obj.get_monitor_status_display }}</td>
-                <td class="text-center">{{ server_obj.get_charge_type_display }}</td>
+                <td class="text-center">{{ server_obj.get_charge_type_display }}</br>{{ server_obj.get_renewal_type_display }}</td>
                 <td class="text-center">{{ server_obj.expired_time | date:"Y-m-d H:i:s" }}</td>
                 <td class="text-center">
                     <button data-id="{{ server_obj.id }}" class="btn btn-sm btn-info server_detail">详情</button>
@@ -52,7 +59,7 @@
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                             <li><a href="#" data-id="{{ server_obj.id }}" class="server_update">编辑</a></li>
                             <li><a href="#" data-id="{{ server_obj.id }}" class="server_refresh">刷新</a></li>
-                            <li><a href="#" data-id="{{ server_obj.id }}" class="del">删除</a></li>
+                            <li><a href="#" data-id="{{ server_obj.id }}" data-del="{{ server_obj.private_ip }}" class="del">删除</a></li>
                         </ul>
                     </div> 
                 </td>
@@ -60,6 +67,48 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <!-- 列表分页 -->
+    <div class="text-center">
+        <ul class="pagination">
+            <li class="disabled"><a href="#">总页数: {{ page_obj.paginator.num_pages }}</a></li>
+
+            {% if page_obj.number != 1 %}
+                <li><a href={% url "server_aliyun_list" %}?page=1{{ search_uri }}>首页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">首页</a></li>
+            {% endif %}
+
+            {% if page_obj.has_previous %}
+                <li><a href={% url "server_aliyun_list" %}?page={{ page_obj.previous_page_number }}{{ search_uri }}>上一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">上一页</a></li>
+            {% endif %}
+
+            {% for page in page_range %}
+               {% if page == page_obj.number %}
+                  <li class="active"><a href={% url "server_aliyun_list" %}?page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% else %}
+                  <li><a href={% url "server_aliyun_list" %}?page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href={% url "server_aliyun_list" %}?page={{ page_obj.next_page_number }}{{ search_uri }}>下一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">下一页</a></li>
+            {% endif %}
+            
+            {% if page_obj.number != page_obj.paginator.num_pages %}
+                <li><a href={% url "server_aliyun_list" %}?page={{ page_obj.paginator.num_pages }}{{ search_uri }}>末页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">末页</a></li>
+            {% endif %}
+
+            <li class="disabled"><a href="#">总条数: {{ page_obj.paginator.count }}</a></li>
+        </ul>
+    </div>
+    <!-- 分页结束 -->
 
     <!-- 添加服务器-->
     <div id="ServerAddModal"  class="modal fade">
@@ -83,12 +132,6 @@
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
-                        <div class="form-inline row">
-                            <div class="form-group col-sm-6">
-                                <label for="idc" class="col-sm-4 control-label text-right">机房<span class="red-fonts">*</span></label>
-                                <select name="idc" class="form-control idc_list" style="width: 50%;">
-                                </select>
-                            </div>
                             <div class="form-group col-sm-6">
                                 <label for="env" class="col-sm-4 control-label text-right">所属环境<span class="red-fonts">*</span></label>
                                 <select name="env" class="form-control env_choices" style="width: 50%;">
@@ -125,18 +168,6 @@
                                 <input style="width: 50%;" id="private_ip" name="private_ip" placeholder="private_ip" type="text" class="form-control" aria-required="true" readonly>
                             </div>
                             <div class="form-group col-sm-6">
-                                <label for="public_ip" class="col-sm-4 control-label text-right ">公网IP</label>
-                                <input style="width: 50%;" id="public_ip" name="public_ip" placeholder="public_ip" type="text" class="form-control" aria-required="true">
-                            </div>
-                        </div>
-
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-inline row">
-                            <div class="form-group col-sm-6">
-                                <label for="hostname" class="col-sm-4 control-label text-right ">主机名</label>
-                                <input style="width: 50%;" id="hostname" name="hostname" placeholder="hostname" type="text" class="form-control" aria-required="true">
-                            </div>
-                            <div class="form-group col-sm-6">
                                 <label for="ssh_port" class="col-sm-4 control-label text-right ">SSH 端口<span class="red-fonts ">*</span></label>
                                 <input style="width: 50%;" id="ssh_port" name="ssh_port" placeholder="ssh_port" type="text" class="form-control" aria-required="true">
                             </div>
@@ -144,11 +175,6 @@
 
                         <div class="hr-line-dashed"></div>
                         <div class="form-inline row">
-                            <div class="form-group col-sm-6">
-                                <label for="idc" class="col-sm-4 control-label text-right">机房<span class="red-fonts">*</span></label>
-                                <select style="width: 50%;" name="idc" id="idc" class="form-control idc_list">
-                                </select>
-                            </div>
                             <div class="form-group col-sm-6">
                                 <label for="env" class="col-sm-4 control-label text-right">所属环境<span class="red-fonts">*</span></label>
                                 <select style="width: 50%;" name="env" id="env" class="form-control env_choices">
@@ -206,10 +232,6 @@
 
                         <div class="hr-line-dashed"></div>
                         <div class="form-inline row">
-                            <div class="form-group col-sm-6">
-                                <label for="idc" class="col-sm-4 control-label text-right">机房<span class="red-fonts">*</span></label>
-                                <input id="idc_detail" name="idc" placeholder="idc" type="text" class="form-control" aria-required="true" readonly="readonly">
-                            </div>
                             <div class="form-group col-sm-6">
                                 <label for="env" class="col-sm-4 control-label text-right">所属环境<span class="red-fonts">*</span></label>
                                 <input id="env_detail" name="env" placeholder="env" type="text" class="form-control" aria-required="true" readonly="readonly">
@@ -346,6 +368,7 @@
                     <h4 class="modal-title">删除</h4>
                 </div>
                 <div class="modal-body">
+                    <p id="data-del"></p>
                     <p style="color:red"><b>你确认要删除吗?</b></p>
                 </div>
                 <div class="modal-footer">
@@ -362,15 +385,6 @@
 
 {% block js %}
 <script>
-
-$.getJSON("{% url 'get_idc_list' %}",function(data){
-    data = data["idc_list"]
-    var str = ''
-    $.each(data,function(k,v){
-        str += '<option value="'+v["id"]+'">'+v["cn_name"]+'</option>'
-    });
-    $(".idc_list").append(str)
-});
 
 $.getJSON("{% url 'get_server_env' %}",function(data){
     var str = ''
@@ -433,11 +447,41 @@ $(".server_refresh").click(function(){
 
 <!-- 更新 -->
 $(".server_update").click(function(){
-   $('#UpdateModal').modal('show')
+    var id = $(this).attr("data-id")
+    var url = "{% url 'server_aliyun_update' %}?id=" + id
+    $.getJSON(url,function(data){
+        if(data.result==0){  
+            data = data.server_info
+            $("#id").val(data.id)
+            $("#private_ip").val(data.private_ip)
+            $("#ssh_port").val(data.ssh_port)
+            $('#env option[value="'+data.env.id+'"]').attr("selected","selected")
+        }else{
+            swal("OH,My God",data.msg,"error")
+        };
+    });
+    $('#UpdateModal').modal('show')
 });
 
 $("#server_update_btn").click(function(){
-   return false;
+    var str = $("#UpdateForm").serialize()
+    var url = "{% url 'server_aliyun_update' %}"
+    $.post(url,str,function(data){
+        if(data.result==0){
+           swal({
+             title:"Good",
+             text:data.msg,
+             type:'success',
+             confirmButtonText:"确定"
+             },
+             function(){
+                location.reload()
+           })
+        }else{
+            swal("OH,My God",data.msg,"error")
+        };        
+    });
+    return false;
 });
 
 <!-- 详情 -->
@@ -452,8 +496,7 @@ $(".server_detail").click(function(){
             $("#public_ip_detail").val(data.public_ip)
             $("#hostname_detail").val(data.hostname)
             $("#ssh_port_detail").val(data.ssh_port)
-            $("#idc_detail").val(data.idc)
-            $("#env_detail").val(data.env)
+            $("#env_detail").val(data.env.name)
             $("#server_brand_detail").val(data.server_brand)
             $("#instance_type_detail").val(data.instance_type)
             $("#os_version_detail").val(data.os_version)
@@ -472,24 +515,27 @@ $(".server_detail").click(function(){
             $("#offline_time_detail").val(data.offline_time)
             $("#expired_time_detail").val(data.expired_time)
             $("#last_update_time_detail").val(data.last_update_time)
-            $('#DetailModal').modal('show')
         }else{
             swal("OH,My God",data.msg,"error")
         };
    });
+    $('#DetailModal').modal('show')
 });
 
 <!-- 删除-->
 $(".del").click(function(){
    var id = $(this).attr('data-id')
+   var data = $(this).attr("data-del")
+   $("#data-del").html(data)
    $('#DeleteModal').modal('show')
    $(".del-sure").attr('data-id',id)
 })
 
 $(".del-sure").click(function(){
    var id = $(this).attr('data-id')
-   var url = "#?id="+id
-   $.getJSON(url,function(data){
+   var url = "{% url 'server_aliyun_delete' %}"
+   $('#DeleteModal').modal('hide')
+   $.post(url,{"id": id},function(data){
        if(data.result==0){
            swal({
              title:"Good",
@@ -501,18 +547,10 @@ $(".del-sure").click(function(){
                 location.reload()
            })
        }else{
-            swal({
-                    title:"OH,My God",
-                    text:data.msg,
-                    type:"error",
-                    confirmButtonText:"确定"},
-                    function(){
-                        $('#DeleteModal').modal('hide')
-                });
+            swal("OH,My God",data.msg,"error")
        };
    });
 })   
-<!-- 删除用户结束-->
 
 </script>
 

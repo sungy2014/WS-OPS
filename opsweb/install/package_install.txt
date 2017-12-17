@@ -1,0 +1,16 @@
+## 安装阿里云 pyhton SDK
+pip install aliyun-python-sdk-core-v3
+pip install aliyun-python-sdk-ecs
+
+## 安装 ansible
+pip install ansible
+
+## 安装 pytz 和 tzlocal,时区相关
+pip install pytz
+pip install tzlocal
+
+## 安装 django-crontab 定时任务
+pip install django-crontab
+
+## 安装 gunicorn
+pip install gunicorn

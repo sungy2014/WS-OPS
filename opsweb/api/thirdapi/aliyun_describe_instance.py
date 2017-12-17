@@ -8,11 +8,20 @@ from aliyunsdkcore.acs_exception.exceptions import ClientException
 from aliyunsdkcore.acs_exception.exceptions import ServerException
 from aliyunsdkecs.request.v20140526 import DescribeInstancesRequest
 from aliyunsdkecs.request.v20140526 import DescribeInstanceAutoRenewAttributeRequest
+from dashboard.utils.get_ws_conf import get_myconf
+from dashboard.utils.wslog import wslog_error,wslog_info
 import json
 import os
 
-accessKeyId = os.getenv("haha")
-accessSecret = os.getenv("hehe")
+aliyun_conf = get_myconf(section="aliyun_config")
+
+if aliyun_conf["result"] == 0:
+    accessKeyId = aliyun_conf["mysec_conf"]["haha"]
+    accessSecret = aliyun_conf["mysec_conf"]["hehe"]
+else:
+    wslog_error().error(aliyun_conf["msg"])
+    accessKeyId = ''
+    accessSecret = ''
 
 # 获取ECS所有实例或者指定实例的所有信息
 def AliyunDescribeInstances(**kwargs):
@@ -31,10 +40,12 @@ def AliyunDescribeInstances(**kwargs):
             request.add_query_param(k, v)
 
     # 发起请求
-    response = clt.do_action_with_exception(request)
-
-    # 输出结果
-    return json.loads(response)["Instances"]["Instance"]
+    try:
+        response = clt.do_action_with_exception(request)
+    except Exception as e:
+        wslog_error().error(e)
+    else:
+        return json.loads(response)["Instances"]["Instance"]
 
 
 # 获取ECS是否是自动续费
@@ -53,10 +64,12 @@ def AliyunDescribeInstanceAutoRenewAttribute(instance_id):
         response = clt.do_action_with_exception(request)
     except ServerException as e:
         ret["result"] = 1
-        ret["msg"] = str(e)
+        wslog_error().error(e)
     else:
         ret["data"] = json.loads(response)['InstanceRenewAttributes']['InstanceRenewAttribute'][0]['RenewalStatus']
     return ret
 
 if __name__ == "__main__":
-    AliyunDescribeInstanceAutoRenewAttribute('i-2zegp3c1ktdqgs3pgf6p')
+    result = AliyunDescribeInstances()
+    ecs_list = [i["NetworkInterfaces"]["NetworkInterface"][0]["PrimaryIpAddress"] for i in result]
+

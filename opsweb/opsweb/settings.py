@@ -15,6 +15,7 @@ import os,sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# 导入自定义工具包
 sys.path.insert(0, os.path.join(BASE_DIR, 'utils'))
 
 # Quick-start development settings - unsuitable for production
@@ -38,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crontab',
     'helloworld',
     'accounts',
     'dashboard',
@@ -115,3 +117,67 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
 os.path.join(BASE_DIR, "static"),
 )
+#STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+# 定时任务配置
+CRONJOBS = [  
+    # 每隔2分钟运行下面的函数，使得 Server_Aliyun 模型与阿里云上的ECS保持一致
+    ('*/2 * * * *', 'resources.cron.ServerAliyunAutoAddCrontab'),
+    ('30 16 * * *', 'resources.cron.ServerAliyunAutoRefreshCrontab'),
+]
+
+# 日志配置
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False, 
+    "loggers": {
+        "info_logger": {
+            "handlers": ["info_handler"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "error_logger": {
+            "handlers": ["error_handler"],
+            "level": "ERROR",
+            "propagate": False,
+        },
+        "console_logger": {
+            "handlers": ["console_handler"],
+            "level": "DEBUG",
+        },
+    },
+    "handlers": {
+        "info_handler": {
+            "class": "logging.handlers.TimedRotatingFileHandler",
+            "filename": os.path.join(BASE_DIR,'logs','wsops.log'),
+            "when": "midnight",
+            "backupCount": 7,
+            "encoding": "utf8",
+            "formatter": "verbose_format",
+        },
+        "error_handler": {
+            "class": "logging.handlers.TimedRotatingFileHandler",
+            "filename": os.path.join(BASE_DIR,'logs','error.log'),
+            "when": "midnight",
+            "backupCount": 7,
+            "encoding": "utf8",
+            "formatter": "verbose_format",
+        },
+        "console_handler": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple_format",
+        },
+    },
+    "formatters": {
+        "verbose_format": {
+            "format": "%(asctime)s-[%(levelname)s]-%(pathname)s-[line:%(lineno)2d]-%(message)s"
+        },
+        "simple_format": {
+            "format": "%(asctime)s-[%(levelname)s]-%(pathname)s-%(message)s"
+        },
+    },
+    "root": {
+        "handlers": ["info_handler"],
+        "level": "INFO",
+    },
+}

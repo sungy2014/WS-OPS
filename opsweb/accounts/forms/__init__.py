@@ -94,3 +94,4 @@ class UserInfoChangeForm(forms.Form):
     cn_name = forms.CharField(required=True,error_messages={"required":"中文名不能为空"})
     phone = forms.CharField(required=True,error_messages={"required":"手机号不能为空"})
     email = forms.EmailField(required=True,error_messages={"required":"邮箱不能为空","invalid":"邮箱格式错误"})
+

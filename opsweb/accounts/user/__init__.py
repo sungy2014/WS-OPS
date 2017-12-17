@@ -5,6 +5,7 @@ from django.http import JsonResponse,HttpResponse
 from accounts.forms import UserAddForm,UserInfoChangePwdForm,UserInfoChangeForm
 from accounts.models import UserExtend
 import json
+from django.db.models import Q
 
 class UserListView(LoginRequiredMixin,ListView):
     template_name = "user/users_list.html"
@@ -36,10 +37,11 @@ class UserListView(LoginRequiredMixin,ListView):
     def get_queryset(self):
         queryset = super(UserListView,self).get_queryset()
         queryset = queryset.filter(is_superuser=False)
+        queryset = queryset.exclude(username__exact=self.request.user)
 
         search_name = self.request.GET.get('search',None)
         if search_name:
-            queryset = queryset.filter(username__icontains=search_name)
+            queryset = queryset.filter(Q(username__icontains=search_name)|Q(userextend__phone__icontains=search_name))
         return queryset
     
     # 获取要展示的页数范围,这里是固定显示多少页
@@ -82,12 +84,12 @@ class UserModifyGroupView(View):
         uid = request.GET.get('id',0)
         ret = {'result':0,'msg':None}
         try:
-            user = User.objects.get(id=uid)
+            user_obj = User.objects.get(id=uid)
         except User.DoesNotExist:
             ret['result'] = 1
             ret['msg'] = "该用户不存在"
             return JsonResponse(ret)
-        user_group = list(user.groups.values('id')) 
+        user_group = list(user_obj.groups.values('id')) 
         group_list = list(Group.objects.values('id','name'))
         ret['user_group'] = user_group
         ret['group_list'] = group_list
@@ -104,14 +106,26 @@ class UserModifyGroupView(View):
             ret['msg'] = "该用户不存在"
             return JsonResponse(ret)
 
+        if not gid_list:
+            ret['result'] = 1
+            ret['msg'] = "请选择至少一个组名"
+            return JsonResponse(ret)
+
         try:
             group_obj_list = [Group.objects.get(id=gid) for gid in gid_list]
         except Group.DoesNotExist:
             ret['result'] = 1
             ret['msg'] = "用户组不存在"
             return JsonResponse(ret)
-        user_obj.groups.set(group_obj_list)
-        ret['msg'] = "组修改成功"
+        
+        try:
+            user_obj.groups.set(group_obj_list)
+        except Exception as e:
+            ret['result'] = 1
+            ret['msg'] = "用户: %s 修改组信息失败,错误信息: %s" %(user_obj.username,e.args)
+        else:
+            ret['msg'] = "用户: %s 组修改成功" %(user_obj.username)
+
         return JsonResponse(ret)
 
 class UserAddView(TemplateView):

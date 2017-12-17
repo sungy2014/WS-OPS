@@ -4,12 +4,14 @@ from django.db import models
 
 
 class IDC(models.Model):
-    name = models.CharField("IDC 简称",max_length=10,null=False,unique=True)
+    name = models.CharField("IDC 简称",max_length=20,null=False,unique=True)
     cn_name = models.CharField("IDC 中文名",max_length=100,null=False)
     address = models.CharField("IDC 地址",max_length=100,null=False)
     phone = models.CharField("IDC 联系电话",max_length=20,null=True)
     email = models.EmailField("IDC 邮箱",null=True)
     user = models.CharField("IDC 联系人",max_length=32,null=True)
+    online_time = models.DateTimeField("IDC添加时间",auto_now_add=True,null=True)
+    last_update_time = models.DateTimeField("最后一次更新时间",auto_now=True,null=True)
 
     def __str__(self):
         return "%s-%s" %(self.name,self.cn_name)
@@ -33,7 +35,7 @@ class Server_IDC(models.Model):
     cpu_count = models.DecimalField("CPU核数",max_digits=3,decimal_places=0,null=True)
     mem = models.CharField("内存大小",max_length=20,null=True)
     swap = models.CharField("SWAP 空间大小",max_length=10,null=True)
-    disk = models.CharField("物理磁盘大小",max_length=50,null=True)
+    disk = models.CharField("物理磁盘大小",max_length=200,null=True)
     disk_mount = models.CharField("分区挂载情况",max_length=100,null=True)
     sn_code = models.CharField("服务器SN号",max_length=20,null=True,unique=True)
     cabinet_num = models.CharField("机柜编号",max_length=20,null=True)
@@ -84,20 +86,19 @@ class Server_Aliyun(models.Model):
         ("RenewalByUsed","按量付费"),
     )
 
-    hostname = models.CharField("主机名",max_length=20,null=True)
+    hostname = models.CharField("主机名",max_length=50,null=True)
     ssh_port = models.CharField("SSH 端口号",max_length=5,null=False,default="22")
     private_ip = models.GenericIPAddressField("私网IP",protocol="IPv4",unique=True,null=True,db_index=True)
     public_ip = models.GenericIPAddressField("公网IP",protocol="IPv4",null=True)
     instance_id = models.CharField("实例ID",max_length=50,unique=True,null=True,db_index=True)
-    env = models.CharField("所属环境",choices=ENV_CHOICES,max_length=10,null=False)
+    env = models.CharField("所属环境",choices=ENV_CHOICES,max_length=10,null=False,default="online")
     server_brand = models.CharField("服务器品牌",max_length=50,null=True)
     os_version = models.CharField("系统版本",max_length=50,null=True)
     cpu_count = models.CharField("CPU核数",max_length=10,null=True)
     mem = models.CharField("内存大小",max_length=20,null=True)
     swap = models.CharField("SWAP 空间大小",max_length=10,null=True)
-    disk = models.CharField("物理磁盘大小",max_length=50,null=True)
+    disk = models.CharField("物理磁盘大小",max_length=200,null=True)
     disk_mount = models.CharField("分区挂载情况",max_length=100,null=True)
-    idc = models.ForeignKey(IDC,verbose_name="所属机房")
     instance_type = models.CharField("实例规格",max_length=50,null=True)
     charge_type = models.CharField("付费类型",choices=CHARGE_TYPE_CHOICES,max_length=10,null=True)
     renewal_type = models.CharField("续费类型",choices=RENEWLI_STATUS_CHOICES,max_length=50,null=True)

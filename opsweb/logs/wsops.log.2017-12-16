@@ -1,0 +1,125 @@
+2017-12-16 16:22:10,863-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /resources/server/aliyun/list/
+2017-12-16 16:22:10,985-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /favicon.ico
+2017-12-16 16:23:16,327-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /resources/server/aliyun/list/
+2017-12-16 16:26:03,308-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.76 自动添加成功
+2017-12-16 16:26:03,311-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.32 自动添加成功
+2017-12-16 16:26:03,313-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.21 自动添加成功
+2017-12-16 16:26:03,316-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.92.123 自动添加成功
+2017-12-16 16:26:03,319-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.50 自动添加成功
+2017-12-16 16:26:03,321-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.114 自动添加成功
+2017-12-16 16:26:03,324-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.23 自动添加成功
+2017-12-16 16:26:03,327-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.70 自动添加成功
+2017-12-16 16:26:03,330-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.113 自动添加成功
+2017-12-16 16:26:03,333-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.17 自动添加成功
+2017-12-16 16:26:03,336-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.19 自动添加成功
+2017-12-16 16:26:03,339-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.28 自动添加成功
+2017-12-16 16:26:03,342-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.115 自动添加成功
+2017-12-16 16:26:03,344-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.24 自动添加成功
+2017-12-16 16:26:03,347-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.104 自动添加成功
+2017-12-16 16:26:03,350-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.86 自动添加成功
+2017-12-16 16:26:03,352-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.92.122 自动添加成功
+2017-12-16 16:26:03,356-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.99 自动添加成功
+2017-12-16 16:30:03,923-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.113 自动刷新成功
+2017-12-16 16:30:05,203-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.114 自动刷新成功
+2017-12-16 16:30:07,035-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.115 自动刷新成功
+2017-12-16 16:30:09,774-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.25 自动刷新成功
+2017-12-16 16:30:10,949-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.26 自动刷新成功
+2017-12-16 16:30:12,175-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.27 自动刷新成功
+2017-12-16 16:30:13,478-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.28 自动刷新成功
+2017-12-16 16:30:14,760-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.29 自动刷新成功
+2017-12-16 16:30:15,925-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.30 自动刷新成功
+2017-12-16 16:30:17,056-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.31 自动刷新成功
+2017-12-16 16:30:18,296-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.32 自动刷新成功
+2017-12-16 16:30:19,564-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.33 自动刷新成功
+2017-12-16 16:30:20,699-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.34 自动刷新成功
+2017-12-16 16:30:21,852-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.35 自动刷新成功
+2017-12-16 16:30:23,153-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.36 自动刷新成功
+2017-12-16 16:30:24,391-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.37 自动刷新成功
+2017-12-16 16:30:25,504-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.48 自动刷新成功
+2017-12-16 16:30:26,757-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.49 自动刷新成功
+2017-12-16 16:30:28,124-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.50 自动刷新成功
+2017-12-16 16:30:29,405-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.51 自动刷新成功
+2017-12-16 16:30:30,633-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.52 自动刷新成功
+2017-12-16 16:30:31,931-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.53 自动刷新成功
+2017-12-16 16:30:33,266-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.54 自动刷新成功
+2017-12-16 16:30:34,942-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.55 自动刷新成功
+2017-12-16 16:30:36,330-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.56 自动刷新成功
+2017-12-16 16:30:38,535-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.58 自动刷新成功
+2017-12-16 16:30:39,895-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.59 自动刷新成功
+2017-12-16 16:30:41,043-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.65 自动刷新成功
+2017-12-16 16:30:42,271-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.70 自动刷新成功
+2017-12-16 16:30:43,585-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.71 自动刷新成功
+2017-12-16 16:30:44,852-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.72 自动刷新成功
+2017-12-16 16:30:46,045-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.73 自动刷新成功
+2017-12-16 16:30:47,759-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.74 自动刷新成功
+2017-12-16 16:30:49,039-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.75 自动刷新成功
+2017-12-16 16:30:50,449-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.76 自动刷新成功
+2017-12-16 16:30:51,645-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.77 自动刷新成功
+2017-12-16 16:30:52,899-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.78 自动刷新成功
+2017-12-16 16:30:54,092-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.79 自动刷新成功
+2017-12-16 16:30:55,358-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.80 自动刷新成功
+2017-12-16 16:30:56,577-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.81 自动刷新成功
+2017-12-16 16:30:57,962-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.82 自动刷新成功
+2017-12-16 16:30:59,452-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.87 自动刷新成功
+2017-12-16 16:31:00,705-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.89 自动刷新成功
+2017-12-16 16:31:02,375-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.90 自动刷新成功
+2017-12-16 16:31:04,683-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.99 自动刷新成功
+2017-12-16 20:50:03,120-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.114 自动添加成功
+2017-12-16 20:50:03,122-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:324]-服务器: 172.17.134.115 自动添加成功
+2017-12-16 21:09:49,928-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /static/css/bootstrap.min.css.map
+2017-12-16 21:09:50,412-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /static/plugin/metismenu/metisMenu.js.map
+2017-12-16 21:10:08,643-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /static/css/bootstrap.min.css.map
+2017-12-16 21:10:08,750-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /static/plugin/metismenu/metisMenu.js.map
+2017-12-16 21:11:00,775-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /static/plugin/metismenu/metisMenu.js.map
+2017-12-16 21:11:00,788-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /static/css/bootstrap.min.css.map
+2017-12-16 21:11:06,756-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /static/plugin/metismenu/metisMenu.js.map
+2017-12-16 21:11:06,756-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /static/css/bootstrap.min.css.map
+2017-12-16 21:42:40,925-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py-[line:93]-Method Not Allowed (GET): /resources/server/aliyun/update/
+2017-12-16 21:42:43,064-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py-[line:93]-Method Not Allowed (GET): /resources/server/aliyun/update/
+2017-12-16 21:42:44,910-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py-[line:93]-Method Not Allowed (GET): /resources/server/aliyun/update/
+2017-12-16 21:42:46,797-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py-[line:93]-Method Not Allowed (GET): /resources/server/aliyun/update/
+2017-12-16 21:42:55,324-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py-[line:93]-Method Not Allowed (GET): /resources/server/aliyun/update/
+2017-12-16 21:43:13,452-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py-[line:93]-Method Not Allowed (GET): /resources/server/aliyun/update/
+2017-12-16 21:53:04,669-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /static/plugin/metismenu/metisMenu.js.map
+2017-12-16 21:53:05,281-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /static/css/bootstrap.min.css.map
+2017-12-16 21:53:10,974-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /static/plugin/metismenu/metisMenu.js.map
+2017-12-16 21:53:11,530-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /static/css/bootstrap.min.css.map
+2017-12-16 21:53:21,156-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /static/plugin/metismenu/metisMenu.js.map
+2017-12-16 21:53:21,157-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /static/css/bootstrap.min.css.map
+2017-12-16 22:36:39,153-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /accounts/users/list/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/contrib/auth/mixins.py", line 56, in dispatch
+    return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/list.py", line 160, in get
+    self.object_list = self.get_queryset()
+  File "/ops-data/zp/haha/mysite-11/opsweb/accounts/user/__init__.py", line 43, in get_queryset
+    queryset = queryset.filter(Q(username__icontains=search_name)|Q(phone__icontains=search_name))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/models/query.py", line 784, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/models/query.py", line 802, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/models/sql/query.py", line 1250, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/models/sql/query.py", line 1270, in _add_q
+    current_negated, allow_joins, split_subq)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/models/sql/query.py", line 1276, in _add_q
+    allow_joins=allow_joins, split_subq=split_subq,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/models/sql/query.py", line 1154, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/models/sql/query.py", line 1034, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/models/sql/query.py", line 1352, in names_to_path
+    "Choices are: %s" % (name, ", ".join(available)))
+django.core.exceptions.FieldError: Cannot resolve keyword 'phone' into field. Choices are: date_joined, email, first_name, groups, id, is_active, is_staff, is_superuser, last_login, last_name, logentry, password, user_permissions, userextend, username

@@ -20,7 +20,6 @@ class LoginView(TemplateView):
         password = request.POST.get('password','')
         user = authenticate(username=username,password=password)
         res = {'status':0,'msg':''}
-        print ("request_body:",request.body)
         if user:
             if user.is_active:
                 login(request,user)
