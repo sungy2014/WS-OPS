@@ -2,7 +2,7 @@
 
 import sys,os
 from dashboard.utils.wslog import wslog_error,wslog_info
-from resources.models import Server_Aliyun
+from resources.models import ServerAliyunModel
 from resources.server import GetServerInfoFromApi
 
 def ServerAliyunAutoAddCrontab():
@@ -12,10 +12,10 @@ def ServerAliyunAutoAddCrontab():
 
 def ServerAliyunAutoRefreshCrontab():
 
-    id_list = [i["id"] for i in Server_Aliyun.objects.values("id")]
+    id_list = [i["id"] for i in ServerAliyunModel.objects.values("id")]
     for id in id_list:
         try:
-            server_aliyun_obj = Server_Aliyun.objects.get(id__exact=id)
+            server_aliyun_obj = ServerAliyunModel.objects.get(id__exact=id)
             private_ip = server_aliyun_obj.private_ip
         except Exception as e:
             wslog_error().error("获取server_aliyun 对象失败,错误信息: %s" %(e.args))

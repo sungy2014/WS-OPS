@@ -1,7 +1,7 @@
 
 from django.conf.urls import include, url
 from django.contrib import admin
-from . import views,server,idc
+from . import views,server,idc,cmdb
 
 urlpatterns = [
     url(r'^server/',include([
@@ -19,5 +19,11 @@ urlpatterns = [
         url(r'^add/$',idc.IdcAddView.as_view(),name="idc_add"),
         url(r'^change/$',idc.IdcChangeView.as_view(),name="idc_change"),
         url(r'^delete/$',idc.IdcDeleteView.as_view(),name="idc_delete"),
+    ])),
+    url(r'^cmdb/',include([
+        url(r'^list/$',cmdb.CmdbListView.as_view(),name="cmdb_list"),
+        url(r'^add/$',cmdb.CmdbAddView.as_view(),name="cmdb_add"),
+        url(r'^change/$',cmdb.CmdbChangeView.as_view(),name="cmdb_change"),
+        url(r'^delete/$',cmdb.CmdbDeleteView.as_view(),name="cmdb_delete"),
     ])),
 ]

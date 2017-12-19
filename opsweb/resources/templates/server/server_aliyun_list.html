@@ -132,6 +132,7 @@
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
                             <div class="form-group col-sm-6">
                                 <label for="env" class="col-sm-4 control-label text-right">所属环境<span class="red-fonts">*</span></label>
                                 <select name="env" class="form-control env_choices" style="width: 50%;">
@@ -550,6 +551,7 @@ $(".del-sure").click(function(){
             swal("OH,My God",data.msg,"error")
        };
    });
+   return false;
 })   
 
 </script>

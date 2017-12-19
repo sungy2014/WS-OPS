@@ -1,0 +1,291 @@
+{% extends "public/layout.html" %}
+
+{% load poll_extras %}
+
+{% block breadcrumb %}
+资产管理 / CMDB
+{% endblock %}
+
+{% block body %} 
+
+<div class="col-sm-12">
+    <a href="{% url 'cmdb_add' %}" class="btn btn-primary ">添加CMDB</a> 
+    </br>
+    </br>
+    <table class="table table-striped table-bordered table-hover " id="EditTable">
+        <thead>
+            <tr>
+                <th class="text-center">应用名</th>
+                <th class="text-center">IP 地址</th>
+                <th class="text-center">描述</th>
+                <th class="text-center">部署方式</th>
+                <th class="text-center">部署路径</th>
+                <th class="text-center">启动脚本</th>
+                <th class="text-center">开启的端口</th>
+                <th class="text-center">状态</th>
+                <th class="text-center">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cmdb in object_list %}
+            <tr class="gradeX">
+                <td class="text-center" style="vertical-align: middle"><strong>{{ cmdb.name }}</strong></td>
+                <td class="text-center">
+                    {% for s in cmdb.ips.all %}
+                        {{ s.private_ip }}</br>
+                    {% endfor %}
+                </td>
+                <td class="text-center" style="vertical-align: middle">{{ cmdb.describe}}</td>
+                <td class="text-center" style="vertical-align: middle">{{ cmdb.get_type_display }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ cmdb.path }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ cmdb.script }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ cmdb.ports |replace_to_br:";"|safe }}</td>
+                {% if cmdb.status == 0 %}
+                    <td class="text-center" style="color:green;vertical-align: middle">在线</td>
+                {% else%}
+                    <td class="text-center" style="color:red;vertical-align: middle">已下线</td>
+                {% endif %}
+                <td class="text-center" style="vertical-align: middle">
+                    <button data-id="{{ cmdb.id }}" class="btn btn-sm btn-info cmdb_detail">详情</button>
+                    <button data-id="{{ cmdb.id }}" class="btn btn-sm btn-Primary cmdb_update">编辑</button>
+                    <button data-id="{{ cmdb.id }}" class="btn btn-sm btn-danger del">删除</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- 更新模态框 -->
+    <div class="modal fade"  id ="UpdateModal">   
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">更新 CMDB 信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="UpdateForm" class="Formvalid form-horizontal nice-validator n-yellow" novalidate="novalidate">
+                        <input type="hidden" name="id" id='id'>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="name" class="col-sm-4 control-label text-right ">应用名<span class="red-fonts ">*</span></label>
+                                <input id='name' name="name" placeholder="name" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="ips" class="col-sm-4 control-label text-right">IP 地址<span class="red-fonts">*</span></label>
+                                <select name="ips" id="ips" multiple="multiple" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="describe" class="col-sm-4 control-label text-right">描述</label>
+                                <input id='describe' name="describe" placeholder="describe" type="text" class="form-control" aria-required="true">
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="type" class="col-sm-4 control-label text-right">部署方式</label>
+                                <input id='type' name="type" placeholder="type" type="text" class="form-control" aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">  
+                            <div class="form-group col-sm-6">
+                                <label for="path" class="col-sm-4 control-label text-right">部署路径<span class="red-fonts">*</span></label>
+                                <input id='path' name="path" placeholder="path" type="text" class="form-control" aria-required="true">
+                            </div>
+        
+                            <div class="form-group col-sm-6">
+                                <label for="script" class="col-sm-4 control-label text-right">启动脚本<span class="red-fonts">*</span></label>
+                                <input id='script' name="script" placeholder="script" type="text" class="form-control" aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="log" class="col-sm-4 control-label text-right">日志路径</label>
+                                <input id='log' name="log" placeholder="log" type="text" class="form-control" aria-required="true">
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="ports" class="col-sm-4 control-label text-right">开启的端口</label>
+                                <input id='ports' name="ports" placeholder="ports" type="text" class="form-control" aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="online_time" class="col-sm-4 control-label text-right">上线时间</label>
+                                <input id='online_time' name="online_time" placeholder="online_time" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="offline_time" class="col-sm-4 control-label text-right">下线时间</label>
+                                <input id='offline_time' name="offline_time" placeholder="offline_time" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label text-right">状态<span class="red-fonts">*</span></label>
+                                <div class="col-sm-4">
+                                    <div class="radio i-checks">
+                                        <label><input id='status_online' type="radio" value="0" class="status" name="status">在线</label>
+                                    </div>
+                                </div>
+                
+                                <div class="col-sm-4">
+                                    <div class="radio i-checks">
+                                        <label><input id='status_offline' type="radio" value="1" class="status" name="status">已下线</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn_sub"  id = "cmdb_update_btn" >更新</button>
+                    <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+                    <button class="btn btn-info btn_reset" type="reset">重置</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <!-- 详情模态框 -->
+    <div class="modal fade"  id ="DetailModal">   
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">CMDB 信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="DetailForm" class="Formvalid form-horizontal nice-validator n-yellow" novalidate="novalidate">
+                        <input type="hidden" name="id" id='id_detail'>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="name" class="col-sm-4 control-label text-right ">应用名<span class="red-fonts ">*</span></label>
+                                <input id='name_detail' name="name" placeholder="name" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="ips" class="col-sm-4 control-label text-right">IP 地址<span class="red-fonts">*</span></label>
+                                <select name="ips" id="ips_detail" multiple="multiple" class="form-control" disabled="disabled">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="describe" class="col-sm-4 control-label text-right">描述</label>
+                                <input id='describe_detail' name="describe" placeholder="describe" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="type" class="col-sm-4 control-label text-right">部署方式</label>
+                                <input id='type_detail' name="type" placeholder="type" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">  
+                            <div class="form-group col-sm-6">
+                                <label for="path" class="col-sm-4 control-label text-right">部署路径<span class="red-fonts">*</span></label>
+                                <input id='path_detail' name="path" placeholder="path" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                
+                             <div class="form-group col-sm-6">
+                                <label for="script" class="col-sm-4 control-label text-right">启动脚本<span class="red-fonts">*</span></label>
+                                <input id='script_detail' name="script" placeholder="script" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="log" class="col-sm-4 control-label text-right">日志路径</label>
+                                <input id='log_detail' name="log" placeholder="log" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="ports" class="col-sm-4 control-label text-right">开启的端口</label>
+                                <input id='ports_detail' name="ports" placeholder="ports" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="online_time" class="col-sm-4 control-label text-right">上线时间</label>
+                                <input id='online_time_detail' name="online_time" placeholder="online_time" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="offline_time" class="col-sm-4 control-label text-right">下线时间</label>
+                                <input id='offline_time_detail' name="offline_time" placeholder="offline_time" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label text-right">状态<span class="red-fonts">*</span></label>
+                                <div class="col-sm-4">
+                                    <div class="radio i-checks">
+                                        <label><input id='status_online_detail' type="radio" value="0" class="status" name="status">在线</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-sm-4">
+                                    <div class="radio i-checks">
+                                        <label><input id='status_offline_detail' type="radio" value="1" class="status" name="status">已下线</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary exit-btn" data-dismiss="modal">退出</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <!-- 删除模态框 -->
+    <div class="modal fade" id='deleteModal'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p style="color:red"><b>你确认要删除吗?</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>                                                                                       <button type="button" class="btn btn-warning del-sure" data-id=''>确认</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+
+</script>
+
+{% endblock %}

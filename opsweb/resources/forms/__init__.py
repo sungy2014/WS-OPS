@@ -1,5 +1,5 @@
 from django import forms
-from resources.models import IDC,Server_Aliyun
+from resources.models import IDC,ServerAliyunModel,CmdbModel
 
 
 class IdcAddForm(forms.Form):
@@ -30,13 +30,13 @@ class IdcChangeForm(forms.Form):
 class ServerAliyunAddForm(forms.Form):
     private_ip = forms.GenericIPAddressField(required=True,protocol="IPv4",error_messages={"required":"IP地址不能为空","invalid":"IPv4地址无效"})
     ssh_port = forms.CharField(required=True,max_length=5,error_messages={"required":"SSH端口不能为空","max_length":"SSH端口不能超过5位数字"})
-    env = forms.ChoiceField(required=True,choices=Server_Aliyun.ENV_CHOICES,error_messages={"required":"必须选择一个环境"})
+    env = forms.ChoiceField(required=True,choices=ServerAliyunModel.ENV_CHOICES,error_messages={"required":"必须选择一个环境"})
 
     def clean_private_ip(self):
         private_ip = self.cleaned_data.get("private_ip")
         try:
-            server_aliyun_obj = Server_Aliyun.objects.get(private_ip__exact=str(private_ip))
-        except Server_Aliyun.DoesNotExist:
+            server_aliyun_obj = ServerAliyunModel.objects.get(private_ip__exact=str(private_ip))
+        except ServerAliyunModel.DoesNotExist:
             return private_ip
         except Exception as e:
             raise forms.ValidationError(e.args)
@@ -53,7 +53,7 @@ class ServerAliyunUpdateForm(forms.Form):
     public_ip = forms.GenericIPAddressField(required=False,protocol="IPv4",error_messages={"invalid":"IPv4地址无效"})
     ssh_port = forms.CharField(required=True,max_length=5,error_messages={"required":"SSH端口不能为空","max_length":"SSH端口不能超过5位数字"})
     hostname = forms.CharField(required=False,max_length=20,error_messages={"max_length":"主机名不能超过20字符"})
-    env = forms.ChoiceField(required=True,choices=Server_Aliyun.ENV_CHOICES,error_messages={"required":"必须选择一个环境"})
+    env = forms.ChoiceField(required=True,choices=ServerAliyunModel.ENV_CHOICES,error_messages={"required":"必须选择一个环境"})
 
     def clean_ssh_port(self):
         ssh_port = self.cleaned_data.get("ssh_port")
@@ -73,3 +73,24 @@ class ServerIdcAddForm(forms.Form):
             raise forms.ValidationError("IDC 不存在")
         else:
             return idc_obj
+
+class CmdbAddForm(forms.Form):
+    name = forms.CharField(required=True,max_length=50,error_messages={"required":"应用名称不能为空","max_length":"应用名称不能超过50字符"})
+    describe = forms.CharField(required=False,max_length=200,error_messages={"invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
+    path = forms.CharField(required=True,max_length=200,error_messages={"invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
+    script = forms.CharField(required=True,max_length=200,error_messages={"invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
+    type = forms.ChoiceField(required=True,choices=CmdbModel.TYPE_CHOICES,error_messages={"required":"必须选择一个类型"})
+    log = forms.CharField(required=False,max_length=200,error_messages={"invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
+    ports = forms.CharField(required=False,max_length=200,error_messages={"invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
+    status = forms.ChoiceField(required=True,choices=CmdbModel.STATUS_CHOICES,error_messages={"required":"必须选择一个状态"})
+
+
+    def clean__name(self):
+        name = self.cleaned_data.get("name")
+        try:
+            cmdb_obj = CmdbModel.objects.get(name__exact=name)
+        except CmdbModel.DoesNotExist:
+            return name
+        else:
+            raise forms.ValidationError("应用名称已经存在，请重新定义应用名称")
+

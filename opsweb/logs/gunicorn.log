@@ -1,0 +1,547 @@
+[2017-12-18 15:40:42 +0800] [7293] [ERROR] invalid character in identifier (models.py, line 165)
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 165
+    type = models.CharField("应用类型",max_length=10,choices=TYPE_CHOICES，null=True)
+                                                                         ^
+SyntaxError: invalid character in identifier
+[2017-12-18 15:40:42 +0800] [7296] [ERROR] invalid character in identifier (models.py, line 165)
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 165
+    type = models.CharField("应用类型",max_length=10,choices=TYPE_CHOICES，null=True)
+                                                                         ^
+SyntaxError: invalid character in identifier
+[2017-12-18 15:40:43 +0800] [7299] [ERROR] invalid character in identifier (models.py, line 165)
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 165
+    type = models.CharField("应用类型",max_length=10,choices=TYPE_CHOICES，null=True)
+                                                                         ^
+SyntaxError: invalid character in identifier
+[2017-12-18 15:40:47 +0800] [7330] [ERROR] invalid character in identifier (models.py, line 165)
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 165
+    type = models.CharField("应用类型",max_length=10,choices=TYPE_CHOICES，null=True)
+                                                                         ^
+SyntaxError: invalid character in identifier
+[2017-12-18 15:42:57 +0800] [7579] [ERROR] invalid character in identifier (models.py, line 165)
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 165
+    type = models.CharField("应用类型",max_length=10,choices=TYPE_CHOICES，null=True)
+                                                                         ^
+SyntaxError: invalid character in identifier
+[2017-12-18 15:42:58 +0800] [7582] [ERROR] invalid character in identifier (models.py, line 165)
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 165
+    type = models.CharField("应用类型",max_length=10,choices=TYPE_CHOICES，null=True)
+                                                                         ^
+SyntaxError: invalid character in identifier
+[2017-12-18 15:42:58 +0800] [7585] [ERROR] invalid character in identifier (models.py, line 165)
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 165
+    type = models.CharField("应用类型",max_length=10,choices=TYPE_CHOICES，null=True)
+                                                                         ^
+SyntaxError: invalid character in identifier
+[2017-12-18 15:43:02 +0800] [7605] [ERROR] invalid character in identifier (models.py, line 165)
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 165
+    type = models.CharField("应用类型",max_length=10,choices=TYPE_CHOICES，null=True)
+                                                                         ^
+SyntaxError: invalid character in identifier
+[2017-12-18 15:53:18 +0800] [8782] [ERROR] invalid syntax (models.py, line 166)
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 166
+    status models.CharField("应用状态",choices=STATUS_CHOICES,max_length=10,null=True)=
+                ^
+SyntaxError: invalid syntax
+[2017-12-18 15:53:28 +0800] [8792] [ERROR] invalid syntax (models.py, line 166)
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 166
+    status models.CharField("应用状态",choices=STATUS_CHOICES,max_length=10,null=True)=
+                ^
+SyntaxError: invalid syntax
+[2017-12-18 15:53:28 +0800] [8795] [ERROR] invalid syntax (models.py, line 166)
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 166
+    status models.CharField("应用状态",choices=STATUS_CHOICES,max_length=10,null=True)=
+                ^
+SyntaxError: invalid syntax
+[2017-12-18 15:53:29 +0800] [8799] [ERROR] invalid syntax (models.py, line 166)
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 166
+    status models.CharField("应用状态",choices=STATUS_CHOICES,max_length=10,null=True)=
+                ^
+SyntaxError: invalid syntax
+[2017-12-18 15:53:43 +0800] [8813] [ERROR] invalid syntax (models.py, line 166)
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 166
+    status = models.CharField("应用状态",choices=STATUS_CHOICES,max_length=10,null=True)=
+                                                                                     ^
+SyntaxError: invalid syntax
+[2017-12-18 15:53:44 +0800] [8817] [ERROR] invalid syntax (models.py, line 166)
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 166
+    status = models.CharField("应用状态",choices=STATUS_CHOICES,max_length=10,null=True)=
+                                                                                     ^
+SyntaxError: invalid syntax
+[2017-12-18 15:53:44 +0800] [8823] [ERROR] invalid syntax (models.py, line 166)
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 166
+    status = models.CharField("应用状态",choices=STATUS_CHOICES,max_length=10,null=True)=
+                                                                                     ^
+SyntaxError: invalid syntax
+[2017-12-18 15:53:48 +0800] [8852] [ERROR] invalid syntax (models.py, line 166)
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 166
+    status = models.CharField("应用状态",choices=STATUS_CHOICES,max_length=10,null=True)=
+                                                                                     ^
+SyntaxError: invalid syntax
+[2017-12-18 22:33:19 +0800] [19931] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/arbiter.py", line 578, in spawn_worker
+    worker.init_process()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 143, in <module>
+    class CmdbModel(models.Model):
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 160, in CmdbModel
+    ips = models.ManyToManyField(ServerAliyun,verbose_name="IP 地址")
+NameError: name 'ServerAliyun' is not defined
+[2017-12-18 22:33:19 +0800] [19934] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/arbiter.py", line 578, in spawn_worker
+    worker.init_process()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 143, in <module>
+    class CmdbModel(models.Model):
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 160, in CmdbModel
+    ips = models.ManyToManyField(ServerAliyun,verbose_name="IP 地址")
+NameError: name 'ServerAliyun' is not defined
+[2017-12-18 22:33:20 +0800] [19937] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/arbiter.py", line 578, in spawn_worker
+    worker.init_process()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 143, in <module>
+    class CmdbModel(models.Model):
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/models.py", line 160, in CmdbModel
+    ips = models.ManyToManyField(ServerAliyun,verbose_name="IP 地址")
+NameError: name 'ServerAliyun' is not defined

@@ -10,6 +10,7 @@ urlpatterns = [
         ])),
         url(r'^server/',include([
             url(r'^env/',myapi.get_server_env.GetServerEnvView.as_view(),name="get_server_env"),
+            url(r'^ips/',myapi.get_server_ips.GetServerIPView.as_view(),name="get_server_ips"),
         ])),
     ])),
     url(r'^post/',include([

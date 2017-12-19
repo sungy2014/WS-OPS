@@ -1,6 +1,6 @@
 from django.views.generic import View,TemplateView,ListView
 from django.http import JsonResponse
-from resources.models import Server_Aliyun,IDC
+from resources.models import ServerAliyunModel,IDC,ServerIdcModel,CmdbModel
 from resources.forms import ServerAliyunAddForm,ServerAliyunUpdateForm
 from api.thirdapi.ansible_adhoc import ansible_adhoc
 from api.thirdapi.aliyun_describe_instance import AliyunDescribeInstances,AliyunDescribeInstanceAutoRenewAttribute
@@ -85,7 +85,7 @@ def GetServerInfoFromApi(private_ip,server_aliyun_obj):
 
 class ServerAliyunListView(ListView):
     template_name = "server/server_aliyun_list.html"
-    model = Server_Aliyun
+    model = ServerAliyunModel
     paginate_by = 10
     ordering = 'id'
     page_total = 11
@@ -148,7 +148,7 @@ class ServerAliyunAddView(View):
             return JsonResponse(ret)
 
         try:
-            server_aliyun_obj = Server_Aliyun(**server_aliyun_add_form.cleaned_data)
+            server_aliyun_obj = ServerAliyunModel(**server_aliyun_add_form.cleaned_data)
             server_aliyun_obj.save()
         except Exception as e:
             ret["result"] = 1
@@ -174,8 +174,8 @@ class ServerAliyunRefreshView(View):
         server_id = request.POST.get("id",0)
 
         try:
-            server_aliyun_obj = Server_Aliyun.objects.get(id__exact=server_id)
-        except Server_Aliyun.DoesNotExist:
+            server_aliyun_obj = ServerAliyunModel.objects.get(id__exact=server_id)
+        except ServerAliyunModel.DoesNotExist:
             ret["result"] = 1
             ret["msg"] = "该服务器ID %s 不存在，请刷新重试" %(server_id)
             return JsonResponse(ret)
@@ -192,15 +192,15 @@ class ServerAliyunInfoView(View):
         ret = {"result":0,"msg":None}
         sid = request.GET.get("id",0)
         try:
-            server_aliyun_obj = Server_Aliyun.objects.get(id__exact=sid)
-        except Server_Aliyun.DoesNotExist:
+            server_aliyun_obj = ServerAliyunModel.objects.get(id__exact=sid)
+        except ServerAliyunModel.DoesNotExist:
             ret["result"] = 1
             ret["msg"] = "Aliyun 上不存在 ID 为 %s 的服务器" %(sid)
             return JsonResponse(ret)
 
         try:
             #server_aliyun_info = model_to_dict(server_aliyun_obj)  // 使用这个方法,读不到 DateTimeField 设置为 auto_now = True 的字段,因此读不到 last_update_time 字段
-            server_aliyun_info = Server_Aliyun.objects.filter(id__exact=sid).values()[0]
+            server_aliyun_info = ServerAliyunModel.objects.filter(id__exact=sid).values()[0]
             server_aliyun_info["env"] = {"id": server_aliyun_obj.env,"name": server_aliyun_obj.get_env_display()}
             server_aliyun_info["charge_type"] = server_aliyun_obj.get_charge_type_display()
             server_aliyun_info["status"] = server_aliyun_obj.get_status_display()
@@ -230,8 +230,8 @@ class ServerAliyunDeleteView(View):
         sid = request.POST.get('id',0)
 
         try:
-            server_aliyun_obj = Server_Aliyun.objects.get(id__exact=sid)
-        except Server_Aliyun.DoesNotExist:
+            server_aliyun_obj = ServerAliyunModel.objects.get(id__exact=sid)
+        except ServerAliyunModel.DoesNotExist:
             ret["result"] = 1
             ret["mag"] = "该服务器ID %s 不存在,请刷新重试" %(sid)
             return JsonResponse(ret)
@@ -255,8 +255,8 @@ class ServerAliyunUpdateView(View):
         sid = request.GET.get("id",0)
 
         try:
-            server_aliyun_obj = Server_Aliyun.objects.get(id__exact=sid)
-        except Server_Aliyun.DoesNotExist:
+            server_aliyun_obj = ServerAliyunModel.objects.get(id__exact=sid)
+        except ServerAliyunModel.DoesNotExist:
             ret["result"] = 1
             ret["msg"] = "Aliyun 上不存在 ID 为 %s 的服务器" %(sid)
             return JsonResponse(ret)
@@ -285,8 +285,8 @@ class ServerAliyunUpdateView(View):
             return JsonResponse(ret)
 
         try:
-            server_aliyun_obj = Server_Aliyun.objects.get(id__exact=sid)
-        except Server_Aliyun.DoesNotExist:
+            server_aliyun_obj = ServerAliyunModel.objects.get(id__exact=sid)
+        except ServerAliyunModel.DoesNotExist:
             ret["result"] = 1
             ret["msg"] = "服务器ID %s 不存在,请刷新重试" %(sid)
             return JsonResponse(ret)
@@ -312,7 +312,7 @@ class ServerAliyunUpdateView(View):
 
 def ServerAliyunAutoAdd():
     
-    local_result = Server_Aliyun.objects.values("private_ip")
+    local_result = ServerAliyunModel.objects.values("private_ip")
     local_server_list = [i['private_ip'] for i in local_result]
     local_server_add = []
     local_server_delete = []
@@ -327,10 +327,10 @@ def ServerAliyunAutoAdd():
         local_server_delete = list(set(local_server_list).difference(set(aliyun_ecs_list)))
 
 
-    #添加服务器到本地 Server_Aliyun 模型
+    #添加服务器到本地 ServerAliyunModel 模型
     if local_server_add:
         for s in local_server_add:
-            server = Server_Aliyun()
+            server = ServerAliyunModel()
             server.private_ip = s
             try:
                 server.save()
@@ -350,12 +350,12 @@ def ServerAliyunAutoAdd():
                 wslog_info().info("服务器: %s 自动添加成功" %(s))
                 continue
 
-    #将在阿里云上不存在的服务器,从本地的 Server_Aliyun 模型中删除
+    #将在阿里云上不存在的服务器,从本地的 ServerAliyunModel 模型中删除
     if local_server_delete:
         for s in local_server_delete:
             try:
-                server_obj = Server_Aliyun.objects.get(private_ip__exact=s)
-            except Server_Aliyun.DoesNostExist:
+                server_obj = ServerAliyunModel.objects.get(private_ip__exact=s)
+            except ServerAliyunModel.DoesNostExist:
                 wslog_error().error("自动删除服务器: %s ,已经不存在,所以不用删除" %(s))
                 continue
             except Exception as e:
