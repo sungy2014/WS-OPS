@@ -24,6 +24,7 @@ urlpatterns = [
         url(r'^list/$',cmdb.CmdbListView.as_view(),name="cmdb_list"),
         url(r'^add/$',cmdb.CmdbAddView.as_view(),name="cmdb_add"),
         url(r'^change/$',cmdb.CmdbChangeView.as_view(),name="cmdb_change"),
+        url(r'^info/$',cmdb.CmdbInfoView.as_view(),name="cmdb_info"),
         url(r'^delete/$',cmdb.CmdbDeleteView.as_view(),name="cmdb_delete"),
     ])),
 ]

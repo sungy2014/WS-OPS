@@ -1,5 +1,6 @@
 from django import forms
 from resources.models import IDC,ServerAliyunModel,CmdbModel
+import os
 
 
 class IdcAddForm(forms.Form):
@@ -77,15 +78,17 @@ class ServerIdcAddForm(forms.Form):
 class CmdbAddForm(forms.Form):
     name = forms.CharField(required=True,max_length=50,error_messages={"required":"应用名称不能为空","max_length":"应用名称不能超过50字符"})
     describe = forms.CharField(required=False,max_length=200,error_messages={"invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
-    path = forms.CharField(required=True,max_length=200,error_messages={"invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
-    script = forms.CharField(required=True,max_length=200,error_messages={"invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
+    path = forms.CharField(required=True,max_length=200,error_messages={"required":"必须输入应用部署路径","invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
+    script = forms.CharField(required=True,max_length=200,error_messages={"required":"必须输入应用的启动脚本","invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
     type = forms.ChoiceField(required=True,choices=CmdbModel.TYPE_CHOICES,error_messages={"required":"必须选择一个类型"})
+    env = forms.ChoiceField(required=True,choices=CmdbModel.ENV_CHOICES,error_messages={"required":"必须选择一个类型"})
+    way = forms.ChoiceField(required=True,choices=CmdbModel.WAY_CHOICES,error_messages={"required":"必须选择一个类型"})
     log = forms.CharField(required=False,max_length=200,error_messages={"invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
     ports = forms.CharField(required=False,max_length=200,error_messages={"invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
     status = forms.ChoiceField(required=True,choices=CmdbModel.STATUS_CHOICES,error_messages={"required":"必须选择一个状态"})
 
 
-    def clean__name(self):
+    def clean_name(self):
         name = self.cleaned_data.get("name")
         try:
             cmdb_obj = CmdbModel.objects.get(name__exact=name)
@@ -94,3 +97,40 @@ class CmdbAddForm(forms.Form):
         else:
             raise forms.ValidationError("应用名称已经存在，请重新定义应用名称")
 
+    def clean_ports(self):
+        print("cleaned_data:",self.cleaned_data)
+        ports = self.cleaned_data.get("ports")
+        if ports:
+            try:
+                ports_list = list(set([ int(i.strip()) for i in ports.split(";") ]))
+            except Exception as e:
+                raise forms.ValidationError("端口号必须是数字并且以分号;分割")
+
+            for port in ports_list:
+                if port > 65535:
+                    raise forms.ValidationError("端口号必须小于65535")
+                else:
+                    pass
+            return ";".join([str(i) for i in ports_list])
+        else:
+            return ports
+                
+
+    def clean_path(self):
+        path = self.cleaned_data.get("path")
+        if not os.path.isabs(path):
+            raise forms.ValidationError("请输入正确的文件路径，以斜线/开头")
+        return path
+
+    def clean_script(self):
+        script = self.cleaned_data.get("script")
+        if not os.path.isabs(script):
+            raise forms.ValidationError("请输入正确的文件路径，以斜线/开头")
+        return script
+
+    def clean_log(self):
+        log = self.cleaned_data.get("log")
+        if log and not os.path.isabs(log):
+            raise forms.ValidationError("请输入正确的文件路径，以斜线/开头")
+        return log
+        

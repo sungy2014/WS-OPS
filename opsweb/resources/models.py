@@ -82,6 +82,7 @@ class ServerAliyunModel(models.Model):
         ("test",u"测试"),
         ("online",u"生产"),
         ("ops",u"运维"),
+        ("gray",u"预发布"),
     )
 
     STATUS_CHOICES = (
@@ -142,7 +143,7 @@ class ServerAliyunModel(models.Model):
 
 class CmdbModel(models.Model):
 
-    TYPE_CHOICES = (
+    WAY_CHOICES = (
         ('0',"tomcat"),
         ('1','jar'),
         ('3','node'),
@@ -152,17 +153,34 @@ class CmdbModel(models.Model):
 
     STATUS_CHOICES = (
         ('0','运行中'),
-        ('1','已停服'),
         ('1','待上线'),
+        ('2','已停服'),
+    )
+
+    ENV_CHOICES = (
+        ("dev",u"开发"),
+        ("test",u"测试"),
+        ("online",u"生产"),
+        ("ops",u"运维"),
+        ("gray",u"预发布"),
+    )
+
+    TYPE_CHOICES = (
+        ("0","核心应用"),
+        ("1","一般应用"),
+        ("2","中间件"),
+        ("3","其他"),
     )
 
     name = models.CharField("应用名",max_length=50,null=False,unique=True)
     ips = models.ManyToManyField(ServerAliyunModel,verbose_name="IP 地址")
+    env = models.CharField("所属环境",choices=ENV_CHOICES,max_length=10,null=False,default="online")
     describe = models.CharField("对应用的简单描述",max_length=200,null=True)
     path = models.CharField("应用部署的路径",max_length=200,null=True)
     script = models.CharField("应用启动脚本",max_length=200,null=True)
     log = models.CharField("应用日志路径",max_length=200,null=True)
     ports = models.CharField("应用打开的端口",max_length=200,null=True)
+    way = models.CharField("部署方式",max_length=10,choices=WAY_CHOICES,null=True)
     type = models.CharField("应用类型",max_length=10,choices=TYPE_CHOICES,null=True)
     status = models.CharField("应用状态",choices=STATUS_CHOICES,max_length=10,null=True)
     online_time = models.DateTimeField("应用上架时间",auto_now_add=True,null=True)

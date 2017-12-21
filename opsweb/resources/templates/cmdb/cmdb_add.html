@@ -29,7 +29,7 @@
                         <div class="form-inline row">
                             <div class="form-group col-sm-6">
                                 <label for="name" style="width:30%" class="control-label text-right">应用名 &nbsp<span class="red-fonts ">*</span></label>
-                                <input name="name" id="name" style="width:65%" placeholder="name" type="text" class="form-control" aria-required="true">
+                                &nbsp<input name="name" id="name" style="width:65%" placeholder="name" type="text" class="form-control" aria-required="true">
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="ports" style="width:30%" class="control-label text-right">开启的端口 &nbsp</label>
@@ -40,19 +40,39 @@
                         <div class="hr-line-dashed"></div>
                         <div class="form-inline row">
                             <div class="form-group col-sm-6">
-                                <label for="ips" style="width:30%" class="control-label text-right">IP 地址 &nbsp<span class="red-fonts">*</span></label>
-                                <select name="ips" id="ips" style="width:65%" placeholder="ips" multiple="multiple" class="form-control choices">
-                                {% for i in server_ips %}
-                                    <option value={{ i.id }}>{{ i.private_ip }}</option>
-                                {% endfor %}
+                                <label for="type" style="width:30%" class="control-label text-right">所属环境 &nbsp<span class="red-fonts ">*</span></label>
+                                &nbsp<select name="env" id="env" style="width:65%" placeholder="env" class="form-control choices" aria-required="true">
+                                        <option value=''>请选择...</option>
+                                        {% for k,v in env.items %}
+                                            <option value={{ k }}>{{ v }}</option>
+                                        {% endfor %}
                                 </select>
                             </div>
                             <div class="form-group col-sm-6">
-                                <label for="type" style="width:30%" class="control-label text-right">部署方式 &nbsp</label>
+                                <label for="type" style="width:30%" class="control-label text-right">部署方式 &nbsp<span class="red-fonts ">*</span></label>
+                                <select name="way" id="way" style="width:65%" placeholder="way" class="form-control choices" aria-required="true">
+                                    <option value=''>请选择...</option>
+                                    {% for k,v in way.items %}
+                                        <option value={{ k }}>{{ v }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="ips" style="width:30%" class="control-label text-right">IP 地址 &nbsp<span class="red-fonts">*</span></label>
+                                &nbsp<select name="ips" id="ips" style="width:65%" placeholder="ips" multiple="multiple" class="form-control choices">
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="type" style="width:30%" class="control-label text-right">应用类型 &nbsp<span class="red-fonts ">*</span></label>
                                 <select name="type" id="type" style="width:65%" placeholder="type" class="form-control choices" aria-required="true">
-                                {% for k,v in type.items %}
-                                    <option value={{ k }}>{{ v }}</option>
-                                {% endfor %}
+                                    <option value=''>请选择...</option>
+                                    {% for k,v in type.items %}
+                                        <option value={{ k }}>{{ v }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
@@ -60,39 +80,39 @@
                         <div class="hr-line-dashed"></div>
                         <div class="form-inline row">
                             <div class="form-group col-sm-12">
-                                <label for="describe" style="width:14%" class="control-label text-right">描述 &nbsp</label>
-                                <input name="describe" placeholder="describe" type="text" style="width: 80%;" class="form-control" aria-required="true">
+                                <label for="describe" style="width:15%" class="control-label text-right">描述 &nbsp</label>
+                                <input name="describe" placeholder="describe" type="text" style="width: 79%;" class="form-control" aria-required="true">
                             </div>
                         </div>
 
                         <div class="hr-line-dashed"></div>
                         <div class="form-inline row">
                             <div class="form-group col-sm-12">
-                                <label for="path" style="width:14%" class="control-label text-right">部署路径 &nbsp<span class="red-fonts">*</span></label>
-                                <input name="path" placeholder="path" type="text" class="form-control" style="width: 80%;" aria-required="true">
+                                <label for="path" style="width:15%" class="control-label text-right">部署路径 &nbsp<span class="red-fonts">*</span></label>
+                                <input name="path" placeholder="path" type="text" class="form-control" style="width: 79%;" aria-required="true">
                             </div>
                         </div>
 
                         <div class="hr-line-dashed"></div>
                         <div class="form-inline row">
                             <div class="form-group col-sm-12">
-                                <label for="script" style="width:14%" class="control-label text-right">启动脚本 &nbsp<span class="red-fonts">*</span></label>
-                                <input name="script" placeholder="script" type="text" class="form-control" style="width: 80%;" aria-required="true">
+                                <label for="script" style="width:15%" class="control-label text-right">启动脚本 &nbsp<span class="red-fonts">*</span></label>
+                                <input name="script" placeholder="script" type="text" class="form-control" style="width: 79%;" aria-required="true">
                             </div>
                         </div>
 
                         <div class="hr-line-dashed"></div>
                         <div class="form-inline row">
                             <div class="form-group col-sm-12">
-                                <label for="log" style="width:14%" class="control-label text-right">日志路径 &nbsp</label>
-                                <input name="log" placeholder="log" type="text" class="form-control" style="width: 80%;" aria-required="true">
+                                <label for="log" style="width:15%" class="control-label text-right">日志路径 &nbsp</label>
+                                <input name="log" placeholder="log" type="text" class="form-control" style="width: 79%;" aria-required="true">
                             </div>
                         </div>
 
                         <div class="hr-line-dashed"></div>
                         <div class="form-inline row">
                             <div class="form-group col-sm-12">
-                                <label style="width:14%" class="control-label text-right">状态 &nbsp<span class="red-fonts">*</span></label>
+                                <label style="width:15%" class="control-label text-right">状态 &nbsp<span class="red-fonts">*</span></label>
                                     <div class="radio i-checks col-sm-offset-1" style="width:30%">
                                         <label><input type="radio" value="0" class="status" name="status" checked="">&nbsp 运行中</label>
                                     </div>
@@ -123,6 +143,22 @@
 {% block js %}
 <script>
 
+
+$("#env").change(function(){
+    $("#ips").html('')
+    var env = $(this).val()
+    url = "{% url 'get_server_ips' %}"
+    $.post(url,{"env":env},function(data){
+        var ip_str=''
+        $.each(data,function(k,v){
+            ip_str += '<option value='+v["id"]+'>'+v["private_ip"]+'</option>'
+        });
+        $("#ips").append(ip_str)
+        $("#ips").multiselect('rebuild')
+    });
+    return false
+});
+
 $(".choices").multiselect({
     enableFiltering: true,
     maxHeight: 200,
@@ -131,7 +167,9 @@ $(".choices").multiselect({
     delimiterText: ';',
     selectedClass: 'multiselect-selected',
     enableCaseInsensitiveFiltering: true,
+    disableIfEmpty: true,
 });
+
 
 $("#submit_button").click(function(){
     var url = "{% url 'cmdb_add' %}"

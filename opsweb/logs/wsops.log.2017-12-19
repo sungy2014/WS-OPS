@@ -1,0 +1,759 @@
+2017-12-19 09:44:33,055-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 172, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/urls/resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/utils/functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/urls/resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/utils/functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/urls/resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/urls.py", line 29, in <module>
+    url(r'^resources/', include("resources.urls")),
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/conf/urls/__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/urls.py", line 4, in <module>
+    from . import views,server,idc,cmdb
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py", line 4, in <module>
+    from resources.forms import ServerAliyunAddForm,ServerAliyunUpdateForm
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/forms/__init__.py", line 77, in <module>
+    class CmdbAddForm(forms.Form):
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/forms/__init__.py", line 81, in CmdbAddForm
+    path = forms.FilePathField(required=True,max_length=200,error_messages={"invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
+TypeError: __init__() missing 1 required positional argument: 'path'
+2017-12-19 10:19:04,800-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 215, in _get_response
+    response = response.render()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 107, in render
+    self.content = self.rendered_content
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 82, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 64, in resolve_template
+    return select_template(template, using=self.using)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader.py", line 48, in select_template
+    return engine.get_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/backends/django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 162, in get_template
+    template, origin = self.find_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 136, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loaders/base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 230, in compile_nodelist
+    return parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 312, in do_extends
+    nodelist = parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 255, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 827, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 486, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 484, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 700, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '[0]' from 'i[0]'
+2017-12-19 10:41:34,727-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 172, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/urls/resolvers.py", line 362, in resolve
+    for pattern in self.url_patterns:
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/utils/functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/urls/resolvers.py", line 405, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/utils/functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/urls/resolvers.py", line 398, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/urls.py", line 29, in <module>
+    url(r'^resources/', include("resources.urls")),
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/conf/urls/__init__.py", line 50, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/urls.py", line 4, in <module>
+    from . import views,server,idc,cmdb
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 30
+    print("cmdb_cleaned_data:"cmdb_add_form.cleaned_data)
+                                          ^
+SyntaxError: invalid syntax
+2017-12-19 10:57:59,449-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:31]-cmdb_cleaned_data:
+2017-12-19 11:04:03,341-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:370]-服务器: 172.17.134.115 自动删除成功
+2017-12-19 11:08:03,467-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:370]-服务器: 172.17.134.114 自动删除成功
+2017-12-19 11:13:43,752-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:31]-cmdb_cleaned_data:
+2017-12-19 11:20:25,513-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:32]-cmdb_cleaned_data:
+2017-12-19 11:21:58,209-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:32]-cmdb_cleaned_data: {'name': 'mop', 'ips': '37', 'describe': '', 'path': '/data/java/tomcat-mop', 'script': '/data/java/tomcat-mop/bin/startup.sh', 'type': '0', 'log': '', 'ports': '8080;8009', 'status': '0'}
+2017-12-19 11:24:46,310-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:32]-cmdb_cleaned_data: {'name': 'mop', 'ips': '16', 'describe': '', 'path': '/data/java/mop', 'script': '/data/java/mop/bin/startup.sh', 'type': '0', 'log': '', 'ports': '8080;8009', 'status': '0'}
+2017-12-19 11:28:19,430-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:33]-cmdb_cleaned_data: {'name': 'app', 'ips': '54', 'describe': '', 'path': '/data/java/tomcat-app', 'script': '/data/java/tomcat-app/bin/startup.sh', 'type': '0', 'log': '', 'ports': '8080;8009', 'status': '0'}
+2017-12-19 11:32:23,069-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:33]-cmdb_cleaned_data: {'name': 'app', 'ips': '44', 'describe': '', 'path': '/data/java/tomcat-app', 'script': '/data/java/tomcat-app/bin/startup.sh', 'type': '0', 'log': '', 'ports': '8080;8009', 'status': '0'}
+2017-12-19 12:14:06,531-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:33]-cmdb_cleaned_data: {'name': 'haha', 'describe': '', 'path': 'hhaha/hahhaah', 'script': 'jheheha/heheher', 'type': '0', 'log': '', 'ports': '8080;8009', 'status': '0'}
+2017-12-19 14:43:29,230-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:65]-CmdbModel 模型对象: mop 添加成功
+2017-12-19 15:01:18,460-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/list/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 215, in _get_response
+    response = response.render()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 107, in render
+    self.content = self.rendered_content
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 82, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 64, in resolve_template
+    return select_template(template, using=self.using)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader.py", line 48, in select_template
+    return engine.get_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/backends/django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 162, in get_template
+    template, origin = self.find_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 136, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loaders/base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 230, in compile_nodelist
+    return parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 312, in do_extends
+    nodelist = parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 255, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 827, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 486, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 484, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 673, in __init__
+    token[start:]))
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: "<br>"|.join([ i["private_ip"] for i in list(c.ips.values("private_ip"))])||safe
+2017-12-19 15:01:19,110-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /favicon.ico
+2017-12-19 15:07:11,452-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/list/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 215, in _get_response
+    response = response.render()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 107, in render
+    self.content = self.rendered_content
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 82, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 64, in resolve_template
+    return select_template(template, using=self.using)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader.py", line 48, in select_template
+    return engine.get_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/backends/django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 162, in get_template
+    template, origin = self.find_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 136, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loaders/base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 230, in compile_nodelist
+    return parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 312, in do_extends
+    nodelist = parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 255, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 827, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 486, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 484, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 673, in __init__
+    token[start:]))
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: |[ i["private_ip"] for i in list(c.ips.values("private_ip"))]||safe
+2017-12-19 15:07:55,430-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/list/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 215, in _get_response
+    response = response.render()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 107, in render
+    self.content = self.rendered_content
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 82, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 64, in resolve_template
+    return select_template(template, using=self.using)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader.py", line 48, in select_template
+    return engine.get_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/backends/django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 162, in get_template
+    template, origin = self.find_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 136, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loaders/base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 230, in compile_nodelist
+    return parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 312, in do_extends
+    nodelist = parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 255, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 827, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 486, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 484, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 673, in __init__
+    token[start:]))
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: cmdb.ips.values|("private_ip")]||safe
+2017-12-19 15:08:39,008-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/list/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 215, in _get_response
+    response = response.render()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 107, in render
+    self.content = self.rendered_content
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 82, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 64, in resolve_template
+    return select_template(template, using=self.using)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader.py", line 48, in select_template
+    return engine.get_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/backends/django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 162, in get_template
+    template, origin = self.find_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 136, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loaders/base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 230, in compile_nodelist
+    return parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 312, in do_extends
+    nodelist = parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 255, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 827, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 486, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 484, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 700, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '("private_ip")' from 'cmdb.ips.values("private_ip")'
+2017-12-19 15:12:43,079-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/list/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 507, in parse
+    compile_func = self.tags[command]
+KeyError: 'cmdb.ips.values("private_ip")'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 215, in _get_response
+    response = response.render()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 107, in render
+    self.content = self.rendered_content
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 82, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 64, in resolve_template
+    return select_template(template, using=self.using)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader.py", line 48, in select_template
+    return engine.get_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/backends/django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 162, in get_template
+    template, origin = self.find_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 136, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loaders/base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 230, in compile_nodelist
+    return parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 312, in do_extends
+    nodelist = parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 255, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 827, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 509, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 565, in invalid_block_tag
+    get_text_list(["'%s'" % p for p in parse_until], 'or'),
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 31: 'cmdb.ips.values("private_ip")', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+2017-12-19 15:23:44,849-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/list/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 215, in _get_response
+    response = response.render()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 107, in render
+    self.content = self.rendered_content
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 82, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 64, in resolve_template
+    return select_template(template, using=self.using)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader.py", line 48, in select_template
+    return engine.get_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/backends/django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 162, in get_template
+    template, origin = self.find_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 136, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loaders/base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 230, in compile_nodelist
+    return parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 312, in do_extends
+    nodelist = parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 255, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 827, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 486, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 484, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 700, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '("private_ip")' from 'cmdb.ips.values("private_ip")'
+2017-12-19 16:30:04,877-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.118 自动刷新成功
+2017-12-19 16:30:06,348-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.119 自动刷新成功
+2017-12-19 16:30:09,023-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.22 自动刷新成功
+2017-12-19 16:30:10,800-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.25 自动刷新成功
+2017-12-19 16:30:11,905-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.26 自动刷新成功
+2017-12-19 16:30:14,402-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.27 自动刷新成功
+2017-12-19 16:30:15,611-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.28 自动刷新成功
+2017-12-19 16:30:16,993-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.29 自动刷新成功
+2017-12-19 16:30:18,177-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.30 自动刷新成功
+2017-12-19 16:30:19,306-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.31 自动刷新成功
+2017-12-19 16:30:20,546-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.32 自动刷新成功
+2017-12-19 16:30:21,706-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.33 自动刷新成功
+2017-12-19 16:30:22,801-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.34 自动刷新成功
+2017-12-19 16:30:23,948-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.35 自动刷新成功
+2017-12-19 16:30:25,484-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.36 自动刷新成功
+2017-12-19 16:30:26,682-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.37 自动刷新成功
+2017-12-19 16:30:27,750-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.48 自动刷新成功
+2017-12-19 16:30:29,023-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.49 自动刷新成功
+2017-12-19 16:30:30,220-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.50 自动刷新成功
+2017-12-19 16:30:31,351-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.51 自动刷新成功
+2017-12-19 16:30:32,483-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.52 自动刷新成功
+2017-12-19 16:30:33,810-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.53 自动刷新成功
+2017-12-19 16:30:34,902-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.54 自动刷新成功
+2017-12-19 16:30:36,385-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.55 自动刷新成功
+2017-12-19 16:30:37,642-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.56 自动刷新成功
+2017-12-19 16:30:38,953-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.58 自动刷新成功
+2017-12-19 16:30:40,095-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.59 自动刷新成功
+2017-12-19 16:30:41,233-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.65 自动刷新成功
+2017-12-19 16:30:42,424-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.70 自动刷新成功
+2017-12-19 16:30:43,795-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.71 自动刷新成功
+2017-12-19 16:30:44,911-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.72 自动刷新成功
+2017-12-19 16:30:46,290-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.73 自动刷新成功
+2017-12-19 16:30:47,436-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.74 自动刷新成功
+2017-12-19 16:30:48,665-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.75 自动刷新成功
+2017-12-19 16:30:49,945-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.76 自动刷新成功
+2017-12-19 16:30:51,122-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.77 自动刷新成功
+2017-12-19 16:30:52,448-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.78 自动刷新成功
+2017-12-19 16:30:53,792-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.79 自动刷新成功
+2017-12-19 16:30:54,914-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.80 自动刷新成功
+2017-12-19 16:30:56,001-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.81 自动刷新成功
+2017-12-19 16:30:57,298-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.82 自动刷新成功
+2017-12-19 16:30:58,768-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.87 自动刷新成功
+2017-12-19 16:30:59,938-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.89 自动刷新成功
+2017-12-19 16:31:01,206-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.90 自动刷新成功
+2017-12-19 16:31:03,557-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.99 自动刷新成功
+2017-12-19 16:48:50,589-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.118 自动刷新成功
+2017-12-19 16:48:51,958-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.119 自动刷新成功
+2017-12-19 16:48:54,282-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.22 自动刷新成功
+2017-12-19 16:48:56,210-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.25 自动刷新成功
+2017-12-19 16:48:57,445-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.26 自动刷新成功
+2017-12-19 16:48:58,659-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.27 自动刷新成功
+2017-12-19 16:48:59,898-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.28 自动刷新成功
+2017-12-19 16:49:01,084-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.29 自动刷新成功
+2017-12-19 16:49:02,340-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.30 自动刷新成功
+2017-12-19 16:49:03,603-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.31 自动刷新成功
+2017-12-19 16:49:04,800-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.32 自动刷新成功
+2017-12-19 16:49:06,078-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.33 自动刷新成功
+2017-12-19 16:49:07,272-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.34 自动刷新成功
+2017-12-19 16:49:08,435-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.35 自动刷新成功
+2017-12-19 16:49:09,866-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.36 自动刷新成功
+2017-12-19 16:49:11,089-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.37 自动刷新成功
+2017-12-19 16:49:12,251-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.48 自动刷新成功
+2017-12-19 16:49:13,502-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.49 自动刷新成功
+2017-12-19 16:49:14,879-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.50 自动刷新成功
+2017-12-19 16:49:16,161-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.51 自动刷新成功
+2017-12-19 16:49:17,359-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.52 自动刷新成功
+2017-12-19 16:49:18,644-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.53 自动刷新成功
+2017-12-19 16:49:20,070-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.54 自动刷新成功
+2017-12-19 16:49:21,270-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.55 自动刷新成功
+2017-12-19 16:49:22,565-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.56 自动刷新成功
+2017-12-19 16:49:23,790-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.58 自动刷新成功
+2017-12-19 16:49:25,069-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.59 自动刷新成功
+2017-12-19 16:49:26,185-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.65 自动刷新成功
+2017-12-19 16:49:27,378-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.70 自动刷新成功
+2017-12-19 16:49:28,563-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.71 自动刷新成功
+2017-12-19 16:49:29,751-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.72 自动刷新成功
+2017-12-19 16:49:31,148-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.73 自动刷新成功
+2017-12-19 16:49:33,446-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.75 自动刷新成功
+2017-12-19 16:49:34,644-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.76 自动刷新成功
+2017-12-19 16:49:36,129-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django_crontab/crontab.py-[line:147]-Failed to complete cronjob at ('30 16 * * *', 'resources.cron.ServerAliyunAutoRefreshCrontab')
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django_crontab/crontab.py", line 145, in run_job
+    func(*job_args, **job_kwargs)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py", line 24, in ServerAliyunAutoRefreshCrontab
+    ret = GetServerInfoFromApi(private_ip,server_aliyun_obj)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py", line 39, in GetServerInfoFromApi
+    server_info_aliyun = AliyunDescribeInstances(PrivateIpAddresses=[private_ip])[0]
+  File "/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py", line 44, in AliyunDescribeInstances
+    response = clt.do_action_with_exception(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/aliyunsdkcore/client.py", line 269, in do_action_with_exception
+    status, headers, body = self._implementation_of_do_action(acs_request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/aliyunsdkcore/client.py", line 238, in _implementation_of_do_action
+    status, headers, body = http_response.get_response_object()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/aliyunsdkcore/http/http_response.py", line 68, in get_response_object
+    return self.get_http_response_object()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/aliyunsdkcore/http/http_response.py", line 99, in get_http_response_object
+    response = self.__connection.getresponse()
+  File "/usr/local/python36/lib/python3.6/http/client.py", line 1331, in getresponse
+    response.begin()
+  File "/usr/local/python36/lib/python3.6/http/client.py", line 297, in begin
+    version, status, reason = self._read_status()
+  File "/usr/local/python36/lib/python3.6/http/client.py", line 258, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/local/python36/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+KeyboardInterrupt
+2017-12-19 16:54:08,312-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.118 自动刷新成功
+2017-12-19 16:54:09,468-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.119 自动刷新成功
+2017-12-19 16:54:11,501-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.22 自动刷新成功
+2017-12-19 16:54:13,390-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.25 自动刷新成功
+2017-12-19 16:54:14,619-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.26 自动刷新成功
+2017-12-19 16:54:15,817-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.27 自动刷新成功
+2017-12-19 16:54:16,934-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.28 自动刷新成功
+2017-12-19 16:54:18,100-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.29 自动刷新成功
+2017-12-19 16:54:19,694-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.31 自动刷新成功
+2017-12-19 16:54:25,558-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.65 自动刷新成功
+2017-12-19 16:54:26,720-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.70 自动刷新成功
+2017-12-19 23:03:12,843-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/list/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 1038, in find_library
+    return parser.libraries[name]
+KeyError: 'poll_extras'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 215, in _get_response
+    response = response.render()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 107, in render
+    self.content = self.rendered_content
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 82, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 64, in resolve_template
+    return select_template(template, using=self.using)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader.py", line 48, in select_template
+    return engine.get_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/backends/django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 162, in get_template
+    template, origin = self.find_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 136, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loaders/base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 230, in compile_nodelist
+    return parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 312, in do_extends
+    nodelist = parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 1095, in load
+    lib = find_library(parser, name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 1042, in find_library
+    name, "\n".join(sorted(parser.libraries.keys())),
+django.template.exceptions.TemplateSyntaxError: 'poll_extras' is not a registered tag library. Must be one of:
+admin_list
+admin_modify
+admin_static
+admin_urls
+cache
+i18n
+l10n
+log
+static
+staticfiles
+tz
+2017-12-19 23:24:24,162-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/list/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/smartif.py", line 175, in translate_token
+    op = OPERATORS[token]
+KeyError: "'1"
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 215, in _get_response
+    response = response.render()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 107, in render
+    self.content = self.rendered_content
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 82, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 64, in resolve_template
+    return select_template(template, using=self.using)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader.py", line 48, in select_template
+    return engine.get_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/backends/django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 162, in get_template
+    template, origin = self.find_template(template_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/engine.py", line 136, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loaders/base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 230, in compile_nodelist
+    return parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 312, in do_extends
+    nodelist = parser.parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 255, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 827, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 515, in parse
+    raise self.error(token, e)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 976, in do_if
+    condition = TemplateIfParser(parser, bits).parse()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 900, in __init__
+    super(TemplateIfParser, self).__init__(*args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/smartif.py", line 166, in __init__
+    mapped_tokens.append(self.translate_token(token))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/smartif.py", line 177, in translate_token
+    return self.create_var(token)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 903, in create_var
+    return TemplateLiteral(self.template_parser.compile_filter(value), value)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 700, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: ''1' from ''1'

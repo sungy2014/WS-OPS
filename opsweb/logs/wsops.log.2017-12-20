@@ -1,0 +1,197 @@
+2017-12-20 15:36:34,795-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:67]-CmdbModel 模型对象: app 添加成功
+2017-12-20 15:40:39,035-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:67]-CmdbModel 模型对象: item 添加成功
+2017-12-20 16:03:15,299-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 32, in post
+    ret["msg"] = json.dumps(json.loads(cmdb_add_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+NameError: name 'json' is not defined
+2017-12-20 16:03:28,678-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:67]-CmdbModel 模型对象: ursa 添加成功
+2017-12-20 16:29:49,552-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 32, in post
+    ret["msg"] = json.dumps(json.loads(cmdb_add_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+NameError: name 'json' is not defined
+2017-12-20 16:30:04,607-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.118 自动刷新成功
+2017-12-20 16:30:05,821-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.119 自动刷新成功
+2017-12-20 16:30:08,620-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.22 自动刷新成功
+2017-12-20 16:30:10,479-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.25 自动刷新成功
+2017-12-20 16:30:11,626-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.26 自动刷新成功
+2017-12-20 16:30:12,733-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.27 自动刷新成功
+2017-12-20 16:30:13,915-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.28 自动刷新成功
+2017-12-20 16:30:14,976-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.29 自动刷新成功
+2017-12-20 16:30:16,007-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.30 自动刷新成功
+2017-12-20 16:30:17,168-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.31 自动刷新成功
+2017-12-20 16:30:18,539-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.32 自动刷新成功
+2017-12-20 16:30:19,570-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.33 自动刷新成功
+2017-12-20 16:30:20,644-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.34 自动刷新成功
+2017-12-20 16:30:21,754-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 32, in post
+    ret["msg"] = json.dumps(json.loads(cmdb_add_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+NameError: name 'json' is not defined
+2017-12-20 16:30:21,839-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.35 自动刷新成功
+2017-12-20 16:30:22,877-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.36 自动刷新成功
+2017-12-20 16:30:24,110-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.37 自动刷新成功
+2017-12-20 16:30:25,159-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.48 自动刷新成功
+2017-12-20 16:30:26,307-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.49 自动刷新成功
+2017-12-20 16:30:27,488-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.50 自动刷新成功
+2017-12-20 16:30:28,590-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.51 自动刷新成功
+2017-12-20 16:30:29,649-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.52 自动刷新成功
+2017-12-20 16:30:30,846-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.53 自动刷新成功
+2017-12-20 16:30:32,052-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.54 自动刷新成功
+2017-12-20 16:30:33,168-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.55 自动刷新成功
+2017-12-20 16:30:34,474-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.56 自动刷新成功
+2017-12-20 16:30:35,533-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.58 自动刷新成功
+2017-12-20 16:30:36,790-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.59 自动刷新成功
+2017-12-20 16:30:37,870-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.65 自动刷新成功
+2017-12-20 16:30:38,980-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.70 自动刷新成功
+2017-12-20 16:30:40,046-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.71 自动刷新成功
+2017-12-20 16:30:41,113-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.72 自动刷新成功
+2017-12-20 16:30:42,324-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.73 自动刷新成功
+2017-12-20 16:30:43,499-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.74 自动刷新成功
+2017-12-20 16:30:44,732-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.75 自动刷新成功
+2017-12-20 16:30:46,088-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.76 自动刷新成功
+2017-12-20 16:30:47,229-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.77 自动刷新成功
+2017-12-20 16:30:48,511-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.78 自动刷新成功
+2017-12-20 16:30:49,669-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.79 自动刷新成功
+2017-12-20 16:30:50,682-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.80 自动刷新成功
+2017-12-20 16:30:51,943-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.81 自动刷新成功
+2017-12-20 16:30:53,304-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.82 自动刷新成功
+2017-12-20 16:30:54,627-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.87 自动刷新成功
+2017-12-20 16:30:55,874-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.89 自动刷新成功
+2017-12-20 16:30:57,146-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.90 自动刷新成功
+2017-12-20 16:30:59,818-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.99 自动刷新成功
+2017-12-20 17:28:56,894-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:68]-CmdbModel 模型对象: hehe 添加成功
+2017-12-20 17:33:47,174-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:68]-CmdbModel 模型对象: hahaaha 添加成功
+2017-12-20 17:36:27,211-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:70]-CmdbModel 模型对象: ahahhee 添加成功
+2017-12-20 17:40:52,473-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:70]-CmdbModel 模型对象: rfwefqf 添加成功
+2017-12-20 18:01:55,661-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 31, in post
+    if not cmdb_add_form.is_valid():
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/forms/forms.py", line 183, in is_valid
+    return self.is_bound and not self.errors
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/forms/forms.py", line 175, in errors
+    self.full_clean()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/forms/forms.py", line 384, in full_clean
+    self._clean_fields()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/forms/forms.py", line 405, in _clean_fields
+    value = getattr(self, 'clean_%s' % name)()
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/forms/__init__.py", line 111, in clean_ports
+    raise froms.ValidationError("端口号必须小于65535")
+NameError: name 'froms' is not defined
+2017-12-20 18:03:19,441-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:70]-CmdbModel 模型对象: app123 添加成功
+2017-12-20 18:11:26,717-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 31, in post
+    if not cmdb_add_form.is_valid():
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/forms/forms.py", line 183, in is_valid
+    return self.is_bound and not self.errors
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/forms/forms.py", line 175, in errors
+    self.full_clean()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/forms/forms.py", line 384, in full_clean
+    self._clean_fields()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/forms/forms.py", line 405, in _clean_fields
+    value = getattr(self, 'clean_%s' % name)()
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/forms/__init__.py", line 113, in clean_ports
+    return ";".join(ports_list)
+TypeError: sequence item 0: expected str instance, int found
+2017-12-20 21:39:01,115-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 31, in post
+    if not cmdb_add_form.is_valid():
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/forms/forms.py", line 183, in is_valid
+    return self.is_bound and not self.errors
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/forms/forms.py", line 175, in errors
+    self.full_clean()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/forms/forms.py", line 384, in full_clean
+    self._clean_fields()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/forms/forms.py", line 405, in _clean_fields
+    value = getattr(self, 'clean_%s' % name)()
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/forms/__init__.py", line 109, in clean_ports
+    if int(port) > 65535:
+ValueError: invalid literal for int() with base 10: 'hheer'
+2017-12-20 21:42:24,757-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:70]-CmdbModel 模型对象: hehepseyb 添加成功
+2017-12-20 22:45:05,309-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:99]-CmdbModel 删除对象 app123 成功
+2017-12-20 22:45:12,253-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:99]-CmdbModel 删除对象 hahaaha 成功
+2017-12-20 22:45:17,824-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:99]-CmdbModel 删除对象 hehe 成功
+2017-12-20 22:45:23,205-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:99]-CmdbModel 删除对象 hehepseyb 成功
+2017-12-20 22:45:33,304-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:99]-CmdbModel 删除对象 rfwefqf 成功
+2017-12-20 22:45:41,733-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:99]-CmdbModel 删除对象 ursa 成功
+2017-12-20 22:46:50,084-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:68]-CmdbModel 模型对象: hehe 添加成功
+2017-12-20 22:48:46,616-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:99]-CmdbModel 删除对象 hehe 成功
+2017-12-20 22:49:57,954-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:68]-CmdbModel 模型对象: hhee 添加成功
+2017-12-20 22:50:49,945-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:99]-CmdbModel 删除对象 hhee 成功
+2017-12-20 22:52:58,445-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:68]-CmdbModel 模型对象: app-gary 添加成功

@@ -48,7 +48,17 @@
                 <td class="text-center">{{ server_obj.cpu_count }}<br>{{ server_obj.mem }}<br>{{ server_obj.os_version }}</td>
                 <td>{{ server_obj.disk|safe }}</td>
                 <td class="text-center">{{ server_obj.zone }}</td>
-                <td class="text-center">{{ server_obj.get_status_display }}</td>
+                {% if server_obj.status == 'Running' %}
+                    <td class="text-center" style="color:green;vertical-align: middle">{{ server_obj.get_status_display }}</td>
+                {% elif server_obj.status == 'Starting' %}
+                    <td class="text-center" style="color:blue;vertical-align: middle">{{ server_obj.get_status_display }}</td>
+                {% elif server_obj.status == 'Stopping' %}
+                    <td class="text-center" style="color:red;vertical-align: middle">{{ server_obj.get_status_display }}</td>
+                {% elif server_obj.status == 'Stopped' %}
+                    <td class="text-center" style="color:red;vertical-align: middle">{{ server_obj.get_status_display }}</td>
+                {% else %}
+                    <td class="text-center">{{ server_obj.get_status_display }}</td>
+                {% endif %}
                 <td class="text-center">{{ server_obj.get_monitor_status_display }}</td>
                 <td class="text-center">{{ server_obj.get_charge_type_display }}</br>{{ server_obj.get_renewal_type_display }}</td>
                 <td class="text-center">{{ server_obj.expired_time | date:"Y-m-d H:i:s" }}</td>
