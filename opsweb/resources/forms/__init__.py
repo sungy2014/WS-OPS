@@ -75,6 +75,8 @@ class ServerIdcAddForm(forms.Form):
         else:
             return idc_obj
 
+
+''' cmdb 的添加和修改均使用此 form '''
 class CmdbAddForm(forms.Form):
     name = forms.CharField(required=True,max_length=50,error_messages={"required":"应用名称不能为空","max_length":"应用名称不能超过50字符"})
     describe = forms.CharField(required=False,max_length=200,error_messages={"invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
@@ -98,7 +100,6 @@ class CmdbAddForm(forms.Form):
             raise forms.ValidationError("应用名称已经存在，请重新定义应用名称")
 
     def clean_ports(self):
-        print("cleaned_data:",self.cleaned_data)
         ports = self.cleaned_data.get("ports")
         if ports:
             try:
@@ -122,11 +123,6 @@ class CmdbAddForm(forms.Form):
             raise forms.ValidationError("请输入正确的文件路径，以斜线/开头")
         return path
 
-    def clean_script(self):
-        script = self.cleaned_data.get("script")
-        if not os.path.isabs(script):
-            raise forms.ValidationError("请输入正确的文件路径，以斜线/开头")
-        return script
 
     def clean_log(self):
         log = self.cleaned_data.get("log")
@@ -134,3 +130,7 @@ class CmdbAddForm(forms.Form):
             raise forms.ValidationError("请输入正确的文件路径，以斜线/开头")
         return log
         
+class CmdbUpdateForm(CmdbAddForm):
+    def clean_name(self):
+        name = self.cleaned_data.get("name")
+        return name

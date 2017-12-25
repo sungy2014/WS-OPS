@@ -41,9 +41,9 @@
                 <td class="text-center">{{ p.userextend.phone }}</td>
                 <td class="text-center">{{ p.email }}</td>
                 {% if p.is_active == True %}
-                    <td class="text-center" style="color:green">正常</td>
+                    <td class="text-center"><span class="badge label-primary">正常</span></td>
                 {% else %}
-                    <td class="text-center" style="color:red">锁定</td>
+                    <td class="text-center"><span class="badge label-danger">锁定</span></td>
                 {% endif %}
                 <td class="text-center">{{ p.last_login|date:"Y-m-d H:i:s"  }}</td>
                 <td class="text-center">

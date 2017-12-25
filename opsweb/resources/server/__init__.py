@@ -1,5 +1,6 @@
 from django.views.generic import View,TemplateView,ListView
 from django.http import JsonResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from resources.models import ServerAliyunModel,IDC,ServerIdcModel,CmdbModel
 from resources.forms import ServerAliyunAddForm,ServerAliyunUpdateForm
 from api.thirdapi.ansible_adhoc import ansible_adhoc
@@ -83,7 +84,7 @@ def GetServerInfoFromApi(private_ip,server_aliyun_obj):
 
     return ret
 
-class ServerAliyunListView(ListView):
+class ServerAliyunListView(LoginRequiredMixin,ListView):
     template_name = "server/server_aliyun_list.html"
     model = ServerAliyunModel
     paginate_by = 10
@@ -137,7 +138,7 @@ class ServerAliyunListView(ListView):
         page_range = range(page_start,page_end)
         return page_range
 
-class ServerAliyunAddView(View):
+class ServerAliyunAddView(LoginRequiredMixin,View):
 
     def post(self,request):
         ret = {"result":0,"msg":None}
@@ -167,7 +168,7 @@ class ServerAliyunAddView(View):
             ret["msg"] = "服务器 %s 添加成功" %(server_aliyun_add_form.cleaned_data.get("private_ip"))
         return JsonResponse(ret)
 
-class ServerAliyunRefreshView(View):
+class ServerAliyunRefreshView(LoginRequiredMixin,View):
     
     def post(self,request):
         ret = {"result":0,"msg":None}
@@ -186,7 +187,7 @@ class ServerAliyunRefreshView(View):
 
         return JsonResponse(ret)
 
-class ServerAliyunInfoView(View):
+class ServerAliyunInfoView(LoginRequiredMixin,View):
 
     def get(self,request):
         ret = {"result":0,"msg":None}
@@ -223,7 +224,7 @@ class ServerAliyunInfoView(View):
 
         return JsonResponse(ret)
 
-class ServerAliyunDeleteView(View):
+class ServerAliyunDeleteView(LoginRequiredMixin,View):
     
     def post(self,request):
         ret = {"result":0,"msg":None}
@@ -246,7 +247,7 @@ class ServerAliyunDeleteView(View):
 
         return JsonResponse(ret)
 
-class ServerAliyunUpdateView(View):
+class ServerAliyunUpdateView(LoginRequiredMixin,View):
 
     def get(self,request):
 

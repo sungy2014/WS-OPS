@@ -1,10 +1,11 @@
 from django.contrib.auth.models import User,Group,Permission,ContentType
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView,View,ListView
 from django.http import JsonResponse,HttpResponse
 from accounts.forms import PermissionAddForm
 import json
 
-class PermissionListView(ListView):
+class PermissionListView(LoginRequiredMixin,ListView):
     template_name = "permission/permission_list.html"
     model = Permission
     paginate_by = 10
@@ -60,7 +61,7 @@ class PermissionListView(ListView):
         return page_range
 
 
-class PermissionChangeNameView(View):
+class PermissionChangeNameView(LoginRequiredMixin,View):
     def get(self,request,*args,**kwargs):
         p_id = request.GET.get('id',None)
         ret = {'result':0}
@@ -100,7 +101,7 @@ class PermissionChangeNameView(View):
         return  JsonResponse(ret)
 
 
-class PermissionAddView(TemplateView):
+class PermissionAddView(LoginRequiredMixin,TemplateView):
     template_name = "permission/permission_add.html"
 
     def get_context_data(self,**kwargs):
@@ -128,7 +129,7 @@ class PermissionAddView(TemplateView):
         return JsonResponse(ret)
 
 
-class PermissionDeleteView(View):
+class PermissionDeleteView(LoginRequiredMixin,View):
     def get(self,request):
         perm_id = request.GET.get("p_id",0)
         ret = {'result':0,'msg':None}

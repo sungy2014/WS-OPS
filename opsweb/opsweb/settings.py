@@ -123,7 +123,9 @@ os.path.join(BASE_DIR, "static"),
 CRONJOBS = [  
     # 每隔2分钟运行下面的函数，使得 ServerAliyunModel 模型与阿里云上的ECS保持一致
     ('*/2 * * * *', 'resources.cron.ServerAliyunAutoAddCrontab'),
-    ('30 16 * * *', 'resources.cron.ServerAliyunAutoRefreshCrontab'),
+    ('30 01 * * *', 'resources.cron.ServerAliyunAutoRefreshCrontab'),
+    ('05 00 * * *', 'resources.cron.ServerStatisticByDayCrontab'),
+    ('06 00 * * *', 'resources.cron.CmdbStatisticByDayCrontab'),
 ]
 
 # 日志配置

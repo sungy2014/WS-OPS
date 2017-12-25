@@ -1,0 +1,74 @@
+2017-12-23 13:32:03,819-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django_crontab/crontab.py-[line:147]-Failed to complete cronjob at ('*/2 * * * *', 'resources.cron.ServerAliyunAutoAddCrontab')
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django_crontab/crontab.py", line 145, in run_job
+    func(*job_args, **job_kwargs)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py", line 11, in ServerAliyunAutoAddCrontab
+    ServerAliyunAutoAdd()
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py", line 325, in ServerAliyunAutoAdd
+    aliyun_ecs_list = [i["NetworkInterfaces"]["NetworkInterface"][0]["PrimaryIpAddress"] for i in aliyun_result]
+TypeError: 'NoneType' object is not iterable
+2017-12-23 16:30:04,658-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.118 自动刷新成功
+2017-12-23 16:30:05,887-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.119 自动刷新成功
+2017-12-23 16:30:06,985-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.122 自动刷新成功
+2017-12-23 16:30:08,033-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.123 自动刷新成功
+2017-12-23 16:30:09,177-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.124 自动刷新成功
+2017-12-23 16:30:11,082-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.125 自动刷新成功
+2017-12-23 16:30:13,608-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.126 自动刷新成功
+2017-12-23 16:30:15,859-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.127 自动刷新成功
+2017-12-23 16:30:16,976-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.128 自动刷新成功
+2017-12-23 16:30:18,040-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.129 自动刷新成功
+2017-12-23 16:30:19,896-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.130 自动刷新成功
+2017-12-23 16:30:21,052-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.131 自动刷新成功
+2017-12-23 16:30:22,162-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.132 自动刷新成功
+2017-12-23 16:30:23,319-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.133 自动刷新成功
+2017-12-23 16:30:24,457-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.134 自动刷新成功
+2017-12-23 16:30:25,481-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.135 自动刷新成功
+2017-12-23 16:30:26,606-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.136 自动刷新成功
+2017-12-23 16:30:27,702-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.137 自动刷新成功
+2017-12-23 16:30:28,884-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.138 自动刷新成功
+2017-12-23 16:30:29,950-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.139 自动刷新成功
+2017-12-23 16:30:31,070-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.140 自动刷新成功
+2017-12-23 16:30:32,915-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.22 自动刷新成功
+2017-12-23 16:30:34,541-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.25 自动刷新成功
+2017-12-23 16:30:35,613-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.26 自动刷新成功
+2017-12-23 16:30:36,706-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.27 自动刷新成功
+2017-12-23 16:30:37,818-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.28 自动刷新成功
+2017-12-23 16:30:38,868-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.29 自动刷新成功
+2017-12-23 16:30:39,909-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.30 自动刷新成功
+2017-12-23 16:30:40,910-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.31 自动刷新成功
+2017-12-23 16:30:42,086-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.32 自动刷新成功
+2017-12-23 16:30:43,282-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.33 自动刷新成功
+2017-12-23 16:30:44,292-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.34 自动刷新成功
+2017-12-23 16:30:45,385-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.35 自动刷新成功
+2017-12-23 16:30:46,483-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.36 自动刷新成功
+2017-12-23 16:30:47,656-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.37 自动刷新成功
+2017-12-23 16:30:48,756-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.48 自动刷新成功
+2017-12-23 16:30:49,922-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.49 自动刷新成功
+2017-12-23 16:30:50,974-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.50 自动刷新成功
+2017-12-23 16:30:52,021-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.51 自动刷新成功
+2017-12-23 16:30:53,194-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.52 自动刷新成功
+2017-12-23 16:30:54,246-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.53 自动刷新成功
+2017-12-23 16:30:55,429-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.54 自动刷新成功
+2017-12-23 16:30:56,579-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.55 自动刷新成功
+2017-12-23 16:30:58,047-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.56 自动刷新成功
+2017-12-23 16:30:59,114-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.58 自动刷新成功
+2017-12-23 16:31:00,206-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.59 自动刷新成功
+2017-12-23 16:31:01,207-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.65 自动刷新成功
+2017-12-23 16:31:02,435-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.70 自动刷新成功
+2017-12-23 16:31:03,679-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.71 自动刷新成功
+2017-12-23 16:31:04,922-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.72 自动刷新成功
+2017-12-23 16:31:06,129-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.73 自动刷新成功
+2017-12-23 16:31:07,245-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.74 自动刷新成功
+2017-12-23 16:31:08,819-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.75 自动刷新成功
+2017-12-23 16:31:10,262-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.76 自动刷新成功
+2017-12-23 16:31:11,440-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.77 自动刷新成功
+2017-12-23 16:31:12,917-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.78 自动刷新成功
+2017-12-23 16:31:14,064-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.79 自动刷新成功
+2017-12-23 16:31:15,223-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.80 自动刷新成功
+2017-12-23 16:31:16,375-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.81 自动刷新成功
+2017-12-23 16:31:17,491-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.82 自动刷新成功
+2017-12-23 16:31:18,886-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.86 自动刷新成功
+2017-12-23 16:31:20,041-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.87 自动刷新成功
+2017-12-23 16:31:21,266-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.89 自动刷新成功
+2017-12-23 16:31:22,644-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.90 自动刷新成功
+2017-12-23 16:31:24,927-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.99 自动刷新成功

@@ -1,4 +1,5 @@
 from django.http import HttpResponse,JsonResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView,TemplateView,View
 from resources.models import IDC 
 from django.utils.decorators import method_decorator
@@ -12,7 +13,7 @@ from django.forms.models import model_to_dict
 from dashboard.utils.wslog import wslog_error,wslog_info
 
 
-class IdcListView(PermissionRequiredMixin,ListView):
+class IdcListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     permission_required = "resources.add_idc"
     permission_redirect_url = "users_list"
     template_name = "idc/idc_list.html"
@@ -20,7 +21,7 @@ class IdcListView(PermissionRequiredMixin,ListView):
     paginate_by = 10
     ordering = "id"
 
-class IdcAddView(TemplateView):
+class IdcAddView(LoginRequiredMixin,TemplateView):
     template_name = 'idc/idc_add.html'
 
     def post(self,request):
@@ -31,7 +32,6 @@ class IdcAddView(TemplateView):
             ret['msg'] = json.dumps(json.loads(idc_form.errors.as_json(escape_html=False)),ensure_ascii=False)
             return JsonResponse(ret)
         try:
-            print("clean_data:",idc_form.cleaned_data)
             idc = IDC(**idc_form.cleaned_data)
             idc.save()
             ret['msg'] = "IDC %s 添加成功" %(idc_form.cleaned_data.get('cn_name'))
@@ -40,7 +40,7 @@ class IdcAddView(TemplateView):
             ret['msg'] = e.args
         return JsonResponse(ret)
 
-class IdcChangeView(View):
+class IdcChangeView(LoginRequiredMixin,View):
     def get(self,request):
         
         ret = {"result":0,"msg":None}
@@ -102,7 +102,7 @@ class IdcChangeView(View):
         
         return JsonResponse(ret)
 
-class IdcDeleteView(View):
+class IdcDeleteView(LoginRequiredMixin,View):
     def get(self,request):
         idc_id = request.GET.get('id',None)
         ret = {'result':0,'msg': None}

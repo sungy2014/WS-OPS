@@ -55,11 +55,11 @@
                 <td class="text-center" style="vertical-align: middle">{{ cmdb.script|truncatechars:30 }}</td>
                 <td class="text-center" style="vertical-align: middle">{{ cmdb.ports |replace_to_br:";"|safe }}</td>
                 {% if cmdb.status == '0' %}
-                    <td class="text-center" style="color:green;vertical-align: middle">{{ cmdb.get_status_display }}</td>
+                    <td class="text-center"><span class="badge label-primary">{{ cmdb.get_status_display }}</span></td>
                 {% elif cmdb.status == '1' %}
-                    <td class="text-center" style="color:blue;vertical-align: middle">{{ cmdb.get_status_display }}</td>
+                    <td class="text-center"><span class="badge label-success">{{ cmdb.get_status_display }}</span></td>
                 {% else %}
-                    <td class="text-center" style="color:red;vertical-align: middle">{{ cmdb.get_status_display }}</td>
+                    <td class="text-center"><span class="badge label-danger">{{ cmdb.get_status_display }}</span></td>
                 {% endif %}
                 <td class="text-center" style="vertical-align: middle">{{ cmdb.last_update_time|date:"Y-m-d H:i:s" }}</td>
                 <td class="text-center" style="vertical-align: middle">
@@ -124,6 +124,8 @@
                 </div>
                 <div class="modal-body">
                     <form id="UpdateForm" class="Formvalid form-horizontal nice-validator n-yellow" novalidate="novalidate">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" id='id_update'>
                         <div class="form-inline row">
                             <div class="form-group col-sm-6">
                                 <label for="name" style="width:30%" class="control-label text-right">应用名 &nbsp<span class="red-fonts ">*</span></label>
@@ -183,7 +185,7 @@
                         <div class="form-inline row">
                             <div class="form-group col-sm-12">
                                 <label for="script" style="width:15%" class="control-label text-right">启动脚本 &nbsp<span class="red-fonts">*</span></label>
-                                <input name="script" id="script_update" placeholder="绝对路径，以斜线/开头" type="text" class="form-control" style="width: 79%;" aria-required="true">
+                                <input name="script" id="script_update" placeholder="script" type="text" class="form-control" style="width: 79%;" aria-required="true">
                             </div>
                         </div>
 
@@ -233,6 +235,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="DetailForm" class="Formvalid form-horizontal nice-validator n-yellow" novalidate="novalidate">
+                        {% csrf_token %}
                         <input type="hidden" name="id" id='id_detail'>
                         <div class="form-inline row">
                             <div class="form-group col-sm-6">
@@ -365,7 +368,8 @@
                     <p style="color:red"><b>你确认要删除吗?</b></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>                                                                                       <button type="button" class="btn btn-warning del-sure" data-id=''>确认</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-warning del-sure" data-id=''>确认</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -463,17 +467,13 @@ $(document).on('click',".cmdb_update",function(){
             $("#env_update option[value!='"+data.env+"']").prop("disabled",true)
             $("#type_update option[value='"+data.type+"']").prop("selected",true)
             var ip_str = ''
-            console.log(data)
             $.each(data.ips_list,function(k,v){
-                console.log(v)
-                console.log(data.ips)
                 if($.inArray(v.id,data.ips)>=0){
                     ip_str += '<option value='+v.id+' selected="selected">'+v.private_ip+'</option>'
                 }else{
                     ip_str += '<option value='+v.id+'>'+v.private_ip+'</option>'
                 }
             })
-            console.log(ip_str)
             $("#ips_update").append(ip_str)
             $("#UpdateModal").modal("show")
             $(".choices").multiselect('rebuild')
@@ -494,6 +494,26 @@ $(".choices").multiselect({
     disableIfEmpty: true,
 });
 
+$("#cmdb_update_btn").click(function(){
+    var str = $("#UpdateForm").serialize()
+    var url = "{% url 'cmdb_change' %}"
+    $.post(url,str,function(data){
+        if(data.result==0){
+           swal({
+             title:"Good",
+             text:data.msg,
+             type:'success',
+             confirmButtonText:"确定"
+             },
+             function(){
+                location.reload()
+           })
+       }else{
+            swal("OH,My God",data.msg,"error")
+       }; 
+    });
+    return false;
+});
 
 <!--删除-->
 $(".del-btn").click(function(){

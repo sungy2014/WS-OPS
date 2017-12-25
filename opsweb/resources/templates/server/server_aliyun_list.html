@@ -24,6 +24,7 @@
             <tr>
                 <th class="text-center">私网 IP</th>
                 <th class="text-center">SSH 端口</th>
+                <th class="text-center">部署应用</th>
                 <th class="text-center">主机名</th>
                 <th class="text-center">公网 IP</th>
                 <th class="text-center">所属环境</th>
@@ -42,6 +43,11 @@
             <tr class="gradeX">
                 <td class="text-center"><strong>{{ server_obj.private_ip }}</strong></td>
                 <td class="text-center">{{ server_obj.ssh_port }}</td>
+                <td class="text-center">
+                    {% for app in server_obj.cmdbmodel_set.all %}
+                        {{ app.name }}</br>
+                    {% endfor %}
+                </td>
                 <td class="text-center">{{ server_obj.hostname }}</td>
                 <td class="text-center">{{ server_obj.public_ip }}</td>
                 <td class="text-center">{{ server_obj.get_env_display }}</td>
@@ -49,15 +55,15 @@
                 <td>{{ server_obj.disk|safe }}</td>
                 <td class="text-center">{{ server_obj.zone }}</td>
                 {% if server_obj.status == 'Running' %}
-                    <td class="text-center" style="color:green;vertical-align: middle">{{ server_obj.get_status_display }}</td>
+                    <td class="text-center"><span class="badge label-primary">{{ server_obj.get_status_display }}</span></td>
                 {% elif server_obj.status == 'Starting' %}
-                    <td class="text-center" style="color:blue;vertical-align: middle">{{ server_obj.get_status_display }}</td>
+                    <td class="text-center"><span class="badge label-info">{{ server_obj.get_status_display }}</span></td>
                 {% elif server_obj.status == 'Stopping' %}
-                    <td class="text-center" style="color:red;vertical-align: middle">{{ server_obj.get_status_display }}</td>
+                    <td class="text-center"><span class="badge label-warning">{{ server_obj.get_status_display }}</span></td>
                 {% elif server_obj.status == 'Stopped' %}
-                    <td class="text-center" style="color:red;vertical-align: middle">{{ server_obj.get_status_display }}</td>
+                    <td class="text-center"><span class="badge label-danger">{{ server_obj.get_status_display }}</span></td>
                 {% else %}
-                    <td class="text-center">{{ server_obj.get_status_display }}</td>
+                    <td class="text-center"><span class="badge">{{ server_obj.get_status_display }}</td>
                 {% endif %}
                 <td class="text-center">{{ server_obj.get_monitor_status_display }}</td>
                 <td class="text-center">{{ server_obj.get_charge_type_display }}</br>{{ server_obj.get_renewal_type_display }}</td>
@@ -220,12 +226,12 @@
                         <div class="form-inline row">
                             <div class="form-group col-sm-6">
                                 <label for="private_ip" class="col-sm-4 control-label text-right">私网 IP<span class="red-fonts">*</span></label>
-                                <input id="private_ip_detail" name="private_ip" placeholder="private_ip" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                <input id="private_ip_detail" name="private_ip" style="width: 50%;" placeholder="private_ip" type="text" class="form-control" aria-required="true" readonly="readonly">
                             </div>
 
                             <div class="form-group col-sm-6">
                                 <label for="public_ip" class="col-sm-4 control-label text-right">公网 IP</label>
-                                <input id="public_ip_detail" name="public_ip" placeholder="public_ip" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                <input id="public_ip_detail" name="public_ip" style="width: 50%;" placeholder="public_ip" type="text" class="form-control" aria-required="true" readonly="readonly">
                             </div>
                         </div>
 
@@ -233,11 +239,11 @@
                         <div class="form-inline row">
                             <div class="form-group col-sm-6">
                                 <label for="hostname" class="col-sm-4 control-label text-right ">主机名</label>
-                                <input id="hostname_detail" name="hostname" placeholder="hostname" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                <input id="hostname_detail" name="hostname" style="width: 50%;" placeholder="hostname" type="text" class="form-control" aria-required="true" readonly="readonly">
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="ssh_port" class="col-sm-4 control-label text-right ">SSH 端口<span class="red-fonts ">*</span></label>
-                                <input id="ssh_port_detail" name="ssh_port" placeholder="ssh_port" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                <input id="ssh_port_detail" name="ssh_port" style="width: 50%;" placeholder="ssh_port" type="text" class="form-control" aria-required="true" readonly="readonly">
                             </div>
                         </div>
 
@@ -245,7 +251,7 @@
                         <div class="form-inline row">
                             <div class="form-group col-sm-6">
                                 <label for="env" class="col-sm-4 control-label text-right">所属环境<span class="red-fonts">*</span></label>
-                                <input id="env_detail" name="env" placeholder="env" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                <input id="env_detail" name="env" style="width: 50%;" placeholder="env" type="text" class="form-control" aria-required="true" readonly="readonly">
                             </div>
                         </div>
 
@@ -253,12 +259,12 @@
                         <div class="form-inline row">
                             <div class="form-group col-sm-6">
                                 <label for="server_brand" class="col-sm-4 control-label text-right">服务器品牌</label>
-                                <input id="server_brand_detail" name="server_brand" placeholder="server_brand" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                <input id="server_brand_detail" name="server_brand" style="width: 50%;" placeholder="server_brand" type="text" class="form-control" aria-required="true" readonly="readonly">
                             </div>
 
                             <div class="form-group col-sm-6">
                                 <label for="instance_type" class="col-sm-4 control-label text-right">服务器规格</label>
-                                <input id="instance_type_detail" name="instance_type" placeholder="instance_type" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                <input id="instance_type_detail" name="instance_type" style="width: 50%;" placeholder="instance_type" type="text" class="form-control" aria-required="true" readonly="readonly">
                             </div>
                         </div>
 
@@ -266,12 +272,12 @@
                         <div class="form-inline row">  
                             <div class="form-group col-sm-6">
                                 <label for="os_version" class="col-sm-4 control-label text-right">系统版本</label>
-                                <input id="os_version_detail" name="os_version" placeholder="os_version" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                <input id="os_version_detail" name="os_version" style="width: 50%;" placeholder="os_version" type="text" class="form-control" aria-required="true" readonly="readonly">
                             </div>
 
                             <div class="form-group col-sm-6">
                                 <label for="cpu_count" class="col-sm-4 control-label text-right">CPU 核数</label>
-                                <input id="cpu_count_detail" name="cpu_count" placeholder="cpu_count" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                <input id="cpu_count_detail" name="cpu_count" style="width: 50%;" placeholder="cpu_count" type="text" class="form-control" aria-required="true" readonly="readonly">
                             </div>
                         </div>
 
@@ -279,12 +285,12 @@
                         <div class="form-inline row">
                             <div class="form-group col-sm-6">
                                 <label for="region" class="col-sm-4 control-label text-right">地域</label>
-                                <input id="region_detail" name="region" placeholder="region" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                <input id="region_detail" name="region" style="width: 50%;" placeholder="region" type="text" class="form-control" aria-required="true" readonly="readonly">
                             </div>
 
                             <div class="form-group col-sm-6">
                                 <label for="zone" class="col-sm-4 control-label text-right">可用区</label>
-                                <input id="zone_detail" name="zone" placeholder="zone" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                <input id="zone_detail" name="zone" style="width: 50%;" placeholder="zone" type="text" class="form-control" aria-required="true" readonly="readonly">
                             </div>
                         </div>
 
@@ -292,11 +298,11 @@
                         <div class="form-inline row">
                             <div class="form-group col-sm-6">
                                 <label for="mem" class="col-sm-4 control-label text-right">内存(GB)</label>
-                                <input id="mem_detail" name="mem" placeholder="mem" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                <input id="mem_detail" name="mem" style="width:50%" placeholder="mem" type="text" class="form-control" aria-required="true" readonly="readonly">
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="swap" class="col-sm-4 control-label text-right">SWAP</label>
-                                <input id="swap_detail" name="swap" placeholder="swap" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                <input id="swap_detail" name="swap" style="width:50%" placeholder="swap" type="text" class="form-control" aria-required="true" readonly="readonly">
                             </div>
                         </div>
 
@@ -304,11 +310,11 @@
                         <div class="form-inline row">
                             <div class="form-group col-sm-6">
                                 <label for="disk" class="col-sm-4 control-label text-right">物理磁盘</label>
-                                <textarea id="disk_detail" name="disk" class="form-control" aria-required="true" rows="3" readonly="readonly"></textarea>
+                                <textarea id="disk_detail" name="disk" style="width:50%" class="form-control" aria-required="true" rows="3" readonly="readonly"></textarea>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="disk_mount" class="col-sm-4 control-label text-right">分区挂载</label>
-                                <textarea id="disk_mount_detail" name="disk_mount" style="width: 60%;" class="form-control" aria-required="true" rows="3" readonly="readonly"></textarea>
+                                <textarea id="disk_mount_detail" name="disk_mount" style="width: 50%;" class="form-control" aria-required="true" rows="3" readonly="readonly"></textarea>
                             </div>
                         </div>
 
@@ -316,11 +322,11 @@
                         <div class="form-inline row">
                             <div class="form-group col-sm-6">
                                 <label for="status" class="col-sm-4 control-label text-right">状态</label>
-                                <input id="status_detail" name="status" placeholder="status" type="text" class="form-control" aria-required="true" readonly>
+                                <input id="status_detail" name="status" style="width: 50%;" placeholder="status" type="text" class="form-control" aria-required="true" readonly>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="monitor_status" class="col-sm-4 control-label text-right">监控状态</label>
-                                <input id="monitor_status_detail" name="monitor_status" placeholder="monitor_status" type="text" class="form-control" aria-required="true" readonly>
+                                <input id="monitor_status_detail" name="monitor_status" style="width: 50%;" placeholder="monitor_status" type="text" class="form-control" aria-required="true" readonly>
                             </div>
                         </div>
 
@@ -328,11 +334,11 @@
                         <div class="form-inline row">
                             <div class="form-group col-sm-6">
                                 <label for="charge_type" class="col-sm-4 control-label text-right">付费类型</label>
-                                <input id="charge_type_detail" name="charge_type" placeholder="charge_type" type="text" class="form-control" aria-required="true" readonly>
+                                <input id="charge_type_detail" name="charge_type" style="width: 50%;" placeholder="charge_type" type="text" class="form-control" aria-required="true" readonly>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="renewal_type" class="col-sm-4 control-label text-right">续费类型</label>
-                                <input id="renewal_type_detail" name="renewal_type" placeholder="renewal_type" type="text" class="form-control" aria-required="true" readonly>
+                                <input id="renewal_type_detail" name="renewal_type" style="width: 50%;" placeholder="renewal_type" type="text" class="form-control" aria-required="true" readonly>
                             </div>
                         </div>
 
@@ -340,11 +346,11 @@
                         <div class="form-inline row">
                             <div class="form-group col-sm-6">
                                 <label for="online_time" class="col-sm-4 control-label text-right">创建时间</label>
-                                <input id="online_time_detail" name="online_time" placeholder="online_time" type="text" class="form-control" aria-required="true" readonly>
+                                <input id="online_time_detail" name="online_time" style="width: 50%;" placeholder="online_time" type="text" class="form-control" aria-required="true" readonly>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="offline_time" class="col-sm-4 control-label text-right">下线时间</label>
-                                <input id="offline_time_detail" name="offline_time" placeholder="offline_time" type="text" class="form-control" aria-required="true" readonly>
+                                <input id="offline_time_detail" name="offline_time" style="width: 50%;" placeholder="offline_time" type="text" class="form-control" aria-required="true" readonly>
                             </div>
                         </div>
 
@@ -352,11 +358,11 @@
                         <div class="form-inline row">
                             <div class="form-group col-sm-6">
                                 <label for="expired_time" class="col-sm-4 control-label text-right">过期时间</label>
-                                <input id="expired_time_detail" name="expired_time" placeholder="expired_time" type="text" class="form-control" aria-required="true" readonly>
+                                <input id="expired_time_detail" name="expired_time" style="width: 50%;" placeholder="expired_time" type="text" class="form-control" aria-required="true" readonly>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="offline_time" class="col-sm-4 control-label text-right">更新时间</label>
-                                <input id="last_update_time_detail" name="last_update_time" placeholder="last_update_time" type="text" class="form-control" aria-required="true" readonly>
+                                <input id="last_update_time_detail" name="last_update_time" style="width: 50%;" placeholder="last_update_time" type="text" class="form-control" aria-required="true" readonly>
                             </div>
                         </div>
 

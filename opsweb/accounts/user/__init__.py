@@ -65,7 +65,7 @@ class UserListView(LoginRequiredMixin,ListView):
         return page_range
 
 
-class UserModifyStatusView(View):
+class UserModifyStatusView(LoginRequiredMixin,View):
     def post(self,request,*args,**kwargs):
         id = request.POST.get("id",0)
         ret={'result':0}
@@ -79,7 +79,7 @@ class UserModifyStatusView(View):
             ret["msg"]="用户不存在"
         return JsonResponse(ret)
 
-class UserModifyGroupView(View):
+class UserModifyGroupView(LoginRequiredMixin,View):
     def get(self,request):
         uid = request.GET.get('id',0)
         ret = {'result':0,'msg':None}
@@ -128,7 +128,7 @@ class UserModifyGroupView(View):
 
         return JsonResponse(ret)
 
-class UserAddView(TemplateView):
+class UserAddView(LoginRequiredMixin,TemplateView):
     template_name = "user/users_add.html"
 
     def post(self,request):
@@ -156,7 +156,7 @@ class UserAddView(TemplateView):
 
         return JsonResponse(ret)
 
-class UserDeleteView(View):
+class UserDeleteView(LoginRequiredMixin,View):
     def get(self,request):
         ret = {"result":0,"msg":None}
         uid = request.GET.get("uid",0)
@@ -178,7 +178,7 @@ class UserDeleteView(View):
 
         return JsonResponse(ret)
 
-class UserInfoView(TemplateView):
+class UserInfoView(LoginRequiredMixin,TemplateView):
     template_name = "user/user_info.html"
 
     def get_context_data(self,**kwargs):
@@ -195,7 +195,7 @@ class UserInfoView(TemplateView):
 '''
 用户个人中心 和 用户列表中的"更新用户信息"共用此逻辑
 '''
-class UserInfoChangeView(View):
+class UserInfoChangeView(LoginRequiredMixin,View):
 
     def get(self,request):
         ret = {"result":0,"msg":None}
@@ -247,7 +247,7 @@ class UserInfoChangeView(View):
 '''
 用户个人中心 和 用户列表中的"更新密码"共用此逻辑
 '''
-class UserInfoChangePwdView(View):
+class UserInfoChangePwdView(LoginRequiredMixin,View):
     def post(self,request):
         ret = {"result":0,"msg":None}
         uid = request.POST.get("id",0)

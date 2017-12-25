@@ -1,362 +1,159 @@
-2017-12-21 11:17:38,619-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/info/
+2017-12-25 09:40:03,267-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:351]-服务器: 172.17.134.142 自动添加成功
+2017-12-25 16:30:04,848-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.118 自动刷新成功
+2017-12-25 16:30:06,169-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.119 自动刷新成功
+2017-12-25 16:30:07,440-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.122 自动刷新成功
+2017-12-25 16:30:08,637-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.123 自动刷新成功
+2017-12-25 16:30:09,712-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.124 自动刷新成功
+2017-12-25 16:30:12,186-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.125 自动刷新成功
+2017-12-25 16:30:14,469-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.126 自动刷新成功
+2017-12-25 16:30:16,972-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.127 自动刷新成功
+2017-12-25 16:30:18,005-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.128 自动刷新成功
+2017-12-25 16:30:19,035-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.129 自动刷新成功
+2017-12-25 16:30:20,145-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.130 自动刷新成功
+2017-12-25 16:30:21,456-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.131 自动刷新成功
+2017-12-25 16:30:22,631-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.132 自动刷新成功
+2017-12-25 16:30:23,810-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.133 自动刷新成功
+2017-12-25 16:30:24,888-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.134 自动刷新成功
+2017-12-25 16:30:26,105-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.135 自动刷新成功
+2017-12-25 16:30:27,159-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.136 自动刷新成功
+2017-12-25 16:30:28,246-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.137 自动刷新成功
+2017-12-25 16:30:29,277-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.138 自动刷新成功
+2017-12-25 16:30:30,393-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.139 自动刷新成功
+2017-12-25 16:30:31,490-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.140 自动刷新成功
+2017-12-25 16:30:32,966-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.142 自动刷新成功
+2017-12-25 16:30:34,885-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.22 自动刷新成功
+2017-12-25 16:30:36,549-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.25 自动刷新成功
+2017-12-25 16:30:37,726-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.26 自动刷新成功
+2017-12-25 16:30:38,884-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.27 自动刷新成功
+2017-12-25 16:30:40,022-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.28 自动刷新成功
+2017-12-25 16:30:41,138-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.29 自动刷新成功
+2017-12-25 16:30:42,154-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.30 自动刷新成功
+2017-12-25 16:30:44,504-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.31 自动刷新成功
+2017-12-25 16:30:45,609-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.32 自动刷新成功
+2017-12-25 16:30:46,720-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.33 自动刷新成功
+2017-12-25 16:30:48,074-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.34 自动刷新成功
+2017-12-25 16:30:49,115-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.35 自动刷新成功
+2017-12-25 16:30:50,322-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.36 自动刷新成功
+2017-12-25 16:30:51,441-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.37 自动刷新成功
+2017-12-25 16:30:52,514-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.48 自动刷新成功
+2017-12-25 16:30:53,672-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.49 自动刷新成功
+2017-12-25 16:30:54,743-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.50 自动刷新成功
+2017-12-25 16:30:55,829-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.51 自动刷新成功
+2017-12-25 16:30:56,927-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.52 自动刷新成功
+2017-12-25 16:30:58,137-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.53 自动刷新成功
+2017-12-25 16:30:59,238-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.54 自动刷新成功
+2017-12-25 16:31:00,428-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.55 自动刷新成功
+2017-12-25 16:31:01,736-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.56 自动刷新成功
+2017-12-25 16:31:02,798-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.58 自动刷新成功
+2017-12-25 16:31:04,089-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.59 自动刷新成功
+2017-12-25 16:31:05,252-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.65 自动刷新成功
+2017-12-25 16:31:06,461-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.70 自动刷新成功
+2017-12-25 16:31:07,579-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.71 自动刷新成功
+2017-12-25 16:31:08,849-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.72 自动刷新成功
+2017-12-25 16:31:10,260-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.73 自动刷新成功
+2017-12-25 16:31:11,316-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.74 自动刷新成功
+2017-12-25 16:31:12,664-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.75 自动刷新成功
+2017-12-25 16:31:14,015-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.76 自动刷新成功
+2017-12-25 16:31:15,544-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.77 自动刷新成功
+2017-12-25 16:31:16,771-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.78 自动刷新成功
+2017-12-25 16:31:17,987-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.79 自动刷新成功
+2017-12-25 16:31:19,276-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.80 自动刷新成功
+2017-12-25 16:31:20,523-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.81 自动刷新成功
+2017-12-25 16:31:21,733-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.82 自动刷新成功
+2017-12-25 16:31:23,130-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.86 自动刷新成功
+2017-12-25 16:31:24,593-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.87 自动刷新成功
+2017-12-25 16:31:25,922-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.89 自动刷新成功
+2017-12-25 16:31:27,223-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.90 自动刷新成功
+2017-12-25 16:31:28,795-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.99 自动刷新成功
+2017-12-25 22:55:02,924-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:59]-统计 2017-12-25 的服务器总数成功
+2017-12-25 22:55:03,032-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django_crontab/crontab.py-[line:147]-Failed to complete cronjob at ('55 22 * * *', 'resources.cron.CmdbStatisticByDayCrontab')
 Traceback (most recent call last):
-  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 98, in get
-    cmdb_info = CmdbModel.objects.filter(id__exact=cid).values()[0]
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/models/query.py", line 289, in __getitem__
-    return list(qs)[0]
-IndexError: list index out of range
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django_crontab/crontab.py", line 145, in run_job
+    func(*job_args, **job_kwargs)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py", line 65, in CmdbStatisticByDayCrontab
+    count = CmdbModel.objects.count()
+NameError: name 'CmdbModel' is not defined
+2017-12-25 23:05:02,788-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:87]-统计 2017-12-25 的应用总数成功
+2017-12-25 23:05:02,935-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:59]-统计 2017-12-25 的服务器总数成功
+2017-12-25 23:08:02,647-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:59]-统计 2017-12-25 的服务器总数成功
+2017-12-25 23:08:02,705-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django_crontab/crontab.py-[line:147]-Failed to complete cronjob at ('08 23 * * *', 'resources.cron.CmdbStatisticByDayCrontab')
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 101, in execute
+    return self.cursor.execute(query, args)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/pymysql/cursors.py", line 166, in execute
+    result = self._query(query)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/pymysql/connections.py", line 856, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/pymysql/connections.py", line 1057, in _read_query_result
+    result.read()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/pymysql/connections.py", line 1340, in read
+    first_packet = self.connection._read_packet()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/pymysql/connections.py", line 1014, in _read_packet
+    packet.check_error()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/pymysql/connections.py", line 393, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/pymysql/err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.IntegrityError: (1062, "Duplicate entry '2017-12-25' for key 'myday'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py", line 82, in CmdbStatisticByDayCrontab
+    csbd_obj.save()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/models/base.py", line 808, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/models/base.py", line 838, in save_base
+    updated = self._save_table(raw, cls, force_insert, force_update, using, update_fields)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/models/base.py", line 924, in _save_table
+    result = self._do_insert(cls._base_manager, using, fields, update_pk, raw)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/models/base.py", line 963, in _do_insert
+    using=using, raw=raw)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/models/query.py", line 1076, in _insert
+    return query.get_compiler(using=using).execute_sql(return_id)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1107, in execute_sql
+    cursor.execute(sql, params)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/backends/utils.py", line 80, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/utils/six.py", line 685, in reraise
+    raise value.with_traceback(tb)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/backends/utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/db/backends/mysql/base.py", line 101, in execute
+    return self.cursor.execute(query, args)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/pymysql/cursors.py", line 166, in execute
+    result = self._query(query)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/pymysql/connections.py", line 856, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/pymysql/connections.py", line 1057, in _read_query_result
+    result.read()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/pymysql/connections.py", line 1340, in read
+    first_packet = self.connection._read_packet()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/pymysql/connections.py", line 1014, in _read_packet
+    packet.check_error()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/pymysql/connections.py", line 393, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/pymysql/err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.IntegrityError: (1062, "Duplicate entry '2017-12-25' for key 'myday'")
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
-    response = get_response(request)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
-    response = self._get_response(request)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
-    response = self.process_exception_by_middleware(e, request)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
-    return self.dispatch(request, *args, **kwargs)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
-    return handler(request, *args, **kwargs)
-  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 106, in get
-    ret["msg"] = "CmdbModel 对象 %s 转为 dict 失败,请查看日志" %(cmdb_obj.name)
-AttributeError: 'JsonResponse' object has no attribute 'name'
-2017-12-21 11:19:42,811-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app 信息成功
-2017-12-21 11:19:42,811-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/info/
-Traceback (most recent call last):
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
-    response = get_response(request)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
-    response = self._get_response(request)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
-    response = self.process_exception_by_middleware(e, request)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
-    return self.dispatch(request, *args, **kwargs)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
-    return handler(request, *args, **kwargs)
-  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 113, in get
-    return JsonResponse(ret)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/http/response.py", line 530, in __init__
-    data = json.dumps(data, cls=encoder, **json_dumps_params)
-  File "/usr/local/python36/lib/python3.6/json/__init__.py", line 238, in dumps
-    **kw).encode(obj)
-  File "/usr/local/python36/lib/python3.6/json/encoder.py", line 199, in encode
-    chunks = self.iterencode(o, _one_shot=True)
-  File "/usr/local/python36/lib/python3.6/json/encoder.py", line 257, in iterencode
-    return _iterencode(o, 0)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/serializers/json.py", line 124, in default
-    return super(DjangoJSONEncoder, self).default(o)
-  File "/usr/local/python36/lib/python3.6/json/encoder.py", line 180, in default
-    o.__class__.__name__)
-TypeError: Object of type 'method' is not JSON serializable
-2017-12-21 11:20:57,539-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app 信息成功
-2017-12-21 11:20:57,540-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/info/
-Traceback (most recent call last):
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
-    response = get_response(request)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
-    response = self._get_response(request)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
-    response = self.process_exception_by_middleware(e, request)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
-    return self.dispatch(request, *args, **kwargs)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
-    return handler(request, *args, **kwargs)
-  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 114, in get
-    return JsonResponse(ret)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/http/response.py", line 530, in __init__
-    data = json.dumps(data, cls=encoder, **json_dumps_params)
-  File "/usr/local/python36/lib/python3.6/json/__init__.py", line 238, in dumps
-    **kw).encode(obj)
-  File "/usr/local/python36/lib/python3.6/json/encoder.py", line 199, in encode
-    chunks = self.iterencode(o, _one_shot=True)
-  File "/usr/local/python36/lib/python3.6/json/encoder.py", line 257, in iterencode
-    return _iterencode(o, 0)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/serializers/json.py", line 124, in default
-    return super(DjangoJSONEncoder, self).default(o)
-  File "/usr/local/python36/lib/python3.6/json/encoder.py", line 180, in default
-    o.__class__.__name__)
-TypeError: Object of type 'method' is not JSON serializable
-2017-12-21 11:22:42,175-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app 信息成功
-2017-12-21 11:23:26,477-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:24:25,487-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 item 信息成功
-2017-12-21 11:24:39,313-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:24:43,702-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 item 信息成功
-2017-12-21 11:24:54,235-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 mop 信息成功
-2017-12-21 11:24:56,715-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app 信息成功
-2017-12-21 11:25:03,022-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app 信息成功
-2017-12-21 11:25:05,386-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:25:08,426-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 item 信息成功
-2017-12-21 11:25:11,667-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 mop 信息成功
-2017-12-21 11:31:14,598-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:31:17,477-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app 信息成功
-2017-12-21 11:31:20,049-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 mop 信息成功
-2017-12-21 11:31:22,859-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:31:30,360-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:31:35,142-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 item 信息成功
-2017-12-21 11:31:37,831-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:31:57,843-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:32:00,289-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app 信息成功
-2017-12-21 11:32:03,185-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 item 信息成功
-2017-12-21 11:32:06,391-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 mop 信息成功
-2017-12-21 11:32:22,830-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:34:46,527-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app 信息成功
-2017-12-21 11:34:49,462-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:34:51,834-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 mop 信息成功
-2017-12-21 11:34:54,257-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:34:57,010-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:34:59,999-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app 信息成功
-2017-12-21 11:35:02,433-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 mop 信息成功
-2017-12-21 11:35:04,777-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 item 信息成功
-2017-12-21 11:35:06,776-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:35:20,502-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 mop 信息成功
-2017-12-21 11:36:18,052-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app 信息成功
-2017-12-21 11:36:23,946-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:36:32,131-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app 信息成功
-2017-12-21 11:36:37,299-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:36:44,422-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 item 信息成功
-2017-12-21 11:37:24,826-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app 信息成功
-2017-12-21 11:37:47,064-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:42:26,937-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:116]-获取 CmdbModel 对象 app 信息成功
-2017-12-21 11:42:56,756-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:116]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:43:03,965-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:116]-获取 CmdbModel 对象 mop 信息成功
-2017-12-21 11:43:25,325-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:116]-获取 CmdbModel 对象 mop 信息成功
-2017-12-21 11:46:26,054-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:116]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 11:46:32,580-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:116]-获取 CmdbModel 对象 app 信息成功
-2017-12-21 12:27:06,698-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:116]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 12:27:57,848-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:116]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 12:32:03,501-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:116]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 12:32:06,852-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:116]-获取 CmdbModel 对象 app 信息成功
-2017-12-21 12:35:49,571-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:116]-获取 CmdbModel 对象 item 信息成功
-2017-12-21 14:10:15,226-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:80]-CmdbModel 模型对象: hhaa 添加成功
-2017-12-21 14:10:29,388-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:116]-获取 CmdbModel 对象 hhaa 信息成功
-2017-12-21 15:44:26,152-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:132]-获取 CmdbModel 对象 app 信息成功
-2017-12-21 15:44:32,508-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:132]-获取 CmdbModel 对象 hhaa 信息成功
-2017-12-21 15:53:26,717-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /favicon.ico
-2017-12-21 15:59:27,363-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:132]-获取 CmdbModel 对象 mop 信息成功
-2017-12-21 16:15:43,511-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:132]-获取 CmdbModel 对象 app-gary 信息成功
-2017-12-21 16:19:30,669-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:19:34,007-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:19:37,146-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
-2017-12-21 16:19:50,436-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
-2017-12-21 16:19:53,375-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:20:06,823-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:20:24,743-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:20:33,951-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:20:37,711-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:20:40,915-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:20:44,089-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:20:46,520-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:21:57,037-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:21:59,807-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:22:02,882-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
-2017-12-21 16:22:05,519-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
-2017-12-21 16:22:08,113-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:22:10,815-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:22:13,337-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:22:15,984-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
-2017-12-21 16:22:18,771-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:22:21,953-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
-2017-12-21 16:22:24,838-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
-2017-12-21 16:22:28,071-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:22:30,984-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:23:06,114-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
-2017-12-21 16:23:09,058-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:23:12,552-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:23:15,610-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:23:34,884-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
-2017-12-21 16:23:38,011-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:24:20,898-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:24:34,681-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
-2017-12-21 16:24:43,680-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
-2017-12-21 16:24:52,388-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:30:04,791-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.118 自动刷新成功
-2017-12-21 16:30:06,568-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.119 自动刷新成功
-2017-12-21 16:30:08,678-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.22 自动刷新成功
-2017-12-21 16:30:10,312-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.25 自动刷新成功
-2017-12-21 16:30:11,397-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.26 自动刷新成功
-2017-12-21 16:30:12,757-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.27 自动刷新成功
-2017-12-21 16:30:13,910-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.28 自动刷新成功
-2017-12-21 16:30:14,945-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.29 自动刷新成功
-2017-12-21 16:30:15,962-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.30 自动刷新成功
-2017-12-21 16:30:17,132-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.31 自动刷新成功
-2017-12-21 16:30:18,623-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.32 自动刷新成功
-2017-12-21 16:30:19,813-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.33 自动刷新成功
-2017-12-21 16:30:20,992-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.34 自动刷新成功
-2017-12-21 16:30:22,062-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.35 自动刷新成功
-2017-12-21 16:30:23,093-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.36 自动刷新成功
-2017-12-21 16:30:24,214-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.37 自动刷新成功
-2017-12-21 16:30:25,420-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.48 自动刷新成功
-2017-12-21 16:30:27,246-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.49 自动刷新成功
-2017-12-21 16:30:28,337-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.50 自动刷新成功
-2017-12-21 16:30:29,390-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.51 自动刷新成功
-2017-12-21 16:30:30,602-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.52 自动刷新成功
-2017-12-21 16:30:31,843-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.53 自动刷新成功
-2017-12-21 16:30:33,194-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.54 自动刷新成功
-2017-12-21 16:30:34,820-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.55 自动刷新成功
-2017-12-21 16:30:36,243-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.56 自动刷新成功
-2017-12-21 16:30:37,505-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.58 自动刷新成功
-2017-12-21 16:30:38,558-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.59 自动刷新成功
-2017-12-21 16:30:39,588-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.65 自动刷新成功
-2017-12-21 16:30:40,950-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.70 自动刷新成功
-2017-12-21 16:30:42,043-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.71 自动刷新成功
-2017-12-21 16:30:43,130-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.72 自动刷新成功
-2017-12-21 16:30:44,265-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.73 自动刷新成功
-2017-12-21 16:30:45,409-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.74 自动刷新成功
-2017-12-21 16:30:47,129-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.75 自动刷新成功
-2017-12-21 16:30:48,789-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.76 自动刷新成功
-2017-12-21 16:30:49,972-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.77 自动刷新成功
-2017-12-21 16:30:51,144-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.78 自动刷新成功
-2017-12-21 16:30:52,245-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.79 自动刷新成功
-2017-12-21 16:30:53,497-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.80 自动刷新成功
-2017-12-21 16:30:54,581-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.81 自动刷新成功
-2017-12-21 16:30:55,983-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.82 自动刷新成功
-2017-12-21 16:30:57,423-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.87 自动刷新成功
-2017-12-21 16:30:58,806-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.89 自动刷新成功
-2017-12-21 16:31:00,097-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.90 自动刷新成功
-2017-12-21 16:31:02,342-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.99 自动刷新成功
-2017-12-21 16:32:16,617-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:32:21,541-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:32:28,254-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:32:31,724-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
-2017-12-21 16:32:34,621-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
-2017-12-21 16:32:36,983-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
-2017-12-21 16:32:40,036-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:32:49,784-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:32:55,011-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
-2017-12-21 16:32:58,305-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:33:01,605-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:33:04,020-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:33:07,583-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:33:10,144-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:33:12,532-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:33:14,828-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
-2017-12-21 16:33:18,185-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
-2017-12-21 16:33:21,063-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:33:23,452-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:33:26,294-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:33:30,791-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:33:33,949-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:44:09,615-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:44:26,857-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:45:20,321-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:45:23,131-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:45:25,592-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:45:27,682-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
-2017-12-21 16:45:30,589-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
-2017-12-21 16:45:33,163-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
-2017-12-21 16:45:37,878-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
-2017-12-21 16:45:40,113-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:45:42,472-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:45:44,788-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:45:47,143-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
-2017-12-21 16:45:49,647-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:45:51,952-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
-2017-12-21 16:45:55,089-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:45:57,366-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:46:00,531-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:46:03,144-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:46:59,106-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:47:13,646-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:47:21,297-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 16:49:13,587-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 16:49:19,643-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 16:49:27,834-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 17:12:43,517-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 17:12:51,024-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 17:13:01,308-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 17:14:09,918-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
-2017-12-21 17:14:12,686-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 17:14:14,755-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 17:14:16,903-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:132]-获取 CmdbModel 对象 mop 信息成功
-2017-12-21 17:14:19,560-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
-2017-12-21 17:14:22,544-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 17:14:24,646-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 17:15:59,627-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 17:21:50,800-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 17:29:59,199-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 17:37:36,830-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 17:37:38,302-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 17:38:10,441-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 17:38:46,413-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 17:41:23,593-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 17:41:30,805-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 17:42:05,649-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 17:42:12,000-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 17:42:17,144-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 17:42:23,725-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 17:42:27,703-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 17:42:30,727-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
-2017-12-21 17:42:39,457-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
-2017-12-21 17:42:42,695-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
-2017-12-21 17:43:05,369-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 17:43:11,823-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 17:43:24,473-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:100]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 21:40:53,657-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 21:41:32,729-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 21:41:55,300-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 21:45:21,320-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 21:45:43,498-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 21:46:04,406-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 21:46:51,387-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 21:47:55,481-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 21:48:07,353-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 21:48:31,162-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 21:48:52,416-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
-2017-12-21 21:49:06,765-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
-2017-12-21 21:51:34,993-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 21:52:55,822-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 21:54:39,700-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 21:55:09,703-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 22:02:48,525-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 22:23:52,057-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
-2017-12-21 22:24:12,488-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 app-gary 转 dict 处理成功，可以提交给前端
-2017-12-21 22:24:16,591-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 22:24:20,086-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
-2017-12-21 22:24:29,380-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
-2017-12-21 22:24:38,095-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 hhaa 转 dict 处理成功，可以提交给前端
-2017-12-21 22:24:47,506-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:170]-CmdbModel 删除对象 app 成功
-2017-12-21 22:26:48,896-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:80]-CmdbModel 模型对象: app 添加成功
-2017-12-21 22:28:13,729-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:80]-CmdbModel 模型对象: heihei 添加成功
-2017-12-21 22:28:28,974-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 heihei 转 dict 处理成功，可以提交给前端
-2017-12-21 22:32:13,958-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:80]-CmdbModel 模型对象: act 添加成功
-2017-12-21 22:32:26,975-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:170]-CmdbModel 删除对象 app-gary 成功
-2017-12-21 22:32:35,429-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:170]-CmdbModel 删除对象 hhaa 成功
-2017-12-21 22:32:42,135-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:170]-CmdbModel 删除对象 heihei 成功
-2017-12-21 22:37:19,244-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:80]-CmdbModel 模型对象: zookeeper 添加成功
-2017-12-21 22:38:40,301-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 zookeeper 转 dict 处理成功，可以提交给前端
-2017-12-21 22:38:52,819-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 act 转 dict 处理成功，可以提交给前端
-2017-12-21 22:38:56,396-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 zookeeper 转 dict 处理成功，可以提交给前端
-2017-12-21 22:40:30,797-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:80]-CmdbModel 模型对象: ansible 添加成功
-2017-12-21 22:40:36,382-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:109]-CmdbModel 模型对象 ansible 转 dict 处理成功，可以提交给前端
-2017-12-21 23:04:06,608-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/list/
-Traceback (most recent call last):
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
-    response = get_response(request)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
-    response = self._get_response(request)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
-    response = self.process_exception_by_middleware(e, request)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
-    return self.dispatch(request, *args, **kwargs)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
-    return handler(request, *args, **kwargs)
-  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/list.py", line 160, in get
-    self.object_list = self.get_queryset()
-  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 52, in get_queryset
-    queryset = queryset.filter(Q(name__icontains=search_name)|Q(ports__icontains=search_name))
-NameError: name 'Q' is not defined
-2017-12-21 23:05:58,014-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:190]-获取 CmdbModel 对象 item 信息成功
-2017-12-21 23:06:08,387-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:158]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
-2017-12-21 23:06:12,584-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:158]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
-2017-12-21 23:06:24,481-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:190]-获取 CmdbModel 对象 item 信息成功
-2017-12-21 23:52:44,128-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:158]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django_crontab/crontab.py", line 145, in run_job
+    func(*job_args, **job_kwargs)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py", line 85, in CmdbStatisticByDayCrontab
+    sys.exit()
+SystemExit

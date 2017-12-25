@@ -1,4 +1,5 @@
 from django.views.generic import ListView,View,TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import Group,User,Permission
 from django.http import HttpResponse,JsonResponse,Http404
 from django.db.utils import IntegrityError
@@ -7,13 +8,13 @@ from accounts.forms import GroupAddForm
 import json
 
 
-class GroupListView(ListView):
+class GroupListView(LoginRequiredMixin,ListView):
     template_name = "group/group_list.html"
     model = Group
     paginate_by = 10
     ordering = "id"
 
-class GroupAddView(View):
+class GroupAddView(LoginRequiredMixin,View):
     def post(self,request):
         ret = {'result':0,'msg':None}
         group_form = GroupAddForm(request.POST)
@@ -30,7 +31,7 @@ class GroupAddView(View):
             ret['msg'] = e.args
         return JsonResponse(ret)
 
-class GroupDeleteView(View):
+class GroupDeleteView(LoginRequiredMixin,View):
     def post(self,request):
         id = request.POST.get('id',0)
         ret = {'result':0,'msg':'Null'}
@@ -44,7 +45,7 @@ class GroupDeleteView(View):
 
         return JsonResponse(ret)
             
-class GroupUserListView(TemplateView):
+class GroupUserListView(LoginRequiredMixin,TemplateView):
     template_name = "group/group_user_list.html"
 
     def get_context_data(self,**kwargs):
@@ -64,7 +65,7 @@ class GroupUserListView(TemplateView):
 
         return context
 
-class GroupUserDeleteView(View):
+class GroupUserDeleteView(LoginRequiredMixin,View):
     def post(self,request):
         uid = request.POST.get('uid',0)
         gid = request.POST.get('gid',0)
@@ -85,7 +86,7 @@ class GroupUserDeleteView(View):
         ret['msg'] = "组%s内删除用户%s成功" %(group_obj.name,user_obj.username)
         return JsonResponse(ret)
 
-class GroupPermissionListView(TemplateView):
+class GroupPermissionListView(LoginRequiredMixin,TemplateView):
     template_name = "group/group_permission_list.html"
 
     def get_context_data(self,**kwargs):
@@ -132,7 +133,7 @@ class GroupPermissionListView(TemplateView):
             ret['msg'] = e.args
         return JsonResponse(ret)
 
-class GroupPermissionDeleteView(View):
+class GroupPermissionDeleteView(LoginRequiredMixin,View):
     def get(self,request):
         group_id = request.GET.get("gid",0)
         perm_id = request.GET.get("perm_id",0)

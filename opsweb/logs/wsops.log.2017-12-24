@@ -1,0 +1,720 @@
+2017-12-24 10:17:31,371-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /resources/server/aliyun/change/
+2017-12-24 10:17:31,639-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /favicon.ico
+2017-12-24 10:17:52,981-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /resources/server/aliyun/uodate/
+2017-12-24 10:19:24,277-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/middleware/csrf.py-[line:160]-Forbidden (CSRF token missing or incorrect.): /accounts/login/
+2017-12-24 10:19:27,407-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/middleware/csrf.py-[line:160]-Forbidden (CSRF token missing or incorrect.): /accounts/login/
+2017-12-24 10:23:20,935-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /resources/idc/update/
+2017-12-24 11:00:59,971-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:191]-获取 CmdbModel 对象 act 信息成功
+2017-12-24 11:01:07,976-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:191]-获取 CmdbModel 对象 ansible 信息成功
+2017-12-24 11:01:11,723-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:191]-获取 CmdbModel 对象 app 信息成功
+2017-12-24 11:01:17,703-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:191]-获取 CmdbModel 对象 mop 信息成功
+2017-12-24 11:05:17,783-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/idc/__init__.py-[line:65]-IDC 模型对象id: 1 查询成功并返回给前端
+2017-12-24 11:05:45,675-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:159]-CmdbModel 模型对象 act 转 dict 处理成功，可以提交给前端
+2017-12-24 11:05:52,472-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:159]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
+2017-12-24 11:06:09,947-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:159]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
+2017-12-24 11:06:16,338-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:159]-CmdbModel 模型对象 item 转 dict 处理成功，可以提交给前端
+2017-12-24 11:06:25,324-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:159]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
+2017-12-24 11:06:46,821-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:159]-CmdbModel 模型对象 zookeeper 转 dict 处理成功，可以提交给前端
+2017-12-24 11:07:03,465-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:191]-获取 CmdbModel 对象 zookeeper 信息成功
+2017-12-24 11:07:26,742-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:159]-CmdbModel 模型对象 ansible 转 dict 处理成功，可以提交给前端
+2017-12-24 11:13:09,848-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:159]-CmdbModel 模型对象 act 转 dict 处理成功，可以提交给前端
+2017-12-24 11:13:20,058-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:159]-CmdbModel 模型对象 act 转 dict 处理成功，可以提交给前端
+2017-12-24 11:14:11,953-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:159]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
+2017-12-24 11:14:38,613-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:159]-CmdbModel 模型对象 ansible 转 dict 处理成功，可以提交给前端
+2017-12-24 11:14:49,594-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:159]-CmdbModel 模型对象 act 转 dict 处理成功，可以提交给前端
+2017-12-24 11:16:18,279-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:159]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
+2017-12-24 11:17:25,450-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:159]-CmdbModel 模型对象 act 转 dict 处理成功，可以提交给前端
+2017-12-24 11:21:34,073-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:159]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
+2017-12-24 11:26:41,154-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:159]-CmdbModel 模型对象 act 转 dict 处理成功，可以提交给前端
+2017-12-24 12:40:46,383-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /api/get/server/ips/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view api.myapi.get_server_related.GetServerIPView didn't return an HttpResponse object. It returned None instead.
+2017-12-24 12:40:49,078-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /api/get/server/ips/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view api.myapi.get_server_related.GetServerIPView didn't return an HttpResponse object. It returned None instead.
+2017-12-24 12:40:56,970-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /api/get/server/ips/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view api.myapi.get_server_related.GetServerIPView didn't return an HttpResponse object. It returned None instead.
+2017-12-24 12:41:05,174-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py-[line:93]-Method Not Allowed (GET): /api/get/server/ips/
+2017-12-24 12:45:03,713-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py-[line:93]-Method Not Allowed (GET): /api/get/server/ips/
+2017-12-24 12:46:01,378-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:137]-CmdbModel 模型对象: None 添加成功
+2017-12-24 12:55:52,199-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view resources.cmdb.CmdbAddView didn't return an HttpResponse object. It returned None instead.
+2017-12-24 12:55:53,378-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view resources.cmdb.CmdbAddView didn't return an HttpResponse object. It returned None instead.
+2017-12-24 12:55:53,969-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view resources.cmdb.CmdbAddView didn't return an HttpResponse object. It returned None instead.
+2017-12-24 12:55:54,110-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view resources.cmdb.CmdbAddView didn't return an HttpResponse object. It returned None instead.
+2017-12-24 12:55:54,265-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view resources.cmdb.CmdbAddView didn't return an HttpResponse object. It returned None instead.
+2017-12-24 12:55:54,415-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view resources.cmdb.CmdbAddView didn't return an HttpResponse object. It returned None instead.
+2017-12-24 12:55:54,591-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view resources.cmdb.CmdbAddView didn't return an HttpResponse object. It returned None instead.
+2017-12-24 12:55:54,697-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view resources.cmdb.CmdbAddView didn't return an HttpResponse object. It returned None instead.
+2017-12-24 12:56:00,266-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/list/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 215, in _get_response
+    response = response.render()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 107, in render
+    self.content = self.rendered_content
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 84, in rendered_content
+    content = template.render(context, self._request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/backends/django.py", line 66, in render
+    return self.template.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 207, in render
+    return self._render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 1040, in render
+    output = self.filter_expression.resolve(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 736, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/templatetags/poll_extras.py", line 7, in replace_to_br
+    if args in value:
+TypeError: argument of type 'NoneType' is not iterable
+2017-12-24 12:57:05,155-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/list/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 215, in _get_response
+    response = response.render()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 107, in render
+    self.content = self.rendered_content
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 84, in rendered_content
+    content = template.render(context, self._request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/backends/django.py", line 66, in render
+    return self.template.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 207, in render
+    return self._render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 1040, in render
+    output = self.filter_expression.resolve(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 736, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/templatetags/poll_extras.py", line 7, in replace_to_br
+    if args in value:
+TypeError: argument of type 'NoneType' is not iterable
+2017-12-24 12:57:41,923-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/list/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 215, in _get_response
+    response = response.render()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 107, in render
+    self.content = self.rendered_content
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 84, in rendered_content
+    content = template.render(context, self._request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/backends/django.py", line 66, in render
+    return self.template.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 207, in render
+    return self._render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 1040, in render
+    output = self.filter_expression.resolve(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 736, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/templatetags/poll_extras.py", line 7, in replace_to_br
+    if args in value:
+TypeError: argument of type 'NoneType' is not iterable
+2017-12-24 13:02:28,849-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/list/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 215, in _get_response
+    response = response.render()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 107, in render
+    self.content = self.rendered_content
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 84, in rendered_content
+    content = template.render(context, self._request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/backends/django.py", line 66, in render
+    return self.template.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 207, in render
+    return self._render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 1040, in render
+    output = self.filter_expression.resolve(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 736, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/templatetags/poll_extras.py", line 7, in replace_to_br
+    if args in value:
+TypeError: argument of type 'NoneType' is not iterable
+2017-12-24 13:02:36,434-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/list/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 215, in _get_response
+    response = response.render()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 107, in render
+    self.content = self.rendered_content
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 84, in rendered_content
+    content = template.render(context, self._request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/backends/django.py", line 66, in render
+    return self.template.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 207, in render
+    return self._render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 1040, in render
+    output = self.filter_expression.resolve(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 736, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/templatetags/poll_extras.py", line 7, in replace_to_br
+    if args in value:
+TypeError: argument of type 'NoneType' is not iterable
+2017-12-24 13:04:50,635-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/list/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 217, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 215, in _get_response
+    response = response.render()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 107, in render
+    self.content = self.rendered_content
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/response.py", line 84, in rendered_content
+    content = template.render(context, self._request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/backends/django.py", line 66, in render
+    return self.template.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 207, in render
+    return self._render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/defaulttags.py", line 216, in render
+    nodelist.append(node.render_annotated(context))
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 957, in render_annotated
+    return self.render(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 1040, in render
+    output = self.filter_expression.resolve(context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/template/base.py", line 736, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/templatetags/poll_extras.py", line 7, in replace_to_br
+    if args and args in value:
+TypeError: argument of type 'NoneType' is not iterable
+2017-12-24 13:47:07,032-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view resources.cmdb.CmdbAddView didn't return an HttpResponse object. It returned None instead.
+2017-12-24 14:09:45,962-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/contrib/auth/mixins.py", line 56, in dispatch
+    return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 134, in post
+    if ret["result"] == 0:
+TypeError: 'NoneType' object is not subscriptable
+2017-12-24 14:16:37,194-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/add/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/contrib/auth/mixins.py", line 56, in dispatch
+    return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 135, in post
+    if ret["result"] == 0:
+TypeError: 'NoneType' object is not subscriptable
+2017-12-24 14:20:30,772-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:138]-CmdbModel 模型对象: app-3 添加成功
+2017-12-24 14:42:04,917-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:140]-CmdbModel 模型对象: item-1 添加成功
+2017-12-24 14:42:18,826-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/change/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 152, in get
+    ips_list = [{"id":i["id"],"private_ip":i['private_ip']} for i in ServerAliyunModel.objects.filter(env__exact=cmdb_obj.env,status__exact="Running").values("id","private_ip")]
+AttributeError: 'dict' object has no attribute 'env'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/contrib/auth/mixins.py", line 56, in dispatch
+    return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 155, in get
+    ret["msg"] = "ServerAliyunModel 模型中未查到 env: %s 的对象" %(cmdb_obj.env)
+AttributeError: 'dict' object has no attribute 'env'
+2017-12-24 14:42:39,731-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/info/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 219, in get
+    cmdb_info["env"] = cmdb_obj.get_env_display()
+AttributeError: 'dict' object has no attribute 'get_env_display'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/contrib/auth/mixins.py", line 56, in dispatch
+    return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 232, in get
+    ret["msg"] = "CmdbModel 对象 %s 转为 dict 失败,请查看日志" %(cmdb_obj.name)
+AttributeError: 'dict' object has no attribute 'name'
+2017-12-24 14:42:45,769-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/info/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 219, in get
+    cmdb_info["env"] = cmdb_obj.get_env_display()
+AttributeError: 'dict' object has no attribute 'get_env_display'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/contrib/auth/mixins.py", line 56, in dispatch
+    return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 232, in get
+    ret["msg"] = "CmdbModel 对象 %s 转为 dict 失败,请查看日志" %(cmdb_obj.name)
+AttributeError: 'dict' object has no attribute 'name'
+2017-12-24 14:43:04,187-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/delete/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 251, in post
+    cmdb_obj.delete()
+AttributeError: 'dict' object has no attribute 'delete'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/contrib/auth/mixins.py", line 56, in dispatch
+    return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 254, in post
+    ret["msg"] = "CmdbModel 删除对象 %s 失败，请查看日志" %(cmdb_obj.name)
+AttributeError: 'dict' object has no attribute 'name'
+2017-12-24 14:43:12,357-[ERROR]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py-[line:135]-Internal Server Error: /resources/cmdb/delete/
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 251, in post
+    cmdb_obj.delete()
+AttributeError: 'dict' object has no attribute 'delete'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/contrib/auth/mixins.py", line 56, in dispatch
+    return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/views/generic/base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py", line 254, in post
+    ret["msg"] = "CmdbModel 删除对象 %s 失败，请查看日志" %(cmdb_obj.name)
+AttributeError: 'dict' object has no attribute 'name'
+2017-12-24 14:55:24,363-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:273]-CmdbModel 删除对象  成功
+2017-12-24 14:55:27,584-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:175]-CmdbModel 模型对象 act 转 dict 处理成功，可以提交给前端
+2017-12-24 14:55:40,303-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:245]-获取 CmdbModel 对象 item-1 信息成功
+2017-12-24 14:55:49,914-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:245]-获取 CmdbModel 对象 app 信息成功
+2017-12-24 14:55:56,850-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:245]-获取 CmdbModel 对象 mop 信息成功
+2017-12-24 14:56:11,985-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:175]-CmdbModel 模型对象 zookeeper 转 dict 处理成功，可以提交给前端
+2017-12-24 14:56:16,410-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:245]-获取 CmdbModel 对象 zookeeper 信息成功
+2017-12-24 14:56:31,906-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:245]-获取 CmdbModel 对象 app 信息成功
+2017-12-24 14:56:35,983-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:175]-CmdbModel 模型对象 app 转 dict 处理成功，可以提交给前端
+2017-12-24 14:56:46,221-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:273]-CmdbModel 删除对象 app-1 成功
+2017-12-24 14:56:54,866-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:273]-CmdbModel 删除对象 app-2 成功
+2017-12-24 14:56:58,743-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:273]-CmdbModel 删除对象 app-3 成功
+2017-12-24 14:57:02,314-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:273]-CmdbModel 删除对象 app-4 成功
+2017-12-24 14:57:07,471-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:273]-CmdbModel 删除对象 item-1 成功
+2017-12-24 15:10:35,330-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:174]-CmdbModel 模型对象 act 转 dict 处理成功，可以提交给前端
+2017-12-24 15:19:21,748-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:174]-CmdbModel 模型对象 act 转 dict 处理成功，可以提交给前端
+2017-12-24 15:19:29,429-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:218]-CmdbModel 模型对象: act 添加成功
+2017-12-24 15:19:34,833-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:174]-CmdbModel 模型对象 act 转 dict 处理成功，可以提交给前端
+2017-12-24 15:21:13,331-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:218]-CmdbModel 模型对象: act 添加成功
+2017-12-24 15:40:06,943-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/idc/__init__.py-[line:64]-IDC 模型对象id: 1 查询成功并返回给前端
+2017-12-24 15:41:16,915-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/idc/__init__.py-[line:64]-IDC 模型对象id: 1 查询成功并返回给前端
+2017-12-24 15:41:53,119-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/idc/__init__.py-[line:64]-IDC 模型对象id: 1 查询成功并返回给前端
+2017-12-24 15:42:02,341-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/idc/__init__.py-[line:64]-IDC 模型对象id: 1 查询成功并返回给前端
+2017-12-24 15:43:08,213-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:172]-CmdbModel 模型对象 act 转 dict 处理成功，可以提交给前端
+2017-12-24 15:44:40,104-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/idc/__init__.py-[line:64]-IDC 模型对象id: 1 查询成功并返回给前端
+2017-12-24 15:47:18,089-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/idc/__init__.py-[line:64]-IDC 模型对象id: 1 查询成功并返回给前端
+2017-12-24 15:49:55,861-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/idc/__init__.py-[line:64]-IDC 模型对象id: 1 查询成功并返回给前端
+2017-12-24 15:50:09,835-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/idc/__init__.py-[line:64]-IDC 模型对象id: 1 查询成功并返回给前端
+2017-12-24 15:50:11,812-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/idc/__init__.py-[line:64]-IDC 模型对象id: 1 查询成功并返回给前端
+2017-12-24 15:50:37,990-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:172]-CmdbModel 模型对象 act 转 dict 处理成功，可以提交给前端
+2017-12-24 15:50:42,485-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:251]-获取 CmdbModel 对象 act 信息成功
+2017-12-24 16:30:05,105-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.118 自动刷新成功
+2017-12-24 16:30:06,379-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.119 自动刷新成功
+2017-12-24 16:30:07,597-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.122 自动刷新成功
+2017-12-24 16:30:08,722-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.123 自动刷新成功
+2017-12-24 16:30:09,834-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.124 自动刷新成功
+2017-12-24 16:30:12,195-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.125 自动刷新成功
+2017-12-24 16:30:14,617-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.126 自动刷新成功
+2017-12-24 16:30:17,033-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.127 自动刷新成功
+2017-12-24 16:30:18,127-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.128 自动刷新成功
+2017-12-24 16:30:19,195-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.129 自动刷新成功
+2017-12-24 16:30:20,272-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.130 自动刷新成功
+2017-12-24 16:30:21,546-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.131 自动刷新成功
+2017-12-24 16:30:22,970-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.132 自动刷新成功
+2017-12-24 16:30:24,068-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.133 自动刷新成功
+2017-12-24 16:30:25,159-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.134 自动刷新成功
+2017-12-24 16:30:26,303-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.135 自动刷新成功
+2017-12-24 16:30:27,421-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.136 自动刷新成功
+2017-12-24 16:30:28,458-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.137 自动刷新成功
+2017-12-24 16:30:29,548-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.138 自动刷新成功
+2017-12-24 16:30:30,639-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.139 自动刷新成功
+2017-12-24 16:30:31,780-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.140 自动刷新成功
+2017-12-24 16:30:33,814-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.22 自动刷新成功
+2017-12-24 16:30:36,067-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.25 自动刷新成功
+2017-12-24 16:30:37,148-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.26 自动刷新成功
+2017-12-24 16:30:38,238-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.27 自动刷新成功
+2017-12-24 16:30:39,437-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.28 自动刷新成功
+2017-12-24 16:30:40,486-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.29 自动刷新成功
+2017-12-24 16:30:41,560-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.30 自动刷新成功
+2017-12-24 16:30:42,731-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.31 自动刷新成功
+2017-12-24 16:30:43,986-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.32 自动刷新成功
+2017-12-24 16:30:45,049-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.33 自动刷新成功
+2017-12-24 16:30:46,165-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.34 自动刷新成功
+2017-12-24 16:30:47,235-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.35 自动刷新成功
+2017-12-24 16:30:48,333-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.36 自动刷新成功
+2017-12-24 16:30:49,480-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.37 自动刷新成功
+2017-12-24 16:30:50,529-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.48 自动刷新成功
+2017-12-24 16:30:51,706-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.49 自动刷新成功
+2017-12-24 16:30:52,787-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.50 自动刷新成功
+2017-12-24 16:30:53,811-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.51 自动刷新成功
+2017-12-24 16:30:54,956-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.52 自动刷新成功
+2017-12-24 16:30:56,786-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.53 自动刷新成功
+2017-12-24 16:30:57,852-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.54 自动刷新成功
+2017-12-24 16:30:59,569-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.55 自动刷新成功
+2017-12-24 16:31:01,015-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.56 自动刷新成功
+2017-12-24 16:31:02,394-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.58 自动刷新成功
+2017-12-24 16:31:03,450-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.59 自动刷新成功
+2017-12-24 16:31:04,519-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.65 自动刷新成功
+2017-12-24 16:31:05,682-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.70 自动刷新成功
+2017-12-24 16:31:06,823-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.71 自动刷新成功
+2017-12-24 16:31:07,989-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.72 自动刷新成功
+2017-12-24 16:31:09,193-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.73 自动刷新成功
+2017-12-24 16:31:10,300-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.74 自动刷新成功
+2017-12-24 16:31:11,810-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.75 自动刷新成功
+2017-12-24 16:31:13,005-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.76 自动刷新成功
+2017-12-24 16:31:14,176-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.77 自动刷新成功
+2017-12-24 16:31:15,524-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.78 自动刷新成功
+2017-12-24 16:31:16,706-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.79 自动刷新成功
+2017-12-24 16:31:17,890-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.80 自动刷新成功
+2017-12-24 16:31:19,081-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.81 自动刷新成功
+2017-12-24 16:31:20,233-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.82 自动刷新成功
+2017-12-24 16:31:21,594-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.86 自动刷新成功
+2017-12-24 16:31:22,920-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.87 自动刷新成功
+2017-12-24 16:31:24,173-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.89 自动刷新成功
+2017-12-24 16:31:25,582-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.90 自动刷新成功
+2017-12-24 16:31:28,122-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:30]-服务器: 172.17.134.99 自动刷新成功
+2017-12-24 17:07:19,696-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:251]-获取 CmdbModel 对象 act 信息成功
+2017-12-24 18:03:28,713-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /favicon.ico
+2017-12-24 18:12:30,805-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:172]-CmdbModel 模型对象 act 转 dict 处理成功，可以提交给前端
+2017-12-24 18:12:33,896-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:216]-CmdbModel 模型对象: act 添加成功
+2017-12-24 18:12:40,197-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:172]-CmdbModel 模型对象 ansible 转 dict 处理成功，可以提交给前端
+2017-12-24 18:12:43,835-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:216]-CmdbModel 模型对象: ansible 添加成功
+2017-12-24 18:32:03,063-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:251]-获取 CmdbModel 对象 act 信息成功
+2017-12-24 18:32:08,772-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:172]-CmdbModel 模型对象 mop 转 dict 处理成功，可以提交给前端
+2017-12-24 22:15:58,411-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /adsync
+2017-12-24 22:16:07,482-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /adsync
+2017-12-24 22:17:21,972-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /adsync
+2017-12-24 22:17:48,607-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /adsync
+2017-12-24 22:18:44,364-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /adsync
+2017-12-24 22:28:19,873-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /adsync
+2017-12-24 22:30:35,788-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /adsync
+2017-12-24 22:31:53,626-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /adsync
+2017-12-24 22:32:39,965-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /adsync
+2017-12-24 22:34:19,517-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /adsync
+2017-12-24 22:34:32,604-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /adsync
+2017-12-24 22:36:44,917-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /adsync
+2017-12-24 22:36:51,464-[WARNING]-/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/handlers/base.py-[line:152]-Not Found: /adsync

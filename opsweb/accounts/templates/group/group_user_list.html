@@ -26,9 +26,9 @@
                 <td class="text-center">{{ forloop.counter }}</td>
                 <td class="text-center">{{ u.username }}</td>
                 {% if u.is_active == True %}
-                    <td class="text-center" style="color:green">正常</td>
+                    <td class="text-center"><span class="badge label-primary">正常</span></td>
                 {% else %}
-                    <td class="text-center" style="color:red">禁用</td>
+                    <td class="text-center"><span class="badge label-danger">禁用</span></td>
                 {% endif %}
                 <td class="text-center">
                     <button data-id="{{ u.id }}" class="btn btn-sm btn-danger group_user_delete">从组中删除成员</button>

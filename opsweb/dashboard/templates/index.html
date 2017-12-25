@@ -1,1 +1,102 @@
 {% extends "public/layout.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="/static/plugin/AdminLte/css/ionicons.min.css">
+<link rel="stylesheet" href="/static/plugin/AdminLte/css/_all-skins.min.css">
+<link rel="stylesheet" href="/static/plugin/AdminLte/css/AdminLTE.min.css">
+
+{% endblock %}
+
+{% block breadcrumb %}
+dashboard
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+            <div class="inner">
+                <h3 id="server_count"></h3>
+                <p>服务器总数</p>
+            </div>
+            <div class="icon" style="top: 2px">
+                <i class="ion ion-social-tux"></i>
+            </div>
+            <a href="{% url 'server_aliyun_list' %}" class="small-box-footer">
+                 详情 <i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="col-lg-3 col-xs-6">
+        <div class="small-box bg-green">
+            <div class="inner">
+                <h3 id="cmdb_count"></h3>
+                <p>应用总数</p>
+            </div>
+            <div class="icon" style="top: 2px">
+                <i class="ion ion-social-android-outline"></i>
+            </div>
+            <a href="{% url 'cmdb_list' %}" class="small-box-footer">
+                详情... <i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+        <div class="small-box bg-yellow">
+            <div class="inner">
+                <h3>44</h3>
+
+                <p>发布总数</p>
+            </div>
+            <div class="icon" style="top: 2px">
+                <i class="ion ion-settings"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                详情...<i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-red">
+            <div class="inner">
+                <h3>65</h3>
+
+                <p>告警总数</p>
+            </div>
+            <div class="icon" style="top: 2px">
+                <i class="ion ion-android-notifications-none"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                详情...<i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script src="/static/plugin/AdminLte/js/adminlte.min.js"></script>
+<script src="/static/plugin/AdminLte/js/demo.js"></script>
+<script src="/static/plugin/AdminLte/js/fastclick.js"></script>
+<script src="/static/plugin/AdminLte/js/jquery.slimscroll.min.js"></script>
+
+<script>
+
+$.getJSON("{% url 'get_server_statistic' %}",function(data){
+    $("#server_count").text(data.count)
+})
+
+$.getJSON("{% url 'get_cmdb_statistic' %}",function(data){
+    $("#cmdb_count").text(data.count)
+})
+
+</script>
+{% endblock %}

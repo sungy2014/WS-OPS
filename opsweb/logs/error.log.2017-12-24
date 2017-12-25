@@ -1,0 +1,19 @@
+2017-12-24 12:53:53,158-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:129]-CmdbModel 模型对象: None 添加失败，错误信息: (1062, "Duplicate entry '' for key 'name'")
+2017-12-24 14:36:08,305-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cmdb/__init__.py-[line:44]-CmdbModel 模型对象: item-1 关联 ServerAliyunModel 失败,错误信息: ('"<CmdbModel: item-1>" needs to have a value for field "id" before this many-to-many relationship can be used.',)
+2017-12-24 16:30:03,722-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:24]-("'ResultCallback' object has no attribute 'data'",)
+2017-12-24 16:30:03,722-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:27]-服务器: 172.17.134.104 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2017-12-24 16:30:32,071-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:24]-("'ResultCallback' object has no attribute 'data'",)
+2017-12-24 16:30:32,072-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:27]-服务器: 172.17.134.17 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2017-12-24 16:30:32,383-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:24]-("'ResultCallback' object has no attribute 'data'",)
+2017-12-24 16:30:32,383-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:27]-服务器: 172.17.134.19 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2017-12-24 16:30:32,702-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:24]-("'ResultCallback' object has no attribute 'data'",)
+2017-12-24 16:30:32,702-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:27]-服务器: 172.17.134.21 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2017-12-24 16:30:34,020-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:24]-("'ResultCallback' object has no attribute 'data'",)
+2017-12-24 16:30:34,021-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:27]-服务器: 172.17.134.23 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2017-12-24 16:30:34,297-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:24]-("'ResultCallback' object has no attribute 'data'",)
+2017-12-24 16:30:34,297-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:27]-服务器: 172.17.134.24 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2017-12-24 16:31:28,498-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:24]-("'ResultCallback' object has no attribute 'data'",)
+2017-12-24 16:31:28,499-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:27]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2017-12-24 16:31:38,760-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:24]-("'ResultCallback' object has no attribute 'data'",)
+2017-12-24 16:31:38,760-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:27]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2017-12-24 18:53:02,358-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:24]-("'ResultCallback' object has no attribute 'data'",)
