@@ -23,9 +23,10 @@ dashboard
             <div class="icon" style="top: 2px">
                 <i class="ion ion-social-tux"></i>
             </div>
-            <a href="{% url 'server_aliyun_list' %}" class="small-box-footer">
-                 详情 <i class="fa fa-arrow-circle-right"></i>
-            </a>
+            <div id="server_compared_with_yesterday" class="small-box-footer" style="text-align: left;text-indent: 10px;">
+                <span >相比昨日增加: </span>
+                <a href="{% url 'server_aliyun_list' %}" style="float:right; margin-right: 10px;color: #eee;">详情 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
         </div>
     </div>
 
@@ -39,9 +40,10 @@ dashboard
             <div class="icon" style="top: 2px">
                 <i class="ion ion-social-android-outline"></i>
             </div>
-            <a href="{% url 'cmdb_list' %}" class="small-box-footer">
-                详情... <i class="fa fa-arrow-circle-right"></i>
-            </a>
+            <div id="cmdb_compared_with_yesterday" class="small-box-footer" style="text-align: left;text-indent: 10px;">
+                <span >相比昨日增加: </span>
+                <a href="{% url 'cmdb_list' %}" style="float:right; margin-right: 10px; color: #eee">详情 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
         </div>
     </div>
 
@@ -49,16 +51,16 @@ dashboard
           <!-- small box -->
         <div class="small-box bg-yellow">
             <div class="inner">
-                <h3>44</h3>
-
+                <h3 id="pub_count">44</h3>
                 <p>发布总数</p>
             </div>
             <div class="icon" style="top: 2px">
                 <i class="ion ion-settings"></i>
             </div>
-            <a href="#" class="small-box-footer">
-                详情...<i class="fa fa-arrow-circle-right"></i>
-            </a>
+            <div id="pub_compared_with_yesterday" class="small-box-footer" style="text-align: left;text-indent: 10px;">
+                <span >相比昨日增加: -5 </span>
+                <a href="{% url 'cmdb_list' %}" style="float:right; margin-right: 10px; color: #eee">详情 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
         </div>
     </div>
 
@@ -66,16 +68,16 @@ dashboard
         <!-- small box -->
         <div class="small-box bg-red">
             <div class="inner">
-                <h3>65</h3>
-
+                <h3 id="alarm_count">65</h3>
                 <p>告警总数</p>
             </div>
             <div class="icon" style="top: 2px">
                 <i class="ion ion-android-notifications-none"></i>
             </div>
-            <a href="#" class="small-box-footer">
-                详情...<i class="fa fa-arrow-circle-right"></i>
-            </a>
+            <div id="alarm_compared_with_yesterday" class="small-box-footer" style="text-align: left;text-indent: 10px;">
+                <span >相比昨日增加: 10</span>
+                <a href="#" style="float:right; margin-right: 10px; color: #eee">详情 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
         </div>
     </div>
 </div>
@@ -92,11 +94,13 @@ dashboard
 
 $.getJSON("{% url 'get_server_statistic' %}",function(data){
     $("#server_count").text(data.count)
-})
+    $("#server_compared_with_yesterday span").append(data.compared_with_yesterday)
+});
 
 $.getJSON("{% url 'get_cmdb_statistic' %}",function(data){
     $("#cmdb_count").text(data.count)
-})
+    $("#cmdb_compared_with_yesterday span").append(data.compared_with_yesterday)
+});
 
 </script>
 {% endblock %}

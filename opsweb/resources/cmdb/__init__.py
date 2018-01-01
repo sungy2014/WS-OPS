@@ -1,7 +1,7 @@
 from django.views.generic import View,TemplateView,ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
-from resources.models import CmdbModel,ServerAliyunModel
+from resources.models import CmdbModel,ServerModel
 from resources.forms import CmdbAddForm,CmdbUpdateForm
 from dashboard.utils.wslog import wslog_error,wslog_info
 from dashboard.utils.utc_to_local import utc_to_local
@@ -28,11 +28,11 @@ def CmdbIpsUpdate(ips,cmdb_obj,ret):
         return ret
 
     try:
-        server_obj_list = [ServerAliyunModel.objects.get(id__exact=sid) for sid in ips]
+        server_obj_list = [ServerModel.objects.get(id__exact=sid) for sid in ips]
     except Exception as e:
         ret["result"] = 1
-        ret["msg"] = "ServerAliyunModel 查询对象失败，请刷新并重新选择IP地址"
-        wslog_error().error("ServerAliyunModel 查询对象地址失败" %(e.args))
+        ret["msg"] = "ServerModel 查询对象失败，请刷新并重新选择IP地址"
+        wslog_error().error("ServerModel 查询对象地址失败" %(e.args))
         return ret
 
     try:
@@ -40,8 +40,8 @@ def CmdbIpsUpdate(ips,cmdb_obj,ret):
         cmdb_obj.ips.set(server_obj_list)
     except Exception as e:
         ret["result"] = 1
-        ret["msg"] = "CmdbModel模型对象: %s 关联 ServerAliyunModel 失败,请查看日志" %(cmdb_obj.name)
-        wslog_error().error("CmdbModel 模型对象: %s 关联 ServerAliyunModel 失败,错误信息: %s" %(cmdb_obj.name,e.args))
+        ret["msg"] = "CmdbModel模型对象: %s 关联 ServerModel 失败,请查看日志" %(cmdb_obj.name)
+        wslog_error().error("CmdbModel 模型对象: %s 关联 ServerModel 失败,错误信息: %s" %(cmdb_obj.name,e.args))
     finally:
         return ret
 
@@ -104,7 +104,7 @@ class CmdbAddView(LoginRequiredMixin,TemplateView):
 
     def get_context_data(self,**kwargs):
         context = super(CmdbAddView,self).get_context_data(**kwargs)
-        context["server_ips"] = [ {"id":i["id"],"private_ip":i['private_ip']} for i in ServerAliyunModel.objects.values("id","private_ip")]
+        context["server_ips"] = [ {"id":i["id"],"private_ip":i['private_ip']} for i in ServerModel.objects.values("id","private_ip")]
         context["type"] = dict(CmdbModel.TYPE_CHOICES)
         context["env"] = dict(CmdbModel.ENV_CHOICES)
         context["way"] = dict(CmdbModel.WAY_CHOICES)
@@ -151,11 +151,11 @@ class CmdbChangeView(LoginRequiredMixin,View):
         cmdb_obj = ret["msg"]
 
         try:
-            ips_list = [{"id":i["id"],"private_ip":i['private_ip']} for i in ServerAliyunModel.objects.filter(env__exact=cmdb_obj.env,status__exact="Running").values("id","private_ip")]
+            ips_list = [{"id":i["id"],"private_ip":i['private_ip']} for i in ServerModel.objects.filter(env__exact=cmdb_obj.env,status__exact="Running").values("id","private_ip")]
         except Exception as e:
             ret["result"] = 1
-            ret["msg"] = "ServerAliyunModel 模型中未查到 env: %s 的对象" %(cmdb_obj.env)
-            wslog_error().error("ServerAliyunModel 模型中未查到 env: %s 的对象,错误信息: %s" %(cmdb_obj.env,e.args))
+            ret["msg"] = "ServerModel 模型中未查到 env: %s 的对象" %(cmdb_obj.env)
+            wslog_error().error("ServerModel 模型中未查到 env: %s 的对象,错误信息: %s" %(cmdb_obj.env,e.args))
             return JsonResponse(ret)
 
         try:
@@ -213,7 +213,7 @@ class CmdbChangeView(LoginRequiredMixin,View):
 
         if ret["result"] == 0:
             ret["msg"] = "cmdb 模型对象: %s 更新成功" %(cmdb_obj.name)
-            wslog_info().info("CmdbModel 模型对象: %s 添加成功" %(cmdb_obj.name))
+            wslog_info().info("CmdbModel 模型对象: %s 更新成功" %(cmdb_obj.name))
 
         return JsonResponse(ret)
 
@@ -279,3 +279,5 @@ class CmdbDeleteView(LoginRequiredMixin,View):
             wslog_info().info("CmdbModel 删除对象 %s 成功" %(cmdb_obj.name))
 
         return JsonResponse(ret)
+
+

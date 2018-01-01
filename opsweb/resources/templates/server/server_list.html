@@ -1,0 +1,580 @@
+{% extends "public/layout.html" %}
+
+{% block breadcrumb %} 
+    资产管理 / 服务器管理
+{% endblock %}
+
+{% block body %} 
+
+<div class="col-sm-12">
+    <table class="table table-striped table-bordered table-hover " id="editable">
+        <caption>
+            <div>
+                <form class="form-inline">
+                    {% csrf_token %}
+                    <a href="#"class="btn btn-primary" id="server_add_btn" style="text-align:light">添加服务器</a>
+                    <button type="submit" class="btn btn-primary" style="float:right">搜索</button>
+                    <div class="form-group" style="text-align:right;float: right;margin-right: 10px;">
+                        <input type="text" class="form-control" name="search" value="{{ search }}" placeholder="私网IP | 公网IP | 主机名">
+                    </div>
+                </form> 
+            </div>
+        </caption> 
+        <thead>
+            <tr>
+                <th class="text-center">私网 IP</th>
+                <th class="text-center">SSH 端口</th>
+                <th class="text-center">部署应用</th>
+                <th class="text-center">主机名</th>
+                <th class="text-center">公网 IP</th>
+                <th class="text-center">所属环境</th>
+                <th class="text-center">配置信息</th>
+                <th class="text-center">磁盘信息</th>
+                <th class="text-center">可用区</th>
+                <th class="text-center">状态</th>
+                <th class="text-center">zabbix监控</th>
+                <th class="text-center">付费类型</th>
+                <th class="text-center">过期时间</th>
+                <th class="text-center">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for server_obj in object_list %}
+            <tr class="gradeX">
+                <td class="text-center"><strong>{{ server_obj.private_ip }}</strong></td>
+                <td class="text-center">{{ server_obj.ssh_port }}</td>
+                <td class="text-center">
+                    {% for app in server_obj.cmdbmodel_set.all %}
+                        {{ app.name }}</br>
+                    {% endfor %}
+                </td>
+                <td class="text-center">{{ server_obj.hostname }}</td>
+                <td class="text-center">{{ server_obj.public_ip }}</td>
+                <td class="text-center">{{ server_obj.get_env_display }}</td>
+                <td class="text-center">{{ server_obj.cpu_count }}<br>{{ server_obj.mem }}<br>{{ server_obj.os_version }}</td>
+                <td>{{ server_obj.disk|safe }}</td>
+                <td class="text-center">{{ server_obj.idc.cn_name }}</td>
+                {% if server_obj.status == 'Running' %}
+                    <td class="text-center"><span class="badge label-primary">{{ server_obj.get_status_display }}</span></td>
+                {% elif server_obj.status == 'Starting' %}
+                    <td class="text-center"><span class="badge label-info">{{ server_obj.get_status_display }}</span></td>
+                {% elif server_obj.status == 'Stopping' %}
+                    <td class="text-center"><span class="badge label-warning">{{ server_obj.get_status_display }}</span></td>
+                {% elif server_obj.status == 'Stopped' %}
+                    <td class="text-center"><span class="badge label-danger">{{ server_obj.get_status_display }}</span></td>
+                {% else %}
+                    <td class="text-center"><span class="badge">{{ server_obj.get_status_display }}</td>
+                {% endif %}
+                {% if server_obj.zabbixhostmodel.status == '0' %}
+                    <td class="text-center"><span class="badge label-info">{{ server_obj.zabbixhostmodel.get_status_display }}</span></td>
+                {% else %}
+                    <td class="text-center"><span class="badge label-danger">{{ server_obj.zabbixhostmodel.get_status_display }}</span></td>
+                {% endif %}
+                <td class="text-center">{{ server_obj.get_charge_type_display }}</br>{{ server_obj.get_renewal_type_display }}</td>
+                <td class="text-center">{{ server_obj.expired_time | date:"Y-m-d H:i:s" }}</td>
+                <td class="text-center">
+                    <button data-id="{{ server_obj.id }}" class="btn btn-sm btn-info server_detail">详情</button>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1">管理<span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#" data-id="{{ server_obj.id }}" class="server_update">编辑</a></li>
+                            <li><a href="#" data-id="{{ server_obj.id }}" class="server_refresh">刷新</a></li>
+                            <li><a href="#" data-id="{{ server_obj.id }}" data-del="{{ server_obj.private_ip }}" class="del">删除</a></li>
+                        </ul>
+                    </div> 
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- 列表分页 -->
+    <div class="text-center">
+        <ul class="pagination">
+            <li class="disabled"><a href="#">总页数: {{ page_obj.paginator.num_pages }}</a></li>
+
+            {% if page_obj.number != 1 %}
+                <li><a href={% url "server_aliyun_list" %}?page=1{{ search_uri }}>首页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">首页</a></li>
+            {% endif %}
+
+            {% if page_obj.has_previous %}
+                <li><a href={% url "server_aliyun_list" %}?page={{ page_obj.previous_page_number }}{{ search_uri }}>上一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">上一页</a></li>
+            {% endif %}
+
+            {% for page in page_range %}
+               {% if page == page_obj.number %}
+                  <li class="active"><a href={% url "server_aliyun_list" %}?page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% else %}
+                  <li><a href={% url "server_aliyun_list" %}?page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href={% url "server_aliyun_list" %}?page={{ page_obj.next_page_number }}{{ search_uri }}>下一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">下一页</a></li>
+            {% endif %}
+            
+            {% if page_obj.number != page_obj.paginator.num_pages %}
+                <li><a href={% url "server_aliyun_list" %}?page={{ page_obj.paginator.num_pages }}{{ search_uri }}>末页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">末页</a></li>
+            {% endif %}
+
+            <li class="disabled"><a href="#">总条数: {{ page_obj.paginator.count }}</a></li>
+        </ul>
+    </div>
+    <!-- 分页结束 -->
+
+    <!-- 添加服务器-->
+    <div id="ServerAddModal"  class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span ariaa-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">添加服务器</h3>
+                </div> <!--modal-header end-->
+                <div class="modal-body">
+                    <form class="form-horizontal" id="ServerAddForm">
+                        {% csrf_token %}
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="private_ip" class="col-sm-4 control-label text-right">私网 IP<span class="red-fonts">*</span></label>
+                                <input name="private_ip" placeholder="private_ip" type="text" class="form-control" aria-required="true" style="width: 50%;">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="ssh_port" class="col-sm-4 control-label text-right ">SSH 端口<span class="red-fonts">*</span></label>
+                                <input name="ssh_port" placeholder="ssh_port" type="text" class="form-control" aria-required="true" style="width: 50%;">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="env" class="col-sm-4 control-label text-right">所属环境<span class="red-fonts">*</span></label>
+                                <select name="env" class="form-control env_choices" style="width: 50%;">
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id = "server_add_submit" >提交</button>
+                    <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+                    <button class="btn btn-info" type="reset">重置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--结束-->
+
+    <!-- 更新模态框 -->
+    <div class="modal fade"  id ="UpdateModal">   
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">更新服务器信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="UpdateForm" class="Formvalid form-horizontal nice-validator n-yellow" novalidate="novalidate" readonly="readonly">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" id='id'>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="private_ip" class="col-sm-4 control-label text-right">私网 IP<span class="red-fonts">*</span></label>
+                                <input style="width: 50%;" id="private_ip" name="private_ip" placeholder="private_ip" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="ssh_port" class="col-sm-4 control-label text-right ">SSH 端口<span class="red-fonts ">*</span></label>
+                                <input style="width: 50%;" id="ssh_port" name="ssh_port" placeholder="ssh_port" type="text" class="form-control" aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="env" class="col-sm-4 control-label text-right">所属环境<span class="red-fonts">*</span></label>
+                                <select style="width: 50%;" name="env" id="env" class="form-control env_choices">
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn_sub"  id = "server_update_btn" >更新</button>
+                    <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+                    <button class="btn btn-info btn_reset" type="reset">重置</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- 模态框结束 -->
+
+    <!-- 详情模态框 -->
+    <div class="modal fade"  id ="DetailModal">   
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">服务器信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="DetailForm" class="Formvalid form-horizontal nice-validator n-yellow" novalidate="novalidate">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" id='id_detail'>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="private_ip" class="col-sm-4 control-label text-right">私网 IP<span class="red-fonts">*</span></label>
+                                <input id="private_ip_detail" name="private_ip" style="width: 50%;" placeholder="private_ip" type="text" class="form-control" aria-required="true" readonly="readonly">
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="public_ip" class="col-sm-4 control-label text-right">公网 IP</label>
+                                <input id="public_ip_detail" name="public_ip" style="width: 50%;" placeholder="public_ip" type="text" class="form-control" aria-required="true" readonly="readonly">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="hostname" class="col-sm-4 control-label text-right ">主机名</label>
+                                <input id="hostname_detail" name="hostname" style="width: 50%;" placeholder="hostname" type="text" class="form-control" aria-required="true" readonly="readonly">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="ssh_port" class="col-sm-4 control-label text-right ">SSH 端口<span class="red-fonts ">*</span></label>
+                                <input id="ssh_port_detail" name="ssh_port" style="width: 50%;" placeholder="ssh_port" type="text" class="form-control" aria-required="true" readonly="readonly">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="env" class="col-sm-4 control-label text-right">所属环境<span class="red-fonts">*</span></label>
+                                <input id="env_detail" name="env" style="width: 50%;" placeholder="env" type="text" class="form-control" aria-required="true" readonly="readonly">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="server_brand" class="col-sm-4 control-label text-right">服务器品牌</label>
+                                <input id="server_brand_detail" name="server_brand" style="width: 50%;" placeholder="server_brand" type="text" class="form-control" aria-required="true" readonly="readonly">
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="instance_type" class="col-sm-4 control-label text-right">服务器规格</label>
+                                <input id="instance_type_detail" name="instance_type" style="width: 50%;" placeholder="instance_type" type="text" class="form-control" aria-required="true" readonly="readonly">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">  
+                            <div class="form-group col-sm-6">
+                                <label for="os_version" class="col-sm-4 control-label text-right">系统版本</label>
+                                <input id="os_version_detail" name="os_version" style="width: 50%;" placeholder="os_version" type="text" class="form-control" aria-required="true" readonly="readonly">
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="cpu_count" class="col-sm-4 control-label text-right">CPU 核数</label>
+                                <input id="cpu_count_detail" name="cpu_count" style="width: 50%;" placeholder="cpu_count" type="text" class="form-control" aria-required="true" readonly="readonly">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="region" class="col-sm-4 control-label text-right">地域</label>
+                                <input id="region_detail" name="region" style="width: 50%;" placeholder="region" type="text" class="form-control" aria-required="true" readonly="readonly">
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="zone" class="col-sm-4 control-label text-right">可用区</label>
+                                <input id="zone_detail" name="zone" style="width: 50%;" placeholder="zone" type="text" class="form-control" aria-required="true" readonly="readonly">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="mem" class="col-sm-4 control-label text-right">内存(GB)</label>
+                                <input id="mem_detail" name="mem" style="width:50%" placeholder="mem" type="text" class="form-control" aria-required="true" readonly="readonly">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="swap" class="col-sm-4 control-label text-right">SWAP</label>
+                                <input id="swap_detail" name="swap" style="width:50%" placeholder="swap" type="text" class="form-control" aria-required="true" readonly="readonly">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="disk" class="col-sm-4 control-label text-right">物理磁盘</label>
+                                <textarea id="disk_detail" name="disk" style="width:50%" class="form-control" aria-required="true" rows="3" readonly="readonly"></textarea>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="disk_mount" class="col-sm-4 control-label text-right">分区挂载</label>
+                                <textarea id="disk_mount_detail" name="disk_mount" style="width: 50%;" class="form-control" aria-required="true" rows="3" readonly="readonly"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="status" class="col-sm-4 control-label text-right">状态</label>
+                                <input id="status_detail" name="status" style="width: 50%;" placeholder="status" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="monitor_status" class="col-sm-4 control-label text-right">监控状态</label>
+                                <input id="monitor_status_detail" name="monitor_status" style="width: 50%;" placeholder="monitor_status" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="charge_type" class="col-sm-4 control-label text-right">付费类型</label>
+                                <input id="charge_type_detail" name="charge_type" style="width: 50%;" placeholder="charge_type" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="renewal_type" class="col-sm-4 control-label text-right">续费类型</label>
+                                <input id="renewal_type_detail" name="renewal_type" style="width: 50%;" placeholder="renewal_type" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="online_time" class="col-sm-4 control-label text-right">创建时间</label>
+                                <input id="online_time_detail" name="online_time" style="width: 50%;" placeholder="online_time" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="offline_time" class="col-sm-4 control-label text-right">下线时间</label>
+                                <input id="offline_time_detail" name="offline_time" style="width: 50%;" placeholder="offline_time" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="expired_time" class="col-sm-4 control-label text-right">过期时间</label>
+                                <input id="expired_time_detail" name="expired_time" style="width: 50%;" placeholder="expired_time" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="offline_time" class="col-sm-4 control-label text-right">更新时间</label>
+                                <input id="last_update_time_detail" name="last_update_time" style="width: 50%;" placeholder="last_update_time" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary exit-btn" data-dismiss="modal">退出</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- 模态框结束 -->
+
+    <!-- 删除模态框 -->
+    <div class="modal fade" id='DeleteModal'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="data-del"></p>
+                    <p style="color:red"><b>你确认要删除吗?</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-warning del-sure" data-id=''>确认</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- 模态框结束 -->
+</div> 
+
+{% endblock %}
+
+{% block js %}
+<script>
+
+$.getJSON("{% url 'get_server_env' %}",function(data){
+    var str = ''
+    $.each(data,function(k,v){
+        str += '<option value="'+v[0]+'">'+v[1]+'</option>'
+    });
+    $(".env_choices").append(str)
+});
+
+
+<!--添加服务器-->
+$("#server_add_btn").click(function(){
+    $("#ServerAddModal").modal("show")
+});
+
+$("#server_add_submit").click(function(){
+    var str = $("#ServerAddForm").serialize()
+    var url = "{% url 'server_aliyun_add' %}"
+    $.post(url,str,function(data){
+        if (data.result==0){
+            swal({
+                title:"Good",
+                text:data.msg,
+                type:'success',
+                confirmButtonText:"确定"
+                },
+                function(){
+                    location.reload()
+                });
+        }else{
+            swal("Oh,My God",data.msg,"error")
+        }
+    });
+    return false;
+});
+
+
+<!-- 刷新 -->
+$(".server_refresh").click(function(){
+    var str = {"id":$(this).attr("data-id")}
+    var url = "{% url 'server_aliyun_refresh' %}"
+    $.post(url,str,function(data){
+        if(data.result==0){
+            swal({
+                title:"Good",
+                text:"刷新成功",
+                type:"success",
+                confirmButtonText:"确定"
+                },
+                function(){
+                    location.reload()
+                })
+        }else{
+            swal("OH,My God",data.msg,"error")
+        }
+    });
+    return false;
+});
+
+
+<!-- 更新 -->
+$(".server_update").click(function(){
+    var id = $(this).attr("data-id")
+    var url = "{% url 'server_aliyun_update' %}?id=" + id
+    $.getJSON(url,function(data){
+        if(data.result==0){  
+            data = data.server_info
+            $("#id").val(data.id)
+            $("#private_ip").val(data.private_ip)
+            $("#ssh_port").val(data.ssh_port)
+            $('#env option[value="'+data.env.id+'"]').attr("selected","selected")
+        }else{
+            swal("OH,My God",data.msg,"error")
+        };
+    });
+    $('#UpdateModal').modal('show')
+});
+
+$("#server_update_btn").click(function(){
+    var str = $("#UpdateForm").serialize()
+    var url = "{% url 'server_aliyun_update' %}"
+    $.post(url,str,function(data){
+        if(data.result==0){
+           swal({
+             title:"Good",
+             text:data.msg,
+             type:'success',
+             confirmButtonText:"确定"
+             },
+             function(){
+                location.reload()
+           })
+        }else{
+            swal("OH,My God",data.msg,"error")
+        };        
+    });
+    return false;
+});
+
+<!-- 详情 -->
+$(".server_detail").click(function(){
+    var id = $(this).attr("data-id")
+    var url = "{% url 'server_aliyun_info' %}?id=" + id
+    $.getJSON(url,function(data){
+        if(data.result==0){
+            data = data.server_info
+            $("#id_detail").val(data.id)
+            $("#private_ip_detail").val(data.private_ip)
+            $("#public_ip_detail").val(data.public_ip)
+            $("#hostname_detail").val(data.hostname)
+            $("#ssh_port_detail").val(data.ssh_port)
+            $("#env_detail").val(data.env.name)
+            $("#server_brand_detail").val(data.server_brand)
+            $("#instance_type_detail").val(data.instance_type)
+            $("#os_version_detail").val(data.os_version)
+            $("#cpu_count_detail").val(data.cpu_count)
+            $("#region_detail").val(data.region)
+            $("#zone_detail").val(data.zone)
+            $("#mem_detail").val(data.mem)
+            $("#swap_detail").val(data.swap)
+            $("#disk_detail").val(data.disk)
+            $("#disk_mount_detail").val(data.disk_mount)
+            $("#status_detail").val(data.status)
+            $("#monitor_status_detail").val(data.monitor_status)
+            $("#charge_type_detail").val(data.charge_type)
+            $("#renewal_type_detail").val(data.renewal_type)
+            $("#online_time_detail").val(data.online_time)
+            $("#offline_time_detail").val(data.offline_time)
+            $("#expired_time_detail").val(data.expired_time)
+            $("#last_update_time_detail").val(data.last_update_time)
+        }else{
+            swal("OH,My God",data.msg,"error")
+        };
+   });
+    $('#DetailModal').modal('show')
+});
+
+<!-- 删除-->
+$(".del").click(function(){
+   var id = $(this).attr('data-id')
+   var data = $(this).attr("data-del")
+   $("#data-del").html(data)
+   $('#DeleteModal').modal('show')
+   $(".del-sure").attr('data-id',id)
+})
+
+$(".del-sure").click(function(){
+   var id = $(this).attr('data-id')
+   var url = "{% url 'server_aliyun_delete' %}"
+   $('#DeleteModal').modal('hide')
+   $.post(url,{"id": id},function(data){
+       if(data.result==0){
+           swal({
+             title:"Good",
+             text:data.msg,
+             type:'success',
+             confirmButtonText:"确定"
+             },
+             function(){
+                location.reload()
+           })
+       }else{
+            swal("OH,My God",data.msg,"error")
+       };
+   });
+   return false;
+})   
+
+</script>
+
+{% endblock %}
+

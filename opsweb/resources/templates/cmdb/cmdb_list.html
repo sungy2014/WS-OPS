@@ -499,6 +499,7 @@ $("#cmdb_update_btn").click(function(){
     var url = "{% url 'cmdb_change' %}"
     $.post(url,str,function(data){
         if(data.result==0){
+           $("#UpdateModal").modal("hide")
            swal({
              title:"Good",
              text:data.msg,

@@ -1,7 +1,7 @@
 from django.views.generic import View,TemplateView,ListView
 from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
-from resources.models import ServerAliyunModel,IDC,ServerIdcModel,CmdbModel
+from resources.models import ServerModel,IDC,CmdbModel
 from resources.forms import ServerAliyunAddForm,ServerAliyunUpdateForm
 from api.thirdapi.ansible_adhoc import ansible_adhoc
 from api.thirdapi.aliyun_describe_instance import AliyunDescribeInstances,AliyunDescribeInstanceAutoRenewAttribute
@@ -17,10 +17,14 @@ def GetServerInfoFromApi(private_ip,server_aliyun_obj):
     
     ret = {"result":0,"msg":None}
     try:
-        server_info_ansible = ansible_adhoc('setup','gather_subset=hardware,!facter',private_ip)[private_ip]['ansible_facts']
+        if private_ip == '172.17.134.23':
+            server_info_ansible = ansible_adhoc('setup','gather_subset=hardware',"127.0.0.1")["localhost"]['ansible_facts']
+        else:
+            server_info_ansible = ansible_adhoc('setup','gather_subset=hardware,!facter',private_ip)[private_ip]['ansible_facts']
     except Exception as e:
         ret["result"] = 1
         ret["msg"] = "ansible api 调用失败，请查看日志"
+        print (e)
         wslog_error().error(e.args)
         return ret
 
@@ -29,7 +33,7 @@ def GetServerInfoFromApi(private_ip,server_aliyun_obj):
         server_aliyun_obj.server_brand = server_info_ansible['ansible_system_vendor']
         server_aliyun_obj.swap = '%.2f GB' %(server_info_ansible['ansible_swaptotal_mb']/1024.0)
         server_aliyun_obj.disk = '</br>'.join(['['+i+'] '+': '+server_info_ansible['ansible_devices'][i]['size'] for i in server_info_ansible['ansible_devices'] if 'ss' in i or 'sd' in i or 'vd' in i])
-        server_aliyun_obj.disk_mount = '\n'.join(['['+i['mount']+'] '+': %.2f GB' %(i['size_total']/1024.0/1024.0/1024.0) for i in server_info_ansible['ansible_mounts']])
+        server_aliyun_obj.disk_mount = '\n'.join(['['+i['mount']+'] '+' - '+i['device']+' : %.2f GB' %(i['size_total']/1024.0/1024.0/1024.0) for i in server_info_ansible['ansible_mounts'] if i['device'].startswith('/dev')])
     except Exception as e:
         ret["result"] = 1
         ret["msg"] = "ansible api 某个属性获取值失败，请查看日志"
@@ -47,6 +51,7 @@ def GetServerInfoFromApi(private_ip,server_aliyun_obj):
     try:
         server_aliyun_obj.public_ip = server_info_aliyun["PublicIpAddress"].get("IpAddress")[0] if server_info_aliyun["PublicIpAddress"].get("IpAddress") else server_info_aliyun["EipAddress"]["IpAddress"]
         server_aliyun_obj.instance_id = server_info_aliyun["InstanceId"]
+        server_aliyun_obj.instance_name = server_info_aliyun["InstanceName"]
         server_aliyun_obj.region = server_info_aliyun["RegionId"]
         server_aliyun_obj.zone = server_info_aliyun["ZoneId"]
         server_aliyun_obj.instance_type = server_info_aliyun["InstanceType"]
@@ -85,8 +90,8 @@ def GetServerInfoFromApi(private_ip,server_aliyun_obj):
     return ret
 
 class ServerAliyunListView(LoginRequiredMixin,ListView):
-    template_name = "server/server_aliyun_list.html"
-    model = ServerAliyunModel
+    template_name = "server/server_list.html"
+    model = ServerModel
     paginate_by = 10
     ordering = 'id'
     page_total = 11
@@ -149,7 +154,7 @@ class ServerAliyunAddView(LoginRequiredMixin,View):
             return JsonResponse(ret)
 
         try:
-            server_aliyun_obj = ServerAliyunModel(**server_aliyun_add_form.cleaned_data)
+            server_aliyun_obj = ServerModel(**server_aliyun_add_form.cleaned_data)
             server_aliyun_obj.save()
         except Exception as e:
             ret["result"] = 1
@@ -175,8 +180,8 @@ class ServerAliyunRefreshView(LoginRequiredMixin,View):
         server_id = request.POST.get("id",0)
 
         try:
-            server_aliyun_obj = ServerAliyunModel.objects.get(id__exact=server_id)
-        except ServerAliyunModel.DoesNotExist:
+            server_aliyun_obj = ServerModel.objects.get(id__exact=server_id)
+        except ServerModel.DoesNotExist:
             ret["result"] = 1
             ret["msg"] = "该服务器ID %s 不存在，请刷新重试" %(server_id)
             return JsonResponse(ret)
@@ -193,15 +198,15 @@ class ServerAliyunInfoView(LoginRequiredMixin,View):
         ret = {"result":0,"msg":None}
         sid = request.GET.get("id",0)
         try:
-            server_aliyun_obj = ServerAliyunModel.objects.get(id__exact=sid)
-        except ServerAliyunModel.DoesNotExist:
+            server_aliyun_obj = ServerModel.objects.get(id__exact=sid)
+        except ServerModel.DoesNotExist:
             ret["result"] = 1
             ret["msg"] = "Aliyun 上不存在 ID 为 %s 的服务器" %(sid)
             return JsonResponse(ret)
 
         try:
             #server_aliyun_info = model_to_dict(server_aliyun_obj)  // 使用这个方法,读不到 DateTimeField 设置为 auto_now = True 的字段,因此读不到 last_update_time 字段
-            server_aliyun_info = ServerAliyunModel.objects.filter(id__exact=sid).values()[0]
+            server_aliyun_info = ServerModel.objects.filter(id__exact=sid).values()[0]
             server_aliyun_info["env"] = {"id": server_aliyun_obj.env,"name": server_aliyun_obj.get_env_display()}
             server_aliyun_info["charge_type"] = server_aliyun_obj.get_charge_type_display()
             server_aliyun_info["status"] = server_aliyun_obj.get_status_display()
@@ -231,8 +236,8 @@ class ServerAliyunDeleteView(LoginRequiredMixin,View):
         sid = request.POST.get('id',0)
 
         try:
-            server_aliyun_obj = ServerAliyunModel.objects.get(id__exact=sid)
-        except ServerAliyunModel.DoesNotExist:
+            server_aliyun_obj = ServerModel.objects.get(id__exact=sid)
+        except ServerModel.DoesNotExist:
             ret["result"] = 1
             ret["mag"] = "该服务器ID %s 不存在,请刷新重试" %(sid)
             return JsonResponse(ret)
@@ -256,8 +261,8 @@ class ServerAliyunUpdateView(LoginRequiredMixin,View):
         sid = request.GET.get("id",0)
 
         try:
-            server_aliyun_obj = ServerAliyunModel.objects.get(id__exact=sid)
-        except ServerAliyunModel.DoesNotExist:
+            server_aliyun_obj = ServerModel.objects.get(id__exact=sid)
+        except ServerModel.DoesNotExist:
             ret["result"] = 1
             ret["msg"] = "Aliyun 上不存在 ID 为 %s 的服务器" %(sid)
             return JsonResponse(ret)
@@ -286,8 +291,8 @@ class ServerAliyunUpdateView(LoginRequiredMixin,View):
             return JsonResponse(ret)
 
         try:
-            server_aliyun_obj = ServerAliyunModel.objects.get(id__exact=sid)
-        except ServerAliyunModel.DoesNotExist:
+            server_aliyun_obj = ServerModel.objects.get(id__exact=sid)
+        except ServerModel.DoesNotExist:
             ret["result"] = 1
             ret["msg"] = "服务器ID %s 不存在,请刷新重试" %(sid)
             return JsonResponse(ret)
@@ -313,7 +318,7 @@ class ServerAliyunUpdateView(LoginRequiredMixin,View):
 
 def ServerAliyunAutoAdd():
     
-    local_result = ServerAliyunModel.objects.values("private_ip")
+    local_result = ServerModel.objects.exclude(private_ip__startswith="10.").values("private_ip")
     local_server_list = [i['private_ip'] for i in local_result]
     local_server_add = []
     local_server_delete = []
@@ -327,12 +332,15 @@ def ServerAliyunAutoAdd():
         local_server_add = list(set(aliyun_ecs_list).difference(set(local_server_list)))
         local_server_delete = list(set(local_server_list).difference(set(aliyun_ecs_list)))
 
+    idc_obj = IDC.objects.get(pk=1)
 
-    #添加服务器到本地 ServerAliyunModel 模型
+
+    #添加服务器到本地 ServerModel 模型
     if local_server_add:
         for s in local_server_add:
-            server = ServerAliyunModel()
+            server = ServerModel()
             server.private_ip = s
+            server.idc = idc_obj
             try:
                 server.save()
             except Exception as e:
@@ -351,12 +359,12 @@ def ServerAliyunAutoAdd():
                 wslog_info().info("服务器: %s 自动添加成功" %(s))
                 continue
 
-    #将在阿里云上不存在的服务器,从本地的 ServerAliyunModel 模型中删除
+    #将在阿里云上不存在的服务器,从本地的 ServerModel 模型中删除
     if local_server_delete:
         for s in local_server_delete:
             try:
-                server_obj = ServerAliyunModel.objects.get(private_ip__exact=s)
-            except ServerAliyunModel.DoesNostExist:
+                server_obj = ServerModel.objects.get(private_ip__exact=s)
+            except ServerModel.DoesNostExist:
                 wslog_error().error("自动删除服务器: %s ,已经不存在,所以不用删除" %(s))
                 continue
             except Exception as e:

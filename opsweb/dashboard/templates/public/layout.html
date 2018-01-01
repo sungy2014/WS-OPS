@@ -125,13 +125,10 @@
     <a href="#" ><i class="fa fa-database fa-fw"></i><span class="nav-label">资源管理</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse" >
             <li>
-                <a href="{% url 'cmdb_list' %}" class="menu-link">CMDB</a>
+                <a href="{% url 'cmdb_list' %}" class="menu-link">CMDB管理</a>
             </li>
             <li>
-                <a href="#" class="menu-link">服务器-IDC</a>
-            </li>
-            <li>
-                <a href="{% url 'server_aliyun_list' %}" class="menu-link">服务器-Aliyun</a>
+                <a href="{% url 'server_aliyun_list' %}" class="menu-link">服务器管理</a>
             </li>
             <li>
                 <a href="{% url 'idc_list' %}" class="menu-link">IDC管理</a>
@@ -146,10 +143,10 @@
     <a href="#"><i class="fa fa-bar-chart"></i> <span class="nav-label">监控系统</span><span class="fa arrow"></span></a>
     <ul class="nav nav-second-level collapse" >
         <li>
-            <a href="#">同步主机到zabbix</a>
+            <a href="http://47.94.165.111:8080/dashboard/summary/">实时监控</a>
         </li>
         <li>
-            <a href="#">模板绑定</a>
+            <a href="#">监控历史</a>
         </li>
     </ul>
 </li>
@@ -183,7 +180,7 @@
 	        <a href="#">数据库操作</a>
         </li>
     </ul>
-</li>
+/li>
 <!--数据库管理结束-->
 
 <!--小工具-->

@@ -14,3 +14,7 @@ pip install django-crontab
 
 ## 安装 gunicorn
 pip install gunicorn
+pip install setproctitle
+
+## 安装 pyzabbix::zabbix api 的 python 库 
+pip install pyzabbix
