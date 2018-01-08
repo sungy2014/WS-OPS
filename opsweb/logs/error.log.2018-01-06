@@ -1,0 +1,5 @@
+2018-01-07 00:00:02,626-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:113]-该服务器: 172.17.134.104 实例名 临时测试 格式不正确
+2018-01-07 00:00:02,778-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:113]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-01-07 00:00:03,206-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:113]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-01-07 00:00:03,215-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:113]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-01-07 00:00:03,217-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:113]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确

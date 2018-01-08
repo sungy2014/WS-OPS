@@ -88,22 +88,29 @@ def CmdbStatisticByDayCrontab():
  
 
 def CmdbAutoAddCrontab():
-    server_ip_name_list = list(ServerModel.objects.values("id","private_ip","instance_name"))
+    server_ip_name_list = list(ServerModel.objects.values("id","private_ip","instance_name","status"))
 
     #根据 CmdbModel 模型中的 instance_name 字段自动添加 CMDB,如果没有该字段则不能自动添加 CMDB,
     #因此该方法适用于 Aliyun 上的服务器，IDC中的服务器需要手动添加，该方法也不会修改IDC服务器 CMDB 的信息
     for ss in server_ip_name_list:
-        if not ss["instance_name"]:
-            wslog_error().error("该服务器: %s 没有实例名" %(ss["private_ip"]))
-            continue
-        app_name_list = ss["instance_name"].split("_")[-2::-1]
-        if not app_name_list:
-            wslog_error().error("该服务器: %s 实例名 %s 格式不正确" %(ss["private_ip"],ss["instance_name"]))
-            continue
         try:
             ss_obj = ServerModel.objects.get(id__exact=ss["id"])
         except Exception as e:
             wslog_error().error("获取服务器 %s 对象失败,错误信息: %s" %(ss["private_ip"],e.args))
+            continue 
+
+        if ss["status"] != "Running":
+            wslog_info().info("该服务器: %s 状态 %s 所以需要删除其关联的CMDB" %(ss["private_ip"],ss["status"]))
+            ss_obj.cmdbmodel_set.clear()
+            continue            
+
+        if not ss["instance_name"]:
+            wslog_error().error("该服务器: %s 没有实例名" %(ss["private_ip"]))
+            continue
+
+        app_name_list = ss["instance_name"].split("_")[-2::-1]
+        if not app_name_list:
+            wslog_error().error("该服务器: %s 实例名 %s 格式不正确" %(ss["private_ip"],ss["instance_name"]))
             continue
 
         cmdb_name_list = [i["name"] for i in list(CmdbModel.objects.values("name"))]
@@ -144,6 +151,11 @@ def CmdbAutoAddCrontab():
                     cmdb_obj_list.append(cm_obj)
         if cmdb_obj_list:
             ss_obj.cmdbmodel_set.set(cmdb_obj_list)
+
+        try:
+            CmdbModel.objects.filter(ips__private_ip__exact=None).delete()
+        except Exception as e:
+            wslog_error().error("CmdbModel 自动删除关联IP为空的对象失败,错误信息: %s" %(e.args))
                 
                        
 if __name__ == "__main__":

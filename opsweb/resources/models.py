@@ -60,6 +60,7 @@ class ServerModel(models.Model):
     ssh_port = models.CharField("SSH 端口号",max_length=5,null=False,default="22")
     private_ip = models.GenericIPAddressField("私网IP",protocol="IPv4",unique=True,null=True,db_index=True)
     public_ip = models.GenericIPAddressField("公网IP",protocol="IPv4",null=True)
+    idrac_ip = models.GenericIPAddressField("远程管理卡IP，适用于IDC服务器",protocol="IPv4",null=True)
     instance_id = models.CharField("实例ID,适用于云服务器",max_length=50,unique=True,null=True,db_index=True)
     instance_name = models.CharField("实例名称,适用于云服务器",max_length=150,null=True)
     env = models.CharField("所属环境",choices=ENV_CHOICES,max_length=10,null=False,default="online")
@@ -77,13 +78,12 @@ class ServerModel(models.Model):
     charge_type = models.CharField("付费类型,适用于云服务器",choices=CHARGE_TYPE_CHOICES,max_length=10,null=True)
     renewal_type = models.CharField("续费类型,适用于云服务器",choices=RENEWLI_STATUS_CHOICES,max_length=50,null=True)
     region = models.CharField("地域,适用于云服务器",max_length=50,null=True)
-    #zone = models.CharField("可用区",max_length=50,null=True)
+    zone = models.CharField("可用区",max_length=50,null=True)
     idc = models.ForeignKey(IDC,verbose_name="归属机房")
     status = models.CharField("服务器状态",choices=STATUS_CHOICES,max_length=10,null=True)
-    monitor_status = models.CharField("服务器监控状态",choices=MONITOR_CHOICES,max_length=10,null=True)
     online_time = models.DateTimeField("服务器上架时间",auto_now_add=False,null=True)
     offline_time = models.DateTimeField("服务器下架时间",null=True)
-    expired_time = models.DateTimeField("服务器过期时间",null=True)
+    expired_time = models.DateTimeField("服务器过期/保时间",null=True)
     last_update_time = models.DateTimeField("最后一次更新时间",auto_now=True,null=True)
 
     def __str__(self):

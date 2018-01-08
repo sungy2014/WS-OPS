@@ -10,8 +10,13 @@ urlpatterns = [
             url(r'^add/$',server.ServerAliyunAddView.as_view(),name="server_aliyun_add"),
             url(r'^refresh/$',server.ServerAliyunRefreshView.as_view(),name="server_aliyun_refresh"),
             url(r'^info/$',server.ServerAliyunInfoView.as_view(),name="server_aliyun_info"),
-            url(r'^delete/$',server.ServerAliyunDeleteView.as_view(),name="server_aliyun_delete"),
             url(r'^update/$',server.ServerAliyunUpdateView.as_view(),name="server_aliyun_update"),
+        ])),
+        url(r'^delete/$',server.ServerDeleteView.as_view(),name="server_delete"),
+        url(r'^idc/',include([
+            url(r'^list/$',server.ServerIdcListView.as_view(),name="server_idc_list"),
+            url(r'^add/$',server.ServerIdcAddView.as_view(),name="server_idc_add"),
+            url(r'^update/$',server.ServerIdcUpdateView.as_view(),name="server_idc_update"),
         ])),
     ])),
     url(r'^idc/',include([
