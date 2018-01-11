@@ -33,24 +33,13 @@ def ServerAliyunAutoRefreshCrontab():
 
 def ServerStatisticByDayCrontab():
     myday = date.today().isoformat()
-    my_yesterday = (date.today() - timedelta(days=1)).isoformat()
     count = ServerModel.objects.count()
-
-    try:
-        s_obj = ServerStatisticByDayModel.objects.get(myday__exact=my_yesterday)
-    except ServerStatisticByDayModel.DoesNotExist:
-        count_yesterday = 0
-    else:
-        count_yesterday = s_obj.count
-
-    compared_with_yesterday = count - count_yesterday
 
     ssbd_obj = ServerStatisticByDayModel()
 
     try:
         ssbd_obj.myday = myday
         ssbd_obj.count = count
-        ssbd_obj.compared_with_yesterday = str(compared_with_yesterday)
         ssbd_obj.save()
     except Exception as e:
         wslog_error().error("统计 %s 的服务器总数失败,错误信息: %s" %(myday,e.args))
@@ -61,24 +50,13 @@ def ServerStatisticByDayCrontab():
 
 def CmdbStatisticByDayCrontab():
     myday = date.today().isoformat()
-    my_yesterday = (date.today() - timedelta(days=1)).isoformat()
     count = CmdbModel.objects.count()
-
-    try:
-        s_obj = CmdbStatisticByDayModel.objects.get(myday__exact=my_yesterday)
-    except CmdbStatisticByDayModel.DoesNotExist:
-        count_yesterday = 0
-    else:
-        count_yesterday = s_obj.count
-
-    compared_with_yesterday = count - count_yesterday
 
     csbd_obj = CmdbStatisticByDayModel()
 
     try:
         csbd_obj.myday = myday
         csbd_obj.count = count
-        csbd_obj.compared_with_yesterday = str(compared_with_yesterday)
         csbd_obj.save()
     except Exception as e:
         wslog_error().error("统计 %s 的应用总数失败,错误信息: %s" %(myday,e.args))

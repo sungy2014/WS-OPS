@@ -11,6 +11,7 @@ from datetime import *
 from dashboard.utils.utc_to_local import utc_to_local
 from dashboard.utils.wslog import wslog_error,wslog_info
 from django.db.models import Q
+from django.views.decorators.csrf import csrf_exempt
 
 
 def GetServerInfoFromApi(private_ip,server_aliyun_obj):
@@ -213,6 +214,12 @@ class ServerAliyunInfoView(LoginRequiredMixin,View):
             server_aliyun_info["env"] = {"id": server_aliyun_obj.env,"name": server_aliyun_obj.get_env_display()}
             server_aliyun_info["charge_type"] = server_aliyun_obj.get_charge_type_display()
             server_aliyun_info["status"] = server_aliyun_obj.get_status_display()
+            try:
+                server_aliyun_info["monitor_status"] = server_aliyun_obj.zabbixhostmodel.get_status_display()
+            except Exception as e:
+                wslog_error().error("服务器 %s 在 zabbix 中不存在" %(server_aliyun_obj.private_ip))
+                server_aliyun_info["monitor_status"] = "未监控"
+
             server_aliyun_info["renewal_type"] = server_aliyun_obj.get_renewal_type_display()
             server_aliyun_info["disk"] = server_aliyun_info["disk"].replace("</br>","\n")
             if server_aliyun_info.get("expired_time"):
@@ -226,7 +233,7 @@ class ServerAliyunInfoView(LoginRequiredMixin,View):
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = "模型对象转dict失败" 
-            wslog_error().error(e.args)
+            wslog_error().error("模型对象 %s 转 dict 失败,错误信息: %s" %(server_aliyun_obj.private_ip,e.args))
         else:
             ret["server_info"] = server_aliyun_info
 
@@ -390,8 +397,13 @@ class ServerIdcListView(LoginRequiredMixin,View):
         for server in server_idc_list:
             server_obj = ServerModel.objects.get(id__exact=server["id"])
             server["env"] = server_obj.get_env_display()
-            server["status"] = server_obj.get_status_display()
+            server["status"] = server_obj.status
             server["idc_id"] = server_obj.idc.cn_name
+            try:
+                server["monitor_status"] = server_obj.zabbixhostmodel.status
+            except Exception as e:
+                wslog_error().error("服务器 %s 在 zabbix 中不存在" %(server_obj.private_ip))
+                server["monitor_status"] = "1"
             server["last_update_time"] = utc_to_local(server["last_update_time"]).strftime("%Y-%m-%d %X")
 
         return JsonResponse(server_idc_list,safe=False)
@@ -409,16 +421,6 @@ class ServerIdcAddView(LoginRequiredMixin,View):
         try:
             server_idc_obj = ServerModel(**server_idc_add_form.cleaned_data)
             server_idc_obj.save()
-        except Exception as e:
-            ret["result"] = 1
-            ret["msg"] = e.args
-            return JsonResponse(ret)
-
-        try:
-            with open("/etc/ansible/hosts",'a+') as f:
-                f.seek(0)
-                if "%s\n" %(server_idc_obj.private_ip) not in f.readlines():
-                    f.write("%s:%s\n" %(server_idc_obj.private_ip,server_idc_obj.ssh_port))
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = e.args
@@ -493,6 +495,94 @@ class ServerIdcUpdateView(LoginRequiredMixin,View):
             ret["msg"] = e.args
         else:
             ret["msg"] = "服务器 %s 更新成功" %(server_idc_obj.private_ip)
+
+        return JsonResponse(ret)
+
+class ServerIdcInfoView(LoginRequiredMixin,View):
+    def get(self,request):
+        ret = {"result":0,"msg":None}
+        sid = request.GET.get("id",0)
+        try:
+            server_idc_obj = ServerModel.objects.get(id__exact=sid)
+        except ServerModel.DoesNotExist:
+            ret["result"] = 1
+            ret["msg"] = "Aliyun 上不存在 ID 为 %s 的服务器" %(sid)
+            return JsonResponse(ret)
+
+        try:
+            #server_aliyun_info = model_to_dict(server_aliyun_obj)  // 使用这个方法,读不到 DateTimeField 设置为 auto_now = True 的字段,因此读不到 last_update_time 字段
+            server_idc_info = ServerModel.objects.filter(id__exact=sid).values()[0]
+            server_idc_info["env"] = {"id": server_idc_obj.env,"name": server_idc_obj.get_env_display()}
+            server_idc_info["idc_id"] = server_idc_obj.idc.cn_name
+            server_idc_info["status"] = server_idc_obj.get_status_display()
+            try:
+                server_idc_info["monitor_status"] = server_idc_obj.zabbixhostmodel.get_status_display()
+            except Exception as e:
+                wslog_error().error("服务器在 %s zabbix 中不存在" %(server_idc_obj.private_ip))
+                server_idc_info["monitor_status"] = '未监控'
+
+            server_idc_info["disk"] = server_idc_info["disk"].replace("</br>","\n")
+            if server_idc_info.get("expired_time"):
+                server_idc_info["expired_time"] = utc_to_local(server_idc_info["expired_time"]).strftime("%Y-%m-%d %X")
+            if server_idc_info.get("offline_time"):
+                server_idc_info["offline_time"] = utc_to_local(server_idc_info["offline_time"]).strftime("%Y-%m-%d %X")
+            if server_idc_info.get("online_time"):
+                server_idc_info["online_time"] = utc_to_local(server_idc_info["online_time"]).strftime("%Y-%m-%d %X")
+            if server_idc_info.get("last_update_time"):
+                server_idc_info["last_update_time"] = utc_to_local(server_idc_info["last_update_time"]).strftime("%Y-%m-%d %X")
+        except Exception as e:
+            ret["result"] = 1
+            ret["msg"] = "模型对象转dict失败" 
+            wslog_error().error("模型对象 %s 转 dict 失败,错误信息: %s" %(server_idc_obj.private_ip,e.args))
+        else:
+            ret["server_info"] = server_idc_info
+
+        return JsonResponse(ret)
+
+class ServerIdcRefreshView(View):
+
+    def post(self,request):
+        ret = {"result":0,"msg":None}
+        server_info = request.POST.dict()
+        print("hahha:",server_info)
+        if not server_info:
+            ret["result"] = 1
+            ret["msg"] = "未收到传过来的数据"
+            return JsonResponse(ret)
+
+        try:
+            server_idc_obj = ServerModel.objects.get(private_ip__exact=server_info.get("private_ip"))
+        except ServerModel.DoesNotExist:
+            ret["result"] = 1
+            ret["msg"] = "该服务器ID %s 不存在，请刷新重试" %(server_info.get("private_ip"))
+            wslog_error().error("服务器ID %s 不存在，请刷新重试" %(server_info.get("private_ip")))
+            return JsonResponse(ret)
+
+        try:
+            server_idc_obj.hostname = server_info.get('hostname')
+            server_idc_obj.server_brand = server_info.get('server_brand')
+            server_idc_obj.os_version = server_info.get('os_version')
+            server_idc_obj.server_brand = server_info.get('server_brand')
+            server_idc_obj.server_model = server_info.get('server_model')
+            server_idc_obj.cpu_count = server_info.get('cpu_count')
+            server_idc_obj.swap = server_info.get('swap')
+            server_idc_obj.mem = server_info.get('mem')
+            server_idc_obj.disk = server_info.get('disk')
+            server_idc_obj.disk_mount = server_info.get('disk_mount')
+        except Exception as e:
+            ret["result"] = 1
+            ret["msg"] = "模型 ServerModel 对象 %s 属性获取失败，请查看日志" %(server_info.get("private_ip"))
+            wslog_error().error("模型 Servermodel 对象 %s 属性获取失败,错误信息: %s" %(server_info.get("private_ip"),e.args))
+            return JsonResponse(ret)
+
+        try:
+            server_idc_obj.save()
+        except Exception as e:
+            ret["result"] = 1
+            ret["msg"] = "服务器 %s 信息刷新后保存数据库失败，请查看日志" %(server_info.get("private_ip"))
+            wslog_error().error("模型 ServerModel 对象 %s 信息刷新后保存数据库失败,错误信息: %s" %(server_info.get("private_ip"),e.args))
+        else:
+            ret["msg"] = "服务器信息刷新成功"
 
         return JsonResponse(ret)
 

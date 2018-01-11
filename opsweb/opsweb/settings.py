@@ -125,8 +125,8 @@ CRONJOBS = [
     ('*/2 * * * *', 'resources.cron.ServerAliyunAutoAddCrontab'),
     ('*/10 * * * *', 'resources.cron.ServerAliyunAutoRefreshCrontab'),
     ('*/15 * * * *', 'resources.cron.CmdbAutoAddCrontab'),
-    ('50 00 * * *', 'resources.cron.ServerStatisticByDayCrontab'),
-    ('10 00 * * *', 'resources.cron.CmdbStatisticByDayCrontab'),
+    ('10 23 * * *', 'resources.cron.ServerStatisticByDayCrontab'),
+    ('10 23 * * *', 'resources.cron.CmdbStatisticByDayCrontab'),
     ('55 23 * * *', 'monitor.cron.ZabbixHostSyncCrontab'),
 ]
 

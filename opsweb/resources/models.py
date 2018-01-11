@@ -149,7 +149,6 @@ class CmdbModel(models.Model):
 class ServerStatisticByDayModel(models.Model):
     myday = models.DateField("统计时间",null=False,unique=True)
     count = models.PositiveSmallIntegerField("服务器数量",null=False)
-    compared_with_yesterday = models.CharField("与昨日相比变化的数量",max_length=5,null=False,default='0')
     last_update_time = models.DateTimeField("应用最后更新时间",auto_now=True,null=True)
 
     def __str__(self):
@@ -162,7 +161,6 @@ class ServerStatisticByDayModel(models.Model):
 class CmdbStatisticByDayModel(models.Model):
     myday = models.DateField("统计时间",null=False,unique=True)
     count = models.PositiveSmallIntegerField("应用数量",null=False)
-    compared_with_yesterday = models.CharField("与昨日相比变化的数量",max_length=5,null=False,default='0')
     last_update_time = models.DateTimeField("应用最后更新时间",auto_now=True,null=True)
 
     def __str__(self):

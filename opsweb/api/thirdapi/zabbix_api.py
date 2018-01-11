@@ -44,9 +44,9 @@ def ZabbixHostAutoSync():
             wslog_error().error("该hostid: %s 下 ip 地址 %s 不唯一" %(h['hostid'],";".join(h_ips)))
             continue
     
-        if h_ips[0].startswith("10.82"):
-            wslog_error().error("该hostid: %s ip 地址 %s 不是阿里云上的IP，暂时不处理" %(h['hostid'],h_ips[0]))
-            continue
+#        if h_ips[0].startswith("10.82"):
+#            wslog_error().error("该hostid: %s ip 地址 %s 不是阿里云上的IP，暂时不处理" %(h['hostid'],h_ips[0]))
+#            continue
         z_data['ip'] = h_ips[0]
 
         try:

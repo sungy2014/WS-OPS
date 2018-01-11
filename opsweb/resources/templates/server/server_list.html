@@ -623,6 +623,159 @@ ed="true">
                 </div>
                 <!-- 编辑modal结束 -->
 
+                <!-- IDC服务器详情模态框 -->
+                <div class="modal fade"  id ="ServerIdcDetailModal">   
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title">服务器信息</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="ServerIdcDetailForm" class="Formvalid form-horizontal nice-validator n-yellow" novalidate="novalidate">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="id" id='id_detail_idc'>
+                                    <div class="form-inline row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="private_ip" class="col-sm-4 control-label text-right">私网 IP<span class="red-fonts">*</span></label>
+                                            <input id="private_ip_detail_idc" name="private_ip" style="width: 50%;" placeholder="private_ip" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label for="ssh_port" class="col-sm-4 control-label text-right ">SSH 端口<span class="red-fonts ">*</span></label>
+                                            <input id="ssh_port_detail_idc" name="ssh_port" style="width: 50%;" placeholder="ssh_port" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-inline row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="public_ip" class="col-sm-4 control-label text-right">公网 IP</label>
+                                            <input id="public_ip_detail_idc" name="public_ip" style="width: 50%;" placeholder="public_ip" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label for="idrac_ip" class="col-sm-4 control-label text-right ">iDRAC IP<span class="red-fonts ">*</span></label>
+                                            <input id="idrac_ip_detail_idc" name="idrac_ip" style="width: 50%;" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-inline row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="env" class="col-sm-4 control-label text-right">所属环境<span class="red-fonts">*</span></label>
+                                            <input id="env_detail_idc" name="env" style="width: 50%;" placeholder="env" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label for="env" class="col-sm-4 control-label text-right">IDC<span class="red-fonts">*</span></label>
+                                            <input id="idc_detail_idc" name="idc" style="width: 50%;" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-inline row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="sn_code" class="col-sm-4 control-label text-right">SN 码</label>
+                                            <input id="sn_code_detail_idc" name="sn_code" style="width: 50%;" placeholder="server_brand" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                        </div>
+
+                                        <div class="form-group col-sm-6">
+                                            <label for="cabinet_num" class="col-sm-4 control-label text-right">机柜编号</label>
+                                            <input id="cabinet_num_detail_idc" name="cabinet_num" style="width: 50%;" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-inline row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="server_brand" class="col-sm-4 control-label text-right">服务器品牌</label>
+                                            <input id="server_brand_detail_idc" name="server_brand" style="width: 50%;" placeholder="server_brand" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                        </div>
+
+                                        <div class="form-group col-sm-6">
+                                            <label for="server_model" class="col-sm-4 control-label text-right">服务器型号</label>
+                                            <input id="server_model_detail_idc" name="server_model" style="width: 50%;" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-inline row">  
+                                        <div class="form-group col-sm-6">
+                                            <label for="os_version" class="col-sm-4 control-label text-right">系统版本</label>
+                                            <input id="os_version_detail_idc" name="os_version" style="width: 50%;"  type="text" class="form-control" aria-required="true" readonly="readonly">
+                                        </div>
+
+                                        <div class="form-group col-sm-6">
+                                            <label for="cpu_count" class="col-sm-4 control-label text-right">CPU 核数</label>
+                                            <input id="cpu_count_detail_idc" name="cpu_count" style="width: 50%;" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-inline row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="mem" class="col-sm-4 control-label text-right">内存(GB)</label>
+                                            <input id="mem_detail_idc" name="mem" style="width:50%" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label for="swap" class="col-sm-4 control-label text-right">SWAP</label>
+                                            <input id="swap_detail_idc" name="swap" style="width:50%" type="text" class="form-control" aria-required="true" readonly="readonly">
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-inline row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="disk" class="col-sm-4 control-label text-right">物理磁盘</label>
+                                            <textarea id="disk_detail_idc" name="disk" style="width:50%" class="form-control" aria-required="true" rows="3" readonly="readonly"></textarea>
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label for="disk_mount" class="col-sm-4 control-label text-right">分区挂载</label>
+                                            <textarea id="disk_mount_detail_idc" name="disk_mount" style="width: 50%;" class="form-control" aria-required="true" rows="3" readonly="readonly"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-inline row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="status" class="col-sm-4 control-label text-right">状态</label>
+                                            <input id="status_detail_idc" name="status" style="width: 50%;" placeholder="status" type="text" class="form-control" aria-required="true" readonly>
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label for="monitor_status" class="col-sm-4 control-label text-right">监控状态</label>
+                                            <input id="monitor_status_detail_idc" name="monitor_status" style="width: 50%;" placeholder="monitor_status" type="text" class="form-control" aria-required="true" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-inline row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="online_time" class="col-sm-4 control-label text-right">上架时间</label>
+                                            <input id="online_time_detail_idc" name="online_time" style="width: 50%;" type="text" class="form-control" aria-required="true" readonly>
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label for="offline_time" class="col-sm-4 control-label text-right">下线时间</label>
+                                            <input id="offline_time_detail_idc" name="offline_time" style="width: 50%;" type="text" class="form-control" aria-required="true" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-inline row">
+                                        <div class="form-group col-sm-6">
+                                            <label for="expired_time" class="col-sm-4 control-label text-right">过保时间</label>
+                                            <input id="expired_time_detail_idc" name="expired_time" style="width: 50%;" type="text" class="form-control" aria-required="true" readonly>
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label for="offline_time" class="col-sm-4 control-label text-right">更新时间</label>
+                                            <input id="last_update_time_detail_idc" name="last_update_time" style="width: 50%;" type="text" class="form-control" aria-required="true" readonly>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary exit-btn" data-dismiss="modal">退出</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+                <!-- 模态框结束 --> 
+
                 <!-- 删除IDC模态框 -->
                 <div class="modal fade" id='ServerIdcDeleteModal'>
                     <div class="modal-dialog">
@@ -679,12 +832,20 @@ $.getJSON("{% url 'server_idc_list' %}",function(data){
         str += '<td class="text-center">'+v.hostname+'</td>'
         str += '<td class="text-center">'+v.env+'</td>'
         str += '<td class="text-center">'+v.cpu_count+'</br>'+v.mem+'</br>'+v.os_version+'</td>'
-        str += '<td class="text-center">'+v.disk+'</td>'
+        str += '<td class="text-left">'+v.disk+'</td>'
         str += '<td class="text-center">'+v.idc_id+'</td>'
-        str += '<td class="text-center">'+v.status+'</td>'
-        str += '<td class="text-center">'+v.monitor_status+'</td>'
+        if(v.status == 'Running'){
+            str += '<td class="text-center"><span class="badge label-primary">运行中</span></td>'
+        }else{
+            str += '<td class="text-center"><span class="badge label-danger">已停止</span></td>'
+        };
+        if(v.monitor_status == "0"){
+            str += '<td class="text-center"><span class="badge label-primary">监控中</span></td>'
+        }else{
+            str += '<td class="text-center"><span class="badge label-danger">未监控</span></td>'
+        };
         str += '<td class="text-center">'+v.last_update_time+'</td>'
-        str += '<td class="text-center"><button class="btn btn-sm btn-info server_detail" data-id="'+v.id+'">详情</button>'
+        str += '<td class="text-center"><button class="btn btn-sm btn-info server_idc_detail" data-id="'+v.id+'">详情</button>'
         str += '<div class="btn-group">'
         str += '<button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2">管理<span class="caret"></span></button>'
         str += '<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">'
@@ -931,6 +1092,44 @@ $("#server_idc_update_btn").click(function(){
     return false;
 });
 
+<!--IDC服务器详情-->
+$(document).on("click",".server_idc_detail",function(){
+    var id = $(this).attr("data-id")
+    var url = "{% url 'server_idc_info' %}?id=" + id
+    $.getJSON(url,function(data){
+        if(data.result==0){
+            data = data.server_info
+            $("#id_detail_idc").val(data.id)
+            $("#private_ip_detail_idc").val(data.private_ip)
+            $("#public_ip_detail_idc").val(data.public_ip)
+            $("#idrac_ip_detail_idc").val(data.idrac_ip)
+            $("#ssh_port_detail_idc").val(data.ssh_port)
+            $("#env_detail_idc").val(data.env.name)
+            $("#idc_detail_idc").val(data.idc_id)
+            $("#sn_code_detail_idc").val(data.sn_code)
+            $("#cabinet_num_detail_idc").val(data.cabinet_num)
+            $("#idrac_ip_detail_idc").val(data.idrac_ip)
+            $("#server_brand_detail_idc").val(data.server_brand)
+            $("#server_model_detail_idc").val(data.server_model)
+            $("#os_version_detail_idc").val(data.os_version)
+            $("#cpu_count_detail_idc").val(data.cpu_count)
+            $("#mem_detail_idc").val(data.mem)
+            $("#swap_detail_idc").val(data.swap)
+            $("#disk_detail_idc").val(data.disk)
+            $("#disk_mount_detail_idc").val(data.disk_mount)
+            $("#status_detail_idc").val(data.status)
+            $("#monitor_status_detail_idc").val(data.monitor_status)
+            $("#online_time_detail_idc").val(data.online_time)
+            $("#offline_time_detail_idc").val(data.offline_time)
+            $("#expired_time_detail_idc").val(data.expired_time)
+            $("#last_update_time_detail_idc").val(data.last_update_time)
+            $('#ServerIdcDetailModal').modal('show')
+        }else{
+            swal("OH,My God",data.msg,"error")
+        };
+   });
+});
+
 <!--删除IDC服务器-->
 $(document).on("click",".server_idc_del",function(){
    var id = $(this).attr('data-id')
@@ -938,7 +1137,7 @@ $(document).on("click",".server_idc_del",function(){
    $("#data-del-idc").html(data)
    $('#ServerIdcDeleteModal').modal('show')
    $(".del-sure-idc").attr('data-id',id)
-})
+});
 
 $(".del-sure-idc").click(function(){
    var id = $(this).attr('data-id')

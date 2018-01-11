@@ -2,6 +2,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from . import views,server,idc,cmdb
+from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     url(r'^server/',include([
@@ -17,6 +18,8 @@ urlpatterns = [
             url(r'^list/$',server.ServerIdcListView.as_view(),name="server_idc_list"),
             url(r'^add/$',server.ServerIdcAddView.as_view(),name="server_idc_add"),
             url(r'^update/$',server.ServerIdcUpdateView.as_view(),name="server_idc_update"),
+            url(r'^info/$',server.ServerIdcInfoView.as_view(),name="server_idc_info"),
+            url(r'^refresh/$',csrf_exempt(server.ServerIdcRefreshView.as_view()),name="server_idc_refresh"),
         ])),
     ])),
     url(r'^idc/',include([
