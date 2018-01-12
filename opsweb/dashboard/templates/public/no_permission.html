@@ -1,25 +1,17 @@
 {% extends "public/layout.html" %}
 
-{% block navbar %}
-
+{% block breadcrumb %}
+Error Page
 {% endblock %}
-
-{% block css %}
-    <style>
-    #page-wrapper{margin: 0px;}
-    #content-header{display: none;}
-    </style>
-{% endblock %}
-
 
 {% block body %}
-    <h1><p class="text-center">操作失败</p></h1>
-    <h3>><p class="text-center">{{ errmsg }}</p></h3>
+    <h1><p class="text-center">操作失败,3s后会自动跳转</p></h1>
+    <h3><p class="text-center" style="color:red">抱歉，你没有权限，请联系运维人员</p></h3>
 {% endblock %}
 
 {% block js %}
     <script>
-        var next_url = "{{ next_url }}";
+        var next_url = "{{ next_uri }}";
         if (next_url == ""){
             next_url = "/"
         }

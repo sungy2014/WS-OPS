@@ -4,24 +4,25 @@ from django.views.generic import ListView,TemplateView,View
 from resources.models import IDC 
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required,permission_required
-from django.shortcuts import reverse
-#from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.shortcuts import reverse,redirect
 from accounts.permission.permission_required_mixin import PermissionRequiredMixin
 from resources.forms import IdcAddForm,IdcChangeForm
 import json
 from django.forms.models import model_to_dict
 from dashboard.utils.wslog import wslog_error,wslog_info
 
-
 class IdcListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
-    permission_required = "resources.add_idc"
-    permission_redirect_url = "users_list"
+    permission_required = "resources.view_idc"
+    permission_redirect_url = "index"
     template_name = "idc/idc_list.html"
     model = IDC
     paginate_by = 10
     ordering = "id"
 
-class IdcAddView(LoginRequiredMixin,TemplateView):
+class IdcAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
+    permission_required = "resources.add_idc"
+    permission_redirect_url = "idc_list"
+
     template_name = 'idc/idc_add.html'
 
     def post(self,request):
@@ -41,10 +42,19 @@ class IdcAddView(LoginRequiredMixin,TemplateView):
         return JsonResponse(ret)
 
 class IdcChangeView(LoginRequiredMixin,View):
+    permission_required = "resources.add_idc"
+    permission_redirect_url = "idc_list"
+
     def get(self,request):
-        
+
         ret = {"result":0,"msg":None}
         idc_id = request.GET.get("id",0)
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
 
         try:
             idc_obj = IDC.objects.get(id__exact=idc_id)
@@ -68,6 +78,13 @@ class IdcChangeView(LoginRequiredMixin,View):
     def post(self,request):
         
         ret = {"result":0,"msg":None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         idc_id = request.POST.get("id",0)
         idc_form = IdcChangeForm(request.POST)
 
@@ -103,9 +120,19 @@ class IdcChangeView(LoginRequiredMixin,View):
         return JsonResponse(ret)
 
 class IdcDeleteView(LoginRequiredMixin,View):
+    permission_required = "resources.delete_idc"
+
     def get(self,request):
-        idc_id = request.GET.get('id',None)
         ret = {'result':0,'msg': None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
+        idc_id = request.GET.get('id',None)
+
         try:
             idc = IDC.objects.get(id=idc_id)
             idc.delete()

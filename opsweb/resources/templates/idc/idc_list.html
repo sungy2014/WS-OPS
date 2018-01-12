@@ -10,10 +10,12 @@
 
 <!-- IDC列表 -->
 <table class="table table-striped table-bordered table-hover " id="idc_list_table">
+{% if perms.resources.add_idc %}
 <caption>
     <a href="{% url 'idc_add' %}" class="btn btn-sm btn-primary "> 添加 IDC</a> 
     </br>
 </caption>
+{% endif %}
 <thead>
     <tr>
         <th class="text-center">序号</th>
@@ -173,6 +175,7 @@ $(".update_btn").click(function(){
     var id = $(this).attr("data-id")
     var url = "{% url 'idc_change' %}?id="+id
     $.getJSON(url,function(data){
+        console.log(data)
         if(data.result==0){
             data = data.idc_info
             $("#id").val(data.id)
@@ -182,11 +185,11 @@ $(".update_btn").click(function(){
             $("#phone").val(data.phone)
             $("#email").val(data.email)
             $("#address").val(data.address)
+            $("#UpdateModal").modal("show")
         }else{
             swal("Oh,MyGod",data.msg,"error")
-        } 
+        }; 
     });
-    $("#UpdateModal").modal("show")
 });
 
 $("#idc_update_btn").click(function(){
@@ -221,8 +224,9 @@ $(".del_btn").click(function(){
 $(".del-sure").click(function(){
     var idc_id = $(this).attr('data-id')
     var url = "{% url 'idc_delete' %}?id=" + idc_id
-    $("#DeleteModel").modal('hide')
+    $("#DeleteModal").modal('hide')
     $.getJSON(url,function(data){
+        console.log(data)
         if(data['result']==0){
                 swal({
                     title: "Good",

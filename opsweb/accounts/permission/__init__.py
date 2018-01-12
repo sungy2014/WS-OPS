@@ -37,7 +37,7 @@ class PermissionListView(LoginRequiredMixin,ListView):
         queryset = super(PermissionListView,self).get_queryset()
         search_name = self.request.GET.get('search',None)
         if search_name:
-            queryset = queryset.filter(name__icontains=search_name)
+            queryset = queryset.filter(codename__icontains=search_name)
         return queryset
     
     # 获取要展示的页数范围,这里是固定显示多少页

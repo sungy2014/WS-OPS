@@ -282,7 +282,6 @@ $(".users_list_status").click(function(){
 
 <!--更新用户组-->
 $(".users_group_modify").click(function(){
-    $("#user_group_modal").modal('show')
     var uid = $(this).attr('data-id')
     var url = "{% url 'users_modify_group' %}?id="+uid
     $.getJSON(url,function(data){
@@ -299,6 +298,7 @@ $(".users_group_modify").click(function(){
             })
             $("#user_id").val(uid)
             multiselect_group()
+            $("#user_group_modal").modal('show')
         }else{
             swal("Oh,MyGod",data.msg,'error')
         }
@@ -354,11 +354,11 @@ $(".users_change_btn").click(function(){
             $("#cn_name_change").val(data.user_obj.cn_name)
             $("#email_change").val(data.user_obj.email)
             $("#phone_change").val(data.user_obj.phone)
+            $("#UserEditModal").modal("show")
         }else{
                 swal("Oh,My God",data.msg,"error")
         } 
     });
-    $("#UserEditModal").modal("show")
 });
 
 $("#user_change_btn").click(function(){
@@ -426,17 +426,21 @@ $(".del-sure").click(function(){
     var uid = $(this).attr('data-id')
     var url = "{% url 'users_delete' %}?uid=" + uid
     $.getJSON(url,function(data){
-       swal({
-             title:"Good",
-             text:data.msg,
-             type:'success',
-             confirmButtonText:"确定"
-             },
-             function(){
-                location.reload()
-           })
+        if(data.result==0){
+            swal({
+                title:"Good",
+                text:data.msg,
+                type:'success',
+                confirmButtonText:"确定"
+                },
+                function(){
+                    location.reload()
+            })
+        }else{
+            swal("Oh,My God",data.msg,"error")
+        }
    })
-})  
+});  
 <!--删除用户结束-->
 
 </script>

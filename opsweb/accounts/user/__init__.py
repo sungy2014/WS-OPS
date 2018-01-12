@@ -3,11 +3,15 @@ from django.contrib.auth.models import User,Group
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse,HttpResponse
 from accounts.forms import UserAddForm,UserInfoChangePwdForm,UserInfoChangeForm
+from accounts.permission.permission_required_mixin import PermissionRequiredMixin
 from accounts.models import UserExtend
 import json
 from django.db.models import Q
 
-class UserListView(LoginRequiredMixin,ListView):
+class UserListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = "auth.view_user"
+    permission__redirect_url = "index"
+
     template_name = "user/users_list.html"
     model = User
     paginate_by = 10
@@ -66,9 +70,18 @@ class UserListView(LoginRequiredMixin,ListView):
 
 
 class UserModifyStatusView(LoginRequiredMixin,View):
+    permission_required = "auth.change_user"
+
     def post(self,request,*args,**kwargs):
-        id = request.POST.get("id",0)
         ret={'result':0}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret) 
+
+        id = request.POST.get("id",0)
         try:
             user = User.objects.get(id=id)
             user.is_active = True if user.is_active == False else False
@@ -80,9 +93,19 @@ class UserModifyStatusView(LoginRequiredMixin,View):
         return JsonResponse(ret)
 
 class UserModifyGroupView(LoginRequiredMixin,View):
+    permission_required = "auth.change_user"
+
     def get(self,request):
-        uid = request.GET.get('id',0)
         ret = {'result':0,'msg':None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
+        uid = request.GET.get('id',0)
+
         try:
             user_obj = User.objects.get(id=uid)
         except User.DoesNotExist:
@@ -96,9 +119,17 @@ class UserModifyGroupView(LoginRequiredMixin,View):
         return JsonResponse(ret)
 
     def post(self,request):
+        ret = {'result':0,'msg':None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         uid = request.POST.get('id',None)
         gid_list = request.POST.getlist('group_name',None)
-        ret = {'result':0,'msg':None}
+
         try:
             user_obj = User.objects.get(id=uid)
         except User.DoesNotExist:
@@ -128,11 +159,21 @@ class UserModifyGroupView(LoginRequiredMixin,View):
 
         return JsonResponse(ret)
 
-class UserAddView(LoginRequiredMixin,TemplateView):
+class UserAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
+    permission_required = "auth.add_user"
+    permission__redirect_url = "users_list"
+
     template_name = "user/users_add.html"
 
     def post(self,request):
         ret = {"result":0,"msg":None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         user_form = UserAddForm(request.POST)
 
         if not user_form.is_valid():
@@ -157,8 +198,17 @@ class UserAddView(LoginRequiredMixin,TemplateView):
         return JsonResponse(ret)
 
 class UserDeleteView(LoginRequiredMixin,View):
+    permission_required = "auth.delete_user"
+
     def get(self,request):
         ret = {"result":0,"msg":None}
+        
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         uid = request.GET.get("uid",0)
 
         try:
@@ -196,9 +246,17 @@ class UserInfoView(LoginRequiredMixin,TemplateView):
 用户个人中心 和 用户列表中的"更新用户信息"共用此逻辑
 '''
 class UserInfoChangeView(LoginRequiredMixin,View):
+    permission_required = "auth.change_user"
 
     def get(self,request):
         ret = {"result":0,"msg":None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         user_info = {}
         uid = request.GET.get("id",0)
         try:
@@ -217,6 +275,13 @@ class UserInfoChangeView(LoginRequiredMixin,View):
 
     def post(self,request):
         ret = {"result":0,"msg":None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required) and request.META.get('HTTP_REFERER','/').find("/accounts/users/list") != -1:
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         uid = request.POST.get("id",0)
         user_change_form = UserInfoChangeForm(request.POST)
         if not user_change_form.is_valid():
@@ -248,8 +313,17 @@ class UserInfoChangeView(LoginRequiredMixin,View):
 用户个人中心 和 用户列表中的"更新密码"共用此逻辑
 '''
 class UserInfoChangePwdView(LoginRequiredMixin,View):
+    permission_required = "auth.change_user"
+
     def post(self,request):
         ret = {"result":0,"msg":None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required) and request.META.get('HTTP_REFERER','/').find("/accounts/users/list") != -1:
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有权限,请联系运维!"
+            return JsonResponse(ret)
+
         uid = request.POST.get("id",0)
         user_changepwd_form = UserInfoChangePwdForm(request.POST)
         if not user_changepwd_form.is_valid():

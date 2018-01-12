@@ -21,5 +21,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(),name="index"),
-    url(r'^test/$', views.TestView.as_view(),name="test"),
+    url(r'^nopermission/(?P<next_uri>[\s\S]*)/$', views.NoPermissionView.as_view(),name="no_permission"),
 ]
