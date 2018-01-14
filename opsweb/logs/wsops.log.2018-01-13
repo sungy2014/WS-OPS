@@ -1,0 +1,4 @@
+2018-01-14 00:00:02,770-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:81]-该服务器: 10.82.40.75 状态 Stopping 所以需要删除其关联的CMDB
+2018-01-14 00:00:02,780-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:81]-该服务器: 10.82.40.77 状态 Stopping 所以需要删除其关联的CMDB
+2018-01-14 00:00:03,493-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:81]-该服务器: 172.17.92.122 状态 None 所以需要删除其关联的CMDB
+2018-01-14 00:00:03,497-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:81]-该服务器: 172.17.92.123 状态 None 所以需要删除其关联的CMDB

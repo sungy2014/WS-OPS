@@ -922,11 +922,11 @@ $(".server_update").click(function(){
             $("#ssh_port").val(data.ssh_port)
             $('#env option[value="'+data.env.id+'"]').attr("selected","selected")
             $('#idc option[value="'+data.idc.id+'"]').attr("selected","selected")
+            $('#UpdateModal').modal('show')
         }else{
             swal("OH,My God",data.msg,"error")
         };
     });
-    $('#UpdateModal').modal('show')
 });
 
 $("#server_update_btn").click(function(){
@@ -981,11 +981,11 @@ $(".server_detail").click(function(){
             $("#offline_time_detail").val(data.offline_time)
             $("#expired_time_detail").val(data.expired_time)
             $("#last_update_time_detail").val(data.last_update_time)
+            $('#DetailModal').modal('show')
         }else{
             swal("OH,My God",data.msg,"error")
         };
    });
-    $('#DetailModal').modal('show')
 });
 
 <!-- 删除Aliyun上的服务器-->

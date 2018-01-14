@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from resources.models import CmdbModel,ServerModel
 from resources.forms import CmdbAddForm,CmdbUpdateForm
+from accounts.permission.permission_required_mixin import PermissionRequiredMixin
 from dashboard.utils.wslog import wslog_error,wslog_info
 from dashboard.utils.utc_to_local import utc_to_local
 import json
@@ -99,7 +100,10 @@ class CmdbListView(LoginRequiredMixin,ListView):
         page_range = range(page_start,page_end)
         return page_range 
 
-class CmdbAddView(LoginRequiredMixin,TemplateView):
+class CmdbAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
+    permission_required = "resources.add_cmdbmodel"
+    permission_redirect_url = "cmdb_list"
+ 
     template_name = "cmdb/cmdb_add.html"
 
     def get_context_data(self,**kwargs):
@@ -113,6 +117,14 @@ class CmdbAddView(LoginRequiredMixin,TemplateView):
     def post(self,request):
 
         ret = {"result":0,"msg":None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'添加 cmdb 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret) 
+
+
         cmdb_add_form = CmdbAddForm(request.POST)
 
         if not cmdb_add_form.is_valid():
@@ -139,9 +151,17 @@ class CmdbAddView(LoginRequiredMixin,TemplateView):
         return JsonResponse(ret)
 
 class CmdbChangeView(LoginRequiredMixin,View):
+    permission_required = "resources.change_cmdbmodel"
 
     def get(self,request):
         ret = {"result":0,"msg":None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'修改 cmdb 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret)
+        
         cid = request.GET.get("id")
         
         ret = GetCmdbObj(cid,ret)
@@ -176,6 +196,12 @@ class CmdbChangeView(LoginRequiredMixin,View):
 
     def post(self,request):
         ret = {"result":0,"msg":None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'修改 cmdb 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret)
 
         cid = request.POST.get("id")
         ret = GetCmdbObj(cid,ret)
@@ -257,9 +283,17 @@ class CmdbInfoView(LoginRequiredMixin,View):
 
 
 class CmdbDeleteView(LoginRequiredMixin,View):
+    permission_required = "resources.delete_cmdbmodel"
 
     def post(self,request):
         ret = {"result":0,"msg":None}
+        
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'删除 cmdb 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         cid = request.POST.get("id")
 
         ret = GetCmdbObj(cid,ret)

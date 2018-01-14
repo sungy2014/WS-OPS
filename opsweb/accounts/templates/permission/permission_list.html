@@ -147,7 +147,6 @@
 <script>
 
 $(".btn-change").click(function(){
-    $("#perms_name_modal").modal("show")
     var p_id = $(this).attr("data-id")
     var url = "{% url 'permission_change_name' %}?id=" + p_id
     $("#perms_id").val(p_id)
@@ -155,6 +154,7 @@ $(".btn-change").click(function(){
     $.getJSON(url,function(data){
         if(data.result==0){
             $("#perms_name").val(data.name)
+            $("#perms_name_modal").modal("show")
         }else{
             swal("OH,MyGod",data.msg,"error") 
         }

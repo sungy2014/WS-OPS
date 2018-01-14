@@ -6,6 +6,7 @@ from resources.forms import ServerAliyunAddForm,ServerAliyunUpdateForm,ServerIdc
 from api.thirdapi.ansible_adhoc import ansible_adhoc
 from api.thirdapi.aliyun_describe_instance import AliyunDescribeInstances,AliyunDescribeInstanceAutoRenewAttribute
 from django.forms.models import model_to_dict
+from accounts.permission.permission_required_mixin import PermissionRequiredMixin
 import json
 from datetime import *
 from dashboard.utils.utc_to_local import utc_to_local
@@ -148,9 +149,17 @@ class ServerAliyunListView(LoginRequiredMixin,ListView):
         return page_range
 
 class ServerAliyunAddView(LoginRequiredMixin,View):
+    permission_required = "resources.add_servermodel"
 
     def post(self,request):
         ret = {"result":0,"msg":None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'添加 server 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret)  
+
         server_aliyun_add_form = ServerAliyunAddForm(request.POST)
         if not server_aliyun_add_form.is_valid():
             ret["result"] = 1
@@ -178,9 +187,16 @@ class ServerAliyunAddView(LoginRequiredMixin,View):
         return JsonResponse(ret)
 
 class ServerAliyunRefreshView(LoginRequiredMixin,View):
-    
+    permission_required = "resources.change_servermodel"
+
     def post(self,request):
         ret = {"result":0,"msg":None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'刷新 server 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret)
         server_id = request.POST.get("id",0)
 
         try:
@@ -240,9 +256,16 @@ class ServerAliyunInfoView(LoginRequiredMixin,View):
         return JsonResponse(ret)
 
 class ServerDeleteView(LoginRequiredMixin,View):
+    permission_required = "resources.delete_servermodel"
     
     def post(self,request):
         ret = {"result":0,"msg":None}
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'删除 server 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         sid = request.POST.get('id',0)
 
         try:
@@ -263,10 +286,17 @@ class ServerDeleteView(LoginRequiredMixin,View):
         return JsonResponse(ret)
 
 class ServerAliyunUpdateView(LoginRequiredMixin,View):
+    permission_required = "resources.change_servermodel"
 
     def get(self,request):
 
         ret = {"result":0,"msg":None}
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'删除 server 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         server_info = {}
         sid = request.GET.get("id",0)
 
@@ -293,6 +323,12 @@ class ServerAliyunUpdateView(LoginRequiredMixin,View):
 
     def post(self,request):
         ret = {"result":0,"msg":None}
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'删除 server 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         sid = request.POST.get('id',0)
         server_aliyun_update_form = ServerAliyunUpdateForm(request.POST)
 
@@ -409,8 +445,17 @@ class ServerIdcListView(LoginRequiredMixin,View):
         return JsonResponse(server_idc_list,safe=False)
 
 class ServerIdcAddView(LoginRequiredMixin,View):
+    permission_required = "resources.change_servermodel"
+
     def post(self,request):
         ret = {"result":0,"msg":None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'添加 server 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         server_idc_add_form = ServerIdcAddForm(request.POST)
 
         if not server_idc_add_form.is_valid():
@@ -429,8 +474,17 @@ class ServerIdcAddView(LoginRequiredMixin,View):
         return JsonResponse(ret)
 
 class ServerIdcUpdateView(LoginRequiredMixin,View):
+    permission_required = "resources.change_servermodel"
+
     def get(self,request):
         ret = {"result":0,"msg":None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'更新 server 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         server_info = {}
         sid = request.GET.get("id",0)
 
@@ -461,6 +515,12 @@ class ServerIdcUpdateView(LoginRequiredMixin,View):
 
     def post(self,request):
         ret = {"result":0,"msg":None}
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'更新 server 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         sid = request.POST.get('id',0)
         server_idc_update_form = ServerIdcUpdateForm(request.POST)
 
@@ -540,9 +600,17 @@ class ServerIdcInfoView(LoginRequiredMixin,View):
         return JsonResponse(ret)
 
 class ServerIdcRefreshView(View):
+    permission_required = "resources.change_servermodel"
 
     def post(self,request):
         ret = {"result":0,"msg":None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'更新 server 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         server_info = request.POST.dict()
         print("hahha:",server_info)
         if not server_info:

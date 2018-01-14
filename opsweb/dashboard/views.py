@@ -13,6 +13,7 @@ class NoPermissionView(TemplateView):
     def get_context_data(self,**kwargs):
         context = super(NoPermissionView, self).get_context_data(**kwargs)
         uri_name = self.kwargs.get("next_uri", "index")
+        print("hahah:",uri_name)
         try:
             next_uri = reverse(uri_name)
         except:

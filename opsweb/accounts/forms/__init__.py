@@ -42,8 +42,8 @@ class PermissionAddForm(forms.Form):
         codename_list = codename.split("_",1)
         if codename_list[0] not in permissons_list:
             raise forms.ValidationError("codename的权限操作必须是'增:add 删:delete 改:change 查:view'")
-        if codename_list[1] != content_type_obj.model:
-            raise forms.ValidationError("codename 必须以模型名结尾")
+#        if codename_list[1] != content_type_obj.model:
+#            raise forms.ValidationError("codename 必须以模型名结尾")
         if content_type_obj.permission_set.filter(codename__exact=codename): 
             raise forms.ValidationError("codename 在同一content_type 中必须唯一")
         return codename

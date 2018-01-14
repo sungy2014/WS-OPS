@@ -3,20 +3,33 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import Group,User,Permission
 from django.http import HttpResponse,JsonResponse,Http404
 from django.db.utils import IntegrityError
+from accounts.permission.permission_required_mixin import PermissionRequiredMixin
 from django.core.paginator import Paginator
 from accounts.forms import GroupAddForm
 import json
 
 
-class GroupListView(LoginRequiredMixin,ListView):
+class GroupListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = "auth.view_group"
+    permission_redirect_url = "index"
+
     template_name = "group/group_list.html"
     model = Group
     paginate_by = 10
     ordering = "id"
 
 class GroupAddView(LoginRequiredMixin,View):
+    permission_required = "auth.add_group"
+
     def post(self,request):
         ret = {'result':0,'msg':None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'添加组'的权限,请联系运维!"
+            return JsonResponse(ret) 
+
         group_form = GroupAddForm(request.POST)
         if not group_form.is_valid():
             ret['result'] = 1
@@ -32,9 +45,18 @@ class GroupAddView(LoginRequiredMixin,View):
         return JsonResponse(ret)
 
 class GroupDeleteView(LoginRequiredMixin,View):
+    permission_required = "auth.delete_group"
+
     def post(self,request):
         id = request.POST.get('id',0)
         ret = {'result':0,'msg':'Null'}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'删除组'的权限,请联系运维!"
+            return JsonResponse(ret) 
+
         try:
             g = Group.objects.filter(id=id)
             g.delete()
@@ -45,7 +67,10 @@ class GroupDeleteView(LoginRequiredMixin,View):
 
         return JsonResponse(ret)
             
-class GroupUserListView(LoginRequiredMixin,TemplateView):
+class GroupUserListView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
+    permission_required = "auth.view_group_user"
+    permission_redirect_url = "group_list"
+
     template_name = "group/group_user_list.html"
 
     def get_context_data(self,**kwargs):
@@ -66,10 +91,20 @@ class GroupUserListView(LoginRequiredMixin,TemplateView):
         return context
 
 class GroupUserDeleteView(LoginRequiredMixin,View):
+    permission_required = "auth.delete_group_user"
+
     def post(self,request):
+        ret = {'result':0,'msg':None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'删除组下面用户'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         uid = request.POST.get('uid',0)
         gid = request.POST.get('gid',0)
-        ret = {'result':0,'msg':None}
+
         try:
             user_obj = User.objects.get(id=uid)
         except User.DoesNotExist:
@@ -86,7 +121,10 @@ class GroupUserDeleteView(LoginRequiredMixin,View):
         ret['msg'] = "组%s内删除用户%s成功" %(group_obj.name,user_obj.username)
         return JsonResponse(ret)
 
-class GroupPermissionListView(LoginRequiredMixin,TemplateView):
+class GroupPermissionListView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
+    permission_required = "auth.view_group_permission"
+    permission_redirect_url = "group_list"
+
     template_name = "group/group_permission_list.html"
 
     def get_context_data(self,**kwargs):
@@ -107,9 +145,16 @@ class GroupPermissionListView(LoginRequiredMixin,TemplateView):
         return context
 
     def post(self,request):
+        ret = {'result':0,'msg':None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'添加组权限'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         gid = request.POST.get("id",0)
         perms_list = request.POST.getlist("group_permissions",None)
-        ret = {'result':0,'msg':None}
 
         try:
             group_obj = Group.objects.get(id=gid)
@@ -134,10 +179,19 @@ class GroupPermissionListView(LoginRequiredMixin,TemplateView):
         return JsonResponse(ret)
 
 class GroupPermissionDeleteView(LoginRequiredMixin,View):
+    permission_required = "auth.delete_group_permission"
+
     def get(self,request):
+        ret = {'result':0,'msg':None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'删除组权限'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         group_id = request.GET.get("gid",0)
         perm_id = request.GET.get("perm_id",0)
-        ret = {'result':0,'msg':None}
 
         try:
             group_obj = Group.objects.get(id__exact=group_id)

@@ -1,11 +1,15 @@
 from django.contrib.auth.models import User,Group,Permission,ContentType
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView,View,ListView
+from accounts.permission.permission_required_mixin import PermissionRequiredMixin
 from django.http import JsonResponse,HttpResponse
 from accounts.forms import PermissionAddForm
 import json
 
-class PermissionListView(LoginRequiredMixin,ListView):
+class PermissionListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = "auth.view_permission"
+    permission_redirect_url = "index" 
+
     template_name = "permission/permission_list.html"
     model = Permission
     paginate_by = 10
@@ -62,9 +66,18 @@ class PermissionListView(LoginRequiredMixin,ListView):
 
 
 class PermissionChangeNameView(LoginRequiredMixin,View):
+    permission_required = "auth.change_permission"
+
     def get(self,request,*args,**kwargs):
-        p_id = request.GET.get('id',None)
         ret = {'result':0}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'修改 permission 模型'的权限,请联系运维!"
+            return JsonResponse(ret)
+
+        p_id = request.GET.get('id',None)
         try:
             perm = Permission.objects.get(id__exact=p_id)
         except Permission.DoesNotExist:
@@ -75,9 +88,16 @@ class PermissionChangeNameView(LoginRequiredMixin,View):
         return JsonResponse(ret)
 
     def post(self,request):
+        ret = {'result':0}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'修改 permission 模型'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         p_id = request.POST.get('id',None)
         perm_name = request.POST.get('perms_name',None)
-        ret = {'result':0}
 
         try:
             perm = Permission.objects.get(id__exact=p_id)
@@ -101,7 +121,10 @@ class PermissionChangeNameView(LoginRequiredMixin,View):
         return  JsonResponse(ret)
 
 
-class PermissionAddView(LoginRequiredMixin,TemplateView):
+class PermissionAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
+    permission_required = "auth.add_permission"
+    permission_redirect_url = "permission_list"
+
     template_name = "permission/permission_add.html"
 
     def get_context_data(self,**kwargs):
@@ -111,6 +134,13 @@ class PermissionAddView(LoginRequiredMixin,TemplateView):
 
     def post(self,request):
         ret = {'result':0,'msg':None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'添加 permission 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret)        
+
         perms_form = PermissionAddForm(request.POST)
         
         if not perms_form.is_valid():
@@ -130,9 +160,18 @@ class PermissionAddView(LoginRequiredMixin,TemplateView):
 
 
 class PermissionDeleteView(LoginRequiredMixin,View):
+    permission_required = "auth.delete_permission"
+
     def get(self,request):
-        perm_id = request.GET.get("p_id",0)
         ret = {'result':0,'msg':None}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'删除 permission 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret)
+
+        perm_id = request.GET.get("p_id",0)
 
         try:
             perm_obj = Permission.objects.get(id__exact=perm_id)

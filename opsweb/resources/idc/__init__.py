@@ -43,7 +43,6 @@ class IdcAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
 
 class IdcChangeView(LoginRequiredMixin,View):
     permission_required = "resources.add_idc"
-    permission_redirect_url = "idc_list"
 
     def get(self,request):
 
