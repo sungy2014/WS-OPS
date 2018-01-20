@@ -1,0 +1,546 @@
+{% extends "public/layout.html" %}
+
+{% load poll_extras %}
+
+{% block breadcrumb %}
+工单系统 / 我的工单
+{% endblock %}
+
+{% block body %} 
+
+<div class="col-sm-12">
+    <table class="table table-striped table-bordered table-hover">
+        <caption>
+            <div>
+                <form class="form-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary" style="float:right">搜索</button>
+                    <div class="form-group" style="text-align:right;float: right;margin-right: 10px;">
+                        <input type="text" class="form-control" name="search" value="{{ search }}" placeholder="主题 | 模块名 | 详情">
+                    </div>
+                </form> 
+            </div>
+        </caption>  
+        <thead>
+            <tr>
+                <th class="text-center">主题</th>
+                <th class="text-center">紧急程度</th>
+                <th class="text-center">类型</th>
+                <th class="text-center">模块名称</th>
+                <th class="text-center">是否有SQL</th>
+                <th class="text-center">工单状态</th>
+                <th class="text-center">流程状态</th>
+                <th class="text-center">申请人</th>
+                <th class="text-center">申请时间</th>
+                <th class="text-center">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pub in object_list %}
+            <tr class="gradeX">
+                <td class="text-center" style="vertical-align: middle"><strong>{{ pub.title|truncatechars:10 }}</strong></td>
+                <td class="text-center" style="vertical-align: middle">{{ pub.get_level_display }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ pub.get_type_display }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ pub.module_name }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ pub.get_sql_display }}</td>
+                {% if pub.status == '0' %}
+                    <td class="text-center"><span class="badge label-primary">{{ pub.get_status_display }}</span></td>
+                {% elif pub.status == '1' %}
+                    <td class="text-center"><span class="badge label-success">{{ pub.get_status_display }}</span></td>
+                {% elif pub.status == '2' %}
+                    <td class="text-center"><span class="badge label-warnning">{{ pub.get_status_display }}</span></td>
+                {% else %}
+                    <td class="text-center"><span class="badge label-danger">{{ pub.get_status_display }}</span></td>
+                {% endif %}
+                <td class="text-center" style="vertical-align: middle">{{ pub.process.step }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ pub.applicant }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ pub.create_time|date:"Y-m-d H:i:s" }}</td>
+                <td class="text-center" style="vertical-align: middle">
+                    <button data-id="{{ pub.id }}" class="btn btn-sm btn-info cmdb_detail">详情</button>
+                    <button data-id="{{ pub.id }}" class="btn btn-sm btn-Primary cmdb_update">编辑</button>
+                    <button data-id="{{ pub.id }}" data-del="{{ pub.title }}" class="btn btn-sm btn-danger del-btn">删除</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- 列表分页 -->
+    <div class="text-center">
+        <ul class="pagination">
+            <li class="disabled"><a href="#">总页数: {{ page_obj.paginator.num_pages }}</a></li>
+
+            {% if page_obj.number != 1 %}
+                <li><a href={% url "workform_list" %}?page=1{{ search_uri }}>首页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">首页</a></li>
+            {% endif %}
+
+            {% if page_obj.has_previous %}
+                <li><a href={% url "workform_list" %}?page={{ page_obj.previous_page_number }}{{ search_uri }}>上一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">上一页</a></li>
+            {% endif %}
+
+            {% for page in page_range %}
+               {% if page == page_obj.number %}
+                  <li class="active"><a href={% url "workform_list" %}?page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% else %}
+                  <li><a href={% url "workform_list" %}?page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href={% url "workform_list" %}?page={{ page_obj.next_page_number }}{{ search_uri }}>下一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">下一页</a></li>
+            {% endif %}
+            
+            {% if page_obj.number != page_obj.paginator.num_pages %}
+                <li><a href={% url "workform_list" %}?page={{ page_obj.paginator.num_pages }}{{ search_uri }}>末页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">末页</a></li>
+            {% endif %}
+
+            <li class="disabled"><a href="#">总条数: {{ page_obj.paginator.count }}</a></li>
+        </ul>
+    </div>
+    <!-- 分页结束 -->    
+
+    <!-- 更新模态框 -->
+    <div class="modal fade"  id ="UpdateModal">   
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">更新 CMDB 信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="UpdateForm" class="Formvalid form-horizontal nice-validator n-yellow" novalidate="novalidate">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" id='id_update'>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="name" style="width:30%" class="control-label text-right">应用名 &nbsp<span class="red-fonts ">*</span></label>
+                                &nbsp<input name="name" id="name_update" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="ports" style="width:30%" class="control-label text-right">开启的端口 &nbsp</label>
+                                <input name="ports" id="ports_update" style="width:65%" placeholder="多个端口用分号;隔开" type="text" class="form-control" aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="type" style="width:30%" class="control-label text-right">所属环境 &nbsp<span class="red-fonts ">*</span></label>
+                                &nbsp<select name="env" id="env_update" style="width:65%" class="form-control choices" aria-required="true">
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="type" style="width:30%" class="control-label text-right">部署方式 &nbsp<span class="red-fonts ">*</span></label>
+                                <select name="way" id="way_update" style="width:65%" class="form-control choices" aria-required="true">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="ips" style="width:30%" class="control-label text-right">IP 地址 &nbsp<span class="red-fonts">*</span></label>
+                                &nbsp<select name="ips" id="ips_update" style="width:65%" multiple="multiple" class="form-control choices">
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="type" style="width:30%" class="control-label text-right">应用类型 &nbsp<span class="red-fonts ">*</span></label>
+                                <select name="type" id="type_update" style="width:65%" class="form-control choices" aria-required="true">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="describe" style="width:15%" class="control-label text-right">描述 &nbsp</label>
+                                <input name="describe" id="describe_update" placeholder="应用描述信息" type="text" style="width: 79%;" class="form-control" aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="path" style="width:15%" class="control-label text-right">部署路径 &nbsp<span class="red-fonts">*</span></label>
+                                <input name="path" id="path_update" placeholder="绝对路径，以斜线/开头" type="text" class="form-control" style="width: 79%;" aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="script" style="width:15%" class="control-label text-right">启动脚本 &nbsp<span class="red-fonts">*</span></label>
+                                <input name="script" id="script_update" placeholder="script" type="text" class="form-control" style="width: 79%;" aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="log" style="width:15%" class="control-label text-right">日志路径 &nbsp</label>
+                                <input name="log" id="log_update" placeholder="绝对路径，以斜线/开头" type="text" class="form-control" style="width: 79%;" aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12" id="status_update">
+                                <label style="width:15%" class="control-label text-right">状态 &nbsp<span class="red-fonts">*</span></label>
+                                    <div class="radio i-checks col-sm-offset-1" style="width:20%">
+                                        <label><input type="radio" value="0" class="status" name="status" checked="">&nbsp 运行中</label>
+                                    </div>
+                                    
+                                    <div class="radio i-checks" style="width:20%">
+                                        <label><input type="radio" value="1" class="status" name="status">&nbsp 待上线</label>
+                                    </div>
+                                    <div class="radio i-checks" style="width:20%">
+                                        <label><input type="radio" value="2" class="status" name="status">&nbsp 已停服</label>
+                                    </div>
+                            </div>
+                        </div>
+                    </form> 
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn_sub"  id = "cmdb_update_btn" >更新</button>
+                    <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+                    <button class="btn btn-info btn_reset" type="reset">重置</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <!-- 详情模态框 -->
+    <div class="modal fade"  id ="DetailModal">   
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">CMDB 信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="DetailForm" class="Formvalid form-horizontal nice-validator n-yellow" novalidate="novalidate">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" id='id_detail'>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="name" style="width:30%" class="control-label text-right ">应用名 <span class="red-fonts ">*&nbsp</span></label>
+                                &nbsp<input id='name_detail' name="name" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="way" style="width:30%" class="control-label text-right">部署方式 &nbsp</label>
+                                <input id='way_detail' name="way" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="ips" style="width:30%" class="control-label text-right">IP 地址 <span class="red-fonts">*&nbsp</span></label>
+                                &nbsp<textarea id="ips_detail" name="ips" style="width:65%" class="form-control" aria-required="true" rows="3" readonly="readonly">
+                                </textarea>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="ports" style="width:30%" class="control-label text-right">开启的端口 &nbsp</label>
+                                <textarea id="ports_detail" name="ports" style="width:65%" class="form-control" aria-required="true" rows="3" readonly="readonly">
+                                </textarea>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">  
+                            <div class="form-group col-sm-6">
+                                <label for="env" style="width:30%" class="control-label text-right">所属环境 <span class="red-fonts">*&nbsp</span></label>
+                                &nbsp<input id='env_detail' name="env" type="text" style="width:65%" class="form-control" aria-required="true" readonly>
+                            </div>
+                
+                             <div class="form-group col-sm-6">
+                                <label for="type" style="width:30%" class="control-label text-right">应用类型 <span class="red-fonts">*&nbsp</span></label>
+                                <input id='type_detail' name="type" type="text" style="width:65%" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">  
+                            <div class="form-group col-sm-12">
+                                <label for="path" style="width:15%" class="control-label text-right">部署路径 <span class="red-fonts">*&nbsp</span></label>
+                                <input id='path_detail' name="path" style="width: 79%;" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+                
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                             <div class="form-group col-sm-12">
+                                <label for="script" style="width:15%" class="control-label text-right">启动脚本 <span class="red-fonts">*&nbsp</span></label>
+                                <input id='script_detail' style="width: 79%;" name="script" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="log" style="width:15%" class="control-label text-right">日志路径 &nbsp</label>
+                                <input id='log_detail' name="log"style="width: 79%;" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="describe" style="width:15%" class="control-label text-right">描述 &nbsp</label>
+                                <textarea id="describe_detail" name="describe" style="width:79%" class="form-control" aria-required="true" rows="2" readonly="readonly">
+                                </textarea>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="online_time" style="width:30%" class="control-label text-right">上线时间 &nbsp</label>
+                                &nbsp<input id='online_time_detail' name="online_time" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="offline_time" style="width:30%" class="control-label text-right">下线时间 &nbsp</label>
+                                <input id='offline_time_detail' name="offline_time" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="last_update_time" style="width:30%" class="control-label text-right">最后修改时间 &nbsp</label>
+                                &nbsp<input id='last_update_time_detail' name="last_update_time" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12" id="status_detail">
+                                <label style="width:15%" class="control-label text-right">状态 <span class="red-fonts">*&nbsp</span></label>
+                                <div style="width:20%" class="radio i-checks col-sm-offset-1">
+                                    <label><input type="radio" value="0" class="status" name="status">运行中</label>
+                                </div>
+                                
+                                <div style="width:20%" class="radio i-checks">
+                                    <label><input type="radio" value="1" class="status" name="status">待上线</label>
+                                </div>
+                                <div style="width:20%" class="radio i-checks">
+                                    <label><input type="radio" value="2" class="status" name="status">已停服</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary exit-btn" data-dismiss="modal">退出</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <!-- 删除模态框 -->
+    <div class="modal fade" id='DeleteModal'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="data-del"></p>
+                    <p style="color:red"><b>你确认要删除吗?</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-warning del-sure" data-id=''>确认</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+
+$.getJSON("{% url 'get_cmdb_env' %}",function(data){
+    var env_str = ''
+    $.each(data,function(k,v){
+        env_str += '<option value='+v[0]+'>'+v[1]+'</option>'
+    });
+    $("#env_update").append(env_str)
+    $("#env_update").multiselect('rebuild')
+});
+
+$.getJSON("{% url 'get_cmdb_type' %}",function(data){
+    var type_str = ''
+    $.each(data,function(k,v){
+        type_str += '<option value='+v[0]+'>'+v[1]+'</option>'
+    });
+    $("#type_update").append(type_str)
+    $("#type_update").multiselect('rebuild')
+});
+
+$.getJSON("{% url 'get_cmdb_way' %}",function(data){
+    var way_str = ''
+    $.each(data,function(k,v){
+        way_str += '<option value='+v[0]+'>'+v[1]+'</option>'
+    });
+    $("#way_update").append(way_str)
+    $("#way_update").multiselect('rebuild')
+});
+
+<!--详情-->
+$(".cmdb_detail").click(function(){
+    var id = $(this).attr("data-id")
+    var url = "{% url 'cmdb_info' %}?id="+id
+    $("#status_detail input").removeAttr("checked");
+    $("#status_detail input").removeAttr("disabled");
+    $.getJSON(url,function(data){
+        if(data.result==0){
+            data = data.cmdb_info
+            $("#id_detail").val(data.id)
+            $("#name_detail").val(data.name)
+            $("#way_detail").val(data.way)
+            $("#ips_detail").val(data.ips)
+            $("#ports_detail").val(data.ports)
+            $("#env_detail").val(data.env)
+            $("#type_detail").val(data.type)
+            $("#path_detail").val(data.path)
+            $("#log_detail").val(data.log)
+            $("#script_detail").val(data.script)
+            $("#describe_detail").val(data.describe)
+            $("#online_time_detail").val(data.online_time)
+            $("#offline_time_detail").val(data.offline_time)
+            $("#last_update_time_detail").val(data.last_update_time)
+            $("#status_detail input[value='"+data.status+"']").attr("checked","checked")
+            $("#status_detail input[value!='"+data.status+"']").attr("disabled","disabled")
+        }else{
+            swal("OH,My God",data.msg,"error")
+        }
+    });
+    $("#DetailModal").modal("show")
+});
+
+
+<!--更新-->
+$(document).on('click',".cmdb_update",function(){
+    $("#status_update input").removeAttr("checked");
+    $(".choices").removeAttr("selected");
+    $(".choices").removeAttr("disabled");
+    $("#ips_update").multiselect('refresh')
+    $("#ips_update").empty()
+    var id = $(this).attr("data-id")
+    var url = "{% url 'cmdb_change' %}?id="+id
+    $.getJSON(url,function(data){
+        if(data.result==0){
+            data = data.cmdb_info
+            $("#id_update").val(data.id)
+            $("#name_update").val(data.name)
+            $("#ports_update").val(data.ports)
+            $("#path_update").val(data.path)
+            $("#log_update").val(data.log)
+            $("#script_update").val(data.script)
+            $("#describe_update").val(data.describe)
+            $("#status_update input[value='"+data.status+"']").prop("checked",true)
+            $("#way_update option[value='"+data.way+"']").prop("selected",true)
+            $("#env_update option[value='"+data.env+"']").prop("selected",true)
+            $("#env_update option[value!='"+data.env+"']").prop("disabled",true)
+            $("#type_update option[value='"+data.type+"']").prop("selected",true)
+            var ip_str = ''
+            $.each(data.ips_list,function(k,v){
+                if($.inArray(v.id,data.ips)>=0){
+                    ip_str += '<option value='+v.id+' selected="selected">'+v.private_ip+'</option>'
+                }else{
+                    ip_str += '<option value='+v.id+'>'+v.private_ip+'</option>'
+                }
+            })
+            $("#ips_update").append(ip_str)
+            $("#UpdateModal").modal("show")
+            $(".choices").multiselect('rebuild')
+        }else{
+            swal("OH,My God",data.msg,"error")
+        }
+    });
+});
+
+$(".choices").multiselect({
+    enableFiltering: true,
+    maxHeight: 200,
+    buttonWidth: '65%',
+    nonSelectedText: '请选择 IP 地址',
+    delimiterText: ';',
+    selectedClass: 'multiselect-selected',
+    enableCaseInsensitiveFiltering: true,
+    disableIfEmpty: true,
+});
+
+$("#cmdb_update_btn").click(function(){
+    var str = $("#UpdateForm").serialize()
+    var url = "{% url 'cmdb_change' %}"
+    $.post(url,str,function(data){
+        if(data.result==0){
+           $("#UpdateModal").modal("hide")
+           swal({
+             title:"Good",
+             text:data.msg,
+             type:'success',
+             confirmButtonText:"确定"
+             },
+             function(){
+                location.reload()
+           })
+       }else{
+            swal("OH,My God",data.msg,"error")
+       }; 
+    });
+    return false;
+});
+
+<!--删除-->
+$(".del-btn").click(function(){
+    var cid = $(this).attr("data-id")
+    var data = $(this).attr("data-del")
+    $(".del-sure").attr('data-id',cid)
+    $("#data-del").html(data)
+    $("#DeleteModal").modal("show")
+});
+
+$(".del-sure").click(function(){
+   var cid = $(this).attr('data-id')
+   var url = "{% url 'cmdb_delete' %}"
+   $('#DeleteModal').modal('hide')
+   $.post(url,{"id": cid},function(data){
+       if(data.result==0){
+           swal({
+             title:"Good",
+             text:data.msg,
+             type:'success',
+             confirmButtonText:"确定"
+             },
+             function(){
+                location.reload()
+           })
+       }else{
+            swal("OH,My God",data.msg,"error")
+       };
+   });
+   return false;
+});
+
+
+</script>
+
+{% endblock %}

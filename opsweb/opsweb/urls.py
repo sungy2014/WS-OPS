@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^resources/', include("resources.urls")),
     url(r'^monitor/', include("monitor.urls")),
     url(r'^api/', include("api.urls")),
+    url(r'^workform/', include("workform.urls")),
 ]

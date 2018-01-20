@@ -138,29 +138,36 @@
 </li> 
 <!--资产管理结束-->
 
-<!--监控管理-->
+<!--工单管理-->
 <li>
-    <a href="#"><i class="fa fa-bar-chart"></i> <span class="nav-label">监控系统</span><span class="fa arrow"></span></a>
-    <ul class="nav nav-second-level collapse" >
-        <li>
-            <a href="http://47.94.165.111:8080/dashboard/summary/">实时监控</a>
-        </li>
-        <li>
-            <a href="#">监控历史</a>
-        </li>
-    </ul>
-</li>
-<!--监控管理结束-->
+    <a href="#" ><i class="fa fa-database fa-fw"></i><span class="nav-label">工单管理</span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse" >
+            <li>
+                <a href="{% url 'pub_workform_add' %}" class="menu-link">上线工单</a>
+            </li>
+            <li>
+                <a href="#" class="menu-link">数据库工单</a>
+            </li>
+            <li>
+                <a href="#" class="menu-link">其他运维工单</a>
+            </li>
+            <li>
+                <a href="{% url 'workform_list' %}" class="menu-link">工单列表</a>
+            </li>
+            <li>
+                <a href="{% url 'my_workform' %}" class="menu-link">我的工单</a>
+            </li>
+        </ul>
+            
+</li> 
+<!--工单管理结束-->
 
 <!--发布管理-->
 <li>
     <a href="#"><i class="fa fa-eye-slash"></i> <span class="nav-label">发布系统</span><span class="fa arrow"></span></a>
     <ul class="nav nav-second-level collapse">
-        <li>
-	        <a href="#">发布工单</a>
-        </li>
         <li> 
-	        <a href="#">发布操作</a>
+	        <a href="#">自动化发布</a>
         </li>
         <li> 
 	        <a href="#">发布历史</a>
@@ -169,13 +176,24 @@
 </li>
 <!--发布管理结束-->         
 
+<!--监控管理-->
+<li>
+    <a href="#"><i class="fa fa-bar-chart"></i> <span class="nav-label">监控系统</span><span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level collapse" >
+        <li>
+            <a target='_blank' href="http://47.94.165.111:8080/dashboard/summary/">实时监控</a>
+        </li>
+        <li>
+            <a href="#">监控历史</a>
+        </li>
+    </ul>
+</li>
+<!--监控管理结束-->
+
 <!--数据库管理-->
 <li>
     <a href="#"><i class="fa fa-database"></i> <span class="nav-label">数据库管理</span><span class="fa arrow"></span></a>
     <ul class="nav nav-second-level collapse">
-        <li>
-	        <a href="#">数据库工单</a>
-        </li>
         <li> 
 	        <a href="#">数据库操作</a>
         </li>

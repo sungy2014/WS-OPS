@@ -1,0 +1,1098 @@
+{% extends "public/layout.html" %}
+
+{% block breadcrumb %} 
+发布系统 / 发布工单
+{% endblock %}
+
+{% block body %}
+
+<div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+    <ul id="myTabs" class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="">
+            <a href="#publish_application" id="pub_add-tab" role="tab" data-toggle="tab" aria-controls="publish_application" aria-expanded="false">发布 / 回滚申请</a>
+        </li>
+        <li role="presentation" class="active">
+            <a href="#publish_list" role="tab" id="pub_list-tab" data-toggle="tab" aria-controls="publish_list" aria-expanded="true">发布 / 回滚历史</a>
+        </li>
+        <li role="presentation" class="">
+            <a href="#publish_my" role="tab" id="pub_my-tab" data-toggle="tab" aria-controls="publish_my" aria-expanded="false">我的发布 / 回滚</a>
+        </li>
+        <li role="presentation" class="">
+            <a href="#publish_audit" role="tab" id="pub_audit-tab" data-toggle="tab" aria-controls="publish_audit" aria-expanded="false">审批</a>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div role="tabpanel" class="tab-pane fade" id="publish_application" aria-labelledby="home-tab">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>填写工单信息</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <form id="pub_addForm" class="form-horizontal nice-validator n-yellow Formvalid" novalidate="novalidate">
+                                    <div class="form-group">
+                                        <label for="pub_title" class="col-sm-2 control-label">主题<span class="red-fonts ">*</span></label>
+                                        <div class="col-sm-8">
+                                            <input id="pub_title" name="pub_title" placeholder="工单主题" type="text" class="form-control" aria-required="true">
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">类型<span class="red-fonts">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div class="col-sm-2">
+                                                <div class="radio i-checks">
+                                                    <label><input type="radio" value="publish" name="workform_type" checked="">发布</label>
+                                                </div>
+                                            </div>
+                                    
+                                            <div class="col-sm-2">
+                                                <div class="radio i-checks">
+                                                    <label><input type="radio" value="rollback" name="workform_type">回滚</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">优先级<span class="red-fonts">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div class="col-sm-2">
+                                                <div class="radio i-checks">
+                                                    <label><input type="radio" value="non-emergency" name="pub_level" checked="">一般</label>
+                                                </div>
+                                            </div>
+                                    
+                                            <div class="col-sm-2">
+                                                <div class="radio i-checks">
+                                                    <label><input type="radio" value="emergency" name="pub_level">紧急</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label for="pub_module" class="col-sm-2 control-label">发布模块名<span class="red-fonts ">*</span></label>
+                                        <div class="col-sm-8">
+                                            <select name="pub_module" id="pub_module" multiple="multiple" class="form-control">
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label for="pub_content" class="col-sm-2 control-label">发布说明<span class="red-fonts">*</span></label>
+                                        <div class="col-sm-8">
+                                            <textarea name='pub_content' id='pub_content' class="form-control" rows="5"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">是否有SQL<span class="red-fonts">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div class="col-sm-2">
+                                                <div class="radio i-checks">
+                                                    <label><input type="radio" value="NO" name="pub_SQL" checked="">无 SQL</label>
+                                                </div>
+                                            </div>
+                                    
+                                            <div class="col-sm-2">
+                                                <div class="radio i-checks">
+                                                    <label><input type="radio" value="YES" name="pub_SQL">有 SQL</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label for="pub_content" class="col-sm-2 control-label">SQL详情</label>
+                                        <div class="col-sm-8">
+                                            <textarea name='pub_SQL_detail' id='pub_SQL_detail' class="form-control" rows="5"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-8">
+                                            <input id="sql_file_url" name="sql_file_url" type="hidden" class="form-control" aria-required="true">
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label for="pub_attach" class="col-sm-2 control-label">SQL附件</label>
+                                        <div class="col-sm-8">
+                                            <span>仅支持<strong style="color:red">.txt</strong> 和 <strong style="color:red">.sql</strong> 文件</span>
+                                            <span>每次上传要选择需要上传的<strong style="color:red">全部</strong>文件</span>
+                                            <input id="fileupload" type="file" name="files[]" data-url="/upload/files" multiple>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="process-bar" class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-8 progress" id="progress_file_upload">
+                                            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <div class="col-sm-6 col-sm-offset-4">
+                                            <button id="pub_submit" class="btn btn-primary">提交</button>
+                                            <button class="btn btn-warning" type="reset">取消</button>
+                                            <button class="btn btn-info" type="reset">重置</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade active in" id="publish_list" aria-labelledby="profile-tab">
+            <br>
+            <table id="list_table" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">主题</th>
+                        <th class="text-center">类型</th>
+                        <th class="text-center">优先级</th>
+                        <th class="text-center">模块名</th>
+                        <th class="text-center">SQL有无</th>
+                        <th class="text-center">状态</th>
+                        <th class="text-center">申请人</th>
+                        <th class="text-center">审批人</th>
+                        <th class="text-center">上线人</th>
+                        <th class="text-center">申请时间</th>
+                        <th class="text-center">完成时间</th>
+                        <th class="text-center">详情</th>
+                    </tr>
+                </thead>
+                <tbody id='list_tbody'>
+                </tbody>
+            </table>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="publish_my" aria-labelledby="profile-tab">
+            <br>
+            <table id="my_table" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">主题</th>
+                        <th class="text-center">类型</th>
+                        <th class="text-center">优先级</th>
+                        <th class="text-center">模块名</th>
+                        <th class="text-center">SQL有无</th>
+                        <th class="text-center">状态</th>
+                        <th class="text-center">申请人</th>
+                        <th class="text-center">审批人</th>
+                        <th class="text-center">上线人</th>
+                        <th class="text-center">申请时间</th>
+                        <th class="text-center">审批时间</th>
+                        <th class="text-center">完成时间</th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                </thead>
+                <tbody id='my_tbody'>
+                </tbody>
+            </table>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="publish_audit" aria-labelledby="profile-tab">
+            <br>
+            <table id="audit_table" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">主题</th>
+                        <th class="text-center">类型</th>
+                        <th class="text-center">优先级</th>
+                        <th class="text-center">模块名</th>
+                        <th class="text-center">SQL有无</th>
+                        <th class="text-center">状态</th>
+                        <th class="text-center">申请人</th>
+                        <th class="text-center">申请时间</th>
+                        <th class="text-center">审批人</th>
+                        <th class="text-center">审批时间</th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                </thead>
+                <tbody id='audit_tbody'>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- 审批模态框 -->
+<div class="modal fade" id='auditModal'>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">审批</h4>
+            </div>
+            <div class="modal-body">
+                <form id="pub_auditForm" class="form-horizontal nice-validator n-yellow Formvalid" novalidate="novalidate">
+                    <div class="form-group">
+                        <label for="pub_title" class="col-sm-3 control-label">主题<span class="red-fonts ">*</span></label>
+                        <div class="col-sm-8">
+                            <input id="pub_title_audit" name="pub_title" placeholder="工单主题" type="text" class="form-control" aria-required="true" readonly="readonly">
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">类型<span class="red-fonts">*</span></label>
+                        <div class="col-sm-8">
+                            <div class="col-sm-2">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="workform_type_publish" value="publish" name="workform_type">发布</label>
+                                </div>
+                            </div>                   
+                            <div class="col-sm-2">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="workform_type_rollback" value="rollback" name="workform_type">回滚</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">优先级<span class="red-fonts">*</span></label>
+                        <div class="col-sm-8">
+                            <div class="col-sm-2">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="pub_level_non_emergency" value="non-emergency" name="pub_level">一般</label>
+                                </div>
+                            </div>            
+                            <div class="col-sm-2">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="pub_level_emergency" value="emergency" name="pub_level">紧急</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label for="pub_module" class="col-sm-3 control-label">模块名<span class="red-fonts ">*</span></label>
+                        <div class="col-sm-8">
+                            <input id="pub_module_audit" name="pub_module" type="text" class="form-control" aria-required="true" readonly="readonly">
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label for="pub_content" class="col-sm-3 control-label">说明<span class="red-fonts">*</span></label>
+                        <div class="col-sm-8">
+                            <textarea name='pub_content' id='pub_content_audit' class="form-control" rows="5" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">SQL有无<span class="red-fonts">*</span></label>
+                        <div class="col-sm-8">
+                            <div class="col-sm-3">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="SQL_no" value="NO" name="pub_SQL">无 SQL</label>
+                                </div>
+                            </div>         
+                            <div class="col-sm-3">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="SQL_yes" value="YES" name="pub_SQL">有 SQL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group" id='pub_SQL_detail_div'>
+                        <label for="pub_SQL_detail" class="col-sm-3 control-label">SQL详情</label>
+                        <div class="col-sm-8">
+                            <textarea name='pub_SQL_detail' id='pub_SQL_detail_audit' class="form-control" rows="5" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group" id="files_url_audit_div">
+                        <label for="files_url" class="col-sm-3 control-label">SQL附件</label>
+                        <div class="col-sm-8" id="files_url_audit">
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label for="QA_audit" class="col-sm-3 control-label">经理/QA审批意见<span class="red-fonts">*</span></label>
+                        <div class="col-sm-8">
+                            <textarea name='QA_audit' id='QA_audit' class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">经理/QA审批结果<span class="red-fonts">*</span></label>
+                        <div class="col-sm-8">
+                            <div class="col-sm-3">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="QA_audit_yes" value="YES" name="QA_audit_result" checked='checked'>允许</label>
+                                </div>
+                            </div>               
+                            <div class="col-sm-3">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="QA_audit_no" value="NO" name="QA_audit_result">不允许</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label for="OPS_audit" class="col-sm-3 control-label">OPS 备注<span class="red-fonts">*</span></label>
+                        <div class="col-sm-8">
+                            <textarea name='OPS_audit' id='OPS_audit' class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">OPS 操作结果<span class="red-fonts">*</span></label>
+                        <div class="col-sm-8">
+                            <div class="col-sm-3">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="OPS_pub_ok" value="YES" name="OPS_pub_result" checked=''>正常</label>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="OPS_pub_fail" value="NO" name="OPS_pub_result">有异常</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning ops-audit-sure" data-id=''>确认</button>
+                <button type="button" class="btn btn-warning qa-audit-sure" data-id=''>确认</button>
+                <button class="btn btn-info btn_reset" type="reset">重置</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>                                                                                    </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- 模态框结束 -->
+
+<!-- 发布详情模态框 -->
+<div class="modal fade" id='pub_detail_Modal'>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">详情</h4>
+            </div>
+            <div class="modal-body">
+                <form id="pub_detailForm" class="form-horizontal nice-validator n-yellow Formvalid" novalidate="novalidate">
+                    <div class="form-group">
+                        <label for="pub_title" class="col-sm-3 control-label">主题<span class="red-fonts ">*</span></label>
+                        <div class="col-sm-8">
+                            <input id="pub_title_detail" name="pub_title" placeholder="工单主题" type="text" class="form-control" aria-required="true" readonly="readonly">
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">类型<span class="red-fonts">*</span></label>
+                        <div class="col-sm-8">
+                            <div class="col-sm-2">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="workform_type_publish_detail" value="publish" name="workform_type">发布</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="workform_type_rollback_detail" value="rollback" name="workform_type">回滚</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">优先级<span class="red-fonts">*</span></label>
+                        <div class="col-sm-8">
+                            <div class="col-sm-2">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="non_emergency_detail" value="non-emergency" name="pub_level">一般</label>
+                                </div>
+                            </div>              
+                            <div class="col-sm-2">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="emergency_detail" value="emergency" name="pub_level">紧急</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label for="pub_module" class="col-sm-3 control-label">模块名<span class="red-fonts ">*</span></label>
+                        <div class="col-sm-8">
+                            <input id="pub_module_detail" name="pub_module" type="text" class="form-control" aria-required="true" readonly="readonly">
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label for="pub_content" class="col-sm-3 control-label">说明<span class="red-fonts">*</span></label>
+                        <div class="col-sm-8">
+                            <textarea name='pub_content' id='pub_content_detail' class="form-control" rows="5" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">SQL有无<span class="red-fonts">*</span></label>
+                        <div class="col-sm-8">
+                            <div class="col-sm-3">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="SQL_no_detail" value="NO" name="pub_SQL">无 SQL</label>
+                                </div>
+                            </div>            
+                            <div class="col-sm-3">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="SQL_yes_detail" value="YES" name="pub_SQL">有 SQL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group" id='SQL_detail_div'>
+                        <label for="pub_SQL_detail" class="col-sm-3 control-label">SQL详情</label>
+                        <div class="col-sm-8">
+                            <textarea name='pub_SQL_detail' id='pub_SQL_detail_detail' class="form-control" rows="5" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group" id="files_url_detail_div">
+                        <label for="files_url" class="col-sm-3 control-label">SQL附件</label>
+                        <div class="col-sm-8" id="files_url_detail">
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group" id="QA_audit_detail_div">
+                        <label for="QA_audit" class="col-sm-3 control-label">经理/QA审批意见<span class="red-fonts">*</span></label>
+                        <div class="col-sm-8">
+                            <textarea name='QA_audit' id='QA_audit_detail' class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group" id="QA_audit_result_detail_div">
+                        <label class="col-sm-3 control-label">经理/QA审批结果<span class="red-fonts">*</span></label>
+                        <div class="col-sm-8">
+                            <div class="col-sm-3">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="QA_audit_yes_detail" value="YES" name="QA_audit_result">允许</label>
+                                </div>
+                            </div>                
+                            <div class="col-sm-3">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="QA_audit_no_detail" value="NO" name="QA_audit_result">不允许</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group" id="OPS_audit_detail_div">
+                        <label for="OPS_audit" class="col-sm-3 control-label">OPS 备注<span class="red-fonts">*</span></label>
+                        <div class="col-sm-8">
+                            <textarea name='OPS_audit' id='OPS_audit_detail' class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group" id="OPS_pub_result_detail_div">
+                        <label class="col-sm-3 control-label">OPS 操作结果<span class="red-fonts">*</span></label>
+                        <div class="col-sm-8">
+                            <div class="col-sm-3">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="OPS_pub_ok_detail" value="YES" name="OPS_pub_result">正常</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="radio i-checks">
+                                    <label><input type="radio" id="OPS_pub_fail_detail" value="NO" name="OPS_pub_result">有异常</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info detail-sure" data-id=''>退出</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- 模态框结束 -->
+
+{% endblock %}
+
+{% block js %}
+
+<script>
+$.getJSON("/workform/pub_add",function(data){
+   data=data['module_name']
+   console.log(data)
+   var str=''
+   $.each(data,function(k,v){
+      str += '<option value="'+v["app_name"]+'">'+v["app_name"]+'</option>'
+   });
+   console.log(str)
+   $("#pub_module").append(str)
+});
+$(document).on('click','#pub_add-tab',function(){
+  $("#pub_module").multiselect({
+     enableFiltering: true,
+     maxHeight: 200,
+     buttonWidth: '100%',
+     numberDisplayed: 6,
+     nonSelectedText: '请选择模块名称',
+     delimiterText: ' ; ',
+     selectedClass: 'multiselect-selected',
+     enableCaseInsensitiveFiltering: true,
+  });
+});
+$('#fileupload').click(function(){
+    $(".file_already_upload,.files_upload_url").remove()
+    $("#progress_file_upload .progress-bar").css('width',0).text('0%')
+});
+$('#fileupload').fileupload({
+        dataType: 'json',
+        done: function (e, data) {
+              console.log(data)
+              if(data.result.result==0){
+                  $.each(data.result.files, function (index, file) {
+                      console.log(data.result.files)
+                      console.log(file)
+                      $('#fileupload').after($("<p class='file_already_upload'/>").html(file.name+"&nbsp&nbsp").append($("<a target='_blank' class='files_upload_url'/>").attr("href",data.result.file_url).text("预览")));
+                      var links = []; 
+                      $("a[target='_blank']").each(function(){
+                          links.push($(this).attr('href'))
+                      }); 
+                      console.log(links)
+                      $("#sql_file_url").val(decodeURIComponent(links.join(';')))
+                 });
+              }else{
+                     swal("OH,My God",data.result.msg,"error")
+              }
+        },    
+        progressall: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            console.log(data)
+            $('#progress_file_upload .progress-bar').css(
+                 'width',
+                 progress + '%'
+            );
+            $('#progress_file_upload .progress-bar').text(progress + '%');
+        }
+});
+$.getJSON("/workform/pub_list",function(data){
+   console.log(data)
+   data = data['pub_info']
+   var str = ''
+   $.each(data,function(k,v){
+      str += '<tr>'
+      str += '<td valign="middle">'+v['pub_title']+'</td>'
+      if(v['workform_type']=='publish'){
+     str += '<td class="text-center" style="color:green">发布</td>'
+      }else{
+         str += '<td class="text-center" style="color:red">回滚</td>'
+      };
+      if(v['pub_level']=='emergency'){
+          str += '<td class="text-center" style="color:red">紧急</td>'
+      }else{
+          str += '<td class="text-center" style="color:green">一般</td>'
+      };
+      str += '<td class="text-center">'+v['pub_module']+'</td>'
+      if(v['pub_SQL']=='YES'){
+          str += '<td class="text-center" style="color:green">'+v['pub_SQL']+'</td>'
+      }else{
+          str += '<td class="text-center">'+v['pub_SQL']+'</td>'
+      };
+      if(v['pub_status']== 3){
+          str += '<td class="text-center" style="color:blue">待 QA 审批...</td>'
+      }else if(v['pub_status']== 1){
+          str += '<td class="text-center" style="color:blue">待 OPS 处理...</td>'
+      }else if(v['pub_status']== 0){
+          str += '<td class="text-center" style="color:blue">待经理审批...</td>'
+      }else if(v['pub_status']== 5){
+          str += '<td class="text-center" style="color:green">处理完成</td>'
+      }else if(v['pub_status']== 6){
+          str += '<td class="text-center" style="color:red">经理/QA不允许操作</td>'
+      }else if(v['pub_status']== 7){
+          str += '<td class="text-center" style="color:red">OPS 操作有异常</td>'
+      };
+      str += '<td class="text-center">'+v['pub_application_people']+'</td>'
+      str += '<td class="text-center">'+v['pub_audit_people']+'</td>'
+      str += '<td class="text-center">'+v['pub_operation_people']+'</td>'
+      str += '<td class="text-center">'+v['pub_submit_time']+'</td>'
+      str += '<td class="text-center">'+v['pub_done_time']+'</td>'
+      str += '<td class="text-center">'+'<button class="btn btn-sm btn-primary pub_detail_btn" data-id="'+v['id']+'">详情</button></td>'
+      str += '</tr>'      
+   });
+   $("#list_tbody").html(str)
+   datatable_list()
+});
+$.getJSON("/workform/pub_my",function(data){
+   console.log(data)
+   data = data['pub_my']
+   var str = ''
+   $.each(data,function(k,v){
+      str += '<tr>'
+      str += '<td>'+v['pub_title']+'</td>'
+      if(v['workform_type']=='publish'){
+         str += '<td class="text-center" style="color:green">发布</td>'
+      }else{
+         str += '<td class="text-center" style="color:red">回滚</td>'
+      };
+      if(v['pub_level']=='emergency'){
+          str += '<td class="text-center" style="color:red">紧急</td>'
+      }else{
+          str += '<td class="text-center" style="color:green">一般</td>'
+      };
+      str += '<td class="text-center">'+v['pub_module']+'</td>'
+      if(v['pub_SQL']=='YES'){
+          str += '<td class="text-center" style="color:green">'+v['pub_SQL']+'</td>'
+      }else{
+          str += '<td class="text-center">'+v['pub_SQL']+'</td>'
+      };
+      if(v['pub_status']== 3){
+          str += '<td class="text-center" style="color:blue">待 QA 审批...</td>'
+      }else if(v['pub_status']== 1){
+          str += '<td class="text-center" style="color:blue">待 OPS 处理...</td>'
+      }else if(v['pub_status']== 0){
+          str += '<td class="text-center" style="color:blue">待经理审批...</td>'
+      }else if(v['pub_status']== 5){
+          str += '<td class="text-center" style="color:green">处理完成</td>'
+      }else if(v['pub_status']== 6){
+          str += '<td class="text-center" style="color:red">经理/QA不允许操作</td>'
+      }else if(v['pub_status']== 7){
+          str += '<td class="text-center" style="color:red">OPS操作异常</td>'
+      };
+      str += '<td class="text-center">'+v['pub_application_people']+'</td>'
+      str += '<td class="text-center">'+v['pub_audit_people']+'</td>'
+      str += '<td class="text-center">'+v['pub_operation_people']+'</td>'
+      str += '<td class="text-center">'+v['pub_submit_time']+'</td>'
+      str += '<td class="text-center">'+v['audit_time']+'</td>'
+      str += '<td class="text-center">'+v['pub_done_time']+'</td>'
+      str += '<td class="text-center">'+'<button class="btn btn-sm btn-info pub_detail_btn" data-id="'+v['id']+'">详情</button>'+'</td>'
+      str += '</tr>'      
+   });
+   $("#my_tbody").html(str)
+   datatable_my()
+});
+$.getJSON("/workform/pub_audit",function(data){
+   console.log(data)
+   data = data['pub_audit']
+   var str = ''
+   $.each(data,function(k,v){
+      str += '<tr>'
+      str += '<td>'+v['pub_title']+'</td>'
+      if(v['workform_type']=='publish'){
+         str += '<td class="text-center" style="color:green">发布</td>'
+      }else{
+         str += '<td class="text-center" style="color:red">回滚</td>'
+      };
+      if(v['pub_level']=='emergency'){
+          str += '<td class="text-center" style="color:red">紧急</td>'
+      }else{
+          str += '<td class="text-center" style="color:green">一般</td>'
+      };
+      str += '<td class="text-center">'+v['pub_module']+'</td>'
+      if(v['pub_SQL']=='YES'){
+          str += '<td class="text-center" style="color:green">'+v['pub_SQL']+'</td>'
+      }else{
+          str += '<td class="text-center">'+v['pub_SQL']+'</td>'
+      };
+      if(v['pub_status']== 3){
+          str += '<td class="text-center" style="color:blue">待 QA 审批...</td>'
+      }else if(v['pub_status']== 1){
+          str += '<td class="text-center" style="color:blue">待 OPS 处理...</td>'
+      }else if(v['pub_status']== 0){
+          str += '<td class="text-center" style="color:blue">待经理审批...</td>'
+      };
+      str += '<td class="text-center">'+v['pub_application_people']+'</td>'
+      str += '<td class="text-center">'+v['pub_submit_time']+'</td>'
+      if(v['pub_status']== 3 || v['pub_status']== 0){
+         str += '<td class="text-center"><button class="btn btn-sm btn-primary QA_audit_btn" data-id="'+v['id']+'">经理/QA审批</button></td>'
+      }else if(v['pub_status']== 1){
+     str += '<td class="text-center">'+v['pub_audit_people']+'</td>'
+         str += '<td class="text-center">'+v['audit_time']+'</td>'
+     str += '<td class="text-center"><button class="btn btn-sm btn-primary OPS_audit_btn" data-id="'+v['id']+'">OPS 处理</button></td>'
+      };
+      str += '</tr>'
+   });
+   $("#audit_tbody").html(str)
+   datatable_audit()
+});
+$("#pub_submit").click(function(){
+   var str = $("#pub_addForm").serialize();
+   $.post('/workform/pub_add',str,function(data){
+      data = JSON.parse(data);
+      if(data["result"] == 0){
+          swal({
+                           title:"Good",
+                           text:"发布成功",
+                           type:"success",
+                           confirmButtonText:"确定"
+                           },
+                           function(){
+                           location.reload();
+                })
+       }else{
+                      swal("OH My God",data['msg'],"error")
+       };
+   });
+   return false;
+});
+$(document).on('click','.pub_detail_btn',function(){
+    $("#pub_detail_Modal").modal('show')
+    var id=$(this).attr('data-id')
+    var url="/workform/pub_info?id="+id
+    $("#pub_detailForm [type='radio']").removeAttr('checked') 
+    $("#SQL_detail_div").removeAttr('style')
+    $("#QA_audit_detail_div").removeAttr('style')
+    $("#QA_audit_result_detail_div").removeAttr('style')
+    $("#OPS_audit_detail_div").removeAttr('style')
+    $("#OPS_pub_result_detail_div").removeAttr('style')
+    $("#files_url_detail_div").removeAttr('style')
+    $(".haha,.hehe").remove()
+    $.getJSON(url,function(data){
+    console.log(data)
+        $("#pub_title_detail").val(data['pub_title'])
+    if(data['workform_type']=="publish"){
+            $("#workform_type_publish_detail").attr({checked:'checked'})
+            $("#workform_type_rollback_detail").attr('disabled','disabled')
+        }else {
+            $("#workform_type_rollback_detail").attr('checked','checked')
+            $("#workform_type_publish_detail").attr({disabled:'disabled'})
+        };
+        if(data['pub_level']=="emergency"){
+            $("#emergency_detail").attr({checked:'checked'})
+            $("#non_emergency_detail").attr('disabled','disabled')
+        }else if(data['pub_level']=="non-emergency"){
+            $("#non_emergency_detail").attr('checked','checked')
+            $("#emergency_detail").attr({disabled:'disabled'})
+        };
+        $("#pub_module_detail").val(data['pub_module'])
+        $("#pub_content_detail").val(data['pub_content'])
+        if(data['pub_SQL']=="YES"){
+            $("#SQL_yes_detail").attr('checked','checked')
+            $("#SQL_no_detail").attr('disabled','disabled')
+        if(!data['pub_SQL_detail']){
+        $("#SQL_detail_div").attr('style','display:none')
+            }else{
+        $("#pub_SQL_detail_detail").val(data['pub_SQL_detail'])
+            }
+            if(data['sql_file_url']){
+        var files=data['sql_file_url'].split(';')
+            $.each(files,function(k,v){
+            $('#files_url_detail').append($("<p class='haha'/>").html(v.replace('/uploads/','')+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp").append($("<a target='_blank' class='hehe'/>").attr("href",v).text("预览")));
+        });
+            }else{
+        $("#files_url_detail_div").attr('style','display:none')
+            }
+        }else if(data['pub_SQL']=="NO"){
+            $("#SQL_no_detail").attr('checked','checked')
+            $("#SQL_yes_detail").attr('disabled','disabled')
+            $("#SQL_detail_div").attr('style','display:none')
+        $("#files_url_detail_div").attr('style','display:none')
+        };
+        if(data['pub_status']==1 || data['pub_status']==5 || data['pub_status']==6 || data['pub_status']==7){
+           $("#QA_audit_detail").val(data['QA_audit'])
+           if(data['QA_audit_result']=='YES'){
+              $("#QA_audit_yes_detail").attr('checked','checked')
+              $("#QA_audit_no_detail").attr('disabled','disabled')
+           }else{
+              $("#QA_audit_no_detail").attr('checked','checked')
+              $("#QA_audit_yes_detail").attr('disabled','disabled')
+           };
+    }else{
+       $("#QA_audit_detail_div").attr('style','display:none')
+       $("#QA_audit_result_detail_div").attr('style','display:none')
+    };
+        if(data['pub_status']==5 || data['pub_status']==7){
+           $("#OPS_audit_detail").val(data['OPS_audit'])
+       if(data['OPS_pub_result']=='YES'){
+              $("#OPS_pub_ok_detail").attr('checked','checked')
+              $("#OPS_pub_fail_detail").attr('disabled','disabled')
+           }else{
+              $("#OPS_pub_fail_detail").attr('checked','checked')
+              $("#OPS_pub_ok_detail").attr('disabled','disabled')
+           };
+    }else{
+       $("#OPS_audit_detail_div").attr('style','display:none')
+           $("#OPS_pub_result_detail_div").attr('style','display:none')
+    };
+    })
+})
+$(document).on('click','.detail-sure',function(){
+   $("#pub_detail_Modal").modal('hide')
+   $('#pub_detailForm')[0].reset()
+})
+$(document).on('click','.QA_audit_btn',function(){
+    $("#auditModal").modal('show')
+    var id=$(this).attr('data-id')
+    var url="/workform/pub_info?id="+id
+    $(".qa-audit-sure").attr('data-id',id)
+    $(".haha-audit,.hehe-audit").remove()
+    $("#files_url_audit_div").removeAttr('style')
+    $("#pub_SQL_detail_div").removeAttr('style')
+    $("#pub_auditForm [type='radio']").removeAttr('checked')
+    $.getJSON(url,function(data){
+        $("#pub_title_audit").val(data['pub_title'])
+    if(data['workform_type']=='publish'){
+            $("#workform_type_publish").attr({checked:'checked'})
+            $("#workform_type_rollback").attr('disabled','disabled')
+        }else{
+            $("#workform_type_rollback").attr('checked','checked')
+            $("#workform_type_publish").attr({disabled:'disabled'})
+        };
+    if(data['pub_level']=='emergency'){
+        $("#pub_level_emergency").attr({checked:'checked'})
+        $("#pub_level_non_emergency").attr('disabled','disabled')
+        }else{
+        $("#pub_level_non_emergency").attr('checked','checked')
+        $("#pub_level_emergency").attr({disabled:'disabled'})
+        };
+        $("#pub_module_audit").val(data['pub_module'])
+        $("#pub_content_audit").val(data['pub_content'])
+    if(data['pub_SQL']=='YES'){
+            $("#SQL_yes").attr('checked','checked')
+        $("#SQL_no").attr('disabled','disabled')
+        if(!data['pub_SQL_detail']){
+                $("#pub_SQL_detail_div").attr('style','display:none')
+            }else{
+                $("#pub_SQL_detail_audit").val(data['pub_SQL_detail'])
+            }
+        if(data['sql_file_url']){
+                var files=data['sql_file_url'].split(';')
+                $.each(files,function(k,v){
+                    $('#files_url_audit').append($("<p class='haha-audit'/>").html(v.replace('/uploads/','')+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp").append($("<a target='_blank' class='hehe-audit'/>").attr("href",v).text("预览")));
+                });
+            }else{
+                $("#files_url_audit_div").attr('style','display:none')
+            };
+        }else{
+        $("#SQL_no").attr('checked','checked')
+            $("#SQL_yes").attr('disabled','disabled')
+            $("#pub_SQL_detail_div").attr('style','display:none')
+        $("#files_url_audit_div").attr('style','display:none')
+        };
+    })
+})
+$(".qa-audit-sure").click(function(){
+   var id=$(this).attr('data-id')
+   var QA_audit=$("#QA_audit").val()
+   var QA_audit_result=$('input:radio[name="QA_audit_result"]:checked').val()
+   var str='id='+id+'&QA_audit='+QA_audit+'&QA_audit_result='+QA_audit_result
+   console.log(str)
+   $.post('/workform/pub_audit',str,function(data){
+      data=JSON.parse(data)
+      if(data['result']==0){
+           swal({
+              title:"Good",
+              text:'Audit Success',
+              type:'success',
+              confirmButtonText:"确定"
+              },
+              function(){
+              location.reload()
+           })
+         }else{
+          swal("OH,My God",data['msg'],'error')
+        }
+   });
+   return false;
+})
+$(document).on('click','.OPS_audit_btn',function(){
+    $("#auditModal").modal('show')
+    var id=$(this).attr('data-id')
+    var url="/workform/pub_info?id="+id
+    $(".ops-audit-sure").attr('data-id',id)
+    $("#pub_auditForm [type='radio']").removeAttr('checked')
+    $(".haha-audit,.hehe-audit").remove()
+    $("#files_url_audit_div").removeAttr('style')
+    $("#pub_SQL_detail_div").removeAttr('style')
+    $.getJSON(url,function(data){
+        $("#pub_title_audit").val(data['pub_title'])
+    if(data['workform_type']=='publish'){
+            $("#workform_type_publish").attr({checked:'checked'})
+            $("#workform_type_rollback").attr('disabled','disabled')
+        }else{
+            $("#workform_type_rollback").attr('checked','checked')
+            $("#workform_type_publish").attr({disabled:'disabled'})
+        };
+        if(data['pub_level']=='emergency'){
+            $("#pub_level_emergency").attr({checked:'checked'})
+            $("#pub_level_non_emergency").attr('disabled','disabled')
+        }else{
+            $("#pub_level_non_emergency").attr('checked','checked')
+            $("#pub_level_emergency").attr({disabled:'disabled'})
+        };
+        $("#pub_module_audit").val(data['pub_module'])
+        $("#pub_content_audit").val(data['pub_content'])
+        if(data['pub_SQL']=='YES'){
+            $("#SQL_yes").attr('checked','checked')
+            $("#SQL_no").attr('disabled','disabled')
+        if(!data['pub_SQL_detail']){
+                $("#pub_SQL_detail_div").attr('style','display:none')
+            }else{
+                $("#pub_SQL_detail_audit").val(data['pub_SQL_detail'])
+            }
+        if(data['sql_file_url']){
+                var files=data['sql_file_url'].split(';')
+                $.each(files,function(k,v){
+                    $('#files_url_audit').append($("<p class='haha-audit'/>").html(v.replace('/uploads/','')+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp").append($("<a target='_blank' class='hehe-audit'/>").attr("href",v).text("预览")));
+                });
+            }else{
+                $("#files_url_audit_div").attr('style','display:none')
+            };
+        }else{
+            $("#SQL_no").attr('checked','checked')
+            $("#SQL_yes").attr('disabled','disabled')
+            $("#pub_SQL_detail_div").attr('style','display:none')
+        $("#files_url_audit_div").attr('style','display:none')
+        };
+    $("#QA_audit").val(data['QA_audit'])
+    if(data['QA_audit_result']=='YES'){
+            $("#QA_audit_yes").attr('checked','checked')
+            $("#QA_audit_no").attr('disabled','disabled')
+        }else{
+            $("#QA_audit_no").attr('checked','checked')
+            $("#QA_audit_yes").attr('disabled','disabled')
+        };
+    })
+})
+$(".ops-audit-sure").click(function(){
+   var id=$(this).attr('data-id')
+   var OPS_audit=$("#OPS_audit").val()
+   var OPS_pub_result=$('input:radio[name="OPS_pub_result"]:checked').val()
+   var str='id='+id+'&OPS_audit='+OPS_audit+'&OPS_pub_result='+OPS_pub_result
+   console.log(str)
+   $.post('/workform/pub_audit',str,function(data){
+      data=JSON.parse(data)
+      if(data['result']==0){
+           swal({
+              title:"Good",
+              text:'Audit Success',
+              type:'success',
+              confirmButtonText:"确定"
+              },
+              function(){
+              location.reload()
+           })
+         }else{
+          swal("OH,My God",data['msg'],'error')
+        }
+   });
+   return false;
+})
+function datatable_list(){
+  $("#list_table").dataTable({
+      "autoWidth":true,
+      "bDestroy":true,
+      "order": [[ 9, "desc" ]],
+      "bStateSave": true,
+      "sPaginationType": "full_numbers",
+      "language":{
+            "lengthMenu":"每页 _MENU_ 条记录",
+            "zeroRecords":"没有找到记录",
+            "sInfo": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 ),显示第 _START_ 至 _END_ 项(总共 _TOTAL_ 项)",
+            "infoEmpty": "无记录",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "sSearch": "搜索:",
+            "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上一页",
+                    "sNext": "下一页",
+                    "sLast": "末页"
+            }
+      }
+  })
+};
+function datatable_my(){
+  $("#my_table").dataTable({
+      "autoWidth":true,
+      "bDestroy":true,
+      "order": [[ 9, "desc" ]],
+      "bStateSave": true,
+      "sPaginationType": "full_numbers",
+      "language":{
+            "lengthMenu":"每页 _MENU_ 条记录",
+            "zeroRecords":"没有找到记录",
+            "sInfo": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 ),显示第 _START_ 至 _END_ 项(总共 _TOTAL_ 项)",
+            "infoEmpty": "无记录",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "sSearch": "搜索:",
+            "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上一页",
+                    "sNext": "下一页",
+                    "sLast": "末页"
+            }
+      }
+  })
+};
+function datatable_audit(){
+  $("#audit_table").dataTable({
+      "autoWidth":true,
+      "bDestroy":true,
+      "order": [[ 7, "desc" ]],
+      "bStateSave": true,
+      "sPaginationType": "full_numbers",
+      "language":{
+            "lengthMenu":"每页 _MENU_ 条记录",
+            "zeroRecords":"没有找到记录",
+            "sInfo": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 ),显示第 _START_ 至 _END_ 项(总共 _TOTAL_ 项)",
+            "infoEmpty": "无记录",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "sSearch": "搜索:",
+            "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上一页",
+                    "sNext": "下一页",
+                    "sLast": "末页"
+            }
+      }
+  })
+};
+</script>
+{% endblock %}

@@ -17,6 +17,7 @@ urlpatterns = [
             url(r'^env/',myapi.get_cmdb_related.GetCmdbEnvView.as_view(),name="get_cmdb_env"),
             url(r'^type/',myapi.get_cmdb_related.GetCmdbTypeView.as_view(),name="get_cmdb_type"),
             url(r'^way/',myapi.get_cmdb_related.GetCmdbWayView.as_view(),name="get_cmdb_way"),
+            url(r'^name/',myapi.get_cmdb_related.GetCmdbNameView.as_view(),name="get_cmdb_name"),
             url(r'^statistic/',myapi.get_dashboard_info.GetCmdbStatisticView.as_view(),name="get_cmdb_statistic"),
         ])),
     ])),

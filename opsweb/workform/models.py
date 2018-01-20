@@ -1,0 +1,127 @@
+from django.db import models
+from resources.models import CmdbModel
+from django.contrib.auth.models import User
+
+# Create your models here.
+
+class WorkFormBaseModel(models.Model):
+
+    LEVEL_CHOICES = (
+        ("0","重要且紧急"),
+        ("1","重要但不紧急"),
+        ("2","不重要但紧急"),
+        ("3","不重要且不紧急"),
+    )
+
+    STATUS_CHOICES = (
+        ("0","正常"),
+        ("1","完成"),
+        ("2","暂停"),
+        ("3","取消"),
+    )
+
+    title = models.CharField("工单标题",null=False,max_length=100,unique=True)
+    level = models.CharField("紧急程度",choices=LEVEL_CHOICES,null=False,max_length=50)
+    detail = models.CharField("详情",max_length=800,null=True)
+    status = models.CharField("工单状态",choices=STATUS_CHOICES,max_length=10,null=False,default="0")
+    applicant = models.CharField("申请人",max_length=50,null=True)
+    create_time = models.DateTimeField("工单创建时间",auto_now_add=True,null=True)
+    complete_time = models.DateTimeField("工单完成时间",auto_now_add=False,null=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        abstract = True
+        ordering = ["-id"]
+
+class ProcessModel(models.Model):
+
+    APPLICANT_CHOICES = (
+        ("0","终级大boss"),
+        ("1","用户所属组leader"),
+        ("2","QA组"),
+        ("3","OPS组"),
+        ("4","用户自己"),
+        ("5","指定具体某个用户"),
+        ("6","雪良组"),
+        ("7","君禄组"),
+        ("8","华俊组"),
+    )
+
+
+    step = models.CharField("流程步骤",max_length=50,null=False,unique=True)
+    step_id = models.PositiveSmallIntegerField("步骤id",null=False,unique=True)
+    applicant_require = models.CharField("有审核权限的用户或组",choices=APPLICANT_CHOICES,max_length=10,null=False)
+
+    def __str__(self):
+        return self.step
+
+    class Meta:
+        verbose_name = "工单流程表"
+        db_table = "process"
+        ordering = ["step_id"]
+
+class WorkFormTypeModel(models.Model):
+    TYPE_CHOICES = (
+        ("publish","应用发布"),
+        ("rollback","应用回滚"),
+        ("server_require","服务器申请"),
+        ("permission_require","权限申请"),
+        ("sql_exec","SQL执行"),
+        ("app_env_require","应用环境准备"),
+        ("others","其他申请"),
+    )
+
+    name = models.CharField("工单类型名称",null=False,max_length=50)
+    cn_name = models.CharField("工单类型中文名称",null=False,max_length=200)
+    process_step_id = models.CharField("需要执行的工单流程",null=True,max_length=500)
+    
+    def __str__(self):
+        return self.cn_name
+
+    class Meta:
+        verbose_name = "工单类型表"
+        db_table = "workform_type"
+
+class WorkFormModel(WorkFormBaseModel):
+
+    SQL_CHOICES = (
+        ("yes","有"),
+        ("no","无"),
+    ) 
+
+    type = models.ForeignKey(WorkFormTypeModel,verbose_name="工单类型,与工单类型表多对一关联",null=False)
+    module_name = models.CharField("模块名称",max_length=500,null=True)
+    sql = models.CharField("是否存在SQL",choices=SQL_CHOICES,max_length=10,null=False,default="no")
+    sql_detail = models.CharField("SQL语句",max_length=1000,null=True)
+    sql_file_url = models.CharField("SQL附件的URL",max_length=1000,null=True)
+    process = models.ManyToManyField(ProcessModel,verbose_name="与发布流程步骤多对多关联",null=True)
+
+    class Meta:
+        verbose_name = "工单列表"
+        db_table = "workform"
+
+class ApprovalFormModel(models.Model):
+    RESULT_CHOICES = (
+        ("0","同意执行"),
+        ("1","拒绝执行"),
+        ("2","暂缓执行"),
+        ("3","执行异常"),
+    )
+
+    approver_can = models.ManyToManyField(User,null=True,verbose_name="实际能审批/执行的用户集合")
+    approver = models.CharField("最终审批/执行人",max_length=20,null=True)
+    result = models.CharField("审批/执行结果",choices=RESULT_CHOICES,max_length=10,null=True)
+    approve_note = models.CharField("审批/执行备注",max_length=1000,null=True)
+    approval_time = models.DateTimeField("审批时间",auto_now_add=False,null=True)
+    workform= models.ForeignKey(WorkFormModel,verbose_name="关联发布工单记录",null=True)
+    process = models.ForeignKey(ProcessModel,verbose_name="与发布流程步骤多对一关联",null=True)
+
+    def __str__(self):
+        return "%s-%s" %(self.approver,self.result)
+
+    class Meta:
+        verbose_name = "审批表"
+        db_table = "approval_form"
+        ordering = ["-id"]

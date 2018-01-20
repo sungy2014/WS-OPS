@@ -19,3 +19,7 @@ class GetCmdbWayView(LoginRequiredMixin,View):
         way_list = list(CmdbModel.WAY_CHOICES)
         return JsonResponse(way_list,safe=False)
 
+class GetCmdbNameView(LoginRequiredMixin,View):
+    def get(self,request):
+        cmdb_name_list = list(CmdbModel.objects.filter(env__exact="online").values("id","name"))
+        return JsonResponse(cmdb_name_list,safe=False)

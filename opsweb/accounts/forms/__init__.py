@@ -74,7 +74,6 @@ class UserAddForm(forms.Form):
             if cleaned_data.get('password') != cleaned_data.get('password_again'):
                 raise forms.ValidationError("两次输入密码不一致,请重新输入")
             del cleaned_data['password_again']
-            print("hhaa:",cleaned_data)
             return cleaned_data
 
 
