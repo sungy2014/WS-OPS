@@ -17,10 +17,9 @@
     </ul>
     <div id="myTabContent" class="tab-content">
         <div role="tabpanel" class="tab-pane fade active in" id="server_aliyun" aria-labelledby="home-tab">
-            <br>
             <div class="col-sm-12">
                 <table class="table table-striped table-bordered table-hover " id="editable">
-                    <caption>
+                    <caption style="padding-top: 20px;padding-bottom: 2px;">
                         <div>
                             <form class="form-inline">
                                 {% csrf_token %}
@@ -845,7 +844,7 @@ $.getJSON("{% url 'server_idc_list' %}",function(data){
             str += '<td class="text-center"><span class="badge label-danger">未监控</span></td>'
         };
         str += '<td class="text-center">'+v.last_update_time+'</td>'
-        str += '<td class="text-center"><button class="btn btn-sm btn-info server_idc_detail" data-id="'+v.id+'">详情</button>'
+        str += '<td class="text-center"><button class="btn btn-sm btn-info server_idc_detail" style="margin-right:5px" data-id="'+v.id+'">详情</button>'
         str += '<div class="btn-group">'
         str += '<button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2">管理<span class="caret"></span></button>'
         str += '<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">'

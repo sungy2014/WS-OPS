@@ -35,3 +35,7 @@ class PubWorkFormAddForm(forms.Form):
                 else:
                     return cleaned_data
                 
+
+class WorkFormApprovalForm(forms.Form):
+    result = forms.ChoiceField(required=True,choices=ApprovalFormModel.RESULT_CHOICES,error_messages={"required":"必须选择一个审批结果"})
+    approve_note = forms.CharField(required=True,max_length=1000,error_messages={"required":"必须填写审批意见","max_length":"审批意见长度不能超过1000字符"})

@@ -93,6 +93,7 @@ def GetServerInfoFromApi(private_ip,server_aliyun_obj):
 
     return ret
 
+''' 阿里云上服务器列表 '''
 class ServerAliyunListView(LoginRequiredMixin,ListView):
     template_name = "server/server_list.html"
     model = ServerModel
@@ -148,6 +149,7 @@ class ServerAliyunListView(LoginRequiredMixin,ListView):
         page_range = range(page_start,page_end)
         return page_range
 
+''' 手动添加在平台上阿里云服务器 '''
 class ServerAliyunAddView(LoginRequiredMixin,View):
     permission_required = "resources.add_servermodel"
 
@@ -186,6 +188,7 @@ class ServerAliyunAddView(LoginRequiredMixin,View):
             ret["msg"] = "服务器 %s 添加成功" %(server_aliyun_add_form.cleaned_data.get("private_ip"))
         return JsonResponse(ret)
 
+''' 阿里云服务器 手动刷新 '''
 class ServerAliyunRefreshView(LoginRequiredMixin,View):
     permission_required = "resources.change_servermodel"
 
@@ -212,6 +215,7 @@ class ServerAliyunRefreshView(LoginRequiredMixin,View):
 
         return JsonResponse(ret)
 
+''' 阿里云服务器详情 '''
 class ServerAliyunInfoView(LoginRequiredMixin,View):
 
     def get(self,request):
@@ -255,6 +259,7 @@ class ServerAliyunInfoView(LoginRequiredMixin,View):
 
         return JsonResponse(ret)
 
+''' 服务器删除 '''
 class ServerDeleteView(LoginRequiredMixin,View):
     permission_required = "resources.delete_servermodel"
     
@@ -285,6 +290,7 @@ class ServerDeleteView(LoginRequiredMixin,View):
 
         return JsonResponse(ret)
 
+''' 阿里云服务器手动更新 '''
 class ServerAliyunUpdateView(LoginRequiredMixin,View):
     permission_required = "resources.change_servermodel"
 
@@ -363,10 +369,10 @@ class ServerAliyunUpdateView(LoginRequiredMixin,View):
 
         return JsonResponse(ret)
 
-
+''' 阿里云服务器自动添加进平台 '''
 def ServerAliyunAutoAdd():
     
-    local_result = ServerModel.objects.exclude(private_ip__startswith="10.").values("private_ip")
+    local_result = ServerModel.objects.exclude(private_ip__startswith="10.82").values("private_ip")
     local_server_list = [i['private_ip'] for i in local_result]
     local_server_add = []
     local_server_delete = []
@@ -427,6 +433,7 @@ def ServerAliyunAutoAdd():
                 wslog_info().info("服务器: %s 自动删除成功" %(s))
                 continue
 
+''' IDC服务器列表 '''
 class ServerIdcListView(LoginRequiredMixin,View):
     def get(self,resuest):
         server_idc_list = list(ServerModel.objects.filter(private_ip__startswith="10.").values('id','hostname','ssh_port','private_ip','env','os_version','cpu_count','mem','disk','idc_id','status','last_update_time'))
@@ -444,6 +451,7 @@ class ServerIdcListView(LoginRequiredMixin,View):
 
         return JsonResponse(server_idc_list,safe=False)
 
+''' IDC 服务器手动添加 '''
 class ServerIdcAddView(LoginRequiredMixin,View):
     permission_required = "resources.change_servermodel"
 
@@ -473,6 +481,7 @@ class ServerIdcAddView(LoginRequiredMixin,View):
             ret["msg"] = "服务器 %s 添加成功" %(server_idc_add_form.cleaned_data.get("private_ip"))
         return JsonResponse(ret)
 
+''' IDC 服务器手动更新 '''
 class ServerIdcUpdateView(LoginRequiredMixin,View):
     permission_required = "resources.change_servermodel"
 
@@ -558,6 +567,7 @@ class ServerIdcUpdateView(LoginRequiredMixin,View):
 
         return JsonResponse(ret)
 
+''' IDC 服务器详情 '''
 class ServerIdcInfoView(LoginRequiredMixin,View):
     def get(self,request):
         ret = {"result":0,"msg":None}
@@ -599,6 +609,7 @@ class ServerIdcInfoView(LoginRequiredMixin,View):
 
         return JsonResponse(ret)
 
+''' IDC 服务器刷新; 这个视图 是接收 IDC 跳板机上手动 post 过来的数据 '''
 class ServerIdcRefreshView(View):
     permission_required = "resources.change_servermodel"
 
@@ -612,7 +623,6 @@ class ServerIdcRefreshView(View):
             return JsonResponse(ret)
 
         server_info = request.POST.dict()
-        print("hahha:",server_info)
         if not server_info:
             ret["result"] = 1
             ret["msg"] = "未收到传过来的数据"

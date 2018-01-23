@@ -17,6 +17,7 @@ class IDC(models.Model):
         return "%s-%s" %(self.name,self.cn_name)
 
     class Meta:
+        verbose_name = "机房表"
         db_table = "idc"
         permissions = (
             ("view_idc","查看idc列表"),
@@ -90,8 +91,9 @@ class ServerModel(models.Model):
         return "%s-%s" %(self.hostname,self.private_ip)
 
     class Meta:
+        verbose_name = "服务器表"
         db_table = "server"
-        ordering = ["private_ip"]
+        ordering = ["-id"]
 
 class CmdbModel(models.Model):
 
@@ -143,8 +145,9 @@ class CmdbModel(models.Model):
         return self.name
 
     class Meta:
+        verbose_name = "CMDB表"
         db_table = 'cmdb'
-        ordering = ['name']
+        ordering = ['-id']
 
 class ServerStatisticByDayModel(models.Model):
     myday = models.DateField("统计时间",null=False,unique=True)
@@ -155,6 +158,7 @@ class ServerStatisticByDayModel(models.Model):
         return self.myday
 
     class Meta:
+        verbose_name = "服务器按天统计表"
         db_table = 'server_statistic_by_day'
         ordering = ['myday']
 
@@ -167,5 +171,6 @@ class CmdbStatisticByDayModel(models.Model):
         return self.myday
 
     class Meta:
+        verbose_name = "CMDB按天统计表"
         db_table = 'cmdb_statistic_by_day'
         ordering = ['myday']

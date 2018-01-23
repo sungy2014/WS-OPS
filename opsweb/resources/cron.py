@@ -7,14 +7,16 @@ from dashboard.utils.wslog import wslog_error,wslog_info
 from resources.models import ServerModel,CmdbModel,ServerStatisticByDayModel,CmdbStatisticByDayModel
 from resources.server import GetServerInfoFromApi
 
+''' 阿里云服务器自动添加 '''
 def ServerAliyunAutoAddCrontab():
 
     from resources.server import ServerAliyunAutoAdd
     ServerAliyunAutoAdd()
 
+''' 阿里云服务器自动刷新'''
 def ServerAliyunAutoRefreshCrontab():
 
-    id_list = [i["id"] for i in ServerModel.objects.values("id")]
+    id_list = [i["id"] for i in ServerModel.objects.exclude(private_ip__startswith="10.82").values("id")]
     for id in id_list:
         try:
             server_aliyun_obj = ServerModel.objects.get(id__exact=id)
@@ -31,6 +33,7 @@ def ServerAliyunAutoRefreshCrontab():
         else:
             wslog_info().info("服务器: %s 自动刷新成功" %(private_ip))
 
+''' 服务器数量按天统计 '''
 def ServerStatisticByDayCrontab():
     myday = date.today().isoformat()
     count = ServerModel.objects.count()
@@ -47,7 +50,7 @@ def ServerStatisticByDayCrontab():
     else:
         wslog_info().info("统计 %s 的服务器总数成功" %(myday))
     
-
+''' cmdb 中应用按天统计'''
 def CmdbStatisticByDayCrontab():
     myday = date.today().isoformat()
     count = CmdbModel.objects.count()
@@ -64,7 +67,7 @@ def CmdbStatisticByDayCrontab():
     else:
         wslog_info().info("统计 %s 的应用总数成功" %(myday))
  
-
+''' cmdb 自动添加 '''
 def CmdbAutoAddCrontab():
     server_ip_name_list = list(ServerModel.objects.values("id","private_ip","instance_name","status"))
 
