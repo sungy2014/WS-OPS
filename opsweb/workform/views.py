@@ -56,14 +56,14 @@ class PubWorkFormAddView(LoginRequiredMixin,TemplateView):
             else: 
                 ret["user_obj_list"] = user_obj_list
 
-        elif approval_require == "4" :
+        elif approval_require == "4" or approval_require == "9":
             user_obj_list.append(user_obj)
             ret["user_obj_list"] = user_obj_list
-
+ 
         else:
             ret["result"] = 1
             ret["msg"] = "此流程步骤所需的审核组或用户: %s 未配置,请联系运维进行配置" %(approval_require)
-            wslog_error().error("此流程步骤未配置相应的审核组或用户: %s,请进行配置" %(approval_require))
+            wslog_error().error("此流程步骤: %s 未配置相应的审核组或用户,请进行配置" %(approval_require))
 
         return ret
 
@@ -101,7 +101,7 @@ class PubWorkFormAddView(LoginRequiredMixin,TemplateView):
         try:
             p_obj = ProcessModel.objects.get(step_id__exact=process_step_list[0])
             pub_workform_obj = WorkFormModel(**pub_workform_add_form.cleaned_data)
-            pub_workform_obj.applicant = request.user.userextend.cn_name
+            pub_workform_obj.applicant = request.user
             pub_workform_obj.type = wft_obj
             pub_workform_obj.process_step = p_obj
             pub_workform_obj.save()
@@ -147,6 +147,7 @@ class PubWorkFormAddView(LoginRequiredMixin,TemplateView):
                 wslog_error().error("用户: %s 添加工单: '%s' 中 ApprovalFormModel 模型保存对象失败,错误信息: %s" %(user_cn_name,pub_workform_obj.title,e.args))
                 pub_workform_obj.delete()
                 break
+
             if ret["user_obj_list"]:
                 af_obj.approver_can.set(ret["user_obj_list"])
                 del ret["user_obj_list"]
@@ -240,7 +241,7 @@ class MyWorkFormListView(WorkFormListView):
 
     def get_queryset(self):
         queryset = super(MyWorkFormListView,self).get_queryset()
-        queryset = WorkFormModel.objects.filter(Q(applicant__exact=self.request.user.userextend.cn_name)|Q(approver_can__username__exact=self.request.user.username)).distinct()
+        queryset = WorkFormModel.objects.filter(Q(applicant__username__exact=self.request.user.username)|Q(approver_can__username__exact=self.request.user.username)).distinct()
 
         search_name = self.request.GET.get('search',None)
         if search_name:
@@ -253,7 +254,7 @@ class MyApprovaledWorkFormListView(LoginRequiredMixin,View):
         ret = {'result':0}
 
         try:
-            my_approvaled_workform_list = list(WorkFormModel.objects.filter(approvalformmodel__approver__exact=request.user.username).distinct().values())
+            my_approvaled_workform_list = list(WorkFormModel.objects.filter(approvalformmodel__approver__username__exact=request.user.username).distinct().values())
         except Exception as e:
             ret["result"] = 1
             wslog_error().error("生成当前用户审核过的工单列表失败,错误信息: %s" %(e.args))
@@ -283,6 +284,7 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             wf_info["level"] = wf_obj.get_level_display()
             wf_info["process"] = wf_obj.process_step.step
             wf_info["type"] = wf_obj.type.cn_name
+            wf_info["applicant"] = wf_obj.applicant.userextend.cn_name
             wf_info["status"] = wf_obj.get_status_display()
             wf_info["process_step_id"] = process_step_id
         except Exception as e:
@@ -306,10 +308,13 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             ret["result"] = 1
             ret["msg"] = json.dumps(json.loads(workform_approval_form.errors.as_json(escape_html=False)),ensure_ascii=False)
             return JsonResponse(ret)
+
         if not wf_id or not process_step_id:
             ret["result"] = 1
             ret["msg"] = "未从前端接收到工单id 或 流程step id 信息,请刷新重试..." 
             return JsonResponse(ret)
+        else:
+            process_step_id = int(process_step_id)
 
         try:
             wf_obj = WorkFormModel.objects.get(id__exact=wf_id)
@@ -333,7 +338,7 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
 
         try:
             af_obj = ApprovalFormModel.objects.get(workform_id__exact=wf_id,process_id=process_step_id)
-            af_obj.approver = request.user.userextend.cn_name
+            af_obj.approver = request.user
             af_obj.result = workform_approval_form.cleaned_data.get("result")
             af_obj.approve_note = workform_approval_form.cleaned_data.get("approve_note")
             af_obj.approval_time = datetime.now().strftime("%Y-%m-%d %X")
@@ -344,10 +349,8 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             wslog_error().error("用户 %s 审批失败,更新 ApprovalFormModel 模型对象 workform_id: %s 流程进度: %s 的工单 审批信息失败,错误信息: %s" %(request.user.username,wf_id,process_step_id,e.args))
             return JsonResponse(ret)
         
-        wf_process_list = list(wf_obj.approvalformmodel_set.values("id","process_id").order_by("id"))
-        for i in wf_process_list:
-            if i["id"] <= af_obj.id:
-                wf_process_list.remove(i)
+        '''插询并确定流程下一个 step_id'''
+        wf_process_list = list(wf_obj.approvalformmodel_set.filter(id__gt=af_obj.id).values("id","process_id").order_by("id"))
 
         if not wf_process_list:
             ret["result"] = 1
@@ -356,9 +359,38 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             return JsonResponse(ret)
 
         process_next_id = wf_process_list[0]["process_id"]
+
         try:
+            p_obj = ProcessModel.objects.get(id__exact=process_next_id)
+        except ProcessModel.DoesNotExist:
+            ret["result"] = 1
+            ret["msg"] = "ProcessModel 模型中不存在 id: %s 的 step,请联系运维检查..." %(process_next_id)
+            return Jsonresponse(ret)
+        except Exception as e:
+            ret["result"] = 1
+            ret["msg"] = "ProcessModel 模型查询 id: %s 的对象失败,请查看日志" %(process_next_id)
+            wslog_error().error("ProcessModel 模型查询 id: %s 的对象失败,错误信息: %s" %(process_next_id.e.args))
+            return Jsonresponse(ret)
+        else:
+            next_step_id = p_obj.step_id
+
+        ''' 更新工单的状态 '''
+        if next_step_id == 60:
+            wf_obj.status = "2"
+            wf_obj.process_step_id = process_next_id
+            wf_obj.approver_can.clear()
+        elif  af_obj.result == "2" or af_obj.result == "3":
+            wf_obj.status = "3"
+            wf_obj.approver_can.set([request.user])
+        elif af_obj.result == "1":
+            wf_obj.status = "2"
+            wf_obj.approver_can.clear()
+        else:
+            wf_obj.status = "1"
             wf_obj.process_step_id = process_next_id
             wf_obj.approver_can.set(ApprovalFormModel.objects.get(workform_id__exact=wf_id,process_id=process_next_id).approver_can.all())
+
+        try:
             wf_obj.save()
         except Exception as e:
             ret["result"] = 1
@@ -391,6 +423,7 @@ class WorkFormInfoView(LoginRequiredMixin,View):
             wf_info["level"] = wf_obj.get_level_display()
             wf_info["status"] = wf_obj.get_status_display()
             wf_info["type_id"] = wf_obj.type.cn_name
+            wf_info["applicant"] = wf_obj.applicant.userextend.cn_name
             if wf_info.get("create_time"):
                 wf_info["create_time"] = utc_to_local(wf_obj.create_time).strftime("%Y-%m-%d %X")
             if wf_info.get("complete_time"):

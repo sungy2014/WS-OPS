@@ -1,6 +1,6 @@
 {% extends "public/layout.html" %}
 
-{% load poll_extras %}
+{% load get_approver_process_result %}
 
 {% block breadcrumb %}
 工单系统 / 工单列表
@@ -24,13 +24,14 @@
         <thead>
             <tr>
                 <th class="text-center">主题</th>
+                <th class="text-center">申请人</th>
                 <th class="text-center">紧急程度</th>
                 <th class="text-center">类型</th>
                 <th class="text-center">模块名称</th>
                 <th class="text-center">是否有SQL</th>
                 <th class="text-center">工单状态</th>
-                <th class="text-center">流程状态</th>
-                <th class="text-center">申请人</th>
+                <th class="text-center">待 审批/执行 流程</th>
+                <th class="text-center">已 审批/执行 流程状态</th>
                 <th class="text-center">创建时间</th>
                 <th class="text-center">操作</th>
             </tr>
@@ -39,6 +40,7 @@
             {% for pub in object_list %}
             <tr class="gradeX">
                 <td class="text-center" style="vertical-align: middle"><strong>{{ pub.title|truncatechars:10 }}</strong></td>
+                <td class="text-center" style="vertical-align: middle">{{ pub.applicant.userextend.cn_name }}</td>
                 <td class="text-center" style="vertical-align: middle">
                     {% for i in level_range %}
                         {% if i >= pub.level %}
@@ -66,7 +68,7 @@
                 {% endif %}
 
                 <td class="text-center" style="vertical-align: middle">{{ pub.process_step.step }}</td>
-                <td class="text-center" style="vertical-align: middle">{{ pub.applicant }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ pub | get_approver_result|safe }}</td>
                 <td class="text-center" style="vertical-align: middle">{{ pub.create_time|date:"Y-m-d H:i:s" }}</td>
                 <td class="text-center" style="vertical-align: middle">
                     <button data-id="{{ pub.id }}" class="btn btn-sm btn-info workform_detail">详情</button>

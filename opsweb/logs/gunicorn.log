@@ -213,3 +213,36 @@ Traceback (most recent call last):
   File "/ops-data/zp/haha/mysite-11/opsweb/workform/models.py", line 77, in Meta
     db_table = workform_type
 NameError: name 'workform_type' is not defined
+[2018-01-25 22:09:35 +0800] [23095] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/arbiter.py", line 578, in spawn_worker
+    worker.init_process()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+  File "/ops-data/zp/haha/mysite-11/opsweb/opsweb/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/__init__.py", line 27, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/django/apps/config.py", line 202, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/ops-data/zp/haha/mysite-11/opsweb/workform/models.py", line 7, in <module>
+    class WorkFormBaseModel(models.Model):
+  File "/ops-data/zp/haha/mysite-11/opsweb/workform/models.py", line 28, in WorkFormBaseModel
+    applicant = models.ForeignField(User,related_name='+',null=True,verbose_name="申请人,与用户表多对一关联")
+AttributeError: module 'django.db.models' has no attribute 'ForeignField'

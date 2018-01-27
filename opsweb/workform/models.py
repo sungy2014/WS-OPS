@@ -22,10 +22,10 @@ class WorkFormBaseModel(models.Model):
     )
 
     title = models.CharField("工单标题",null=False,max_length=100,unique=True)
-    level = models.PositiveSmallIntegerField("紧急程度",choices=LEVEL_CHOICES,null=False,max_length=5)
+    level = models.PositiveSmallIntegerField("紧急程度",choices=LEVEL_CHOICES,null=False)
     detail = models.CharField("详情",max_length=800,null=True)
     status = models.CharField("工单状态",choices=STATUS_CHOICES,max_length=10,null=False,default="0")
-    applicant = models.CharField("申请人",max_length=50,null=True)
+    applicant = models.ForeignKey(User,related_name='+',null=True,verbose_name="申请人,与用户表多对一关联")
     create_time = models.DateTimeField("工单创建时间",auto_now_add=True,null=True)
     complete_time = models.DateTimeField("工单完成时间",auto_now_add=False,null=True)
 
@@ -99,7 +99,7 @@ class WorkFormModel(WorkFormBaseModel):
     sql_detail = models.CharField("SQL语句",max_length=1000,null=True)
     sql_file_url = models.CharField("SQL附件的URL",max_length=1000,null=True)
     process_step = models.ForeignKey(ProcessModel,verbose_name="与流程步骤多对一关联",null=True)
-    approver_can = models.ManyToManyField(User,null=True,verbose_name="与User表建立多对多关联,声明该流程步骤能审批/执行的用户集合,具体的用户集合从ApprovalFormModel的approver_can字段同步")
+    approver_can = models.ManyToManyField(User,related_name='+',verbose_name="与User表建立多对多关联,声明该流程步骤能审批/执行的用户集合,具体的用户集合从ApprovalFormModel的approver_can字段同步")
 
     class Meta:
         verbose_name = "工单列表"
@@ -114,8 +114,8 @@ class ApprovalFormModel(models.Model):
         ("3","执行异常"),
     )
 
-    approver_can = models.ManyToManyField(User,null=True,verbose_name="实际能审批/执行的用户集合")
-    approver = models.CharField("最终审批/执行人",max_length=20,null=True)
+    approver_can = models.ManyToManyField(User,null=True,related_name='+',verbose_name="实际能审批/执行的用户集合")
+    approver = models.ForeignKey(User,related_name='+',null=True,verbose_name="最终审批/执行人")
     result = models.CharField("审批/执行结果",choices=RESULT_CHOICES,max_length=10,null=True)
     approve_note = models.CharField("审批/执行备注",max_length=1000,null=True)
     approval_time = models.DateTimeField("审批时间",auto_now_add=False,null=True)

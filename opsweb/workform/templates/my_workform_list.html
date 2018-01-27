@@ -79,11 +79,13 @@
                             <td class="text-center" style="vertical-align: middle">
                                 <button data-id="{{ pub.id }}" class="btn btn-sm btn-info workform_detail">详情</button>
                                 <button data-id="{{ pub.id }}" class="btn btn-sm btn-primary process_trace">流程跟踪</button>
-                                {% if user in pub.approver_can.all %}
+                                {% if user in pub.approver_can.all and  pub.process_step.step_id != 60 %}
                                     <button data-id="{{ pub.id }}" process-id="{{ pub.process_step_id }}" class="btn btn-sm btn-warning process_approval">审批</button>
                                 {% endif %}
-                                {% if pub.status == '0' and user.userextend.cn_name == pub.applicant %}
+                                {% if pub.status == '0' and user == pub.applicant %}
                                     <button data-id="{{ pub.id }}" data-del="{{ pub.title }}" class="btn btn-sm btn-danger del-btn">删除</button>
+                                {% elif pub.status != '0' and user == pub.applicant %}
+                                    <button data-id="{{ pub.id }}" data-del="{{ pub.title }}" class="btn btn-sm btn-danger del-btn" disabled="disabled">删除</button>
                                 {% endif %}
                             </td>
                         </tr>
