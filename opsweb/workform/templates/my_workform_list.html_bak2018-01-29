@@ -390,10 +390,35 @@
                     <div class="modal-body" style="padding: 20px 30px 0px 30px;">
                         <div class="container-fluid">
                             <div class="bwizard clearfix" style="text-align: center">
-                                <ol class="bwizard-steps clearfix clickable" role="tablist" id="process_ul">
+                                <ol class="bwizard-steps clearfix clickable" role="tablist">
+                                    <li role="tab" aria-selected="true" class="active">
+                                        <span class="label badge-inverse">1</span>
+                                        组内leader审批
+                                    </li>
+                                    <li>
+                                        <span class="label badge-inverse">2</span>
+                                        QA审批
+                                    </li>
+
+                                    <li>
+                                        <span class="label badge-inverse">3</span>
+                                        OPS审批/执行
+                                    </li>
+                                    <li>
+                                        <span class="label badge-inverse">4</span>
+                                        DEV自验证
+                                    </li>
+                                    <li>
+                                        <span class="label badge-inverse">5</span>
+                                        QA验证
+                                    </li>
+                                    <li>
+                                        <span class="label badge-inverse">6</span>
+                                        完成
+                                    </li>
                                 </ol>
                                 <div class="well row" style="background-color: white;border: none;">
-                                    <h2 style="margin-bottom: 20px;margin-top:2px" id="process_head"></h2>
+                                    <h2 style="margin-bottom: 20px;margin-top:2px">Example</h2>
                                     <form class="form-horizontal col-sm-offset-2" id="ProcessTraceForm" style="margin-bottom: 0px;text-align:center">
                                     {% csrf_token %}
                                         <div class="form-group">
@@ -579,37 +604,9 @@ $(document).on("click",".workform_detail",function(){
 
 
 <!--流程跟踪-->
-$(document).on("click",".process_trace",function(){
-    var id = $(this).attr("data-id")
-    var url = "{% url 'process_trace' %}"
-    $.post(url,{"id":id},function(data){
-        if(data.result==0){
-            data = data.process_list
-            var str = ''
-            $.each(data,function(k,v){
-                if(v.result){
-                    str += '<li role="tab" aria-selected="false" class="active">'
-                    str += '<span class="label badge-inverse">'+ k + '</span>'
-                    str += v.process + '</li>'
-                    $("#process_head").text(v.process)
-                    $("#approver").val(v.approver)
-                    $("#result").val(v.result)
-                    $("#approval_note").val(v.approve_note)
-                    $("#approval_time").val(v.approve_time)
-                }else{
-                    str += '<li role="tab" aria-selected="true">'
-                    str += '<span class="label badge-inverse">'+ k + '</span>'
-                    str += v.process + '</li>' 
-                }
-            });
-            $("#process_ul").html(str)
-            $("#ProcessTraceModal").modal("show")
-        }else{
-            swal("OH,My God",data.msg,"error")
-        }; 
-    });
-    return false;
-});
+$(".process_trace").click(function(){
+    $("#ProcessTraceModal").modal("show")
+})
 
 <!--删除-->
 $(".del-btn").click(function(){

@@ -11,6 +11,10 @@ urlpatterns = [
 
     url(r'^list/$',views.WorkFormListView.as_view(),name="workform_list"),
 
+    url(r'^process/',include([
+        url(r'^trace/$',views.ProcessTraceView.as_view(),name="process_trace"),
+    ])),
+
     url(r'^my/',include([
         url(r'^list/$',views.MyWorkFormListView.as_view(),name="my_workform_list"),
         url(r'^approvaled/$',views.MyApprovaledWorkFormListView.as_view(),name="my_approvaled_workform_list"),

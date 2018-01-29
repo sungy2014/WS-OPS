@@ -438,6 +438,39 @@ class WorkFormInfoView(LoginRequiredMixin,View):
 
         return JsonResponse(ret)
 
+class ProcessTraceView(LoginRequiredMixin,View):
+    def post(self,request):
+        ret = {"result":0}
+
+        w_id = request.POST.get("id")
+
+        try:
+            w_obj = WorkFormModel.objects.get(id__exact=w_id)
+        except WorkFormModel.DoesNotExist:
+            ret["result"] = 1
+            ret["msg"] = "WorkFormModel 模型不存在 id: %s 的对象,请刷新重试" %(w_id)
+            wslog_error().error("WorkFormModel 模型不存在 id: %s 的对象,请刷新重试" %(w_id))
+            return JsonResponse(ret)
+
+        process_list = []
+        for i in w_obj.approvalformmodel_set.order_by("id"):
+            process = {}
+            if i.result:
+                process["approver"] = i.approver.userextend.cn_name
+                process["result"] = i.get_result_display()
+                process["approve_note"] = i.approve_note
+                process["id"] = i.id
+                process["process"] = i.process.step
+                process["approve_time"] = utc_to_local(i.approval_time).strftime("%Y-%m-%d %X")
+            else:
+                process["id"] = i.id
+                process["process"] = i.process.step
+            process_list.append(process)
+
+        ret["process_list"] = process_list
+
+        return JsonResponse(ret)
+
 
 ''' 发布工单中 SQL附件的上传 '''
 class PubWorkFormUploadView(LoginRequiredMixin,View):
