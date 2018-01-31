@@ -1,7 +1,5 @@
 {% extends "public/layout.html" %}
 
-{% load get_approver_process_result %}
-
 {% block css %}
     <link rel="stylesheet" type="text/css" href="/static/plugin/Bootstrap-Wizard-master/css/bwizard.min.css">
 {% endblock %}
@@ -38,14 +36,13 @@
                     <thead>
                         <tr>
                             <th class="text-center">主题</th>
-                            <th class="text-center">申请人</th>
                             <th class="text-center">紧急程度</th>
                             <th class="text-center">类型</th>
                             <th class="text-center">模块名称</th>
                             <th class="text-center">是否有SQL</th>
                             <th class="text-center">工单状态</th>
-                            <th class="text-center">待 审批/执行 流程</th>
-                            <th class="text-center">已 审批/执行 流程状态</th>
+                            <th class="text-center">流程状态</th>
+                            <th class="text-center">申请人</th>
                             <th class="text-center">创建时间</th>
                             <th class="text-center">操作</th>
                         </tr>
@@ -54,7 +51,6 @@
                         {% for pub in object_list %}
                         <tr class="gradeX">
                             <td class="text-center" style="vertical-align: middle"><strong>{{ pub.title|truncatechars:10 }}</strong></td>
-                            <td class="text-center" style="vertical-align: middle">{{ pub.applicant.userextend.cn_name }}</td>
                             <td class="text-center" style="vertical-align: middle">
                                 {% for i in level_range %}
                                     {% if i >= pub.level %}
@@ -82,7 +78,7 @@
                             {% endif %}
 
                             <td class="text-center" style="vertical-align: middle">{{ pub.process_step.step }}</td>
-                            <td class="text-center" style="vertical-align: middle">{{ pub | get_approver_result|safe }}</td>
+                            <td class="text-center" style="vertical-align: middle">{{ pub.applicant }}</td>
                             <td class="text-center" style="vertical-align: middle">{{ pub.create_time|date:"Y-m-d H:i:s" }}</td>
                             <td class="text-center" style="vertical-align: middle">
                                 <button data-id="{{ pub.id }}" class="btn btn-sm btn-info workform_detail">详情</button>
@@ -171,58 +167,18 @@
                     <thead>
                         <tr>
                             <th class="text-center">主题</th>
-                            <th class="text-center">申请人</th>
                             <th class="text-center">紧急程度</th>
                             <th class="text-center">类型</th>
                             <th class="text-center">模块名称</th>
                             <th class="text-center">是否有SQL</th>
                             <th class="text-center">工单状态</th>
-                            <th class="text-center">待 审批/执行 流程</th>
-                            <th class="text-center">已 审批/执行 流程状态</th>
+                            <th class="text-center">流程状态</th>
+                            <th class="text-center">申请人</th>
                             <th class="text-center">创建时间</th>
                             <th class="text-center">操作</th>
                         </tr>
                     </thead>
                     <tbody id="my_audit_list_tbody">
-                        {% for my_approvaled in approvaled_workform_list %}
-                        <tr class="gradeX">
-                            <td class="text-center" style="vertical-align: middle"><strong>{{ my_approvaled.title|truncatechars:10 }}</strong></td>
-                            <td class="text-center" style="vertical-align: middle">{{ my_approvaled.applicant.userextend.cn_name }}</td>
-                            <td class="text-center" style="vertical-align: middle">
-                                {% for i in level_range %}
-                                    {% if i >= my_approvaled.level %}
-                                        <span class="fa fa-star fa-fw" style="color: #F00"></span>
-                                    {% endif %}
-                                {% endfor %}
-                            </td>
-                            <td class="text-center" style="vertical-align: middle">{{ my_approvaled.type.cn_name }}</td>
-                            <td class="text-center" style="vertical-align: middle">{{ my_approvaled.module_name }}</td>
-
-                            {% if my_approvaled.sql == 'yes' %}
-                                <td class="text-center" style="vertical-align: middle"><span class="badge label-primary">{{ my_approvaled.get_sql_display }}</span></td>
-                            {% else %}
-                                <td class="text-center" style="vertical-align: middle"><span class="badge label-default">{{ my_approvaled.get_sql_display }}</span></td>
-                            {% endif %}
-
-                            {% if my_approvaled.status == '0' %}
-                                <td class="text-center"><span class="badge label-primary">{{ my_approvaled.get_status_display }}</span></td>
-                            {% elif my_approvaled.status == '1' %}
-                                <td class="text-center"><span class="badge label-success">{{ my_approvaled.get_status_display }}</span></td>
-                            {% elif my_approvaled.status == '2' %}
-                                <td class="text-center"><span class="badge label-warnning">{{ my_approvaled.get_status_display }}</span></td>
-                            {% else %}
-                                <td class="text-center"><span class="badge label-danger">{{ my_approvaled.get_status_display }}</span></td>
-                            {% endif %}
-
-                            <td class="text-center" style="vertical-align: middle">{{ my_approvaled.process_step.step }}</td>
-                            <td class="text-center" style="vertical-align: middle">{{ my_approvaled | get_approver_result|safe }}</td>
-                            <td class="text-center" style="vertical-align: middle">{{ my_approvaled.create_time|date:"Y-m-d H:i:s" }}</td>
-                            <td class="text-center" style="vertical-align: middle">
-                                <button data-id="{{ my_approvaled.id }}" class="btn btn-sm btn-info workform_detail">详情</button>
-                                <button data-id="{{ my_approvaled.id }}" class="btn btn-sm btn-primary process_trace">流程跟踪</button>
-                            </td>
-                        </tr>
-                        {% endfor %} 
                     </tbody>
                 </table> 
             </div>
@@ -488,7 +444,40 @@
 
 <script>
 
-datatable_list()
+$.getJSON("{% url 'my_approvaled_workform_list' %}",function(data){
+    if(data.result==0){
+        data = data.approvaled_workform_list
+        var str = ''
+        $.each(data,function(k,v){
+            str += '<tr class="gradeX">'
+            str += '<td class="text-center"><strong>'+v.title+'</strong></td>'
+            str += '<td class="text-center">'+v.level+'</td>'
+            str += '<td class="text-center">'+v.type_id+'</td>'
+            str += '<td class="text-center">'+v.module_name+'</td>'
+            str += '<td class="text-center">'+v.sql+'</td>'
+            if(v.status == '0'){
+                str += '<td class="text-center"><span class="badge label-primary">'+v.status+'</span></td>'
+            }else if(v.status == '1'){
+                str += '<td class="text-center"><span class="badge label-success">'+v.status+'</span></td>'
+            }else if(v.status == '2'){
+                str += '<td class="text-center"><span class="badge label-warning">'+v.status+'</span></td>' 
+            }else{
+                str += '<td class="text-center"><span class="badge label-danger">'+v.status+'</span></td>' 
+            };
+            str += '<td class="text-center">'+v.process+'</td>'
+            str += '<td class="text-center">'+v.applicant+'</td>'
+            str += '<td class="text-center">'+v.create_time+'</td>'
+            str += '<td class="text-center">'
+            str += '<button class="btn btn-sm btn-info workform_detail" style="margin-right:5px" data-id="'+v.id+'">详情</button>'
+            str += '<button class="btn btn-sm btn-Primary process_trace" style="margin-right:5px" data-id="'+v.id+'">流程跟踪</button>' 
+            str += '</td></tr>'
+        });
+        $("#my_audit_list_tbody").html(str)
+        datatable_list()
+    }else{
+        return false
+    }
+});
 
 <!--审批-->
 $(document).on("click",".process_approval",function(){
@@ -640,18 +629,18 @@ $(document).on("click",".process_step_trace",function(){
 
 <!--删除-->
 $(".del-btn").click(function(){
-    var id = $(this).attr("data-id")
+    var cid = $(this).attr("data-id")
     var data = $(this).attr("data-del")
-    $(".del-sure").attr('data-id',id)
+    $(".del-sure").attr('data-id',cid)
     $("#data-del").html(data)
     $("#DeleteModal").modal("show")
 });
 
 $(".del-sure").click(function(){
-   var id = $(this).attr('data-id')
-   var url = "{% url 'workform_delete' %}"
+   var cid = $(this).attr('data-id')
+   var url = "{% url 'cmdb_delete' %}"
    $('#DeleteModal').modal('hide')
-   $.post(url,{"id": id},function(data){
+   $.post(url,{"id": cid},function(data){
        if(data.result==0){
            swal({
              title:"Good",
@@ -672,7 +661,6 @@ $(".del-sure").click(function(){
 function datatable_list(){
   $("#my_audit_table").dataTable({
       "autoWidth":true,
-      "ordering": false,
       "bDestroy":true,
       "order": [[ 0, "asc" ]],
       "bStateSave": true,

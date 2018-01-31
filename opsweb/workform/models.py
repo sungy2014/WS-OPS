@@ -108,10 +108,10 @@ class WorkFormModel(WorkFormBaseModel):
 
 class ApprovalFormModel(models.Model):
     RESULT_CHOICES = (
-        ("0","同意执行"),
-        ("1","拒绝执行"),
-        ("2","暂缓执行"),
-        ("3","执行异常"),
+        ("0","审批/验证通过"),
+        ("1","拒绝审批/执行"),
+        ("2","暂停审批/执行"),
+        ("3","执行/验证异常"),
     )
 
     approver_can = models.ManyToManyField(User,null=True,related_name='+',verbose_name="实际能审批/执行的用户集合")

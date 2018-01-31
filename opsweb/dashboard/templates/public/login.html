@@ -27,6 +27,16 @@
                 <div class="form-group">
                     <input type="password" id="password" class="form-control" name="password" placeholder="密码"/>
                 </div>
+                <div class="form-group" style="display:flex">
+                    <input type="text"  id="captcha_1" name="captcha_1" class="form-control" placeholder="请输入验证码" style="width:60%">
+                    &nbsp
+                    <span class="v5-yzm fr">
+                        <a href="#" class="next-captcha">
+                            <img src="{{ image_url }}" id="captcha_refresh" style="height: 33px; width: 110%;">
+                        </a>
+                    </span>
+                    <input id="captcha_0" name="captcha_0" type="hidden" value="{{ hashkey }}"> 
+                </div>
                 <button id="login-btn" type="submit" class="btn btn-primary block full-width m-b">登录</button>
                 <a id='forget' style="cursor:pointer">忘记密码</a>
             </form>
@@ -67,8 +77,15 @@
         });
         return false;
     });    
-    </script>
 
+    $('.next-captcha').click(function(){
+        var url = "{% url 'captcha-refresh' %}"
+        $.getJSON(url,function(data){
+            $('#captcha_refresh').attr('src', data.image_url);
+            $('#captcha_0').val(data.key)
+        })
+    }); 
+    </script>
 </body>
 
 </html>

@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'^monitor/', include("monitor.urls")),
     url(r'^api/', include("api.urls")),
     url(r'^workform/', include("workform.urls")),
+    url(r'^captcha/', include("captcha.urls")),
 ]

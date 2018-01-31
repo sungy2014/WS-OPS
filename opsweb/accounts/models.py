@@ -5,8 +5,10 @@ from django.contrib.auth.models import User
 
 class UserExtend(models.Model):
     ROLE_CHOICES = (
-        ("0","leader"),
-        ("1","member"),
+        ("0","Head"),
+        ("1","Controller"),
+        ("2","Manager"),
+        ("3","Pmin"),
     )
 
     user = models.OneToOneField(User,verbose_name="扩展用户表,与用户模型User建立一对一关系")

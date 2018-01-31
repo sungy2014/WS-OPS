@@ -2,6 +2,10 @@
 
 {% load get_approver_process_result %}
 
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="/static/plugin/Bootstrap-Wizard-master/css/bwizard.min.css">
+{% endblock %}
+
 {% block breadcrumb %}
 工单系统 / 工单列表
 {% endblock %}
@@ -72,8 +76,10 @@
                 <td class="text-center" style="vertical-align: middle">{{ pub.create_time|date:"Y-m-d H:i:s" }}</td>
                 <td class="text-center" style="vertical-align: middle">
                     <button data-id="{{ pub.id }}" class="btn btn-sm btn-info workform_detail">详情</button>
-                    <button data-id="{{ pub.id }}" class="btn btn-sm btn-Primary process_trace">流程跟踪</button>
-                    <button data-id="{{ pub.id }}" data-del="{{ pub.title }}" class="btn btn-sm btn-danger del-btn">删除</button>
+                    <button data-id="{{ pub.id }}" class="btn btn-sm btn-primary process_trace">流程跟踪</button>
+                    {% if user.is_superuser == 1 %}
+                        <button data-id="{{ pub.id }}" data-del="{{ pub.title }}" class="btn btn-sm btn-danger del-btn">删除</button>
+                    {% endif %}
                 </td>
             </tr>
             {% endfor %}
@@ -223,7 +229,63 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <!-- 流程跟踪模态框 -->
+    <div class="modal fade" id='ProcessTraceModal'>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">流程跟踪</h4>
+                </div>
+                <div class="modal-body" style="padding: 20px 30px 0px 30px;">
+                    <div class="container-fluid">
+                        <div class="bwizard clearfix" style="text-align: center">
+                            <ol class="bwizard-steps clearfix clickable" role="tablist" id="process_ul">
+                            </ol>
+                            <div class="well row" style="background-color: white;border: none;">
+                                <h2 style="margin-bottom: 20px;margin-top:2px" id="process_head"></h2>
+                                <form class="form-horizontal col-sm-offset-2" id="ProcessTraceForm" style="margin-bottom: 0px;text-align:center">
+                                {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="approver" class="col-sm-2 control-label  ">审批/执行人</label>
+                                        <div class="col-sm-6">
+                                            <input id="approver" name="approver" type="text" class="form-control" aria-required="true">
+                                        </div>
+                                    </div>
 
+                                    <div class="form-group">
+                                        <label for="result" class="col-sm-2 control-label">审批/执行结果</label>
+                                        <div class="col-sm-6">
+                                            <input id="result" name="result" type="text" class="form-control" aria-required="true">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="approval_note" class="col-sm-2 control-label">审批意见</label>
+                                        <div class="col-sm-6">
+                                            <textarea id="approval_note" name="approval_note" class="form-control" aria-required="true" rows="3">
+                                            </textarea>
+                                        </div>
+                                    </div> 
+
+                                    <div class="form-group">
+                                        <label for="approval_time" class="col-sm-2 control-label">审批/执行时间</label>
+                                        <div class="col-sm-6">
+                                            <input id="approval_time" name="approval_time" type="text" class="form-control" aria-required="true">
+                                        </div>
+                                    </div>
+                                </form> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary exit-btn" data-dismiss="modal">退出</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+ 
     <!-- 删除模态框 -->
     <div class="modal fade" id='DeleteModal'>
         <div class="modal-dialog">
@@ -300,20 +362,71 @@ $(".workform_detail").click(function(){
     });
 });
 
+<!--流程跟踪-->
+$(document).on("click",".process_trace",function(){
+    var id = $(this).attr("data-id")
+    var url = "{% url 'process_trace' %}"
+    $.post(url,{"id":id},function(data){
+        if(data.result==0){
+            data = data.process_list
+            var str = ''
+            $.each(data,function(k,v){
+                if(v.result){
+                    str += '<li role="tab" aria-selected="false" class="active">'
+                    str += '<span class="label badge-inverse">'+ k + '</span>'
+                    str += '<a href="#" class="process_step_trace" data-id="' + v.id + '">' + v.process + '</a></li>'
+                    $("#process_head").text(v.process)
+                    $("#approver").val(v.approver)
+                    $("#result").val(v.result)
+                    $("#approval_note").val(v.approve_note)
+                    $("#approval_time").val(v.approve_time)
+                }else{
+                    str += '<li role="tab" aria-selected="true">'
+                    str += '<span class="label badge-inverse">'+ k + '</span>'
+                    str += v.process + '</li>'
+                }
+            });
+            $("#process_ul").html(str)
+            $("#ProcessTraceModal").modal("show")
+        }else{
+            swal("OH,My God",data.msg,"error")
+        }; 
+    });
+    return false;
+});
+
+
+$(document).on("click",".process_step_trace",function(){
+    var id = $(this).attr("data-id")
+    var url = "{% url 'process_step_approval' %}?id=" + id
+    $.getJSON(url,function(data){
+        if(data.result==0){
+            data = data["approval_info"]
+            $("#process_head").text(data.process)
+            $("#approver").val(data.approver)
+            $("#result").val(data.result)
+            $("#approval_note").val(data.approve_note)
+            $("#approval_time").val(data.approve_time) 
+        }else{
+            swal("OH,My God",data.msg,"error")
+        }
+    });
+});
+
 <!--删除-->
 $(".del-btn").click(function(){
-    var cid = $(this).attr("data-id")
+    var id = $(this).attr("data-id")
     var data = $(this).attr("data-del")
-    $(".del-sure").attr('data-id',cid)
+    $(".del-sure").attr('data-id',id)
     $("#data-del").html(data)
     $("#DeleteModal").modal("show")
 });
 
 $(".del-sure").click(function(){
-   var cid = $(this).attr('data-id')
-   var url = "{% url 'cmdb_delete' %}"
+   var id = $(this).attr('data-id')
+   var url = "{% url 'workform_delete' %}"
    $('#DeleteModal').modal('hide')
-   $.post(url,{"id": cid},function(data){
+   $.post(url,{"id": id},function(data){
        if(data.result==0){
            swal({
              title:"Good",
@@ -330,7 +443,6 @@ $(".del-sure").click(function(){
    });
    return false;
 });
-
 
 </script>
 

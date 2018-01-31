@@ -18,3 +18,6 @@ pip install setproctitle
 
 ## 安装 pyzabbix::zabbix api 的 python 库 
 pip install pyzabbix
+
+## 安装图片验证码
+pip install django-simple-captcha

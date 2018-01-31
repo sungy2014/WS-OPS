@@ -10,14 +10,15 @@ urlpatterns = [
     ])),
 
     url(r'^list/$',views.WorkFormListView.as_view(),name="workform_list"),
+    url(r'^delete/$',views.WorkFormDeleteView.as_view(),name="workform_delete"),
 
     url(r'^process/',include([
         url(r'^trace/$',views.ProcessTraceView.as_view(),name="process_trace"),
+        url(r'^step/approval$',views.ProcessStepApprovalInfoView.as_view(),name="process_step_approval"),
     ])),
 
     url(r'^my/',include([
         url(r'^list/$',views.MyWorkFormListView.as_view(),name="my_workform_list"),
-        url(r'^approvaled/$',views.MyApprovaledWorkFormListView.as_view(),name="my_approvaled_workform_list"),
         url(r'^approval/$',views.ApprovalWorkFormView.as_view(),name="workform_approval"),
     ])),
 

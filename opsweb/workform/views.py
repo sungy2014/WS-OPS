@@ -181,7 +181,7 @@ class PubWorkFormAddView(LoginRequiredMixin,TemplateView):
 class WorkFormListView(LoginRequiredMixin,ListView):
     template_name = "workform_list.html"
     model = WorkFormModel
-    paginate_by =10
+    paginate_by = 10
     ordering = '-id'
     page_total = 11
 
@@ -234,34 +234,27 @@ class WorkFormListView(LoginRequiredMixin,ListView):
         page_range = range(page_start,page_end)
         return page_range
 
-''' 我的工单列表: 我发出的工单和我待审核的工单 '''
+''' 我的工单列表: 我发出的工单/我待审批的工单/我审批过的工单 '''
 class MyWorkFormListView(WorkFormListView):
     template_name = "my_workform_list.html"
     ordering = "-id"
 
+    def get_context_data(self,**kwargs):
+        context = super(MyWorkFormListView,self).get_context_data(**kwargs)
+        ''' 我审核过的工单 '''
+        context["approvaled_workform_list"] = WorkFormModel.objects.filter(approvalformmodel__approver__username__exact=self.request.user.username).distinct()
+
+        return context
+
     def get_queryset(self):
         queryset = super(MyWorkFormListView,self).get_queryset()
+        ''' 我发出或我可以审核的工单 '''
         queryset = WorkFormModel.objects.filter(Q(applicant__username__exact=self.request.user.username)|Q(approver_can__username__exact=self.request.user.username)).distinct()
 
         search_name = self.request.GET.get('search',None)
         if search_name:
             queryset = queryset.filter(Q(title__icontains=search_name)|Q(detail__icontains=search_name)|Q(module_name__icontains=search_name)).distinct()
         return queryset
-
-''' 我审核过的工单列表 '''
-class MyApprovaledWorkFormListView(LoginRequiredMixin,View):
-    def get(self,request):
-        ret = {'result':0}
-
-        try:
-            my_approvaled_workform_list = list(WorkFormModel.objects.filter(approvalformmodel__approver__username__exact=request.user.username).distinct().values())
-        except Exception as e:
-            ret["result"] = 1
-            wslog_error().error("生成当前用户审核过的工单列表失败,错误信息: %s" %(e.args))
-        else:
-            ret["approvaled_workform_list"] = my_approvaled_workform_list
-
-        return JsonResponse(ret)
 
 ''' 审批工单 '''
 class ApprovalWorkFormView(LoginRequiredMixin,View):
@@ -378,12 +371,14 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
         if next_step_id == 60:
             wf_obj.status = "2"
             wf_obj.process_step_id = process_next_id
+            wf_obj.complete_time = datetime.now().strftime("%Y-%m-%d %X")
             wf_obj.approver_can.clear()
         elif  af_obj.result == "2" or af_obj.result == "3":
             wf_obj.status = "3"
             wf_obj.approver_can.set([request.user])
         elif af_obj.result == "1":
             wf_obj.status = "2"
+            wf_obj.complete_time = datetime.now().strftime("%Y-%m-%d %X")
             wf_obj.approver_can.clear()
         else:
             wf_obj.status = "1"
@@ -438,6 +433,7 @@ class WorkFormInfoView(LoginRequiredMixin,View):
 
         return JsonResponse(ret)
 
+''' 流程跟踪 '''
 class ProcessTraceView(LoginRequiredMixin,View):
     def post(self,request):
         ret = {"result":0}
@@ -471,6 +467,68 @@ class ProcessTraceView(LoginRequiredMixin,View):
 
         return JsonResponse(ret)
 
+''' 工单审批流程每一个步骤的审核结果 '''
+class ProcessStepApprovalInfoView(LoginRequiredMixin,View):
+    def get(self,request):
+        ret = {"result":0}
+
+        id = request.GET.get("id")
+
+        try:
+            af_obj = ApprovalFormModel.objects.get(id__exact=id)
+        except ApprovalFormModel.DoesNotExist:
+            ret["result"] = 1
+            ret["msg"] = "ApprovalFormModel 模型不存在 id: %s 的对象,请刷新重试" %(id)
+            wslog_error().error("ApprovalFormModel 模型不存在 id: %s 的对象" %(id))
+            return JsonResponse(ret)
+
+        approval_info = {}
+
+        if not af_obj.result:
+            ret["result"] = 1
+            ret["msg"] = "ApprovalFormModel 模型 id: %s 的对象,还未审批,因此查不到审批结果" %(id)
+            wslog_error().error("ApprovalFormModel 模型存在 id: %s 的对象,还未审批,因此查不到审批结果" %(id))
+            return JsonResponse(ret)
+
+        approval_info["approver"] = af_obj.approver.userextend.cn_name
+        approval_info["result"] = af_obj.get_result_display()
+        approval_info["approve_note"] = af_obj.approve_note
+        approval_info["process"] = af_obj.process.step
+        approval_info["approve_time"] = utc_to_local(af_obj.approval_time).strftime("%Y-%m-%d %X")
+        ret["approval_info"] = approval_info
+
+        return JsonResponse(ret)
+
+''' 工单删除 '''
+class WorkFormDeleteView(LoginRequiredMixin,View):
+    def post(self,request):
+        ret = {"result":0}
+        id = request.POST.get("id")
+
+        try:
+            w_obj = WorkFormModel.objects.get(id__exact=id)
+        except WorkFormModel.DoesNotExist:
+            ret["result"] = 1
+            ret["msg"] = "WorkFormModel 模型不存在 id: %s 的对象,请刷新重试" %(id)
+            wslog_error().error("用户: %s 删除 WorkFormModel 模型 id: %s 的对象失败" %(request.user.username,id))
+            return JsonResponse(ret)
+        
+        if request.user.is_superuser == 1 or (request.user == w_obj.applicant and  w_obj.status == "0"):
+            try:
+                w_obj.delete()
+            except Exception as e:
+                ret["result"] = 1
+                ret["msg"] = "WorkFormModel 模型 id: %s 的对象删除失败,请联系运维同事查看日志" %(id)
+                wslog_error().error("用户: %s 删除 WorkFormModel 模型 id: %s 的对象失败,错误信息: %s" %(request.user.username,id,e.args))
+            else:
+                ret["msg"] = "WorkFormModel 模型 id: %s 的对象删除成功" %(id)
+                wslog_info().info("用户: %s 删除 WorkFormModel 模型 id: %s 的对象成功" %(request.user.username,id))
+        else:
+            ret["result"] = 1
+            ret["msg"] = "只有管理员或者(工单状态的发布者及工单状态在未审批的情况下)才能删除该工单 id: %s" %(id)
+            wslog_error().error("用户: %s 删除 WorkFormModel 模型 id: %s 的对象失败,只有管理员或者(工单状态的发布者及工单状态在未审批的情况下)才能删除该工单" %(request.user.username,id))
+
+        return JsonResponse(ret)
 
 ''' 发布工单中 SQL附件的上传 '''
 class PubWorkFormUploadView(LoginRequiredMixin,View):
