@@ -21,3 +21,7 @@ pip install pyzabbix
 
 ## 安装图片验证码
 pip install django-simple-captcha
+
+## 安装 ldap
+pip install django-auth-ldap
+pip install pyldap
