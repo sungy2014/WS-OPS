@@ -33,6 +33,7 @@ urlpatterns = [
     ])),
 
     url(r'^user/',include([
+        url(r'^extend/add/$',user.UserExtendAddView.as_view(),name="user_extend_add"),
         url(r'^info/',include([
             url(r'^$',user.UserInfoView.as_view(),name="user_info"),
             url(r'^change/$',user.UserInfoChangeView.as_view(),name="user_info_change"),

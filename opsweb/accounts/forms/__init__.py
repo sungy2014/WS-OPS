@@ -1,6 +1,31 @@
 from django import forms
 from django.contrib.auth.models import Group,ContentType,User
+from accounts.models import UserExtend
+import re
 
+def check_phone(phone):
+    try:
+        re.match("1[3,4,5,7,8]\d{9}$",phone).group()
+    except Exception as e:
+        raise forms.ValidationError("输入的手机号格式不正确")
+    else:
+        return phone
+
+def check_password(password):
+    try:
+        re.match("\D",password).group()
+    except Exception as e:
+        raise forms.ValidationError("密码必须以字母开头")
+
+    try:
+        re.search('[A-Z]',password).group()
+        re.search('[a-z]',password).group()
+        re.search('[0-9]',password).group()
+        re.search('[!@#$%^&*()_]',password).group()
+    except Exception as e:
+        raise forms.ValidationError("密码必须包含大写字母、小写字母、数字和特殊字符('!@#$%^&*()_')")
+    else:
+        return password
 
 class GroupAddForm(forms.Form):
     name = forms.CharField(required=True,error_messages={"required":"组名不能为空"})
@@ -52,9 +77,10 @@ class UserAddForm(forms.Form):
     username = forms.CharField(required=True,min_length=3,error_messages={"required":"用户名不能为空","min_length":"用户名长度不能小于3位"})
     cn_name = forms.CharField(required=True,error_messages={"required":"中文名不能为空"})
     password = forms.CharField(required=True,min_length=8,error_messages={"required":"密码不能为空","min_length":"密码长度不能小于8位"})
-    password_again = forms.CharField(required=True,min_length=8,error_messages={"required":"密码不能为空","min_length":"密码长度不能小于8位"})
+    password_again = forms.CharField(required=True,min_length=8,error_messages={"required":"密码不能为空"})
     phone = forms.CharField(required=True,error_messages={"required":"手机号不能为空"})
     email = forms.EmailField(required=True,error_messages={"required":"邮箱不能为空","invalid":"邮箱格式错误"})
+    role = forms.ChoiceField(required=True,choices=UserExtend.ROLE_CHOICES,error_messages={"required":"必须选择自己的角色"})
 
 
     def clean_username(self):
@@ -68,6 +94,12 @@ class UserAddForm(forms.Form):
         else:
             raise forms.ValidationError("该用户名%s已经存在,请更换其他用户名" %(username))
 
+    def clean_password(self):
+        return check_password(self.cleaned_data.get('password'))
+
+    def clean_phone(self):
+        return check_phone(self.cleaned_data.get("phone"))
+
     def clean(self):
         cleaned_data = self.cleaned_data
         if self.is_valid():
@@ -76,10 +108,33 @@ class UserAddForm(forms.Form):
             del cleaned_data['password_again']
             return cleaned_data
 
+class UserExtendAddForm(forms.Form):
+    cn_name = forms.CharField(required=True,error_messages={"required":"中文名不能为空"})
+    password = forms.CharField(required=True,min_length=8,error_messages={"required":"密码不能为空","min_length":"密码长度不能小于8位"})
+    password_again = forms.CharField(required=True,min_length=8,error_messages={"required":"密码不能为空"})
+    phone = forms.CharField(required=True,error_messages={"required":"手机号不能为空"})
+    role = forms.ChoiceField(required=True,choices=UserExtend.ROLE_CHOICES,error_messages={"required":"必须选择自己的角色"})
+
+    def clean_password(self):
+        return check_password(self.cleaned_data.get('password'))
+
+    def clean_phone(self):
+        return check_phone(self.cleaned_data.get("phone"))
+
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        if self.is_valid():
+            if cleaned_data.get('password') != cleaned_data.get('password_again'):
+                raise forms.ValidationError("两次输入密码不一致,请重新输入")
+            del cleaned_data['password_again']
+            return cleaned_data
 
 class UserInfoChangePwdForm(forms.Form):
     password = forms.CharField(required=True,min_length=8,error_messages={"required":"密码不能为空","min_length":"密码长度不能小于8位"})
-    password_again = forms.CharField(required=True,min_length=8,error_messages={"required":"密码不能为空","min_length":"密码长度不能小于8位"})
+    password_again = forms.CharField(required=True,min_length=8,error_messages={"required":"密码不能为空"})
+
+    def clean_password(self):
+        return check_password(self.cleaned_data.get('password'))
 
     def clean(self):
         cleaned_data = self.cleaned_data
@@ -94,3 +149,5 @@ class UserInfoChangeForm(forms.Form):
     phone = forms.CharField(required=True,error_messages={"required":"手机号不能为空"})
     email = forms.EmailField(required=True,error_messages={"required":"邮箱不能为空","invalid":"邮箱格式错误"})
 
+    def clean_phone(self):
+        return check_phone(self.cleaned_data.get("phone"))

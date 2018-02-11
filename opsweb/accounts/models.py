@@ -8,12 +8,12 @@ class UserExtend(models.Model):
         ("0","Head"),
         ("1","Controller"),
         ("2","Manager"),
-        ("3","Pmin"),
+        ("3","Employee"),
     )
 
     user = models.OneToOneField(User,verbose_name="扩展用户表,与用户模型User建立一对一关系")
     cn_name = models.CharField("中文名",max_length=50,null=False)
-    role = models.CharField("角色",choices=ROLE_CHOICES,max_length=10,null=False,default="1")
+    role = models.CharField("角色",choices=ROLE_CHOICES,max_length=10,null=False,default="3")
     phone = models.CharField("手机号",max_length=11,null=False)
     last_change_time = models.DateTimeField("最后修改时间",auto_now=True)
 

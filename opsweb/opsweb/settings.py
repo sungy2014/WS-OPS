@@ -206,3 +206,44 @@ CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.random_char_challenge' # 图片中的
   
 CAPTCHA_LENGTH = 5 # 字符个数  
 CAPTCHA_TIMEOUT = 1 # 超时(minutes)
+
+## ldap 配置
+from dashboard.utils.get_ws_conf import get_myconf
+import ldap
+from django_auth_ldap.config import LDAPSearch
+
+ldap_conf = get_myconf(section="ldap_config")
+
+if ldap_conf["result"] == 0:
+    BASE_DN = ldap_conf["mysec_conf"]["base_dn"]
+    AUTH_LDAP_ldap_URI = ldap_conf["mysec_conf"]["auth_ldap_server_uri"]
+    AUTH_LDAP_BIND_DN = ldap_conf["mysec_conf"]["auth_ldap_bind_dn"]
+    AUTH_LDAP_BIND_PASSWORD = ldap_conf["mysec_conf"]["auth_ldap_bind_password"]
+    MY_DN = ldap_conf["mysec_conf"]["my_dn"]
+else:
+    #AUTH_LDAP_START_TLS = True
+    AUTH_LDAP_SERVER_URI = '' 
+    AUTH_LDAP_BIND_DN = '' 
+    AUTH_LDAP_BIND_PASSWORD = ''
+    MY_DN = '' 
+
+AUTH_LDAP_USER_SEARCH = LDAPSearch(MY_DN, ldap.SCOPE_SUBTREE, '(&(objectCategory=Person)(sAMAccountName=%(user)s))')
+
+AUTH_LDAP_CONNECTION_OPTIONS = {
+    ldap.OPT_REFERRALS: 0
+}
+
+AUTH_LDAP_ALWAYS_UPDATE_USER = True
+
+AUTH_LDAP_USER_ATTR_MAP = {
+    "first_name": "givenName",
+    "username": "sAMAccountName",
+    "last_name": "sn",
+    "email": "mail",
+    "userextend.cn_name": "displayName"
+}
+
+AUTHENTICATION_BACKENDS = (
+    'django_auth_ldap.backend.LDAPBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)

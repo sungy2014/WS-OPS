@@ -165,7 +165,8 @@ class ServerAliyunAddView(LoginRequiredMixin,View):
         server_aliyun_add_form = ServerAliyunAddForm(request.POST)
         if not server_aliyun_add_form.is_valid():
             ret["result"] = 1
-            ret["msg"] = json.dumps(json.loads(server_aliyun_add_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+            error_msg = json.loads(server_aliyun_add_form.errors.as_json(escape_html=False)) 
+            ret["msg"] = '\n'.join([ i["message"] for v in error_msg.values() for i in v ])
             return JsonResponse(ret)
 
         try:
@@ -340,7 +341,8 @@ class ServerAliyunUpdateView(LoginRequiredMixin,View):
 
         if not server_aliyun_update_form.is_valid():
             ret["result"] = 1
-            ret["msg"] = json.dumps(json.loads(server_aliyun_update_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+            error_msg = json.loads(server_aliyun_update_form.errors.as_json(escape_html=False)) 
+            ret["msg"] = '\n'.join([ i["message"] for v in error_msg.values() for i in v ])
             return JsonResponse(ret)
 
         try:
@@ -468,7 +470,8 @@ class ServerIdcAddView(LoginRequiredMixin,View):
 
         if not server_idc_add_form.is_valid():
             ret["result"] = 1
-            ret["msg"] = json.dumps(json.loads(server_idc_add_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+            error_msg = json.loads(server_idc_add_form.errors.as_json(escape_html=False)) 
+            ret["msg"] = '\n'.join([ i["message"] for v in error_msg.values() for i in v ])
             return JsonResponse(ret)
         
         try:
@@ -535,7 +538,8 @@ class ServerIdcUpdateView(LoginRequiredMixin,View):
 
         if not server_idc_update_form.is_valid():
             ret["result"] = 1
-            ret["msg"] = json.dumps(json.loads(server_idc_update_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+            error_msg = json.loads(server_idc_update_form.errors.as_json(escape_html=False)) 
+            ret["msg"] = '\n'.join([ i["message"] for v in error_msg.values() for i in v ])
             return JsonResponse(ret)
 
         try:

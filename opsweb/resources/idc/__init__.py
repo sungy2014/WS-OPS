@@ -30,7 +30,8 @@ class IdcAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
         idc_form = IdcAddForm(request.POST)
         if not idc_form.is_valid():
             ret['result'] = 1
-            ret['msg'] = json.dumps(json.loads(idc_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+            error_msg = json.loads(idc_form.errors.as_json(escape_html=False)) 
+            ret["msg"] = '\n'.join([ i["message"] for v in error_msg.values() for i in v ])
             return JsonResponse(ret)
         try:
             idc = IDC(**idc_form.cleaned_data)
@@ -89,7 +90,8 @@ class IdcChangeView(LoginRequiredMixin,View):
 
         if not idc_form.is_valid():
             ret['result'] = 1
-            ret['msg'] = json.dumps(json.loads(idc_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+            error_msg = json.loads(idc_form.errors.as_json(escape_html=False)) 
+            ret["msg"] = '\n'.join([ i["message"] for v in error_msg.values() for i in v ])
             return JsonResponse(ret)
 
         try:

@@ -129,7 +129,8 @@ class CmdbAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
 
         if not cmdb_add_form.is_valid():
             ret["result"] = 1
-            ret["msg"] = json.dumps(json.loads(cmdb_add_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+            error_msg = json.loads(cmdb_add_form.errors.as_json(escape_html=False)) 
+            ret["msg"] = '\n'.join([ i["message"] for v in error_msg.values() for i in v ])
             return JsonResponse(ret)
 
         try:
@@ -214,7 +215,8 @@ class CmdbChangeView(LoginRequiredMixin,View):
         cmdb_update_form = CmdbUpdateForm(request.POST)
         if not cmdb_update_form.is_valid():
             ret["result"] = 1
-            ret["msg"] = json.dumps(json.loads(cmdb_update_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+            error_msg = json.loads(cmdb_update_form.errors.as_json(escape_html=False)) 
+            ret["msg"] = '\n'.join([ i["message"] for v in error_msg.values() for i in v ])
             return JsonResponse(ret)
  
         try:

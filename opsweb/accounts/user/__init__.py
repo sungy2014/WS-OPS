@@ -2,12 +2,15 @@ from django.views.generic import ListView,View,TemplateView
 from django.contrib.auth.models import User,Group
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse,HttpResponse
-from accounts.forms import UserAddForm,UserInfoChangePwdForm,UserInfoChangeForm
+from accounts.forms import UserAddForm,UserInfoChangePwdForm,UserInfoChangeForm,UserExtendAddForm
 from accounts.permission.permission_required_mixin import PermissionRequiredMixin
 from accounts.models import UserExtend
 import json
 from django.db.models import Q
+from dashboard.utils.wslog import wslog_error,wslog_info
+from django.contrib.auth import update_session_auth_hash
 
+''' 用户列表 '''
 class UserListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     permission_required = "auth.view_user"
     permission__redirect_url = "index"
@@ -68,7 +71,7 @@ class UserListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
         page_range = range(page_start,page_end)
         return page_range
 
-
+''' 修改用户状态 '''
 class UserModifyStatusView(LoginRequiredMixin,View):
     permission_required = "auth.change_user"
 
@@ -92,6 +95,7 @@ class UserModifyStatusView(LoginRequiredMixin,View):
             ret["msg"]="用户不存在"
         return JsonResponse(ret)
 
+''' 修改用户所属组 '''
 class UserModifyGroupView(LoginRequiredMixin,View):
     permission_required = "auth.change_user"
 
@@ -159,6 +163,58 @@ class UserModifyGroupView(LoginRequiredMixin,View):
 
         return JsonResponse(ret)
 
+''' ldap 用户第一次登陆后需要完善个人资料 '''        
+class UserExtendAddView(LoginRequiredMixin,TemplateView):
+    template_name = "user/userextend_add.html"
+    
+    def get_context_data(self,**kwargs):
+        context = super(UserExtendAddView,self).get_context_data(**kwargs)
+        u_obj = self.request.user 
+        context["id"] = u_obj.id
+        context["username"] = u_obj.username
+        context["role"] = dict(UserExtend.ROLE_CHOICES)
+        return context
+
+    def post(self,request):
+        ret={"result":0}
+
+        u_obj = request.user
+
+        user_extend_add_form = UserExtendAddForm(request.POST)
+
+        if not user_extend_add_form.is_valid():
+            ret["result"] = 1
+            error_msg = json.loads(user_extend_add_form.errors.as_json(escape_html=False))
+            ret["msg"] = '\n'.join([ i["message"] for v in error_msg.values() for i in v ])
+            return JsonResponse(ret)
+
+        try:
+            u_obj.set_password(user_extend_add_form.cleaned_data.get("password"))
+            u_obj.save(update_fields=["password"])
+            u_obj.save()
+            update_session_auth_hash(request, u_obj)
+        except Exception as e:
+            ret["result"] = 1
+            ret["msg"] = "User 模型对象: %s 修改密码失败,请查看日志" %(uid)
+            wslog_error().error("User 模型对象: %s 修改密码失败，错误信息: %s" %(uid,e.args))
+            return JsonResponse(ret)
+        else:
+            del user_extend_add_form.cleaned_data["password"]
+
+        try:
+            ue_obj = UserExtend(**user_extend_add_form.cleaned_data)
+        except Exception as e:
+            ret["result"] = 1
+            ret["msg"] = "UserExtend 模型对象: %s 添加失败,请查看日志" %(user_extend_add_form.cleaned_data.get("cn_name"))
+            wslog_error().error("UserExtend 模型对象: %s 添加失败，错误信息: %s" %(user_extend_add_form.cleaned_data.get("cn_name"),e.args))
+        else:
+            ue_obj.user = u_obj
+            ue_obj.save()
+            ret["msg"] = "UserExtend 模型对象: %s 添加成功" %(user_extend_add_form.cleaned_data.get("cn_name"))
+         
+        return JsonResponse(ret)
+
+''' 添加/注册 用户 '''
 class UserAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
     permission_required = "auth.add_user"
     permission__redirect_url = "users_list"
@@ -178,7 +234,8 @@ class UserAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
 
         if not user_form.is_valid():
             ret["result"] = 1
-            ret["msg"] = json.dumps(json.loads(user_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+            error_msg = json.loads(user_form.errors.as_json(escape_html=False)) 
+            ret["msg"] = '\n'.join([ i["message"] for v in error_msg.values() for i in v ])
             return JsonResponse(ret)
     
         try:
@@ -188,15 +245,17 @@ class UserAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
             ue_obj.user = user
             user.userextend.cn_name = user_info.get('cn_name')
             user.userextend.phone = user_info.get('phone')
+            user.userextend.save()
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = e.args
         else:
-            user.userextend.save()
             ret["msg"] = "新用户 %s 注册成功" %(user_info.get('username'))
 
         return JsonResponse(ret)
 
+
+''' 删除用户 '''
 class UserDeleteView(LoginRequiredMixin,View):
     permission_required = "auth.delete_user"
 
@@ -228,23 +287,18 @@ class UserDeleteView(LoginRequiredMixin,View):
 
         return JsonResponse(ret)
 
+
+''' 用户个人中心 '''
 class UserInfoView(LoginRequiredMixin,TemplateView):
     template_name = "user/user_info.html"
-
+    
     def get_context_data(self,**kwargs):
         context = super(UserInfoView,self).get_context_data(**kwargs)
-        username = self.request.user
-        try:
-            user_obj = User.objects.get(username__exact=username)
-        except:
-            pass
-        else:
-            context['user_info'] = user_obj
+        context['user_info'] = self.request.user
         return context
 
-'''
-用户个人中心 和 用户列表中的"更新用户信息"共用此逻辑
-'''
+
+''' 修改用户信息：用户个人中心 和 用户列表中的"更新用户信息"共用此逻辑 '''
 class UserInfoChangeView(LoginRequiredMixin,View):
     permission_required = "auth.change_user"
 
@@ -286,7 +340,8 @@ class UserInfoChangeView(LoginRequiredMixin,View):
         user_change_form = UserInfoChangeForm(request.POST)
         if not user_change_form.is_valid():
             ret["result"] = 1
-            ret["msg"] = json.dumps(json.loads(user_change_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+            error_msg = json.loads(user_change_form.errors.as_json(escape_html=False))
+            ret["msg"] = '\n'.join([ i["message"] for v in error_msg.values() for i in v ])
             return JsonResponse(ret)
         try:
             user_obj = User.objects.get(id__exact=uid)
@@ -309,9 +364,7 @@ class UserInfoChangeView(LoginRequiredMixin,View):
         return JsonResponse(ret)
 
 
-'''
-用户个人中心 和 用户列表中的"更新密码"共用此逻辑
-'''
+''' 修改用户密码：用户个人中心 和 用户列表中的"更新密码"共用此逻辑 '''
 class UserInfoChangePwdView(LoginRequiredMixin,View):
     permission_required = "auth.change_user"
 
@@ -328,7 +381,8 @@ class UserInfoChangePwdView(LoginRequiredMixin,View):
         user_changepwd_form = UserInfoChangePwdForm(request.POST)
         if not user_changepwd_form.is_valid():
             ret["result"] = 1
-            ret["msg"] = json.dumps(json.loads(user_changepwd_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+            error_msg = json.loads(user_changepwd_form.errors.as_json(escape_html=False)) 
+            ret["msg"] = '\n'.join([ i["message"] for v in error_msg.values() for i in v ])
             return JsonResponse(ret)
         try:
             user_obj = User.objects.get(id__exact=uid)

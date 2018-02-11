@@ -33,7 +33,8 @@ class GroupAddView(LoginRequiredMixin,View):
         group_form = GroupAddForm(request.POST)
         if not group_form.is_valid():
             ret['result'] = 1
-            ret['msg'] = json.dumps(json.loads(group_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+            error_msg = json.loads(group_form.errors.as_json(escape_html=False)) 
+            ret["msg"] = '\n'.join([ i["message"] for v in error_msg.values() for i in v ])
             return JsonResponse(ret)
         try:
             group = Group(**group_form.cleaned_data)

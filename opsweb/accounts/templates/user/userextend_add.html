@@ -1,0 +1,133 @@
+{% extends "public/layout.html" %}
+
+{% block breadcrumb %} 
+    用户管理 / <strong class="active">完善用户信息</strong>
+{% endblock %}
+
+{% block body %}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>完善用户信息</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form id="UserExtendAddForm" class="form-horizontal nice-validator n-yellow Formvalid" novalidate="novalidate">
+                        {% csrf_token %}
+                        <input name="id" type="hidden" class="form-control" value="{{ id }}">
+                        <div class="form-group">
+                            <label for="username" class="col-sm-2 control-label col-sm-offset-1 ">用户名<span class="red-fonts ">*</span></label>
+                            <div class="col-sm-6">
+                                 <input name="username" type="text" class="form-control" aria-required="true" value="{{ username }}">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label for="cn_name" class="col-sm-2 control-label col-sm-offset-1">中文名<span class="red-fonts">*</span></label>
+                            <div class="col-sm-6">
+                                <input name="cn_name" placeholder="cn_name" type="text" class="form-control" aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-2 control-label col-sm-offset-1">密码<span class="red-fonts">*</span></label>
+                            <div class="col-sm-6">
+                                <input name="password" placeholder="请输入新密码(不修改原windows登陆密码),方便非内网环境登陆此平台" type="password" class="form-control" aria-required="true">
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-offset-3">
+                            <p style="font-size: 6px">
+                                &nbsp&nbsp<i class="fa fa-exclamation-circle"></i> 必须以字母开头，包含大、小写字母，数字及特殊字符!@#$%^&*()_
+                            </p>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label for="password_again" class="col-sm-2 control-label col-sm-offset-1">重复密码<span class="red-fonts">*</span></label>
+                            <div class="col-sm-6">
+                                <input name="password_again" placeholder="请重复输入密码" type="password" class="form-control" aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label for="phone" class="col-sm-2 control-label col-sm-offset-1">手机号<span class="red-fonts">*</span></label>
+                            <div class="col-sm-6">
+                                <input name="phone" placeholder="phone" type="text" class="form-control" aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label col-sm-offset-1">角色<span class="red-fonts">*</span></label>
+				            <div class="col-sm-8">
+                                {% for k,v in role.items %}
+                                <div class="col-sm-2">
+                                    <div class="radio i-checks">
+                                        <label><input type="radio" value="{{ k }}" class="status" name="role" >{{ v }}</label>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+				        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-4">
+                                <button id="userextend_add_submit" class="btn btn-primary">添加</button>
+                                <button class="btn btn-warning" type="reset">取消</button>
+				                <button class="btn btn-info" type="reset">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+<script>
+$("#userextend_add_submit").click(function(){
+    var form_data = $("#UserExtendAddForm").serialize()
+    var url = "{% url 'user_extend_add' %}"
+    $.post(url,form_data,function(data){
+        console.log(data)
+        if(data.result==0){
+            swal({
+                title: "Good",
+                type: "success",
+                text: data['msg'],
+                confirmButtonText: "确定"
+                },
+                function(){
+                    location.href="{% url 'user_info' %}"
+                }
+            )
+        }else{
+            swal("Oh,MyGod",data['msg'],"error")
+        } 
+    });
+    return false;
+});
+
+</script>
+{% endblock %}

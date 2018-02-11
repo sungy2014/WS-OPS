@@ -74,7 +74,8 @@ class PubWorkFormAddView(LoginRequiredMixin,TemplateView):
         pub_workform_add_form = PubWorkFormAddForm(request.POST)
         if not pub_workform_add_form.is_valid():
             ret["result"] = 1
-            ret["msg"] = json.dumps(json.loads(pub_workform_add_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+            error_msg = json.loads(pub_workform_add_form.errors.as_json(escape_html=False)) 
+            ret["msg"] = '\n'.join([ i["message"] for v in error_msg.values() for i in v ])
             return JsonResponse(ret) 
 
         workform_type = request.POST.get("type",None)
@@ -299,7 +300,8 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
 
         if not workform_approval_form.is_valid():
             ret["result"] = 1
-            ret["msg"] = json.dumps(json.loads(workform_approval_form.errors.as_json(escape_html=False)),ensure_ascii=False)
+            error_msg = json.loads(workform_approval_form.errors.as_json(escape_html=False)) 
+            ret["msg"] = '\n'.join([ i["message"] for v in error_msg.values() for i in v ])
             return JsonResponse(ret)
 
         if not wf_id or not process_step_id:

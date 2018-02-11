@@ -1,7 +1,7 @@
 {% extends "public/layout.html" %}
 
 {% block breadcrumb %} 
-个人中心
+用户管理 / <strong>个人中心</strong>
 {% endblock %}
 
 {% block body %} 
@@ -103,6 +103,13 @@
                             <input class="form-control" type="password"  name="password" placeholder="password">
                         </div> 
                     </div>
+
+                    <div class="col-sm-offset-2 col-sm-9">
+                        <p style="font-size: 6px">
+                            <i class="fa fa-exclamation-circle"></i> 必须以字母开头，包含大、小写字母，数字及特殊字符!@#$%^&*()_
+                        </p>
+                    </div> 
+
                     <div class="form-group">
                         <label class="control-label col-sm-2">重复密码</label>
                         <div class="col-sm-9">
@@ -145,11 +152,12 @@ $("#user_update_btn").click(function(){
                        $('#UserEditModal').modal('hide')
                        location.reload()
                    })
-         }else{
-                   swal("Oh,MyGod",data.msg,"error")
-         }
-      });
-      return false
+        }else{
+            console.log(data.msg)
+            swal("Oh,MyGod",data.msg,"error")
+        }
+    });
+    return false
 });
 <!--更新用户信息结-->
 

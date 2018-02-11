@@ -11,6 +11,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin
 from captcha.models import CaptchaStore
 from captcha.helpers import captcha_image_url
+from accounts.models import UserExtend
 
 # Create your views here.
 
@@ -46,14 +47,15 @@ class LoginView(TemplateView):
 
         user = authenticate(username=username,password=password)
 
-        if user:
-            if user.is_active:
-                login(request,user)
-                res['msg'] = "登录成功"
-                res['next_url'] = request.GET.get('next') if request.GET.get('next',None) else '/'
+        if user and user.is_active:
+            login(request,user)
+            res['msg'] = "登录成功"
+            try:
+                user.userextend
+            except UserExtend.DoesNotExist:
+                res['next_url'] = reverse("user_extend_add")
             else:
-                res['status'] = 1
-                res['msg'] = "用户被锁定"
+                res['next_url'] = request.GET.get('next') if request.GET.get('next',None) else '/'
         else:
             res['status'] = 1
             res['msg'] = "用户验证失败"

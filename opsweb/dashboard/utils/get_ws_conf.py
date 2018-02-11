@@ -5,6 +5,7 @@ import os
 import configparser,traceback
 
 wsconf = configparser.ConfigParser()
+
 def get_myconf(config_name='/root/ws-ops.conf',section=''):
 
     ret = {"result":0,"msg":None}
@@ -29,5 +30,6 @@ def get_myconf(config_name='/root/ws-ops.conf',section=''):
     return ret
 
 if __name__ == '__main__':
-    haha = get_myconf(section="log_config")
+    haha = get_myconf(section="ldap_config")
     print(haha["result"])
+    print(haha)
