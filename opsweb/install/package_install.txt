@@ -25,3 +25,6 @@ pip install django-simple-captcha
 ## 安装 ldap
 pip install django-auth-ldap
 pip install pyldap
+
+## 安装阿里云日志服务器的 SDK
+pip install -U aliyun-log-python-sdk

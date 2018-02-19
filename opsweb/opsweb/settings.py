@@ -247,3 +247,19 @@ AUTHENTICATION_BACKENDS = (
     'django_auth_ldap.backend.LDAPBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+## 邮件发送设置
+from dashboard.utils.get_ws_conf import get_myconf
+
+mail_conf = get_myconf(section="mail163_config")
+
+if mail_conf["result"] == 0:
+    EMAIL_HOST_USER = mail_conf["mysec_conf"]["user"]
+    EMAIL_HOST_PASSWORD = mail_conf["mysec_conf"]["password"]
+else:
+    EMAIL_HOST_USER = ''
+    EMAIL_HOST_PASSWORD = ''
+
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True

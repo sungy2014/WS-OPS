@@ -157,6 +157,14 @@
             <li>
                 <a href="{% url 'my_workform_list' %}" class="menu-link">与我相关的工单</a>
             </li>
+            {% if user.is_superuser %}
+                <li>
+                    <a href="{% url 'workform_type_list' %}" class="menu-link">工单类型管理</a>
+                </li>
+                <li>
+                    <a href="{% url 'my_workform_list' %}" class="menu-link">工单流程管理</a>
+                </li>
+            {% endif %}
         </ul>
             
 </li> 

@@ -1,7 +1,7 @@
 
 from django.conf.urls import include, url
 from django.contrib import admin
-from . import views
+from . import views,workform_background_manager
 from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
@@ -27,5 +27,11 @@ urlpatterns = [
     url(r'^upload/',include([
         url(r'^pub/$',views.PubWorkFormUploadView.as_view(),name="pub_workform_upload"),
         url(r'^pub/(?P<filename>[\s\S]*)/$',views.PubWorkFormUploadFilePreviewView.as_view(),name="pub_workform_upload_file_preview"),
+    ])),
+    url(r'^type/',include([
+        url(r'^list/$',workform_background_manager.WorkFormTypeListView.as_view(),name="workform_type_list"),
+        url(r'^add/$',workform_background_manager.WorkFormTypeAddView.as_view(),name="workform_type_add"),
+        url(r'^delete/$',workform_background_manager.WorkFormTypeDeleteView.as_view(),name="workform_type_delete"),
+        url(r'^change/$',workform_background_manager.WorkFormTypeChangeView.as_view(),name="workform_type_change"),
     ])),
 ]

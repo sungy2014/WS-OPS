@@ -75,8 +75,8 @@ class WorkFormTypeModel(models.Model):
         ("others","其他申请"),
     )
 
-    name = models.CharField("工单类型名称",null=False,max_length=50)
-    cn_name = models.CharField("工单类型中文名称",null=False,max_length=200)
+    name = models.CharField("工单类型名称",null=False,max_length=50,unique=True)
+    cn_name = models.CharField("工单类型中文名称",null=False,max_length=200,unique=True)
     process_step_id = models.CharField("需要执行的工单流程",null=True,max_length=500)
     
     def __str__(self):

@@ -1,0 +1,293 @@
+{% extends "public/layout.html" %}
+
+{% load get_process_step %}
+
+{% block breadcrumb %}
+
+工单管理 / <strong class="active">工单类型管理</strong>
+
+{% endblock %}
+
+{% block body %}
+
+<!-- IDC列表 -->
+<table class="table table-striped table-bordered table-hover">
+    <caption>
+        <div>
+            <form class="form-inline">
+                {% csrf_token %}
+                <a href="{% url 'workform_type_add' %}" class="btn btn-sm btn-primary "> 添加工单类型</a> 
+                <button type="submit" class="btn btn-primary" style="float:right">搜索</button>
+                <div class="form-group" style="text-align:right;float: right;margin-right: 10px;">
+                    <input type="text" class="form-control" name="search" value="{{ search }}" placeholder="工单类型 名称 | 中文名">
+                </div>
+            </form> 
+        </div>
+</caption>
+<thead>
+    <tr>
+        <th class="text-center">名称</th>
+        <th class="text-center">中文名</th>
+        <th class="text-center">流程表</th>
+        <th class="text-center">操作</th>
+    </tr>
+</thead>
+<tbody>
+   {% for wt in object_list %}
+        <tr class="gradeX">
+                <td class="text-center">{{ wt.name }}</td>
+                <td class="text-center">{{ wt.cn_name }}</td>
+                <td class="text-center">{{ wt.process_step_id |get_process_step }}</td>
+                <td class="text-center">
+                    <button data-id="{{ wt.id }}" class="btn btn-info btn-sm update_btn">编辑</button>
+                    <button data-id="{{ wt.id }}" data-del="{{ wt.cn_name }}" class="btn btn-sm btn-danger del_btn">删除</button>
+                </td>
+         </tr>
+    {% endfor %}
+ </tbody>
+ </table>
+<!-- IDC列表结束-->
+
+<!-- 列表分页 -->
+    <div class="text-center">
+        <ul class="pagination">
+            <li class="disabled"><a href="#">总页数: {{ page_obj.paginator.num_pages }}</a></li>
+
+            {% if page_obj.number != 1 %}
+                <li><a href={% url "idc_list" %}?page=1>首页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">首页</a></li>
+            {% endif %}
+
+            {% if page_obj.has_previous %}
+                <li><a href={% url "idc_list" %}?page={{ page_obj.previous_page_number }}>上一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">上一页</a></li>
+            {% endif %}
+
+            {% for page in page_obj.paginator.page_range %}
+               {% if page == page_obj.number %}
+                  <li class="active"><a href={% url "idc_list" %}?page={{ page }}>{{ page }}</a></li>
+               {% else %}
+                  <li><a href={% url "idc_list" %}?page={{ page }}>{{ page }}</a></li>
+               {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href={% url "idc_list" %}?page={{ page_obj.next_page_number }}>下一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">下一页</a></li>
+            {% endif %}
+
+            {% if page_obj.number != page_obj.paginator.num_pages %}
+                <li><a href={% url "idc_list" %}?page={{ page_obj.paginator.num_pages }}>末页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">末页</a></li>
+            {% endif %}
+
+            <li class="disabled"><a href="#">总条数: {{ page_obj.paginator.count }}</a></li>
+        </ul>
+    </div>
+<!-- 分页结束 -->
+
+<!--更新模态框-->
+<div class="modal fade"  id ="UpdateModal">   
+    <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">更新IDC信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="UpdateForm" class="Formvalid form-horizontal nice-validator n-yellow" novalidate="novalidate" readonly="readonly">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" id='wft_id'>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="name" style="width:30%" class="control-label text-right ">名称 &nbsp</label>
+                                <input id="name" name="name" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="cn_name" style="width:30%" class="control-label text-right">中文名 &nbsp<span class="red-fonts">*</span></label>
+                                &nbsp<input id="cn_name" name="cn_name" style="width:65%" type="text" class="form-control" aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="step_name_pre" style="width:15%" class="control-label">流程表 <span class="red-fonts ">*</span></label>
+                                <select name="step_name_pre" id="step_name_pre" multiple="multiple" style="width:79%" class="form-control">
+                                    {% for step in process_step_list %}
+                                        '<option value="{{ step.step_id }}">{{ step.step}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-sm-8">
+                                <input id="step_name" name="process_step_id" type="hidden" class="form-control" aria-required="true">
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn_sub"  id="wft_update_btn" >更新</button>
+                    <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+                    <button class="btn btn-info btn_reset" type="reset">重置</button>
+                </div>
+            </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- 删除 IDC 模态框-->
+<div class="modal fade" id='DeleteModal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title">删除</h4>
+      </div>
+      <div class="modal-body">
+        <p id="data-del"></p>
+        <p style="color:red"><b>你确认要删除吗?</b></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-warning del-sure" data-id=''>确认</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--删除模态框结束-->
+
+{% endblock %}
+
+
+{% block js %}
+
+<script>
+
+<!--更新-->
+$(".update_btn").click(function(){
+    var id = $(this).attr("data-id")
+    var url = "{% url 'workform_type_change' %}?id="+id
+    $.getJSON(url,function(data){
+        if(data.result==0){
+            data = data.wft_info
+            $("#wft_id").val(data.id)
+            $("#name").val(data.name)
+            $("#cn_name").val(data.cn_name)
+            $.each(data.process_step_id, function(k,v){
+                $("#step_name_pre option[value='"+v+"']").prop("selected",true).data("order",k)
+            })
+            $("#UpdateModal").modal("show")
+            $("#step_name_pre").multiselect('rebuild')
+        }else{
+            swal("Oh,MyGod",data.msg,"error")
+        }; 
+    });
+});
+
+$("#wft_update_btn").click(function(){
+    var url = "{% url 'workform_type_change' %}"
+    var str = $("#UpdateForm").serialize()
+    $("#UpdateModal").modal("hide")
+    $.post(url,str,function(data){
+        if(data.result==0){
+           swal({
+             title:"Good",
+             text:data.msg,
+             type:'success',
+             confirmButtonText:"确定"
+             },
+             function(){
+                location.reload()
+           })
+       }else{
+            swal("OH,My God",data.msg,"error")
+       }; 
+    });
+    return false
+});
+
+<!--删除-->
+$(".del_btn").click(function(){
+    var id = $(this).attr('data-id')
+    var data = $(this).attr("data-del")
+    $(".del-sure").attr('data-id',id)
+    $("#data-del").html(data)
+    $("#DeleteModal").modal('show')
+});
+
+$(".del-sure").click(function(){
+    var id = $(this).attr('data-id')
+    var url = "{% url 'workform_type_delete' %}?id=" + id
+    $("#DeleteModal").modal('hide')
+    $.getJSON(url,function(data){
+        if(data.result==0){
+                swal({
+                    title: "Good",
+                    type: "success",
+                    text: data.msg,
+                    confirmButtonText: "确定"
+                    },
+                    function(){
+                        location.reload()
+                    }
+                )
+            }else{
+                swal("Oh,MyGod",data.msg,"error")
+            } 
+    });
+});
+
+
+var orderCount = 0;
+
+$("#step_name_pre").multiselect({
+    enableFiltering: true,
+    maxHeight: 200,
+    buttonWidth: '79%',
+    delimiterText: ' -> ',
+    selectedClass: 'multiselect-selected',
+    enableCaseInsensitiveFiltering: true,
+    onChange: function(option, checked) {
+        if (checked) {
+            orderCount++;
+            $(option).data('order', orderCount);
+        }else {
+            $(option).data('order', '');
+        }
+    },
+    buttonText: function(options) {
+        if (options.length === 0) {
+            $("#step_name").val('')
+            return '请按照 "流程" 顺序,选择流程名称...';
+        }else if (options.length > 8) {
+            return options.length + ' selected';
+        }else {
+            var selected = [];
+            options.each(function() {
+                selected.push([$(this).text(), $(this).data('order'),$(this).val()]);
+            });
+            selected.sort(function(a, b) {
+                return a[1] - b[1];
+            });
+            var text = '';
+            var step_num = '';
+            for (var i = 0; i < selected.length; i++) {
+                text += selected[i][0] + ' -> ';
+                step_num += selected[i][2] + ' -> ';
+            }
+            $("#step_name").val(step_num.substr(0, step_num.length - 4))
+            return text.substr(0, text.length - 4);
+        }
+    },
+
+});
+</script>
+
+{% endblock %}
