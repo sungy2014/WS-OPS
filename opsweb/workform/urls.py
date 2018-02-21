@@ -1,7 +1,7 @@
 
 from django.conf.urls import include, url
 from django.contrib import admin
-from . import views,workform_background_manager
+from . import views,workform_type,workform_process
 from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
@@ -9,6 +9,15 @@ urlpatterns = [
         url(r'^add/$',views.PubWorkFormAddView.as_view(),name="pub_workform_add"),
     ])),
 
+    url(r'^sql/',include([
+        url(r'^add/$',views.SqlWorkFormAddView.as_view(),name="sql_workform_add"),
+    ])),
+
+    url(r'^others/',include([
+        url(r'^add/$',views.OthersWorkFormAddView.as_view(),name="others_workform_add"),
+    ])),
+
+    url(r'^add/$',views.WorkFormAddBaseView.as_view(),name="workform_add"),
     url(r'^list/$',views.WorkFormListView.as_view(),name="workform_list"),
     url(r'^delete/$',views.WorkFormDeleteView.as_view(),name="workform_delete"),
 
@@ -25,13 +34,21 @@ urlpatterns = [
     url(r'^info/$',views.WorkFormInfoView.as_view(),name="workform_info"),
 
     url(r'^upload/',include([
-        url(r'^pub/$',views.PubWorkFormUploadView.as_view(),name="pub_workform_upload"),
-        url(r'^pub/(?P<filename>[\s\S]*)/$',views.PubWorkFormUploadFilePreviewView.as_view(),name="pub_workform_upload_file_preview"),
+        url(r'^$',views.WorkFormUploadView.as_view(),name="workform_upload"),
+        url(r'^(?P<filename>[\s\S]*)/$',views.WorkFormUploadFilePreviewView.as_view(),name="workform_upload_file_preview"),
     ])),
+
     url(r'^type/',include([
-        url(r'^list/$',workform_background_manager.WorkFormTypeListView.as_view(),name="workform_type_list"),
-        url(r'^add/$',workform_background_manager.WorkFormTypeAddView.as_view(),name="workform_type_add"),
-        url(r'^delete/$',workform_background_manager.WorkFormTypeDeleteView.as_view(),name="workform_type_delete"),
-        url(r'^change/$',workform_background_manager.WorkFormTypeChangeView.as_view(),name="workform_type_change"),
+        url(r'^list/$',workform_type.WorkFormTypeListView.as_view(),name="workform_type_list"),
+        url(r'^add/$',workform_type.WorkFormTypeAddView.as_view(),name="workform_type_add"),
+        url(r'^delete/$',workform_type.WorkFormTypeDeleteView.as_view(),name="workform_type_delete"),
+        url(r'^change/$',workform_type.WorkFormTypeChangeView.as_view(),name="workform_type_change"),
+    ])),
+
+    url(r'^process/',include([
+        url(r'^list/$',workform_process.WorkFormProcessListView.as_view(),name="workform_process_list"),
+        url(r'^add/$',workform_process.WorkFormProcessAddView.as_view(),name="workform_process_add"),
+        url(r'^delete/$',workform_process.WorkFormProcessDeleteView.as_view(),name="workform_process_delete"),
+        url(r'^change/$',workform_process.WorkFormProcessChangeView.as_view(),name="workform_process_change"),
     ])),
 ]

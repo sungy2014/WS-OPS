@@ -147,6 +147,7 @@ class UserInfoChangePwdForm(forms.Form):
 class UserInfoChangeForm(forms.Form):
     cn_name = forms.CharField(required=True,error_messages={"required":"中文名不能为空"})
     phone = forms.CharField(required=True,error_messages={"required":"手机号不能为空"})
+    role = forms.ChoiceField(required=True,choices=UserExtend.ROLE_CHOICES,error_messages={"required":"请选择一个角色"})
     email = forms.EmailField(required=True,error_messages={"required":"邮箱不能为空","invalid":"邮箱格式错误"})
 
     def clean_phone(self):

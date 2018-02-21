@@ -1,15 +1,39 @@
 from django import forms
 from django.forms import ModelForm
-from workform.models import WorkFormModel,ApprovalFormModel,WorkFormTypeModel
+from workform.models import WorkFormModel,ApprovalFormModel,WorkFormTypeModel,ProcessModel
 
-class PubWorkFormAddForm(forms.Form):
-    title = forms.CharField(required=True,max_length=100,error_messages={"required":"工单主题不能为空","max_length":"字符串长度必须小于100"})
-    level = forms.ChoiceField(required=True,choices=WorkFormModel.LEVEL_CHOICES,error_messages={"required":"必须选择一个紧急程度"})
-    detail = forms.CharField(required=True,max_length=800,error_messages={"required":"详情不能为空","max_length":"字符串长度必须小于800"})
-    module_name = forms.CharField(required=True,max_length=500,error_messages={"required":"发布的模块不能为空","max_length":"字符串长度必须小于500"})
-    sql = forms.ChoiceField(required=True,choices=WorkFormModel.SQL_CHOICES,error_messages={"required":"必须选择是否存在SQL"})
-    sql_detail = forms.CharField(required=False,max_length=1000,error_messages={"max_length":"字符串长度必须小于1000"})
-    sql_file_url = forms.CharField(required=False,max_length=1000,error_messages={"max_length":"上传了太多附件"})
+class PubWorkFormAddForm(ModelForm):
+    sql_detail = forms.CharField(required=False)
+    sql_file_url = forms.CharField(required=False) 
+    class Meta:
+        model = WorkFormModel
+        fields = ["title","level","detail","module_name","sql","sql_detail","sql_file_url"] 
+        error_messages = {
+            "title" : {
+                "required": "'工单主题'不能为空",
+                "max_length": "'工单主题'字符串长度必须小于100",
+            },
+            "level" : {
+                "required": "必须选择一个'紧急程度'",
+            },
+            "detail": {
+                "required": "'详情'不能为空",
+                "max_length": "'详情'字符串长度必须小于800",
+            },
+            "module_name": {
+                "required": "发布的'模块'不能为空",
+                "max_length": "'模块'字符串长度必须小于500",
+            },
+            "sql": {
+                "required": "必须选择是否存在'SQL'",
+            },
+            "sql_detail": {
+                "max_length": "'sql详情'字符串长度必须小于1000",
+            },
+            "sql_file_url": {
+                "max_length": "'sql附件'上传太多,请打包后上传",
+            },
+        }
 
     def clean_title(self):
         title = self.cleaned_data.get("title")
@@ -36,6 +60,13 @@ class PubWorkFormAddForm(forms.Form):
                 else:
                     return cleaned_data
                 
+class SqlWorkFormAddForm(PubWorkFormAddForm):
+    class Meta(PubWorkFormAddForm.Meta):
+        exclude = ["module_name"]
+
+class OthersWorkFormAddForm(PubWorkFormAddForm):
+    class Meta(PubWorkFormAddForm.Meta):
+        exclude = ["module_name","sql","sql_detail","sql_file_url"]
 
 class WorkFormApprovalForm(forms.Form):
     result = forms.ChoiceField(required=True,choices=ApprovalFormModel.RESULT_CHOICES,error_messages={"required":"必须选择一个审批结果"})
@@ -90,3 +121,30 @@ class WorkFormTypeAddForm(ModelForm):
 class WorkFormTypeChangeForm(WorkFormTypeAddForm):
     class Meta(WorkFormTypeAddForm.Meta):
         exclude = ["name","cn_name"]
+
+class WorkFormProcessAddForm(ModelForm):
+    class Meta:
+        model = ProcessModel
+        fields = ["step","approval_require"]
+        error_messages = {
+            "step" : {
+                "required": "必须填写step中文名",
+                "max_length": "名称长度不能超过50字符",
+            },
+            "approval_require" : {
+                "required": "必须选择step的可审核人",
+            },
+        }
+
+    def clean_step(self):
+        step = self.cleaned_data.get("step")
+        try:
+            ProcessModel.objects.get(step__exact=step)
+        except ProcessModel.DoesNotExist:
+            return step
+        else:
+            raise forms.ValidationError("Step中文名已经存在,请定义其他名称")
+
+class WorkFormProcessChangeForm(WorkFormProcessAddForm):
+    class Meta(WorkFormProcessAddForm.Meta):
+        exclude = ["step"]

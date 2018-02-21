@@ -12,6 +12,7 @@ from workform.models import WorkFormTypeModel,ProcessModel
 from workform.forms import WorkFormTypeAddForm,WorkFormTypeChangeForm
 
 
+''' 工单类型列表 '''
 class WorkFormTypeListView(LoginRequiredMixin,ListView):
     template_name = 'workform_type_list.html'
     paginate_by = 10
@@ -63,6 +64,7 @@ class WorkFormTypeListView(LoginRequiredMixin,ListView):
         page_range = range(page_start,page_end)
         return page_range 
 
+''' 添加工单类型 '''
 class WorkFormTypeAddView(LoginRequiredMixin,TemplateView):
     template_name = "workform_type_add.html"
     
@@ -96,6 +98,7 @@ class WorkFormTypeAddView(LoginRequiredMixin,TemplateView):
 
         return JsonResponse(ret)
 
+''' 删除工单类型 '''
 class WorkFormTypeDeleteView(LoginRequiredMixin,View):
     def get(self,request):
         ret = {"result":0}
@@ -118,6 +121,7 @@ class WorkFormTypeDeleteView(LoginRequiredMixin,View):
         
         return JsonResponse(ret)
 
+''' 修改工单类型 '''
 class WorkFormTypeChangeView(LoginRequiredMixin,View):
     def get(self,request):
         ret = {"result":0}

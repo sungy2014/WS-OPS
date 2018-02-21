@@ -146,10 +146,10 @@
                 <a href="{% url 'pub_workform_add' %}" class="menu-link">创建上线工单</a>
             </li>
             <li>
-                <a href="#" class="menu-link">数据库工单</a>
+                <a href="{% url 'sql_workform_add' %}" class="menu-link">数据库工单</a>
             </li>
             <li>
-                <a href="#" class="menu-link">其他运维工单</a>
+                <a href="{% url 'others_workform_add' %}" class="menu-link">其他运维工单</a>
             </li>
             <li>
                 <a href="{% url 'workform_list' %}" class="menu-link">所有工单列表</a>
@@ -162,7 +162,7 @@
                     <a href="{% url 'workform_type_list' %}" class="menu-link">工单类型管理</a>
                 </li>
                 <li>
-                    <a href="{% url 'my_workform_list' %}" class="menu-link">工单流程管理</a>
+                    <a href="{% url 'workform_process_list' %}" class="menu-link">工单流程管理</a>
                 </li>
             {% endif %}
         </ul>

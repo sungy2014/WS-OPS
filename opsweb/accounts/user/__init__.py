@@ -25,6 +25,7 @@ class UserListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
     def get_context_data(self,**kwargs):
         context = super(UserListView,self).get_context_data(**kwargs)
         context['page_range'] = self.get_page_range(context['page_obj'])
+        context["role"] = dict(UserExtend.ROLE_CHOICES)
         # request.GET 是获取QueryDict对象,也即是前端传过来的所有参数,由于QueryDict对象是只读的,所有要使用copy方法,赋值一份出来,才能进行修改
         search_data = self.request.GET.copy()
         try:
@@ -221,6 +222,11 @@ class UserAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
 
     template_name = "user/users_add.html"
 
+    def get_context_data(self):
+        context = super(UserAddView,self).get_context_data()
+        context["role"] = dict(UserExtend.ROLE_CHOICES)
+        return context
+
     def post(self,request):
         ret = {"result":0,"msg":None}
 
@@ -245,6 +251,7 @@ class UserAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
             ue_obj.user = user
             user.userextend.cn_name = user_info.get('cn_name')
             user.userextend.phone = user_info.get('phone')
+            user.userextend.role = user_info.get('role')
             user.userextend.save()
         except Exception as e:
             ret["result"] = 1
@@ -295,6 +302,7 @@ class UserInfoView(LoginRequiredMixin,TemplateView):
     def get_context_data(self,**kwargs):
         context = super(UserInfoView,self).get_context_data(**kwargs)
         context['user_info'] = self.request.user
+        context["role"] = dict(UserExtend.ROLE_CHOICES)
         return context
 
 
@@ -323,6 +331,7 @@ class UserInfoChangeView(LoginRequiredMixin,View):
             user_info['email'] = user_obj.email
             user_info['cn_name'] = user_obj.userextend.cn_name
             user_info['phone'] = user_obj.userextend.phone
+            user_info['role'] = user_obj.userextend.role
             ret["user_obj"] = user_info
 
         return JsonResponse(ret)
@@ -353,8 +362,9 @@ class UserInfoChangeView(LoginRequiredMixin,View):
             user_obj.email = user_change_form.cleaned_data.get("email")
             user_obj.userextend.cn_name = user_change_form.cleaned_data.get("cn_name")
             user_obj.userextend.phone = user_change_form.cleaned_data.get("phone")
+            user_obj.userextend.role = user_change_form.cleaned_data.get("role")
             user_obj.save(update_fields=["email"])
-            user_obj.userextend.save(update_fields=["cn_name","phone","last_change_time"])
+            user_obj.userextend.save(update_fields=["cn_name","phone","role","last_change_time"])
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = e.args

@@ -1,7 +1,7 @@
 {% extends "public/layout.html" %}
 
 {% block breadcrumb %} 
-工单系统 / <strong class="active">发布工单</strong>
+工单系统 / <strong class="active">数据库工单</strong>
 {% endblock %}
 
 {% block body %}
@@ -11,7 +11,7 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>填写工单信息</h5>
+                    <h5>填写SQL工单信息</h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <form id="PubAddForm" enctype="multipart/form-data" class="form-horizontal nice-validator n-yellow Formvalid" novalidate="novalidate">
+                    <form id="SqlAddForm" enctype="multipart/form-data" class="form-horizontal nice-validator n-yellow Formvalid" novalidate="novalidate">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">主题<span class="red-fonts ">*</span></label>
@@ -34,22 +34,9 @@
                             </div>
                         </div>
 
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">类型<span class="red-fonts">*</span></label>
-                            <div class="col-sm-8 row">
-                                <div class="col-sm-3">
-                                    <div class="radio i-checks">
-                                        <label><input type="radio" value="publish" name="type">发布</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="radio i-checks">
-                                        <label><input type="radio" value="rollback" name="type">回滚</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <input name="type" type="hidden" class="form-control" aria-required="true" value="sql_exec">
+
+                        <input name="sql" type="hidden" class="form-control" aria-required="true" value="yes">
 
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
@@ -67,32 +54,9 @@
 
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label for="module_name_pre" class="col-sm-2 control-label">发布模块名<span class="red-fonts ">*</span></label>
+                            <label for="detail" class="col-sm-2 control-label">工单说明<span class="red-fonts">*</span></label>
                             <div class="col-sm-8">
-                                <select name="module_name_pre" id="module_name_pre" multiple="multiple" class="form-control">
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label for="detail" class="col-sm-2 control-label">发布说明<span class="red-fonts">*</span></label>
-                            <div class="col-sm-8">
-                                <textarea name='detail' id='detail' class="form-control" rows="5"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">是否有SQL<span class="red-fonts">*</span></label>
-                            <div class="col-sm-8">
-                                {% for k,v in sql.items %}
-                                <div class="col-sm-2">
-                                    <div class="radio i-checks">
-                                        <label><input type="radio" value="{{ k }}" name="sql">{{ v }}</label>
-                                    </div>
-                                </div>
-                                {% endfor %}        
+                                <textarea name='detail' id='detail' class="form-control" rows="3"></textarea>
                             </div>
                         </div>
 
@@ -100,18 +64,13 @@
                         <div class="form-group">
                             <label for="sql_detail" class="col-sm-2 control-label">SQL详情</label>
                             <div class="col-sm-8">
-                                <textarea name='sql_detail' id='sql_detail' class="form-control" rows="5" placeholder="适用于所有SQL语句的总字符数小于1000,否则请以附件的形式上传....."></textarea>
+                                <textarea name='sql_detail' class="form-control" rows="5" placeholder="适用于所有SQL语句的总字符数小于1000,否则请以附件的形式上传....."></textarea>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-8">
                                 <input id="sql_file_url" name="sql_file_url" type="hidden" class="form-control" aria-required="true">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-8">
-                                <input id="module_name" name="module_name" type="hidden" class="form-control" aria-required="true">
                             </div>
                         </div>
 
@@ -135,7 +94,7 @@
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <div class="col-sm-6 col-sm-offset-5">
-                                <button id="pub_submit" class="btn btn-primary">提交</button>
+                                <button id="sql_submit" class="btn btn-primary">提交</button>
                                 <button class="btn btn-warning" type="reset">取消</button>
                                 <button class="btn btn-info" type="reset">重置</button>
                             </div>
@@ -152,57 +111,6 @@
 {% block js %}
 
 <script>
-
-$.getJSON("{% url 'get_cmdb_name' %}",function(data){
-    var str=''
-    $.each(data,function(k,v){
-        str += '<option value="'+v.id+'">'+v.name+'</option>'
-    });
-    $("#module_name_pre").append(str)
-    $("#module_name_pre").multiselect('rebuild')
-});
-
-var orderCount = 0;
-
-$("#module_name_pre").multiselect({
-    enableFiltering: true,
-    maxHeight: 200,
-    buttonWidth: '100%',
-    delimiterText: ' -> ',
-    selectedClass: 'multiselect-selected',
-    enableCaseInsensitiveFiltering: true,
-    onChange: function(option, checked) {
-        if (checked) {
-            orderCount++;
-            $(option).data('order', orderCount);
-        }else {
-            $(option).data('order', '');
-        }
-    },
-    buttonText: function(options) {
-        if (options.length === 0) {
-            $("#module_name").val('')
-            return '请按照 "发布/回滚" 顺序,选择模块名称...';
-        }else if (options.length > 8) {
-            return options.length + ' selected';
-        }else {
-            var selected = [];
-            options.each(function() {
-                selected.push([$(this).text(), $(this).data('order')]);
-            });
-            selected.sort(function(a, b) {
-                return a[1] - b[1];
-            });
-            var text = '';
-            for (var i = 0; i < selected.length; i++) {
-                text += selected[i][0] + ' -> ';
-            }
-            $("#module_name").val(text.substr(0, text.length - 4))
-            return text.substr(0, text.length - 4);
-        }
-    },
-
-});
 
 $('#fileupload').click(function(){
     $(".file_already_upload,.files_upload_url").remove()
@@ -236,8 +144,8 @@ $('#fileupload').fileupload({
     }
 });
 
-$("#pub_submit").click(function(){
-    var str = $("#PubAddForm").serialize()
+$("#sql_submit").click(function(){
+    var str = $("#SqlAddForm").serialize()
     var url = "{% url 'workform_add' %}"
     $.post(url,str,function(data){
         if(data.result==0){

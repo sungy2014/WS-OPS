@@ -1,0 +1,319 @@
+{% extends "public/layout.html" %}
+
+{% load get_process_step %}
+
+{% block breadcrumb %}
+
+工单管理 / <strong class="active">工单流程管理</strong>
+
+{% endblock %}
+
+{% block body %}
+
+<!-- IDC列表 -->
+<table class="table table-striped table-bordered table-hover">
+    <caption>
+        <div>
+            <form class="form-inline">
+                {% csrf_token %}
+                <a href="#" class="btn btn-primary" id="step_add_btn">添加流程 Step</a> 
+                <button type="submit" class="btn btn-primary" style="float:right">搜索</button>
+                <div class="form-group" style="text-align:right;float: right;margin-right: 10px;">
+                    <input type="text" class="form-control" name="search" value="{{ search }}" placeholder="流程 step 名称">
+                </div>
+            </form> 
+        </div>
+</caption>
+<thead>
+    <tr>
+        <th class="text-center">Step中文名</th>
+        <th class="text-center">StepID</th>
+        <th class="text-center">审核人</th>
+        <th class="text-center">操作</th>
+    </tr>
+</thead>
+<tbody>
+   {% for p in object_list %}
+        <tr class="gradeX">
+                <td class="text-center">{{ p.step }}</td>
+                <td class="text-center">{{ p.step_id }}</td>
+                <td class="text-center">{{ p.get_approval_require_display }}</td>
+                <td class="text-center">
+                    <button data-id="{{ p.id }}" class="btn btn-info btn-sm update_btn">编辑</button>
+                    <button data-id="{{ p.id }}" data-del="{{ p.step }}" class="btn btn-sm btn-danger del_btn">删除</button>
+                </td>
+         </tr>
+    {% endfor %}
+ </tbody>
+ </table>
+<!-- IDC列表结束-->
+
+<!-- 列表分页 -->
+    <div class="text-center">
+        <ul class="pagination">
+            <li class="disabled"><a href="#">总页数: {{ page_obj.paginator.num_pages }}</a></li>
+
+            {% if page_obj.number != 1 %}
+                <li><a href={% url "workform_process_list" %}?page=1>首页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">首页</a></li>
+            {% endif %}
+
+            {% if page_obj.has_previous %}
+                <li><a href={% url "workform_process_list" %}?page={{ page_obj.previous_page_number }}>上一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">上一页</a></li>
+            {% endif %}
+
+            {% for page in page_obj.paginator.page_range %}
+               {% if page == page_obj.number %}
+                  <li class="active"><a href={% url "idc_list" %}?page={{ page }}>{{ page }}</a></li>
+               {% else %}
+                  <li><a href={% url "workform_process_list" %}?page={{ page }}>{{ page }}</a></li>
+               {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href={% url "workform_process_list" %}?page={{ page_obj.next_page_number }}>下一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">下一页</a></li>
+            {% endif %}
+
+            {% if page_obj.number != page_obj.paginator.num_pages %}
+                <li><a href={% url "workform_process_list" %}?page={{ page_obj.paginator.num_pages }}>末页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">末页</a></li>
+            {% endif %}
+
+            <li class="disabled"><a href="#">总条数: {{ page_obj.paginator.count }}</a></li>
+        </ul>
+    </div>
+<!-- 分页结束 -->
+
+<!-- 添加模态框 -->
+<div class="modal fade"  id ="AddModal">
+    <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">添加流程 Step</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="AddForm" class="Formvalid form-horizontal nice-validator n-yellow col-sm-offset-1" novalidate="novalidate">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="step" class="control-label text-right col-sm-2">Step中文名 <span class="red-fonts ">*</span></label>
+                            <div class="col-sm-8">
+                                <input name="step" type="text" class="form-control" aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label for="approval_require" class="control-label col-sm-2">审核人 <span class="red-fonts ">*</span></label>
+                            <div class="col-sm-8">
+                                <select name="approval_require" id="approval_require" class="form-control">
+                                    {% for k,v in approval_require_list.items %}
+                                        <option value="{{ k }}">{{ v }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-offset-2">
+                            <p style="font-size: 6px">
+                                <i class="fa fa-exclamation-circle"></i> 
+                                如果没有可选,请到模型文件中定义; 这里仅是一个标记,实际用户审核组,需后端代码中定义
+                            </p>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" style="margin-top: 10px;">
+                    <button class="btn btn-primary btn_sub"  id="process_add_btn" >提交</button>
+                    <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+                </div>
+            </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!--更新模态框-->
+<div class="modal fade"  id ="UpdateModal">   
+    <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">更新流程信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="UpdateForm" class="Formvalid form-horizontal nice-validator n-yellow" novalidate="novalidate">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" id='process_id'>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-6">
+                                <label for="step" style="width:30%" class="control-label text-right ">Step中文名 &nbsp</label>
+                                &nbsp<input id="step" name="step" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="step_id" style="width:30%" class="control-label text-right">StepID &nbsp<span class="red-fonts">*</span></label>
+                                <input id="step_id" name="step_id" style="width:65%" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="approval_require" style="width:15%" class="control-label">审核人 <span class="red-fonts ">*</span></label>
+                                <select name="approval_require" id="approval_require_change" style="width:79%" class="form-control">
+                                    {% for k,v in approval_require_list.items %}
+                                        <option value="{{ k }}">{{ v }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10" style="margin-left: 12%;margin-top: 10px">
+                            <p style="font-size: 6px">
+                                <i class="fa fa-exclamation-circle"></i> 
+                                如果没有可选,请到模型文件中定义; 这里仅是一个标记,实际用户审核组,需后端代码中定义
+                            </p>
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn_sub"  id="process_update_btn" >更新</button>
+                    <button class="btn btn-warning exit-btn" data-dismiss="modal">退出</button>
+                    <button class="btn btn-info btn_reset" type="reset">重置</button>
+                </div>
+            </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- 删除 IDC 模态框-->
+<div class="modal fade" id='DeleteModal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title">删除</h4>
+      </div>
+      <div class="modal-body">
+        <p id="data-del"></p>
+        <p style="color:red"><b>你确认要删除吗? 原则上不建议删除，以免影响历史工单</b></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-warning del-sure" data-id=''>确认</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--删除模态框结束-->
+
+{% endblock %}
+
+
+{% block js %}
+
+<script>
+
+<!--添加-->
+$("#step_add_btn").click(function(){
+    $("#AddModal").modal("show")
+});
+
+$("#process_add_btn").click(function(){
+    var str = $("#AddForm").serialize()
+    var url = "{% url 'workform_process_add' %}"
+    $("#AddModal").modal("hide")
+    $.post(url,str,function(data){
+        if(data.result==0){
+           swal({
+             title:"Good",
+             text:data.msg,
+             type:'success',
+             confirmButtonText:"确定"
+             },
+             function(){
+                location.reload()
+           })
+       }else{
+            swal("OH,My God",data.msg,"error")
+       };  
+    })
+});
+
+
+<!--更新-->
+$(".update_btn").click(function(){
+    var id = $(this).attr("data-id")
+    var url = "{% url 'workform_process_change' %}?id="+id
+    $.getJSON(url,function(data){
+        if(data.result==0){
+            data = data.pm_info
+            $("#process_id").val(data.id)
+            $("#step").val(data.step)
+            $("#step_id").val(data.step_id)
+            $("#approval_require_change option[value='"+data.approval_require+"']").prop("selected",true)
+            $("#UpdateModal").modal("show")
+        }else{
+            swal("Oh,MyGod",data.msg,"error")
+        }; 
+    });
+});
+
+$("#process_update_btn").click(function(){
+    var url = "{% url 'workform_process_change' %}"
+    var str = $("#UpdateForm").serialize()
+    $("#UpdateModal").modal("hide")
+    $.post(url,str,function(data){
+        if(data.result==0){
+           swal({
+             title:"Good",
+             text:data.msg,
+             type:'success',
+             confirmButtonText:"确定"
+             },
+             function(){
+                location.reload()
+           })
+       }else{
+            swal("OH,My God",data.msg,"error")
+       }; 
+    });
+    return false
+});
+
+<!--删除-->
+$(".del_btn").click(function(){
+    var id = $(this).attr('data-id')
+    var data = $(this).attr("data-del")
+    $(".del-sure").attr('data-id',id)
+    $("#data-del").html(data)
+    $("#DeleteModal").modal('show')
+});
+
+$(".del-sure").click(function(){
+    var id = $(this).attr('data-id')
+    var url = "{% url 'workform_process_delete' %}?id=" + id
+    $("#DeleteModal").modal('hide')
+    $.getJSON(url,function(data){
+        if(data.result==0){
+                swal({
+                    title: "Good",
+                    type: "success",
+                    text: data.msg,
+                    confirmButtonText: "确定"
+                    },
+                    function(){
+                        location.reload()
+                    }
+                )
+            }else{
+                swal("Oh,MyGod",data.msg,"error")
+            } 
+    });
+});
+
+</script>
+
+{% endblock %}

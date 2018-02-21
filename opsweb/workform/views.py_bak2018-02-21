@@ -9,7 +9,7 @@ from opsweb.settings import MEDIA_ROOT
 from datetime import datetime
 import os
 import json
-from workform.forms import PubWorkFormAddForm,WorkFormApprovalForm,SqlWorkFormAddForm,OthersWorkFormAddForm
+from workform.forms import PubWorkFormAddForm,WorkFormApprovalForm
 from django.db.models import Q
 from django.contrib.auth.models import User,Group
 from dashboard.utils.utc_to_local import utc_to_local
@@ -26,6 +26,159 @@ class PubWorkFormAddView(LoginRequiredMixin,TemplateView):
         context["sql"] = dict(WorkFormModel.SQL_CHOICES)
         context["level"] = dict(WorkFormModel.LEVEL_CHOICES)
         return context
+
+    def get_approver_can(self,user_obj,approval_require,ret):
+
+        ''' 针对审核要求是组的情况，写了下面这个字典-{"审核人的标记": "组名"}，主要是为了简化代码量'''
+        approval_require_dict = {"2":"qa","3":"ops","6":"ws-trade","7":"ws-item","8":"ws-user"}
+
+        user_obj_list = []
+
+        ''' 对审核要求为组的情况,做了统一处理,也就简化了代码量'''
+        if approval_require in ["2","3","6","7","8"] :
+            try:
+                user_obj_list = list(Group.objects.get(name__exact=approval_require_dict.get(approval_require,"ops")).user_set.exclude(id__exact=user_obj.id))
+            except Exception as e:
+                ret["result"] = 1
+                ret["msg"] = "获取 %s 组内可以审核的用户对象失败,请联系运维人员" %(approval_require_dict.get(approval_require,"ops"))
+                wslog_error().error("获取 %s 组内可以审核的用户对象失败,错误信息: %s" %(approval_require_dict.get(approval_require,"ops"),e.args))
+            else:
+                ret["user_obj_list"] = user_obj_list
+
+        elif approval_require == '1' :
+            try:
+                for group_obj in user_obj.groups.all() :
+                    user_obj_list += list(group_obj.user_set.exclude(id__exact=user_obj.id))
+            except Exception as e:
+                ret["result"] = 1
+                ret["msg"] = "获取可以审核的用户对象失败,请联系运维人员"
+                wslog_error().error("获取可以审核的用户对象失败,错误信息: %s" %(e.args))
+            else: 
+                ret["user_obj_list"] = user_obj_list
+
+        elif approval_require == "4" or approval_require == "9":
+            user_obj_list.append(user_obj)
+            ret["user_obj_list"] = user_obj_list
+ 
+        else:
+            ret["result"] = 1
+            ret["msg"] = "此流程步骤所需的审核组或用户: %s 未配置,请联系运维进行配置" %(approval_require)
+            wslog_error().error("此流程步骤: %s 未配置相应的审核组或用户,请进行配置" %(approval_require))
+
+        return ret
+
+    def post(self,request):
+        ret = {"result":0,"msg":"success"}
+        user_cn_name = request.user.userextend.cn_name
+
+        pub_workform_add_form = PubWorkFormAddForm(request.POST)
+        if not pub_workform_add_form.is_valid():
+            ret["result"] = 1
+            error_msg = json.loads(pub_workform_add_form.errors.as_json(escape_html=False))
+            ret["msg"] = '\n'.join([ i["message"] for v in error_msg.values() for i in v ])
+            return JsonResponse(ret) 
+
+        workform_type = request.POST.get("type",None)
+        if not workform_type:
+            ret["result"] = 1
+            ret["msg"] = "工单必须选择一个类型"
+            return JsonResponse(ret)
+
+        ''' 通过工单类型来查询此工单的审核流程 '''
+        try:
+            wft_obj = WorkFormTypeModel.objects.get(name__exact=workform_type)
+        except WorkFormTypeModel.DoesNotExist:
+            ret["result"] = 1
+            ret["msg"] = "该工单类型:'%s' 在模型 WorkFormTypeModel 中不存在,请联系运维人员" %(workform_type)
+            wslog_error().error("用户: %s 添加工单,该工单类型:'%s' 在模型 WorkFormTypeModel 中不存在,请检查" %(user_cn_name,workform_type))
+            return JsonResponse(ret)
+        except Exception as e:
+            ret["result"] = 1
+            ret["msg"] = "该工单类型:'%s' 在模型 WorkFormTypeModel 中查询异常,请联系运维人员" %(workform_type)
+            wslog_error().error("用户: %s 添加工单,工单类型:'%s' 在模型 WorkFormTypeModel 中查询异常,错误信息: %s" %(user_cn_name,workform_type,e.args))
+            return JsonResponse(ret) 
+        else:
+            process_step_list = wft_obj.process_step_id.split(" -> ")
+
+        try:
+            p_obj = ProcessModel.objects.get(step_id__exact=process_step_list[0])
+            pub_workform_obj = WorkFormModel(**pub_workform_add_form.cleaned_data)
+            pub_workform_obj.applicant = request.user
+            pub_workform_obj.type = wft_obj
+            pub_workform_obj.process_step = p_obj
+            pub_workform_obj.save()
+        except Exception as e:
+            ret["result"] = 1
+            ret["msg"] = "WorkFormModel 模型对象保存失败,错误信息: %s" %(e.args)
+            wslog_error().error("用户: %s 添加 WorkFormModel 模型对象 '%s' 保存失败,错误信息: %s" %(user_cn_name,pub_workform_add_form.cleaned_data.get("title"),e.args))
+            return JsonResponse(ret)
+
+        for process_step in process_step_list:
+            try:
+                process_obj = ProcessModel.objects.get(step_id__exact=process_step)
+            except ProcessModel.DoesNotExist:
+                ret["result"] = 1
+                ret["msg"] = "ProcessModel 模型不存在 step_id 为 %s 的对象,请联系运维人员" %(process_step)
+                wslog_error().error("用户: %s 添加工单: '%s' 中 ProcessModel 模型不存在 step_id 为 %s 的对象" %(user_cn_name,pub_workform_obj.title,process_step))
+                pub_workform_obj.delete()
+                break
+            except Exception as e:
+                ret["result"] = 1
+                ret["msg"] = "ProcessModel 模型查找 step_id 为 %s 的对象发生异常,请联系运维人员" %(process_step)
+                wslog_error().error("用户: %s 添加工单: '%s' 中 ProcessModel 模型查找 step_id 为 %s 的对象异常，错误信息: %s" %(user_cn_name,pub_workform_obj.title,process_step,e.args))
+                pub_workform_obj.delete()
+                break
+
+            approval_require = process_obj.approval_require
+
+            ret = self.get_approver_can(request.user,approval_require,ret)
+
+            if ret["result"] == 1:
+                pub_workform_obj.delete()
+                break
+
+            af_obj = ApprovalFormModel()
+            try:
+                af_obj.workform = pub_workform_obj
+                af_obj.process = process_obj
+                af_obj.save()
+            except Exception as e:
+                ret["result"] = 1
+                del ret["user_obj_list"]
+                ret["msg"] = "ApprovalFormModel 模型保存对象失败,请联系运维人员"
+                wslog_error().error("用户: %s 添加工单: '%s' 中 ApprovalFormModel 模型保存对象失败,错误信息: %s" %(user_cn_name,pub_workform_obj.title,e.args))
+                pub_workform_obj.delete()
+                break
+
+            if ret["user_obj_list"]:
+                af_obj.approver_can.set(ret["user_obj_list"])
+                del ret["user_obj_list"]
+            else:
+                ret["result"] = 1
+                ret["msg"] = "该流程步骤 %s 未查到可审核的用户对象列表,请联系运维人员" %(process_step)
+                pub_workform_obj.delete()
+                break
+
+        if ret["result"] == 1:
+            return JsonResponse(ret)
+        
+        ''' 
+            根据ApprovalFormModel中的approver_can字段关联的User对象,来生成WorkFormModel中 approver_can字段 与User对象的多对多关系,
+            相当于 复制了ApprovalFormModel中的approver_can字段
+        '''
+        try:
+            pub_workform_obj.approver_can.set(pub_workform_obj.approvalformmodel_set.get(process_id__exact=pub_workform_obj.process_step_id).approver_can.all())
+        except Exception as e:
+            ret["result"] = 1
+            ret["msg"] = "根据模型ApprovalFormModel的字段approver_can来生成模型WorkFormModel字段approver_can与User多对多关系失败"
+            wslog_error().error("根据模型ApprovalFormModel的字段approver_can来生成模型WorkFormModel字段approver_can与User多对多关系失败")
+            pub_workform_obj.delete()
+        else:
+            ret["msg"] = "发布工单: '%s' 创建成功" %(pub_workform_add_form.cleaned_data.get("title"))
+            wslog_info().info("用户: %s 发布工单: '%s' 创建成功" %(user_cn_name,pub_workform_obj.title))
+
+        return JsonResponse(ret)
+
 
 ''' 添加 SQL工单 '''
 class SqlWorkFormAddView(LoginRequiredMixin,TemplateView):
@@ -51,176 +204,6 @@ class OthersWorkFormAddView(LoginRequiredMixin,TemplateView):
         context["level"] = dict(WorkFormModel.LEVEL_CHOICES)
         context["type_list"] = dict(WorkFormTypeModel.objects.exclude(Q(name__exact="publish")|Q(name__exact="rollback")|Q(name__exact="sql_exec")).values_list("name","cn_name"))
         return context
-
-''' 工单信息提交 '''
-class WorkFormAddBaseView(LoginRequiredMixin,View):
-
-    ''' 根据ProcessModel 字段 approval_require 定义的 '标记' 获取每一个 step 的审核人列表 '''
-    def get_approver_can(self,user_obj,approval_require,ret):
-
-        ''' 针对审核要求是组的情况，定义下面这个字典-{"审核人的标记": "组名"}'''
-        approval_require_dict = {"2":"qa","3":"ops","6":"ws-trade","7":"ws-item","8":"ws-user"}
-
-        user_obj_list = []
-
-        if approval_require in ["2","3","6","7","8"] :
-            ''' 对审核要求为组的情况,做统一处理'''
-            try:
-                user_obj_list = list(Group.objects.get(name__exact=approval_require_dict.get(approval_require,"ops")).user_set.exclude(id__exact=user_obj.id))
-            except Exception as e:
-                ret["result"] = 1
-                ret["msg"] = "获取 %s 组内可以审核的用户对象失败,请联系运维人员" %(approval_require_dict.get(approval_require,"ops"))
-                wslog_error().error("获取 %s 组内可以审核的用户对象失败,错误信息: %s" %(approval_require_dict.get(approval_require,"ops"),e.args))
-            else:
-                ret["user_obj_list"] = user_obj_list
-
-        elif approval_require == '1' :
-            ''' 用户所属组内的 leader 审核 '''
-            try:
-                for group_obj in user_obj.groups.all() :
-                    user_obj_list += list(group_obj.user_set.exclude(id__exact=user_obj.id))
-            except Exception as e:
-                ret["result"] = 1
-                ret["msg"] = "获取可以审核的用户对象失败,请联系运维人员"
-                wslog_error().error("获取可以审核的用户对象失败,错误信息: %s" %(e.args))
-            else: 
-                ret["user_obj_list"] = user_obj_list
-
-        elif approval_require == "4" or approval_require == "9":
-            ''' 用户自己审核或者不需要审核 '''
-            user_obj_list.append(user_obj)
-            ret["user_obj_list"] = user_obj_list
- 
-        else:
-            ret["result"] = 1
-            ret["msg"] = "此流程步骤所需的审核组或用户: %s 未配置,请联系运维进行配置" %(approval_require)
-            wslog_error().error("此流程步骤: %s 未配置相应的审核组或用户,请进行配置" %(approval_require))
-
-        return ret
-
-    def post(self,request):
-        ret = {"result":0,"msg":"success"}
-        user_cn_name = request.user.userextend.cn_name
-        workform_type = request.POST.get("type",None)
-        print("workform_type:",workform_type)
-        if not workform_type:
-            ret["result"] = 1
-            ret["msg"] = "工单必须选择一个类型"
-            return JsonResponse(ret)
-
-        ''' 通过工单类型来查询此工单的审核流程 '''
-        try:
-            wft_obj = WorkFormTypeModel.objects.get(name__exact=workform_type)
-        except WorkFormTypeModel.DoesNotExist:
-            ret["result"] = 1
-            ret["msg"] = "该工单类型:'%s' 在模型 WorkFormTypeModel 中不存在,请联系运维人员" %(workform_type)
-            wslog_error().error("用户: %s 添加工单,该工单类型:'%s' 在模型 WorkFormTypeModel 中不存在,请检查" %(user_cn_name,workform_type))
-            return JsonResponse(ret)
-        except Exception as e:
-            ret["result"] = 1
-            ret["msg"] = "该工单类型:'%s' 在模型 WorkFormTypeModel 中查询异常,请联系运维人员" %(workform_type)
-            wslog_error().error("用户: %s 添加工单,工单类型:'%s' 在模型 WorkFormTypeModel 中查询异常,错误信息: %s" %(user_cn_name,workform_type,e.args))
-            return JsonResponse(ret) 
-        else:
-            process_step_list = wft_obj.process_step_id.split(" -> ")
-            print("process_step_list:",process_step_list)
-
-        ''' 根据工单类型选择相应的 验证form '''
-        if workform_type in ["publish","rollback"]:
-            workform_add_form = PubWorkFormAddForm(request.POST)
-        elif workform_type == "sql_exec":
-            workform_add_form = SqlWorkFormAddForm(request.POST)
-            print("哈哈,执行了这一步")
-        else:
-            workform_add_form = OthersWorkFormAddForm(request.POST)
-
-        if not workform_add_form.is_valid():
-            ret["result"] = 1
-            error_msg = json.loads(workform_add_form.errors.as_json(escape_html=False))
-            ret["msg"] = '\n'.join([ i["message"] for v in error_msg.values() for i in v ])
-            return JsonResponse(ret) 
-        
-        ''' 创建一个 WorkFormModel 对象,并关联上待执行的流程 step '''
-        try:
-            p_obj = ProcessModel.objects.get(step_id__exact=process_step_list[0])
-            workform_obj = WorkFormModel(**workform_add_form.cleaned_data)
-            workform_obj.applicant = request.user
-            workform_obj.type = wft_obj
-            workform_obj.process_step = p_obj
-            workform_obj.save()
-        except Exception as e:
-            ret["result"] = 1
-            ret["msg"] = "WorkFormModel 模型对象保存失败,错误信息: %s" %(e.args)
-            wslog_error().error("用户: %s 添加 WorkFormModel 模型对象 '%s' 保存失败,错误信息: %s" %(user_cn_name,workform_add_form.cleaned_data.get("title"),e.args))
-            return JsonResponse(ret)
-
-        ''' 循环该工单的流程 step,建立 ProcessModel 中 step 与 ApprovalFormModel 的关联 '''
-        for process_step in process_step_list:
-            try:
-                process_obj = ProcessModel.objects.get(step_id__exact=process_step)
-            except ProcessModel.DoesNotExist:
-                ret["result"] = 1
-                ret["msg"] = "ProcessModel 模型不存在 step_id 为 %s 的对象,请联系运维人员" %(process_step)
-                wslog_error().error("用户: %s 添加工单: '%s' 中 ProcessModel 模型不存在 step_id 为 %s 的对象" %(user_cn_name,workform_obj.title,process_step))
-                workform_obj.delete()
-                break
-            except Exception as e:
-                ret["result"] = 1
-                ret["msg"] = "ProcessModel 模型查找 step_id 为 %s 的对象发生异常,请联系运维人员" %(process_step)
-                wslog_error().error("用户: %s 添加工单: '%s' 中 ProcessModel 模型查找 step_id 为 %s 的对象异常，错误信息: %s" %(user_cn_name,workform_obj.title,process_step,e.args))
-                workform_obj.delete()
-                break
-
-            approval_require = process_obj.approval_require
-
-            ret = self.get_approver_can(request.user,approval_require,ret)
-
-            if ret["result"] == 1:
-                workform_obj.delete()
-                break
-
-            af_obj = ApprovalFormModel()
-            try:
-                af_obj.workform = workform_obj
-                af_obj.process = process_obj
-                af_obj.save()
-            except Exception as e:
-                ret["result"] = 1
-                del ret["user_obj_list"]
-                ret["msg"] = "ApprovalFormModel 模型保存对象失败,请联系运维人员"
-                wslog_error().error("用户: %s 添加工单: '%s' 中 ApprovalFormModel 模型保存对象失败,错误信息: %s" %(user_cn_name,workform_obj.title,e.args))
-                workform_obj.delete()
-                break
-
-            if ret["user_obj_list"]:
-                af_obj.approver_can.set(ret["user_obj_list"])
-                del ret["user_obj_list"]
-            else:
-                ret["result"] = 1
-                ret["msg"] = "该流程步骤 %s 未查到可审核的用户对象列表,请联系运维人员" %(process_step)
-                workform_obj.delete()
-                break
-
-        if ret["result"] == 1:
-            return JsonResponse(ret)
-        
-        ''' 
-            根据ApprovalFormModel中的approver_can字段关联的User对象,来生成WorkFormModel中 approver_can字段 与User对象的多对多关系,
-            相当于 复制了ApprovalFormModel中的approver_can字段
-        '''
-        try:
-            workform_obj.approver_can.set(workform_obj.approvalformmodel_set.get(process_id__exact=workform_obj.process_step_id).approver_can.all())
-        except Exception as e:
-            ret["result"] = 1
-            ret["msg"] = "根据模型ApprovalFormModel的字段approver_can来生成模型WorkFormModel字段approver_can与User多对多关系失败"
-            wslog_error().error("根据模型ApprovalFormModel的字段approver_can来生成模型WorkFormModel字段approver_can与User多对多关系失败")
-            workform_obj.delete()
-        else:
-            ret["msg"] = "发布工单: '%s' 创建成功" %(workform_add_form.cleaned_data.get("title"))
-            wslog_info().info("用户: %s 发布工单: '%s' 创建成功" %(user_cn_name,workform_obj.title))
-
-        return JsonResponse(ret)
-
 
 ''' 工单列表 '''
 class WorkFormListView(LoginRequiredMixin,ListView):
@@ -321,8 +304,7 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             wf_info = WorkFormModel.objects.filter(id__exact=wf_id).values("id","title","detail","applicant","module_name")[0]
             wf_info["level"] = wf_obj.get_level_display()
             wf_info["process"] = wf_obj.process_step.step
-            wf_info["type_id"] = wf_obj.type.cn_name
-            wf_info["type"] = wf_obj.type.name
+            wf_info["type"] = wf_obj.type.cn_name
             wf_info["applicant"] = wf_obj.applicant.userextend.cn_name
             wf_info["status"] = wf_obj.get_status_display()
             wf_info["process_step_id"] = process_step_id
@@ -389,7 +371,7 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             wslog_error().error("用户 %s 审批失败,更新 ApprovalFormModel 模型对象 workform_id: %s 流程进度: %s 的工单 审批信息失败,错误信息: %s" %(request.user.username,wf_id,process_step_id,e.args))
             return JsonResponse(ret)
         
-        ''' 查询并确定流程下一个 step_id '''
+        '''插询并确定流程下一个 step_id'''
         wf_process_list = list(wf_obj.approvalformmodel_set.filter(id__gt=af_obj.id).values("id","process_id").order_by("id"))
 
         if not wf_process_list:
@@ -416,17 +398,14 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
 
         ''' 更新工单的状态 '''
         if next_step_id == 60:
-            ''' 如果工单下一个流程step是'完成',则更新工单流程审核完成,同时清空可审核人 '''
             wf_obj.status = "2"
             wf_obj.process_step_id = process_next_id
             wf_obj.complete_time = datetime.now().strftime("%Y-%m-%d %X")
             wf_obj.approver_can.clear()
         elif  af_obj.result == "2" or af_obj.result == "3":
-            ''' 如果工单当前流程step的审核结果是'暂停'或'有异常', 则更新工单的状态为'暂停',同时工单的流程step不变,可审核人变成当前审核的人 '''
             wf_obj.status = "3"
             wf_obj.approver_can.set([request.user])
         elif af_obj.result == "1":
-            ''' 如果工单当前流程step的审核结果是'拒绝',就把工单状态变为'完成',同时审批流程也结束 '''
             wf_obj.status = "2"
             wf_obj.complete_time = datetime.now().strftime("%Y-%m-%d %X")
             wf_obj.approver_can.clear()
@@ -468,7 +447,6 @@ class WorkFormInfoView(LoginRequiredMixin,View):
             wf_info["level"] = wf_obj.get_level_display()
             wf_info["status"] = wf_obj.get_status_display()
             wf_info["type_id"] = wf_obj.type.cn_name
-            wf_info["type"] = wf_obj.type.name
             wf_info["applicant"] = wf_obj.applicant.userextend.cn_name
             if wf_info.get("create_time"):
                 wf_info["create_time"] = utc_to_local(wf_obj.create_time).strftime("%Y-%m-%d %X")
@@ -581,8 +559,8 @@ class WorkFormDeleteView(LoginRequiredMixin,View):
 
         return JsonResponse(ret)
 
-''' 工单中 SQL附件的上传 '''
-class WorkFormUploadView(LoginRequiredMixin,View):
+''' 发布工单中 SQL附件的上传 '''
+class PubWorkFormUploadView(LoginRequiredMixin,View):
     allow_file_type=set(['txt','sql'])
     upload_dir = MEDIA_ROOT + 'pub/'
     max_file_size = 10 * 1024 * 1024
@@ -603,7 +581,7 @@ class WorkFormUploadView(LoginRequiredMixin,View):
 
             file_upload_time = datetime.now().strftime("%Y%m%d%H%M%S")
             file_store_name = filename.rsplit('.',1)[0] + '_' + file_upload_time + '.' + filename.rsplit('.',1)[1]
-            file_url = reverse("workform_upload") + file_store_name
+            file_url = reverse("pub_workform_upload") + file_store_name
             store_dir_name = self.upload_dir + file_store_name
             try:
                 with open(store_dir_name, 'wb+') as f:
@@ -618,8 +596,8 @@ class WorkFormUploadView(LoginRequiredMixin,View):
 
             return JsonResponse(ret)
 
-''' 工单中 SQL 附件的预览'''
-class WorkFormUploadFilePreviewView(LoginRequiredMixin,View):
+''' 发布工单中 SQL 附件的预览'''
+class PubWorkFormUploadFilePreviewView(LoginRequiredMixin,View):
 
     def download_file(self,filename):
         with open(filename,'rb') as f:

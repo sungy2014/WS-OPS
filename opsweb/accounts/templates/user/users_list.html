@@ -25,6 +25,7 @@
         <th class="text-center">序号</th>
         <th class="text-center">用户名</th>
         <th class="text-center">中文名</th>
+        <th class="text-center">角色</th>
         <th class="text-center">手机号</th>
         <th class="text-center">邮箱</th>
         <th class="text-center">状态</th>
@@ -38,6 +39,7 @@
                 <td class="text-center">{{ forloop.counter }}</td>
                 <td class="text-center">{{ p.username }}</td>
                 <td class="text-center">{{ p.userextend.cn_name }}</td>
+                <td class="text-center">{{ p.userextend.get_role_display }}</td>
                 <td class="text-center">{{ p.userextend.phone }}</td>
                 <td class="text-center">{{ p.email }}</td>
                 {% if p.is_active == True %}
@@ -112,7 +114,7 @@
 
 <!-- 修改用户组信息模态框-->
 <div id="user_group_modal"  class="modal fade" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span ariaa-hidden="true">&times;</span></button>
@@ -144,7 +146,7 @@
 
 <!--更新个人信息模态窗-->
 <div id="UserEditModal"  class="modal fade">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span ariaa-hidden="true">&times;</span></button>
@@ -160,24 +162,45 @@
                 <input  name="username" id="username_change" class="form-control" readonly="readonly">
             </div> 
         </div> <!-- name  end-->
+
+        <div class="hr-line-dashed"></div>
         <div class="form-group" >
              <label class="col-sm-2 control-label">中文名</label>
              <div class="col-sm-9">
                 <input name="cn_name" id="cn_name_change" class="form-control">
             </div> 
         </div> <!--name_cn  end-->
+
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">角色<span class="red-fonts">*</span></label>
+            <div class="col-sm-9 row">
+                {% for k,v in role.items %}
+                <div class="col-sm-3">
+                    <div class="radio i-checks">
+                        <label><input type="radio" value="{{ k }}" name="role" >{{ v }}</label>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div> 
+
+        <div class="hr-line-dashed"></div>
         <div class="form-group">
             <label class="col-sm-2 control-label">email</label>
              <div class="col-sm-9">
                 <input class="form-control" id="email_change" name="email">
             </div> 
         </div> <!--email  end-->
+
+        <div class="hr-line-dashed"></div>
         <div class="form-group">
             <label class="col-sm-2 control-label">手机号</label>
              <div class="col-sm-9">
                 <input class="form-control" id="phone_change" name="phone">
             </div>  
         </div> <!--mobile  end-->
+
         <div class="form-group">
             <div class="modal-footer">
             <button class="btn btn-primary"  id="user_change_btn" >更新</button>
@@ -195,7 +218,7 @@
 
 <!--更新密码模态窗-->
 <div id="UpdatePasswdModal"  class="modal fade">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span ariaa-hidden="true">&times;</span></button>
@@ -237,7 +260,7 @@
 
 <!--删除用户-->
 <div class="modal fade" id='UserDeleteModal'>
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -358,6 +381,7 @@ $(".users_change_btn").click(function(){
             $("#cn_name_change").val(data.user_obj.cn_name)
             $("#email_change").val(data.user_obj.email)
             $("#phone_change").val(data.user_obj.phone)
+            $('input[name="role"][value="' + data.user_obj.role + '"]').prop("checked",true)
             $("#UserEditModal").modal("show")
         }else{
                 swal("Oh,My God",data.msg,"error")

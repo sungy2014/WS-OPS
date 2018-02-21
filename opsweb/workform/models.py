@@ -65,15 +65,6 @@ class ProcessModel(models.Model):
         ordering = ["step_id"]
 
 class WorkFormTypeModel(models.Model):
-    TYPE_CHOICES = (
-        ("publish","应用发布"),
-        ("rollback","应用回滚"),
-        ("server_require","服务器申请"),
-        ("permission_require","权限申请"),
-        ("sql_exec","SQL执行"),
-        ("app_env_require","应用环境准备"),
-        ("others","其他申请"),
-    )
 
     name = models.CharField("工单类型名称",null=False,max_length=50,unique=True)
     cn_name = models.CharField("工单类型中文名称",null=False,max_length=200,unique=True)
