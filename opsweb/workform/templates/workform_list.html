@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block breadcrumb %}
-工单系统 / 工单列表
+工单系统 / <strong class="active">工单列表</strong>
 {% endblock %}
 
 {% block body %} 
@@ -20,7 +20,7 @@
                     {% csrf_token %}
                     <button type="submit" class="btn btn-primary" style="float:right">搜索</button>
                     <div class="form-group" style="text-align:right;float: right;margin-right: 10px;">
-                        <input type="text" class="form-control" name="search" value="{{ search }}" placeholder="主题 | 模块名 | 详情">
+                        <input type="text" class="form-control" name="search" value="{{ search }}" placeholder="主题 | 模块名 | 说明">
                     </div>
                 </form> 
             </div>
@@ -43,7 +43,7 @@
         <tbody>
             {% for pub in object_list %}
             <tr class="gradeX">
-                <td class="text-center" style="vertical-align: middle"><strong>{{ pub.title|truncatechars:10 }}</strong></td>
+                <td class="text-center" style="vertical-align: middle"><strong>{{ pub.title|truncatechars:15 }}</strong></td>
                 <td class="text-center" style="vertical-align: middle">{{ pub.applicant.userextend.cn_name }}</td>
                 <td class="text-center" style="vertical-align: middle">
                     {% for i in level_range %}
@@ -53,7 +53,7 @@
                     {% endfor %}
                 </td>
                 <td class="text-center" style="vertical-align: middle">{{ pub.type.cn_name }}</td>
-                <td class="text-center" style="vertical-align: middle">{{ pub.module_name }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ pub.module_name |default_if_none:"" }}</td>
 
                 {% if pub.sql == 'yes' %}
                     <td class="text-center" style="vertical-align: middle"><span class="badge label-primary">{{ pub.get_sql_display }}</span></td>
@@ -374,6 +374,9 @@ $(".workform_detail").click(function(){
 
 <!--流程跟踪-->
 $(document).on("click",".process_trace",function(){
+    $(".well input").val('')
+    $(".well textarea").val('')
+    $(".well h2").text('')
     var id = $(this).attr("data-id")
     var url = "{% url 'process_trace' %}"
     $.post(url,{"id":id},function(data){
@@ -381,7 +384,7 @@ $(document).on("click",".process_trace",function(){
             data = data.process_list
             var str = ''
             $.each(data,function(k,v){
-                if(v.result){
+                if(v.result && v.process_step_id!=60){
                     str += '<li role="tab" aria-selected="false" class="active">'
                     str += '<span class="label badge-inverse">'+ k + '</span>'
                     str += '<a href="#" class="process_step_trace" data-id="' + v.id + '">' + v.process + '</a></li>'
@@ -390,6 +393,10 @@ $(document).on("click",".process_trace",function(){
                     $("#result").val(v.result)
                     $("#approval_note").val(v.approve_note)
                     $("#approval_time").val(v.approve_time)
+                }else if(v.result && v.process_step_id==60){
+                    str += '<li role="tab" aria-selected="false" class="active">'
+                    str += '<span class="label badge-inverse">'+ k + '</span>'
+                    str += v.process + '</li>'
                 }else{
                     str += '<li role="tab" aria-selected="true">'
                     str += '<span class="label badge-inverse">'+ k + '</span>'

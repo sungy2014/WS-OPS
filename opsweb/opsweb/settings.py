@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'monitor',
     'api',
     'workform',
+    'publish',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -175,7 +175,7 @@
     <a href="#"><i class="fa fa-eye-slash"></i> <span class="nav-label">发布系统</span><span class="fa arrow"></span></a>
     <ul class="nav nav-second-level collapse">
         <li> 
-	        <a href="#">自动化发布</a>
+	        <a href="{% url 'publish_pub' %}">自动化发布</a>
         </li>
         <li> 
 	        <a href="#">发布历史</a>
@@ -272,7 +272,7 @@
 <div class="row border-bottom white-bg page-heading">
     <div class="col-sm-12" style="height:20px;line-height:20px;">
         <ol class="breadcrumb">
-            <li style="margin:10px">
+            <li style="margin:10px;font-size: 18px">
                    {% block breadcrumb %}
                    {% endblock %}
             </li>

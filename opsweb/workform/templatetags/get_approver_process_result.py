@@ -1,11 +1,14 @@
 from django import template
+from django.db.models import Q
+
 
 register = template.Library()
 
 @register.filter(name="get_approver_result")
 def get_approver(value):
 
-    a_list = value.approvalformmodel_set.exclude(result__exact=None).order_by("-id")
+    ''' 过滤掉审核结果为空,以及 流程step 为'完成' 状态的工单审核对象 '''
+    a_list = value.approvalformmodel_set.exclude(Q(result__exact=None)|Q(process_id__exact=6)).order_by("-id")
 
     if not a_list:
         return "None</br>None"

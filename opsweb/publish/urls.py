@@ -13,23 +13,12 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
+
+
 from django.conf.urls import include, url
 from django.contrib import admin
-from django.views.generic import RedirectView
-from django.conf.urls.static import static  
-from django.conf import settings  
-
+from . import views
 
 urlpatterns = [
-    url(r'^$', RedirectView.as_view(url="/dashboard/")),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^helloworld/', include("helloworld.urls")),
-    url(r'^accounts/', include("accounts.urls")),
-    url(r'^dashboard/', include("dashboard.urls")),
-    url(r'^resources/', include("resources.urls")),
-    url(r'^monitor/', include("monitor.urls")),
-    url(r'^api/', include("api.urls")),
-    url(r'^workform/', include("workform.urls")),
-    url(r'^captcha/', include("captcha.urls")),
-    url(r'^publish/', include("publish.urls")),
+    url(r'^pub/$', views.PublishPubView.as_view(),name="publish_pub"),
 ]

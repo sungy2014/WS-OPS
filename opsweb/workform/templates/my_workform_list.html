@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block breadcrumb %} 
-    工单系统 / 我的工单
+    工单系统 / <strong class="active">我的工单</strong>
 {% endblock %}
 
 {% block body %} 
@@ -63,7 +63,7 @@
                                 {% endfor %}
                             </td>
                             <td class="text-center" style="vertical-align: middle">{{ pub.type.cn_name }}</td>
-                            <td class="text-center" style="vertical-align: middle">{{ pub.module_name }}</td>
+                            <td class="text-center" style="vertical-align: middle">{{ pub.module_name | default_if_none:"" }}</td>
 
                             {% if pub.sql == 'yes' %}
                                 <td class="text-center" style="vertical-align: middle"><span class="badge label-primary">{{ pub.get_sql_display }}</span></td>
@@ -164,6 +164,8 @@
                 </div><!-- /.modal -->
             </div>
         </div>
+
+        <!-- 我审核过的工单 -->
         <div role="tabpanel" class="tab-pane fade" id="my_audit_workform_list" aria-labelledby="profile-tab">
             <br>
             <div class="col-sm-12">
@@ -196,7 +198,7 @@
                                 {% endfor %}
                             </td>
                             <td class="text-center" style="vertical-align: middle">{{ my_approvaled.type.cn_name }}</td>
-                            <td class="text-center" style="vertical-align: middle">{{ my_approvaled.module_name }}</td>
+                            <td class="text-center" style="vertical-align: middle">{{ my_approvaled.module_name | default_if_none:""  }}</td>
 
                             {% if my_approvaled.sql == 'yes' %}
                                 <td class="text-center" style="vertical-align: middle"><span class="badge label-primary">{{ my_approvaled.get_sql_display }}</span></td>
@@ -608,6 +610,9 @@ $(document).on("click",".workform_detail",function(){
 
 <!--流程跟踪-->
 $(document).on("click",".process_trace",function(){
+    $(".well input").val('')
+    $(".well textarea").val('')
+    $(".well h2").text('')
     var id = $(this).attr("data-id")
     var url = "{% url 'process_trace' %}"
     $.post(url,{"id":id},function(data){
@@ -615,7 +620,7 @@ $(document).on("click",".process_trace",function(){
             data = data.process_list
             var str = ''
             $.each(data,function(k,v){
-                if(v.result){
+                if(v.result && v.process_step_id!=60){
                     str += '<li role="tab" aria-selected="false" class="active">'
                     str += '<span class="label badge-inverse">'+ k + '</span>'
                     str += '<a href="#" class="process_step_trace" data-id="' + v.id + '">' + v.process + '</a></li>'
@@ -624,6 +629,10 @@ $(document).on("click",".process_trace",function(){
                     $("#result").val(v.result)
                     $("#approval_note").val(v.approve_note)
                     $("#approval_time").val(v.approve_time)
+                }else if(v.result && v.process_step_id==60){
+                    str += '<li role="tab" aria-selected="false" class="active">'
+                    str += '<span class="label badge-inverse">'+ k + '</span>'
+                    str += v.process + '</li>'
                 }else{
                     str += '<li role="tab" aria-selected="true">'
                     str += '<span class="label badge-inverse">'+ k + '</span>'

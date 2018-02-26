@@ -1,0 +1,84 @@
+{% extends "public/layout.html" %}
+
+{% block breadcrumb %} 
+    发布系统 / <strong class="active">自动化发布</strong>
+{% endblock %}
+
+{% block body %}
+<div class="col-sm-12">
+    <div class="panel panel-default">
+        <div class="panel-heading" style="font-size: 25px;">
+            <i class="fa fa-fire"></i> 应用发布与回滚
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <legend><i class="fa fa-hand-o-down"></i> 发布配置</legend>
+                    <form id="PubForm" class="form-horizontal nice-validator n-yellow Formvalid" novalidate="novalidate" style="margin-left: 0px;width:98%">
+                        {% csrf_token %}
+                        <div class="form-group" style="margin-left: 0px;">
+                            <label for="opera_type" class="control-label text-right">操作类型<span class="red-fonts ">*</span></label>
+                            <select name="opera_type" id="opera_type" class="form-control">
+                                <option value='' selected="selected">请选择......</option>
+                                <option value='pub'>发布</option>
+                                <option value='rollback'>回滚</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-left: 0px;">
+                            <label>环境类型</label> 
+                            <select class="form-control" name="env_type" id="env_type">
+                                <option value="gray">灰度</option>
+                                <option value="online" selected="selected">生产</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-left: 0px;">
+                            <label>发布模块</label>
+                            <select class="form-control" name="ops_project" id="ops_project">
+                                <option value="" selected="selected">选择一个项目</option>
+                                <option value="3">h5</option>
+                                <option value="2">mop</option>
+                                <option value="1">trade</option>
+                                <option value="4">user</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-left: 0px;">
+                            <label>版本号</label>
+                            <select class="form-control" name="ops_service" id="ops_service">
+                                <option selected="selected" value="">请选择一个版本</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-left: 0px;">
+                            <label>服务器IP</label>
+                            <select class="form-control" name="ops_db" id="ops_db">
+                                <option name="ops_db" value="" selected="selected">选择一个服务器</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-left: 0px;">
+                            <div class="col-sm-offset-4">
+                                <button id="exec" class="btn btn-warning">执行</button>
+                                <button class="btn btn-primary" type="reset">取消</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-8">
+                    <legend><i class="fa fa-hand-rock-o"></i> 执行结果</legend>
+                    <div style="background-color:black;bottom:36px;height:calc(100vh - 200px);resize:none;overFlow-x:scroll;overFlow-y:scroll">
+                        <div id="result">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block js %}
+<script>
+
+</script>
+{% endblock %}

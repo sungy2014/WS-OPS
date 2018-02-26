@@ -13,6 +13,7 @@ from workform.forms import PubWorkFormAddForm,WorkFormApprovalForm,SqlWorkFormAd
 from django.db.models import Q
 from django.contrib.auth.models import User,Group
 from dashboard.utils.utc_to_local import utc_to_local
+from dashboard.utils.ws_mail_send import mail_send
 
 ''' 添加 发布工单 '''
 class PubWorkFormAddView(LoginRequiredMixin,TemplateView):
@@ -102,7 +103,6 @@ class WorkFormAddBaseView(LoginRequiredMixin,View):
         ret = {"result":0,"msg":"success"}
         user_cn_name = request.user.userextend.cn_name
         workform_type = request.POST.get("type",None)
-        print("workform_type:",workform_type)
         if not workform_type:
             ret["result"] = 1
             ret["msg"] = "工单必须选择一个类型"
@@ -123,14 +123,12 @@ class WorkFormAddBaseView(LoginRequiredMixin,View):
             return JsonResponse(ret) 
         else:
             process_step_list = wft_obj.process_step_id.split(" -> ")
-            print("process_step_list:",process_step_list)
 
         ''' 根据工单类型选择相应的 验证form '''
         if workform_type in ["publish","rollback"]:
             workform_add_form = PubWorkFormAddForm(request.POST)
         elif workform_type == "sql_exec":
             workform_add_form = SqlWorkFormAddForm(request.POST)
-            print("哈哈,执行了这一步")
         else:
             workform_add_form = OthersWorkFormAddForm(request.POST)
 
@@ -218,6 +216,14 @@ class WorkFormAddBaseView(LoginRequiredMixin,View):
         else:
             ret["msg"] = "发布工单: '%s' 创建成功" %(workform_add_form.cleaned_data.get("title"))
             wslog_info().info("用户: %s 发布工单: '%s' 创建成功" %(user_cn_name,workform_obj.title))
+            approver_can_email_list = [i["email"] for i in workform_obj.approver_can.values("email")]
+            email_content = '''<p>有工单需要你<strong style="color:red"> 审批/验证/执行</strong>，请前往运维平台操作</p>
+                            <p>工单主题: <strong style="color:blue">%s</strong></p>
+                            <p>工单流程StepID: <strong style="color:blue">%s</strong></p>
+                            <p>URL链接: <a href="http://%s" target="_blank">点击跳转</a></p>''' %(workform_obj.title,
+                                                                                            workform_obj.process_step.step,
+                                                                                            request.get_host() + reverse("my_workform_list"))
+            mail_send("运维工单审批/验证/执行",email_content,approver_can_email_list,html_content=email_content)
 
         return JsonResponse(ret)
 
@@ -287,7 +293,7 @@ class MyWorkFormListView(WorkFormListView):
     def get_context_data(self,**kwargs):
         context = super(MyWorkFormListView,self).get_context_data(**kwargs)
         ''' 我审核过的工单 '''
-        context["approvaled_workform_list"] = WorkFormModel.objects.filter(approvalformmodel__approver__username__exact=self.request.user.username).distinct()
+        context["approvaled_workform_list"] = WorkFormModel.objects.filter(approvalformmodel__approver__username__exact=self.request.user.username).exclude(applicant__username__exact=self.request.user.username).distinct()
 
         return context
 
@@ -409,18 +415,30 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = "ProcessModel 模型查询 id: %s 的对象失败,请查看日志" %(process_next_id)
-            wslog_error().error("ProcessModel 模型查询 id: %s 的对象失败,错误信息: %s" %(process_next_id.e.args))
+            wslog_error().error("ProcessModel 模型查询 id: %s 的对象失败,错误信息: %s" %(process_next_id,e.args))
             return Jsonresponse(ret)
         else:
             next_step_id = p_obj.step_id
 
         ''' 更新工单的状态 '''
         if next_step_id == 60:
-            ''' 如果工单下一个流程step是'完成',则更新工单流程审核完成,同时清空可审核人 '''
+            ''' 如果工单下一个流程step是'完成',则设置工单状态为'完成',工单流程审批/执行'完成',同时清空可审核人 '''
             wf_obj.status = "2"
             wf_obj.process_step_id = process_next_id
             wf_obj.complete_time = datetime.now().strftime("%Y-%m-%d %X")
             wf_obj.approver_can.clear()
+            try:
+                ''' 设置ApprovalFormModel中 step 为'完成'的审核结果为'通过' 方便 流程跟踪 中状态的获取 '''
+                next_af_obj = wf_obj.approvalformmodel_set.get(process_id__exact=process_next_id)
+                next_af_obj.result = "0"
+                next_af_obj.approval_time = datetime.now().strftime("%Y-%m-%d %X")
+                next_af_obj.save()
+            except Exception as e:
+                ret["result"] = 1
+                ret["msg"] = "ApprovalFormModel 模型自动添加 step 为'完成' 时的审核结果失败"
+                wslog_error().error("ApprovalFormModel 模型自动添加 step 为'完成' 时的审核结果失败,错误信息: %s" %(e.args))
+                return Jsonresponse(ret) 
+
         elif  af_obj.result == "2" or af_obj.result == "3":
             ''' 如果工单当前流程step的审核结果是'暂停'或'有异常', 则更新工单的状态为'暂停',同时工单的流程step不变,可审核人变成当前审核的人 '''
             wf_obj.status = "3"
@@ -443,7 +461,15 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             wslog_error().error("用户 %s 审批失败,更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 出现异常,错误信息: %s" %(request.user.username,wf_id,process_next_id,e.args))
         else:
             ret["msg"] = "更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 成功" %(wf_id,process_next_id)
-            wslog_error().error("用户 %s 更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 成功" %(request.user.username,wf_id,process_next_id)) 
+            wslog_info().info("用户 %s 更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 成功" %(request.user.username,wf_id,process_next_id)) 
+            approver_can_email_list = [i["email"] for i in wf_obj.approver_can.values("email")]
+            email_content = '''<p>有工单需要你<strong style="color:red"> 审批/验证/执行</strong>，请前往运维平台操作</p>
+                            <p>工单主题: <strong style="color:blue">%s</strong></p>
+                            <p>工单流程StepID: <strong style="color:blue">%s</strong></p>
+                            <p>URL链接: <a href="http://%s" target="_blank">点击跳转</a></p>''' %(wf_obj.title,
+                                                                                            wf_obj.process_step.step,
+                                                                                            request.get_host() + reverse("my_workform_list"))
+            mail_send("运维工单审批/验证/执行",email_content,approver_can_email_list,html_content=email_content)
 
         return JsonResponse(ret)
 
@@ -502,16 +528,19 @@ class ProcessTraceView(LoginRequiredMixin,View):
         process_list = []
         for i in w_obj.approvalformmodel_set.order_by("id"):
             process = {}
-            if i.result:
+            if i.result and i.process.step_id !=60:
                 process["approver"] = i.approver.userextend.cn_name
                 process["result"] = i.get_result_display()
                 process["approve_note"] = i.approve_note
                 process["id"] = i.id
                 process["process"] = i.process.step
+                process["process_step_id"] = i.process.step_id
                 process["approve_time"] = utc_to_local(i.approval_time).strftime("%Y-%m-%d %X")
             else:
                 process["id"] = i.id
+                process["result"] = i.get_result_display()
                 process["process"] = i.process.step
+                process["process_step_id"] = i.process.step_id
             process_list.append(process)
 
         ret["process_list"] = process_list

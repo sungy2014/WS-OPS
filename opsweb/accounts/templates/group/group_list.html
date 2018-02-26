@@ -32,7 +32,7 @@
                 <td class="text-center">
                    <a href="{% url 'group_user_list' %}?gid={{ group.id }}"><button class="btn btn-sm btn-success">用户管理</button></a>
                    <a href="{% url 'group_permission_list' %}?gid={{ group.id }}"><button class="btn btn-sm btn-primary">权限管理</button></a>
-                   <button data-id="{{ group.id }}" class="btn btn-sm btn-danger group_list_delete">删除</button>
+                   <button data-id="{{ group.id }}" data-del="{{ group.name }}"  class="btn btn-sm btn-danger group_list_delete">删除</button>
                 </td>
          </tr>
     {% endfor %}
@@ -110,6 +110,27 @@
     </div><!-- /.modal-dialog -->
 </div> <!--modal end-->
 <!-- 添加用户组结束 -->
+
+<!-- 删除模态框 -->
+<div class="modal fade" id='DeleteModal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">删除</h4>
+            </div>
+            <div class="modal-body">
+                <p id="data-del"></p>
+                <p style="color:red"><b>你确认要删除这个组吗?</b></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-warning del-sure" data-id=''>确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 {% endblock %}
 
 
@@ -146,6 +167,14 @@
     });
 
     $(".group_list_delete").click(function(){
+        var id = $(this).attr("data-id")
+        var data = $(this).attr("data-del")
+        $(".del-sure").attr('data-id',id)
+        $("#data-del").html(data)
+        $("#DeleteModal").modal("show")
+    });
+
+    $(".del-sure").click(function(){
         var id = $(this).attr("data-id")
         var url = "{% url 'group_delete' %}"
         $.post(url,{'id':id},function(data){
