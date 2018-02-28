@@ -13,7 +13,10 @@ from workform.forms import WorkFormTypeAddForm,WorkFormTypeChangeForm
 
 
 ''' 工单类型列表 '''
-class WorkFormTypeListView(LoginRequiredMixin,ListView):
+class WorkFormTypeListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = "workform.view_workformtypemodel"
+    permission_redirect_url = "workform_list"
+
     template_name = 'workform_type_list.html'
     paginate_by = 10
     model = WorkFormTypeModel
@@ -65,7 +68,10 @@ class WorkFormTypeListView(LoginRequiredMixin,ListView):
         return page_range 
 
 ''' 添加工单类型 '''
-class WorkFormTypeAddView(LoginRequiredMixin,TemplateView):
+class WorkFormTypeAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
+    permission_required = "workform.add_workformtypemodel"
+    permission_redirect_url = "workform_list"
+
     template_name = "workform_type_add.html"
     
     def get_context_data(self):
@@ -77,6 +83,12 @@ class WorkFormTypeAddView(LoginRequiredMixin,TemplateView):
     def post(self,request):
         ret = {"result":0}
         
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'添加工单类型'的权限,请联系运维!"
+            return JsonResponse(ret) 
+
         workform_type_form = WorkFormTypeAddForm(request.POST) 
 
         if not workform_type_form.is_valid():
@@ -100,8 +112,17 @@ class WorkFormTypeAddView(LoginRequiredMixin,TemplateView):
 
 ''' 删除工单类型 '''
 class WorkFormTypeDeleteView(LoginRequiredMixin,View):
+    permission_required = "workform.delete_workformtypemodel"
+
     def get(self,request):
         ret = {"result":0}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'删除工单类型'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         wft_id = request.GET.get("id")
 
         try:
@@ -123,8 +144,20 @@ class WorkFormTypeDeleteView(LoginRequiredMixin,View):
 
 ''' 修改工单类型 '''
 class WorkFormTypeChangeView(LoginRequiredMixin,View):
+    permission_required = "workform.change_workformtypemodel"
+
+    def perm_check(self,request,ret):
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'修改工单类型'的权限,请联系运维!"
+            return JsonResponse(ret)
+
     def get(self,request):
         ret = {"result":0}
+
+        self.perm_check(request,ret)
+
         wft_id = request.GET.get("id")
         try:
             wft_obj = WorkFormTypeModel.objects.get(id__exact=wft_id)
@@ -140,6 +173,9 @@ class WorkFormTypeChangeView(LoginRequiredMixin,View):
 
     def post(self,request):
         ret = {"result":0}
+    
+        self.perm_check(request,ret)    
+
         wft_id = request.POST.get("id")
         wft_cn_name = request.POST.get("cn_name")
         try:

@@ -7,7 +7,7 @@ class PubWorkFormAddForm(ModelForm):
     sql_file_url = forms.CharField(required=False) 
     class Meta:
         model = WorkFormModel
-        fields = ["title","level","detail","module_name","sql","sql_detail","sql_file_url"] 
+        fields = ["title","level","reason","detail","module_name","sql","sql_detail","sql_file_url"] 
         error_messages = {
             "title" : {
                 "required": "'工单主题'不能为空",
@@ -15,6 +15,9 @@ class PubWorkFormAddForm(ModelForm):
             },
             "level" : {
                 "required": "必须选择一个'紧急程度'",
+            },
+            "reason" : {
+                "required": "必须选择一个'上线原因'",
             },
             "detail": {
                 "required": "'详情'不能为空",

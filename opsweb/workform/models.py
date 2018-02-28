@@ -21,8 +21,16 @@ class WorkFormBaseModel(models.Model):
         ("4","取消"),
     )
 
+    REASON_CHOICES = (
+        ("0","项目需求"),
+        ("1","故障修复"),
+        ("2","技术优化"),
+        ("3","其他"),
+    )
+
     title = models.CharField("工单标题",null=False,max_length=100,unique=True)
     level = models.PositiveSmallIntegerField("紧急程度",choices=LEVEL_CHOICES,null=False)
+    reason = models.CharField("上线原因",choices=REASON_CHOICES,max_length=10,null=True)
     detail = models.CharField("详情",max_length=800,null=True)
     status = models.CharField("工单状态",choices=STATUS_CHOICES,max_length=10,null=False,default="0")
     applicant = models.ForeignKey(User,related_name='+',null=True,verbose_name="申请人,与用户表多对一关联")

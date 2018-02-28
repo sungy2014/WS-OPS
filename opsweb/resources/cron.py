@@ -69,7 +69,7 @@ def CmdbStatisticByDayCrontab():
  
 ''' cmdb 自动添加 '''
 def CmdbAutoAddCrontab():
-    server_ip_name_list = list(ServerModel.objects.values("id","private_ip","instance_name","status"))
+    server_ip_name_list = list(ServerModel.objects.exclude(private_ip__startswith="10.82").values("id","private_ip","instance_name","status"))
 
     #根据 CmdbModel 模型中的 instance_name 字段自动添加 CMDB,如果没有该字段则不能自动添加 CMDB,
     #因此该方法适用于 Aliyun 上的服务器，IDC中的服务器需要手动添加，该方法也不会修改IDC服务器 CMDB 的信息

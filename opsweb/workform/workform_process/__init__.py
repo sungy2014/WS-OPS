@@ -12,7 +12,10 @@ from workform.models import WorkFormTypeModel,ProcessModel
 from workform.forms import WorkFormProcessAddForm,WorkFormProcessChangeForm
 
 ''' 流程列表 '''
-class WorkFormProcessListView(LoginRequiredMixin,ListView):
+class WorkFormProcessListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
+    permission_required = "workform.view_processmodel"
+    permission_redirect_url = "workform_list"
+
     template_name = 'workform_process_list.html'
     paginate_by = 10
     model = ProcessModel
@@ -65,9 +68,16 @@ class WorkFormProcessListView(LoginRequiredMixin,ListView):
 
 ''' 添加流程 step '''
 class WorkFormProcessAddView(LoginRequiredMixin,TemplateView):
+    permission_required = "workform.add_processmodel"
 
     def post(self,request):
         ret = {"result":0}
+    
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'添加工单流程'的权限,请联系运维!"
+            return JsonResponse(ret)
         
         workform_process_form = WorkFormProcessAddForm(request.POST) 
 
@@ -94,8 +104,17 @@ class WorkFormProcessAddView(LoginRequiredMixin,TemplateView):
 
 ''' 删除流程 step '''
 class WorkFormProcessDeleteView(LoginRequiredMixin,View):
+    permission_required = "workform.delete_processmodel"    
+
     def get(self,request):
         ret = {"result":0}
+    
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'删除工单流程'的权限,请联系运维!"
+            return JsonResponse(ret)
+
         pm_id = request.GET.get("id")
 
         try:
@@ -117,8 +136,20 @@ class WorkFormProcessDeleteView(LoginRequiredMixin,View):
 
 ''' 修改流程 step '''
 class WorkFormProcessChangeView(LoginRequiredMixin,View):
+    permission_required = "workform.change_processmodel"
+
+    def perm_check(self,request,ret):
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'修改工单流程'的权限,请联系运维!"
+            return JsonResponse(ret) 
+
     def get(self,request):
         ret = {"result":0}
+        
+        self.perm_check(request,ret)
+
         pm_id = request.GET.get("id")
         try:
             pm_obj = ProcessModel.objects.get(id__exact=pm_id)
@@ -133,6 +164,9 @@ class WorkFormProcessChangeView(LoginRequiredMixin,View):
 
     def post(self,request):
         ret = {"result":0}
+
+        self.perm_check(request,ret)
+
         pm_id = request.POST.get("id")
         try:
             pm_obj = ProcessModel.objects.get(id__exact=pm_id)

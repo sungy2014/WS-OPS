@@ -16,9 +16,9 @@ from dashboard.utils.utc_to_local import utc_to_local
 from dashboard.utils.ws_mail_send import mail_send
 
 ''' 添加 发布工单 '''
-class PubWorkFormAddView(LoginRequiredMixin,TemplateView):
-    #permission_required = "resources.add_idc"
-    #permission_redirect_url = "idc_list"
+class PubWorkFormAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
+    permission_required = "workform.add_workformmodel"
+    permission_redirect_url = "workform_list"
     
     template_name = "pub_workform_add.html"
 
@@ -26,24 +26,30 @@ class PubWorkFormAddView(LoginRequiredMixin,TemplateView):
         context = super(PubWorkFormAddView,self).get_context_data(**kwargs)
         context["sql"] = dict(WorkFormModel.SQL_CHOICES)
         context["level"] = dict(WorkFormModel.LEVEL_CHOICES)
+        context["reason"] = dict(WorkFormModel.REASON_CHOICES)
         return context
 
 ''' 添加 SQL工单 '''
-class SqlWorkFormAddView(LoginRequiredMixin,TemplateView):
-    #permission_required = "resources.add_idc"
-    #permission_redirect_url = "idc_list"
+class SqlWorkFormAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
+    permission_required = "workform.add_workformmodel"
+    permission_redirect_url = "workform_list"
 
     template_name = "sql_workform_add.html"
 
     def get_context_data(self,**kwargs):
         context = super(SqlWorkFormAddView,self).get_context_data(**kwargs)
         context["level"] = dict(WorkFormModel.LEVEL_CHOICES)
+        context["reason"] = dict(WorkFormModel.REASON_CHOICES)
         return context
 
 ''' 添加 其他运维工单 '''
-class OthersWorkFormAddView(LoginRequiredMixin,TemplateView):
-    #permission_required = "resources.add_idc"
-    #permission_redirect_url = "idc_list"
+class OthersWorkFormAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
+    permission_required = ("workform.add_workformmodel","workform.add_others_workform")
+    permission_redirect_url = "workform_list"
+
+    ''' 以逻辑 '或' 的关系判断上面的权限要求 '''
+    def has_permission(self):
+        return [perm for perm in self.permission_required if self.request.user.has_perm(perm)]
 
     template_name = "others_workform_add.html"
 
@@ -55,6 +61,7 @@ class OthersWorkFormAddView(LoginRequiredMixin,TemplateView):
 
 ''' 工单信息提交 '''
 class WorkFormAddBaseView(LoginRequiredMixin,View):
+    permission_required = ("workform.add_workformmodel","workform.add_others_workform")
 
     ''' 根据ProcessModel 字段 approval_require 定义的 '标记' 获取每一个 step 的审核人列表 '''
     def get_approver_can(self,user_obj,approval_require,ret):
@@ -102,6 +109,13 @@ class WorkFormAddBaseView(LoginRequiredMixin,View):
     def post(self,request):
         ret = {"result":0,"msg":"success"}
         user_cn_name = request.user.userextend.cn_name
+
+        ## ajax 请求的权限验证
+        if not [ perm for perm in self.permission_required if request.user.has_perm(perm)]:
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'添加 workform 模型对象'的权限,请联系运维!"
+            return JsonResponse(ret)  
+
         workform_type = request.POST.get("type",None)
         if not workform_type:
             ret["result"] = 1
@@ -116,11 +130,6 @@ class WorkFormAddBaseView(LoginRequiredMixin,View):
             ret["msg"] = "该工单类型:'%s' 在模型 WorkFormTypeModel 中不存在,请联系运维人员" %(workform_type)
             wslog_error().error("用户: %s 添加工单,该工单类型:'%s' 在模型 WorkFormTypeModel 中不存在,请检查" %(user_cn_name,workform_type))
             return JsonResponse(ret)
-        except Exception as e:
-            ret["result"] = 1
-            ret["msg"] = "该工单类型:'%s' 在模型 WorkFormTypeModel 中查询异常,请联系运维人员" %(workform_type)
-            wslog_error().error("用户: %s 添加工单,工单类型:'%s' 在模型 WorkFormTypeModel 中查询异常,错误信息: %s" %(user_cn_name,workform_type,e.args))
-            return JsonResponse(ret) 
         else:
             process_step_list = wft_obj.process_step_id.split(" -> ")
 
@@ -162,16 +171,8 @@ class WorkFormAddBaseView(LoginRequiredMixin,View):
                 wslog_error().error("用户: %s 添加工单: '%s' 中 ProcessModel 模型不存在 step_id 为 %s 的对象" %(user_cn_name,workform_obj.title,process_step))
                 workform_obj.delete()
                 break
-            except Exception as e:
-                ret["result"] = 1
-                ret["msg"] = "ProcessModel 模型查找 step_id 为 %s 的对象发生异常,请联系运维人员" %(process_step)
-                wslog_error().error("用户: %s 添加工单: '%s' 中 ProcessModel 模型查找 step_id 为 %s 的对象异常，错误信息: %s" %(user_cn_name,workform_obj.title,process_step,e.args))
-                workform_obj.delete()
-                break
 
-            approval_require = process_obj.approval_require
-
-            ret = self.get_approver_can(request.user,approval_require,ret)
+            ret = self.get_approver_can(request.user,process_obj.approval_require,ret)
 
             if ret["result"] == 1:
                 workform_obj.delete()
@@ -217,13 +218,14 @@ class WorkFormAddBaseView(LoginRequiredMixin,View):
             ret["msg"] = "发布工单: '%s' 创建成功" %(workform_add_form.cleaned_data.get("title"))
             wslog_info().info("用户: %s 发布工单: '%s' 创建成功" %(user_cn_name,workform_obj.title))
             approver_can_email_list = [i["email"] for i in workform_obj.approver_can.values("email")]
-            email_content = '''<p>有工单需要你<strong style="color:red"> 审批/验证/执行</strong>，请前往运维平台操作</p>
+            email_subject = '[%s]:%s' %(workform_obj.type.cn_name,workform_obj.title)
+            email_content = '''<p>有工单需要你<strong style="color:red"> 审批/验证/执行</strong>,请前往运维平台操作</p>
                             <p>工单主题: <strong style="color:blue">%s</strong></p>
                             <p>工单流程StepID: <strong style="color:blue">%s</strong></p>
                             <p>URL链接: <a href="http://%s" target="_blank">点击跳转</a></p>''' %(workform_obj.title,
                                                                                             workform_obj.process_step.step,
                                                                                             request.get_host() + reverse("my_workform_list"))
-            mail_send("运维工单审批/验证/执行",email_content,approver_can_email_list,html_content=email_content)
+            mail_send(email_subject,email_content,approver_can_email_list,html_content=email_content)
 
         return JsonResponse(ret)
 
@@ -309,8 +311,16 @@ class MyWorkFormListView(WorkFormListView):
 
 ''' 审批工单 '''
 class ApprovalWorkFormView(LoginRequiredMixin,View):
+    permission_required = "workform.change_workformmodel"
+
     def get(self,request):
         ret = {"result":0}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'审批工单'的权限,请联系运维!"
+            return JsonResponse(ret) 
 
         wf_id = request.GET.get("id")
         process_step_id = request.GET.get("process_id")
@@ -343,6 +353,12 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
 
     def post(self,request):
         ret = {"result":0}
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'审批工单'的权限,请联系运维!"
+            return JsonResponse(ret) 
 
         wf_id = request.POST.get("id")
         process_step_id = request.POST.get("process_step_id")
@@ -388,7 +404,7 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             af_obj.result = workform_approval_form.cleaned_data.get("result")
             af_obj.approve_note = workform_approval_form.cleaned_data.get("approve_note")
             af_obj.approval_time = datetime.now().strftime("%Y-%m-%d %X")
-            af_obj.save()   
+            af_obj.save(update_fields=["approver","result","approve_note","approval_time"])   
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = "审批失败，更新 ApprovalFormModel 模型对象 workform_id: %s 流程进度: %s 的工单 审批信息失败,请联系运维同事" %(wf_id,process_step_id)
@@ -412,17 +428,12 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             ret["result"] = 1
             ret["msg"] = "ProcessModel 模型中不存在 id: %s 的 step,请联系运维检查..." %(process_next_id)
             return Jsonresponse(ret)
-        except Exception as e:
-            ret["result"] = 1
-            ret["msg"] = "ProcessModel 模型查询 id: %s 的对象失败,请查看日志" %(process_next_id)
-            wslog_error().error("ProcessModel 模型查询 id: %s 的对象失败,错误信息: %s" %(process_next_id,e.args))
-            return Jsonresponse(ret)
         else:
             next_step_id = p_obj.step_id
 
         ''' 更新工单的状态 '''
-        if next_step_id == 60:
-            ''' 如果工单下一个流程step是'完成',则设置工单状态为'完成',工单流程审批/执行'完成',同时清空可审核人 '''
+        if af_obj.result == "0" and next_step_id == 60:
+            ''' 如果工单审批通过且下一个流程step是'完成',则设置工单状态为'完成',工单流程审批/执行'完成',同时清空可审核人 '''
             wf_obj.status = "2"
             wf_obj.process_step_id = process_next_id
             wf_obj.complete_time = datetime.now().strftime("%Y-%m-%d %X")
@@ -432,7 +443,7 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
                 next_af_obj = wf_obj.approvalformmodel_set.get(process_id__exact=process_next_id)
                 next_af_obj.result = "0"
                 next_af_obj.approval_time = datetime.now().strftime("%Y-%m-%d %X")
-                next_af_obj.save()
+                next_af_obj.save(update_fields=["result","approval_time"])
             except Exception as e:
                 ret["result"] = 1
                 ret["msg"] = "ApprovalFormModel 模型自动添加 step 为'完成' 时的审核结果失败"
@@ -443,25 +454,33 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             ''' 如果工单当前流程step的审核结果是'暂停'或'有异常', 则更新工单的状态为'暂停',同时工单的流程step不变,可审核人变成当前审核的人 '''
             wf_obj.status = "3"
             wf_obj.approver_can.set([request.user])
+            approver_can_email_list = [wf_obj.applicant.email]
+            email_content = '''<p>有工单需要你<strong style="color:red"> 审批/验证/执行</strong>，请前往运维平台操作</p>
+                            <p>工单主题: <strong style="color:blue">%s</strong></p>
+                            <p>审批说明: 你的工单在流程 '%s' 被审批为 <strong style="color:red">%s</strong> 请联系 审批人 '%s' </p>
+                            <p>URL链接: <a href="http://%s" target="_blank">点击跳转</a></p>''' %(wf_obj.title,
+                                                                                            wf_obj.process_step.step,
+                                                                                            af_obj.get_result_display(),
+                                                                                            request.user.userextend.cn_name,
+                                                                                            request.get_host() + reverse("my_workform_list"))
         elif af_obj.result == "1":
             ''' 如果工单当前流程step的审核结果是'拒绝',就把工单状态变为'完成',同时审批流程也结束 '''
             wf_obj.status = "2"
             wf_obj.complete_time = datetime.now().strftime("%Y-%m-%d %X")
             wf_obj.approver_can.clear()
+            approver_can_email_list = [wf_obj.applicant.email]
+            email_content = '''<p>有工单需要你<strong style="color:red"> 审批/验证/执行</strong>，请前往运维平台操作</p>
+                            <p>工单主题: <strong style="color:blue">%s</strong></p>
+                            <p>审批说明: 你的工单在流程 '%s' 被审批为 <strong style="color:red">%s</strong> 请联系 审批人 '%s' </p>
+                            <p>URL链接: <a href="http://%s" target="_blank">点击跳转</a></p>''' %(wf_obj.title,
+                                                                                            wf_obj.process_step.step,
+                                                                                            af_obj.get_result_display(),
+                                                                                            request.user.userextend.cn_name,
+                                                                                            request.get_host() + reverse("my_workform_list"))
         else:
             wf_obj.status = "1"
             wf_obj.process_step_id = process_next_id
             wf_obj.approver_can.set(ApprovalFormModel.objects.get(workform_id__exact=wf_id,process_id=process_next_id).approver_can.all())
-
-        try:
-            wf_obj.save()
-        except Exception as e:
-            ret["result"] = 1
-            ret["msg"] = "审批失败，更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 出现异常,请联系运维同事" %(wf_id,process_next_id)
-            wslog_error().error("用户 %s 审批失败,更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 出现异常,错误信息: %s" %(request.user.username,wf_id,process_next_id,e.args))
-        else:
-            ret["msg"] = "更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 成功" %(wf_id,process_next_id)
-            wslog_info().info("用户 %s 更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 成功" %(request.user.username,wf_id,process_next_id)) 
             approver_can_email_list = [i["email"] for i in wf_obj.approver_can.values("email")]
             email_content = '''<p>有工单需要你<strong style="color:red"> 审批/验证/执行</strong>，请前往运维平台操作</p>
                             <p>工单主题: <strong style="color:blue">%s</strong></p>
@@ -469,7 +488,18 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
                             <p>URL链接: <a href="http://%s" target="_blank">点击跳转</a></p>''' %(wf_obj.title,
                                                                                             wf_obj.process_step.step,
                                                                                             request.get_host() + reverse("my_workform_list"))
-            mail_send("运维工单审批/验证/执行",email_content,approver_can_email_list,html_content=email_content)
+
+        try:
+            wf_obj.save(update_fields=["status","process_step_id","complete_time"])
+        except Exception as e:
+            ret["result"] = 1
+            ret["msg"] = "审批失败，更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 出现异常,请联系运维同事" %(wf_id,process_next_id)
+            wslog_error().error("用户 %s 审批失败,更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 出现异常,错误信息: %s" %(request.user.username,wf_id,process_next_id,e.args))
+        else:
+            ret["msg"] = "更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 成功" %(wf_id,process_next_id)
+            wslog_info().info("用户 %s 更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 成功" %(request.user.username,wf_id,process_next_id)) 
+            email_subject = '[%s]:%s' %(wf_obj.type.cn_name,wf_obj.title)
+            mail_send(email_subject,email_content,approver_can_email_list,html_content=email_content)
 
         return JsonResponse(ret)
 
@@ -580,10 +610,18 @@ class ProcessStepApprovalInfoView(LoginRequiredMixin,View):
         return JsonResponse(ret)
 
 ''' 工单删除 '''
-class WorkFormDeleteView(LoginRequiredMixin,View):
+class WorkFormDeleteView(LoginRequiredMixin,View): 
+    permission_required = "workform.delete_workformmodel"
+
     def post(self,request):
         ret = {"result":0}
         id = request.POST.get("id")
+
+        ## ajax 请求的权限验证
+        if not request.user.has_perm(self.permission_required):
+            ret["result"] = 1
+            ret["msg"] = "Sorry,你没有'删除工单'的权限,请联系运维!"
+            return JsonResponse(ret)
 
         try:
             w_obj = WorkFormModel.objects.get(id__exact=id)

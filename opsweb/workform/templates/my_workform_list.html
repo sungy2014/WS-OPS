@@ -41,6 +41,7 @@
                             <th class="text-center">申请人</th>
                             <th class="text-center">紧急程度</th>
                             <th class="text-center">类型</th>
+                            <th class="text-center">上线原因</th>
                             <th class="text-center">模块名称</th>
                             <th class="text-center">是否有SQL</th>
                             <th class="text-center">工单状态</th>
@@ -63,6 +64,7 @@
                                 {% endfor %}
                             </td>
                             <td class="text-center" style="vertical-align: middle">{{ pub.type.cn_name }}</td>
+                            <td class="text-center" style="vertical-align: middle">{{ pub.get_reason_display }}</td>
                             <td class="text-center" style="vertical-align: middle">{{ pub.module_name | default_if_none:"" }}</td>
 
                             {% if pub.sql == 'yes' %}
@@ -176,6 +178,7 @@
                             <th class="text-center">申请人</th>
                             <th class="text-center">紧急程度</th>
                             <th class="text-center">类型</th>
+                            <th class="text-center">上线原因</th>
                             <th class="text-center">模块名称</th>
                             <th class="text-center">是否有SQL</th>
                             <th class="text-center">工单状态</th>
@@ -198,6 +201,7 @@
                                 {% endfor %}
                             </td>
                             <td class="text-center" style="vertical-align: middle">{{ my_approvaled.type.cn_name }}</td>
+                            <td class="text-center" style="vertical-align: middle">{{ my_approvaled.get_reason_display }}</td>
                             <td class="text-center" style="vertical-align: middle">{{ my_approvaled.module_name | default_if_none:""  }}</td>
 
                             {% if my_approvaled.sql == 'yes' %}

@@ -12,16 +12,16 @@ def check_phone(phone):
         return phone
 
 def check_password(password):
-    try:
-        re.match("\D",password).group()
-    except Exception as e:
-        raise forms.ValidationError("密码必须以字母开头")
+    #try:
+    #    re.match("\D",password).group()
+    #except Exception as e:
+    #    raise forms.ValidationError("密码必须以字母开头")
 
     try:
         re.search('[A-Z]',password).group()
         re.search('[a-z]',password).group()
         re.search('[0-9]',password).group()
-        re.search('[!@#$%^&*()_]',password).group()
+        re.search('[!@#$%^&*()_\.;\"\',\?]',password).group()
     except Exception as e:
         raise forms.ValidationError("密码必须包含大写字母、小写字母、数字和特殊字符('!@#$%^&*()_')")
     else:
