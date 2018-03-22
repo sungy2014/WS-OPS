@@ -25,7 +25,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'utils'))
 SECRET_KEY = ')wl07)zwx1ou41mef(=@&1#9ru0bmt1)aeqb&%x3xnv1$d#dw@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False 
 
 ALLOWED_HOSTS = ["*"]
 
@@ -111,7 +111,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -196,8 +196,8 @@ LOGGING = {
 ## 验证码配置
 
 CAPTCHA_NOISE_FUNCTIONS = (
-    # 'captcha.helpers.noise_null', # 没有样式  
-    'captcha.helpers.noise_arcs', # 线  
+    'captcha.helpers.noise_null', # 没有样式  
+    #'captcha.helpers.noise_arcs', # 线  
     #'captcha.helpers.noise_dots', # 点  
 )  
 # 图片大小  

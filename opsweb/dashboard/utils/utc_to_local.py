@@ -19,3 +19,19 @@ def utc_to_local(utctime):
     tz = get_localzone()
     local_time = utctime.astimezone(tz)
     return local_time
+
+def utc_to_local_sec(utc_time_str, utc_format='%Y-%m-%dT%H:%M:%SZ'):
+    local_tz = pytz.timezone('Asia/Chongqing')
+    local_format = "%Y-%m-%d %H:%M"
+    utc_dt = datetime.strptime(utc_time_str, utc_format)
+    local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
+    time_str = local_dt.strftime(local_format)
+    return time_str
+
+def utc_to_local_T(utc_time_str, utc_format='%Y-%m-%dT%H:%MZ'):
+    local_tz = pytz.timezone('Asia/Chongqing')
+    local_format = "%Y-%m-%d %H:%M"
+    utc_dt = datetime.strptime(utc_time_str, utc_format)
+    local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
+    time_str = local_dt.strftime(local_format)
+    return time_str

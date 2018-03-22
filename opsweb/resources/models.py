@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import Group
 
 # Create your models here.
 
@@ -128,9 +129,11 @@ class CmdbModel(models.Model):
 
     name = models.CharField("应用名",max_length=50,null=False,unique=True)
     ips = models.ManyToManyField(ServerModel,verbose_name="IP 地址")
+    dev_team = models.ManyToManyField(Group,verbose_name="负责的开发组")
     env = models.CharField("所属环境",choices=ENV_CHOICES,max_length=10,null=False,default="online")
     describe = models.CharField("对应用的简单描述",max_length=200,null=True)
     path = models.CharField("应用部署的路径",max_length=200,null=True)
+    ansible_playbook = models.CharField("应用发布脚本",max_length=200,null=True)
     script = models.CharField("应用启动脚本",max_length=200,null=True)
     log = models.CharField("应用日志路径",max_length=200,null=True)
     ports = models.CharField("应用打开的端口",max_length=200,null=True)

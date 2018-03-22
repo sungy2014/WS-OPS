@@ -1,0 +1,50 @@
+
+
+-- 创建scan go专属购物车表
+CREATE TABLE `scango_cart` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '唯一id',
+  `user_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户ID',
+  `stock_code` varchar(32) NOT NULL DEFAULT '' COMMENT '门店编号',
+  `location_id` varchar(64) NOT NULL DEFAULT '' COMMENT '门店地理标识',
+  `bar_code` varchar(64) NOT NULL DEFAULT '' COMMENT '商品条码',
+  `number` int(11) NOT NULL DEFAULT '0' COMMENT '数量',
+  `item_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '商品ITEM ID',
+  `item_sku_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '商品SKU ID',
+  `sku_radix` int(11) NOT NULL DEFAULT '0' COMMENT '商品SKU基数',
+  `trade_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '贸易类型',
+  `item_type` int(11) NOT NULL DEFAULT '0' COMMENT '商品类型',
+  `item_name` varchar(256) NOT NULL DEFAULT '' COMMENT '商品名称',
+  `item_image_url` varchar(256) NOT NULL DEFAULT '' COMMENT '商品图片URL',
+  `item_sku_desc` varchar(256) NOT NULL DEFAULT '' COMMENT '商品规格描述',
+  `delete_mark` tinyint(4) NOT NULL DEFAULT '0' COMMENT '逻辑删除标志',
+  `gmt_created` datetime NOT NULL DEFAULT '1970-01-01 00:00:00' COMMENT '记录创建时间',
+  `gmt_modified` datetime NOT NULL DEFAULT '1970-01-01 00:00:00' COMMENT '记录最后一次修改时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_uid_stockcode_locationid_barcode` (`user_id`,`stock_code`,`location_id`,`bar_code`) USING BTREE,
+  KEY `idx_gmt_modified` (`gmt_modified`) USING BTREE
+) COMMENT='专门用于ScanGo的用户购物车数据表';
+ 
+ 
+ 
+-- 创建scan go购物车历史记录表
+CREATE TABLE `scango_cart_history` (
+  `id` bigint(20) NOT NULL COMMENT '唯一id',
+  `user_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户ID',
+  `stock_code` varchar(32) NOT NULL DEFAULT '' COMMENT '门店编号',
+  `location_id` varchar(64) NOT NULL DEFAULT '' COMMENT '门店地理标识',
+  `bar_code` varchar(64) NOT NULL DEFAULT '' COMMENT '商品条码',
+  `number` int(11) NOT NULL DEFAULT '0' COMMENT '数量',
+  `item_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '商品ITEM ID',
+  `item_sku_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '商品SKU ID',
+  `sku_radix` int(11) NOT NULL DEFAULT '0' COMMENT '商品SKU基数',
+  `trade_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '贸易类型',
+  `item_type` int(11) NOT NULL DEFAULT '0' COMMENT '商品类型',
+  `item_name` varchar(256) NOT NULL DEFAULT '' COMMENT '商品名称',
+  `item_image_url` varchar(256) NOT NULL DEFAULT '' COMMENT '商品图片URL',
+  `item_sku_desc` varchar(256) NOT NULL DEFAULT '' COMMENT '商品规格描述',
+  `delete_mark` tinyint(4) NOT NULL DEFAULT '0' COMMENT '逻辑删除标志',
+  `gmt_created` datetime NOT NULL DEFAULT '1970-01-01 00:00:00' COMMENT '记录创建时间',
+  `gmt_modified` datetime NOT NULL DEFAULT '1970-01-01 00:00:00' COMMENT '记录最后一次修改时间',
+  PRIMARY KEY (`id`)
+) COMMENT='专门用于ScanGo的用户购物车数据表（历史记录表）';
+

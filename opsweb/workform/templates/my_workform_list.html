@@ -505,7 +505,6 @@ $(document).on("click",".process_approval",function(){
     $.getJSON(url,function(data){
         if(data.result==0){
             data = data.wf_info
-            console.log(data)
             $("#id_approval").val(data.id)
             $("#step_id_approval").val(data.process_step_id)
             $("#title_approval").val(data.title)

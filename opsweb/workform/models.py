@@ -128,3 +128,4 @@ class ApprovalFormModel(models.Model):
         verbose_name = "审批表"
         db_table = "approval_form"
         ordering = ["-id"]
+        index_together = ["process","workform"]

@@ -98,13 +98,15 @@ def CmdbAutoAddCrontab():
 
         cmdb_obj_list = []
         for app in app_name_list:
-            cmdb_data = {"way":"tomcat","type":"1","env":"online","status":"0","ports":"8080"}
+            cmdb_data = {"way":"0","type":"1","env":"online","status":"0","ports":"8080"}
             if not cmdb_name_list:
                 cmdb_data["name"] = app
                 try:
                     cc = CmdbModel(**cmdb_data)
-                    cc.ips.set([ss_obj])
                     cc.save()
+                    cc.ips.set([ss_obj])
+                    ''' 每个模块的管理组都要关联 ops 组 '''
+                    cc.dev_team.set(list(Group.objects.filter(name__exact='ops')))
                 except Exception as e:
                     wslog_error().error("CmdbModel 自动添加失败,错误信息: %s" %(e.args))
                     continue
@@ -129,6 +131,8 @@ def CmdbAutoAddCrontab():
                     continue
                 else:
                     wslog_info().info("CmdbModel 自动添加对象 %s 成功" %(app))
+                    ''' 每个模块的管理组都要关联 ops 组 '''
+                    cm_obj.dev_team.set(list(Group.objects.filter(name__exact='ops')))
                     cmdb_obj_list.append(cm_obj)
         if cmdb_obj_list:
             ss_obj.cmdbmodel_set.set(cmdb_obj_list)

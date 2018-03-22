@@ -1,0 +1,22 @@
+update coupon_db.granted_coupon_6 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 6366982;
+update coupon_db.granted_coupon_14 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 4213646;
+update coupon_db.granted_coupon_20 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 8954772;
+update coupon_db.granted_coupon_27 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 10171419;
+update coupon_db.granted_coupon_28 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 29596;
+update coupon_db.granted_coupon_36 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 9038884;
+update coupon_db.granted_coupon_41 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 7150377;
+update coupon_db.granted_coupon_42 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 7799978;
+update coupon_db.granted_coupon_44 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 10167084;
+update coupon_db.granted_coupon_54 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 10050870;
+update coupon_db.granted_coupon_57 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 761785;
+update coupon_db.granted_coupon_61 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 10168253;
+update coupon_db.granted_coupon_69 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 10171589;
+update coupon_db.granted_coupon_70 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 5488326;
+update coupon_db.granted_coupon_89 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 134361;
+update coupon_db.granted_coupon_89 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 5653337;
+update coupon_db.granted_coupon_101 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 9978469;
+update coupon_db.granted_coupon_114 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 4205810;
+update coupon_db.granted_coupon_126 set delete_mark = 1 where coupon_id = 1489 and order_id is null and status = 30 and receiver_id = 6710526;
+
+
+

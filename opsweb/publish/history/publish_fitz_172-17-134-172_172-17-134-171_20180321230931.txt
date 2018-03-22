@@ -1,0 +1,35 @@
+
+执行脚本: /etc/ansible/h5-test.yml 
+目标服务器: 172.17.134.172,172.17.134.171 
+发布版本号: fitz_20180320145319.jar 
+
+ [WARNING]: Unable to set correct type for configuration entry: DEFAULT_LOCAL_TMP
+
+PLAY [172.17.134.172,172.17.134.171] ***********************************************************************************************************************************
+
+TASK [进程重启前查看PID] ******************************************************************************************************************************************************
+changed: [172.17.134.171]
+changed: [172.17.134.172]
+
+TASK [debug] ***********************************************************************************************************************************************************
+ok: [172.17.134.171] => {
+    "pid_pre.stdout": ""
+}
+ok: [172.17.134.172] => {
+    "pid_pre.stdout": ""
+}
+
+TASK [健康检查] ************************************************************************************************************************************************************
+FAILED - RETRYING: 健康检查 (2 retries left).
+FAILED - RETRYING: 健康检查 (2 retries left).
+FAILED - RETRYING: 健康检查 (1 retries left).
+FAILED - RETRYING: 健康检查 (1 retries left).
+ [WARNING]: Consider using get_url or uri module rather than running curl
+fatal: [172.17.134.171]: FAILED! => {"attempts": 2, "changed": true, "cmd": ["curl", "-s", "http://172.17.134.56:10080/itemcenter/echo.cc"], "delta": "0:00:00.016328", "end": "2018-03-21 23:09:55.372972", "msg": "non-zero return code", "rc": 7, "start": "2018-03-21 23:09:55.356644", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+fatal: [172.17.134.172]: FAILED! => {"attempts": 2, "changed": true, "cmd": ["curl", "-s", "http://172.17.134.56:10080/itemcenter/echo.cc"], "delta": "0:00:00.013518", "end": "2018-03-21 23:09:55.436542", "msg": "non-zero return code", "rc": 7, "start": "2018-03-21 23:09:55.423024", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+	to retry, use: --limit @/etc/ansible/h5-test.retry
+
+PLAY RECAP *************************************************************************************************************************************************************
+172.17.134.171             : ok=2    changed=1    unreachable=0    failed=1   
+172.17.134.172             : ok=2    changed=1    unreachable=0    failed=1   
+

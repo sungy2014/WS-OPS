@@ -1,0 +1,43 @@
+
+执行脚本: /data/ansible/playbook-easyops/fitz_deploy.yml 
+目标服务器: 172.17.134.172 
+发布版本号: fitz_20180321152117.jar 
+
+ansible-playbook 2.4.2.0
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/ansible
+  executable location = /ops-data/zp/haha/mysite-11/bin/ansible-playbook
+  python version = 3.6.3 (default, Nov 19 2017, 16:36:53) [GCC 4.4.7 20120313 (Red Hat 4.4.7-18)]
+Using /etc/ansible/ansible.cfg as config file
+ [WARNING]: Unable to set correct type for configuration entry:
+DEFAULT_LOCAL_TMP
+Parsed /etc/ansible/hosts inventory source with ini plugin
+
+PLAYBOOK: fitz_deploy.yml ******************************************************
+1 plays in /data/ansible/playbook-easyops/fitz_deploy.yml
+
+PLAY [172.17.134.172] **********************************************************
+META: ran handlers
+
+TASK [mkdir fitz] **************************************************************
+task path: /data/ansible/playbook-easyops/fitz_deploy.yml:6
+ERROR! Unexpected Exception, this is probably a bug: 'NoneType' object has no attribute 'isatty'
+the full traceback was:
+
+Traceback (most recent call last):
+  File "/ops-data/zp/haha/mysite-11/bin/ansible-playbook", line 106, in <module>
+    exit_code = cli.run()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/ansible/cli/playbook.py", line 130, in run
+    results = pbex.run()
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/ansible/executor/playbook_executor.py", line 154, in run
+    result = self._tqm.run(play=play)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/ansible/executor/task_queue_manager.py", line 290, in run
+    play_return = strategy.run(iterator, play_context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/ansible/plugins/strategy/linear.py", line 277, in run
+    self._queue_task(host, task, task_vars, play_context)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/ansible/plugins/strategy/__init__.py", line 220, in _queue_task
+    worker_prc = WorkerProcess(self._final_q, task_vars, host, task, play_context, self._loader, self._variable_manager, shared_loader_obj)
+  File "/ops-data/zp/haha/mysite-11/lib/python3.6/site-packages/ansible/executor/process/worker.py", line 73, in __init__
+    if sys.stdin.isatty():
+AttributeError: 'NoneType' object has no attribute 'isatty'

@@ -1,0 +1,59 @@
+
+
+-- order_ext 调整
+ALTER TABLE `order_extend_info`
+MODIFY COLUMN `biz_code`  varchar(64) NULL DEFAULT '' COMMENT '应用唯一标志（作废）' AFTER `id`,
+MODIFY COLUMN `order_id`  bigint(20) NOT NULL DEFAULT 0 COMMENT '订单ID' AFTER `biz_code`,
+MODIFY COLUMN `extend_type`  tinyint(4) NULL DEFAULT 0 COMMENT '（作废）' AFTER `order_id`,
+MODIFY COLUMN `attr_key`  varchar(32) NOT NULL DEFAULT '' COMMENT '属性key（参考枚举：EnumOrderExtendKey）' AFTER `extend_type`,
+MODIFY COLUMN `attr_value`  varchar(2048) NOT NULL DEFAULT '' COMMENT '属性值' AFTER `attr_key`,
+MODIFY COLUMN `delete_mark`  tinyint(4) NOT NULL DEFAULT 0 COMMENT '逻辑删除标志' AFTER `attr_value`,
+DROP INDEX `unikey`,
+ADD UNIQUE INDEX `unique_orderid_attrkey` (`order_id`, `attr_key`) USING BTREE ;
+ 
+ 
+ 
+ALTER TABLE `order_item`
+ADD COLUMN `wat_bar_code`  varchar(50) NOT NULL DEFAULT '' COMMENT '屈臣氏商品条码（目前只有ScanGo场景会有值）' AFTER `wat_sku_code`,
+ADD COLUMN `store_promotion`  varchar(2048) NULL DEFAULT '' COMMENT '门店ScanGo的订单，商品所承担的优惠内容（json字符串）' AFTER `promotion_activity`;
+ 
+ 
+ 
+ 
+ALTER TABLE trade_db.`refund`
+ADD COLUMN `receipt_back_handle_flag` INT(1) NOT NULL DEFAULT 0 COMMENT '入库回调处理状态：0：初始值;1:待处理;2:处理成功;3:处理失败' AFTER goms_flag,
+ADD COLUMN `receipt_back_handle_number` INT(4) NOT NULL DEFAULT 0 COMMENT '入库回调处理重试次数' AFTER receipt_back_handle_flag,
+ADD COLUMN `receipt_back_time` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00' COMMENT '入库回调时间' AFTER receipt_back_handle_number,
+ADD COLUMN `refund_back_flag` INT(1) NOT NULL DEFAULT 0  COMMENT '维权回调标志：0：无回调信息;1:回调告知成功;2:回调告知失败' AFTER receipt_back_time,
+ADD COLUMN `refund_back_time` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00' COMMENT 'orderPush回调通知时间' AFTER refund_back_flag,
+MODIFY COLUMN `create_type` INT(1) NOT NULL DEFAULT '0' COMMENT '创建人类型： 0：普通用户；1：客服；2：orderPush',
+MODIFY COLUMN `activist_no` VARCHAR(32) NOT NULL DEFAULT '' COMMENT '维权ID',
+ADD INDEX `idx_receipt_back_time` (`receipt_back_time`);
+ 
+UPDATE trade_db.refund SET refund.refund_back_flag=1 WHERE refund.goms_flag=0;
+UPDATE trade_db.refund SET refund.refund_back_flag=0 WHERE refund.goms_flag=3;
+UPDATE trade_db.refund SET refund.refund_back_flag=2 WHERE refund.goms_flag IN(1,2);
+ 
+ALTER TABLE trade_db.`refund_money_bill`
+MODIFY COLUMN `create_type` INT(1) NOT NULL DEFAULT '0' COMMENT '创建人类型： 0：普通用户；1：客服；2：orderPush',
+MODIFY COLUMN `activist_no` VARCHAR(32) NOT NULL DEFAULT '' COMMENT '维权单号';
+ 
+ 
+ 
+ALTER TABLE trade_db.`refund_item`
+ADD COLUMN `point_amount` BIGINT(20) NOT NULL DEFAULT 0 COMMENT '积分抵扣金额' AFTER coupon_fax_amount,
+MODIFY COLUMN `activist_no` VARCHAR(32) NOT NULL DEFAULT '' COMMENT '维权ID',
+ADD INDEX `idx_activist_no` (`activist_no`);
+ 
+ 
+CREATE TABLE `order_ticket_url_get` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `order_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '订单id',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '获取状态 0：未获取 1：已获取 2：获取中',
+  `gmt_created` datetime DEFAULT NULL,
+  `gmt_modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_order_id` (`order_id`),
+  KEY `idx_gmt_created` (`gmt_created`)
+) COMMENT='电子小票获取记录';
+

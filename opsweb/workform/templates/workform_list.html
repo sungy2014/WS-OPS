@@ -326,7 +326,6 @@ $(".workform_detail").click(function(){
     $.getJSON(url,function(data){
         if(data.result==0){
             data = data.wf_info
-            console.log(data)
             $("#id").val(data.id)
             $("#title").val(data.title)
             $("#detail").val(data.detail)

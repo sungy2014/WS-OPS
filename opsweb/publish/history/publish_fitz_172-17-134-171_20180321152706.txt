@@ -1,0 +1,13 @@
+
+执行脚本: /data/ansible/playbook-easyops/fitz_deploy.yml 
+目标服务器: 172.17.134.171 
+发布版本号: fitz_20180321152117.jar 
+
+ [WARNING]: Unable to set correct type for configuration entry:
+DEFAULT_LOCAL_TMP
+
+PLAY [172.17.134.171] **********************************************************
+
+TASK [mkdir fitz] **************************************************************
+ERROR! Unexpected Exception, this is probably a bug: 'NoneType' object has no attribute 'isatty'
+to see the full traceback, use -vvv

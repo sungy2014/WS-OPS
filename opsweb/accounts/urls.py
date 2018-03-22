@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.conf.urls import include, url
 from django.contrib import admin
-from . import views,user,group,permission
+from . import views,user,group,permission,api
 
 urlpatterns = [
     url(r'^login/$', views.LoginView.as_view(),name="user_login"),
@@ -45,6 +45,7 @@ urlpatterns = [
         url(r'^list/$',group.GroupListView.as_view(),name="group_list"),
         url(r'^add/$',group.GroupAddView.as_view(),name="group_add"),
         url(r'^delete/$',group.GroupDeleteView.as_view(),name="group_delete"),
+        url(r'^info/$',api.GetGroupInfoView.as_view(),name="get_group_info"),
         url(r'^user/',include([
             url(r'^list/$',group.GroupUserListView.as_view(),name="group_user_list"),
             url(r'^delete/$',group.GroupUserDeleteView.as_view(),name="group_user_delete"),

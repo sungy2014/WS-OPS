@@ -1,24 +1,14 @@
-"""opsweb URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.8/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Add an import:  from blog import urls as blog_urls
-    2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
-"""
-
-
 from django.conf.urls import include, url
 from django.contrib import admin
-from . import views
+from . import views,api
+from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     url(r'^pub/$', views.PublishPubView.as_view(),name="publish_pub"),
+    url(r'^list/$', views.PublishListView.as_view(),name="publish_list"),
+    url(r'^info/$', views.PublishInfoView.as_view(),name="publish_info"),
+    url(r'^delete/$', views.PublishDeleteView.as_view(),name="publish_delete"),
+    url(r'^jenkins/api/$', csrf_exempt(api.PublishJenkinsApiView.as_view()),name="publish_jenkins_api"),
+    url(r'^get/version/$', api.GetPublishVersionView.as_view(),name="get_publish_version"),
+    url(r'^exec/ansible/playbook$', views.PublishAnsiblePlaybookView.as_view(),name="exec_ansible_playbook"),
 ]

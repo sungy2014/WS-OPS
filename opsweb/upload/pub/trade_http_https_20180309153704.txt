@@ -1,0 +1,6 @@
+
+UPDATE trade_db.order_service SET service_image_url = REPLACE(service_image_url, 'http://', 'https://');
+UPDATE trade_db.refund_image SET image_url = REPLACE(image_url, 'http://', 'https://');
+UPDATE trade_db.refund_item_image SET image_url = REPLACE(image_url, 'http://', 'https://');
+-- 该表数据量比较大
+UPDATE trade_db.order_item SET item_image_url = REPLACE(item_image_url, 'http://', 'https://');

@@ -449,6 +449,12 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
                 ret["msg"] = "ApprovalFormModel 模型自动添加 step 为'完成' 时的审核结果失败"
                 wslog_error().error("ApprovalFormModel 模型自动添加 step 为'完成' 时的审核结果失败,错误信息: %s" %(e.args))
                 return Jsonresponse(ret) 
+            else:
+                approver_can_email_list = [request.user.email]
+                email_content = '''<p>你的工单<strong style="color:red"> 已完成 </strong>，如有需要请前往运维平台查看</p>
+                            <p>工单主题: <strong style="color:blue">%s</strong></p>
+                            <p>URL链接: <a href="http://%s" target="_blank">点击跳转</a></p>''' %(wf_obj.title,
+                                                                                            request.get_host() + reverse("my_workform_list"))
 
         elif  af_obj.result == "2" or af_obj.result == "3":
             ''' 如果工单当前流程step的审核结果是'暂停'或'有异常', 则更新工单的状态为'暂停',同时工单的流程step不变,可审核人变成当前审核的人 '''
@@ -527,9 +533,9 @@ class WorkFormInfoView(LoginRequiredMixin,View):
             wf_info["type"] = wf_obj.type.name
             wf_info["applicant"] = wf_obj.applicant.userextend.cn_name
             if wf_info.get("create_time"):
-                wf_info["create_time"] = utc_to_local(wf_obj.create_time).strftime("%Y-%m-%d %X")
+                wf_info["create_time"] = wf_obj.create_time
             if wf_info.get("complete_time"):
-                wf_info["complete_time"] = utc_to_local(wf_obj.complete_time).strftime("%Y-%m-%d %X")
+                wf_info["complete_time"] = wf_obj.complete_time
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = "WorkFormModel 模型 id: %s 的对象转 dict 失败,请查看日志..." %(wf_id)
@@ -565,7 +571,7 @@ class ProcessTraceView(LoginRequiredMixin,View):
                 process["id"] = i.id
                 process["process"] = i.process.step
                 process["process_step_id"] = i.process.step_id
-                process["approve_time"] = utc_to_local(i.approval_time).strftime("%Y-%m-%d %X")
+                process["approve_time"] = i.approval_time
             else:
                 process["id"] = i.id
                 process["result"] = i.get_result_display()
@@ -604,7 +610,7 @@ class ProcessStepApprovalInfoView(LoginRequiredMixin,View):
         approval_info["result"] = af_obj.get_result_display()
         approval_info["approve_note"] = af_obj.approve_note
         approval_info["process"] = af_obj.process.step
-        approval_info["approve_time"] = utc_to_local(af_obj.approval_time).strftime("%Y-%m-%d %X")
+        approval_info["approve_time"] = af_obj.approval_time
         ret["approval_info"] = approval_info
 
         return JsonResponse(ret)

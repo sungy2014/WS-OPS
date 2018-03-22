@@ -9,10 +9,25 @@ from django.forms.models import model_to_dict
 from accounts.permission.permission_required_mixin import PermissionRequiredMixin
 import json
 from datetime import *
-from dashboard.utils.utc_to_local import utc_to_local
+from dashboard.utils.utc_to_local import utc_to_local,utc_to_local_T
 from dashboard.utils.wslog import wslog_error,wslog_info
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Count
+
+
+class ServerInfoCharts(object):
+    def ServerChartByInstanceType(self):
+        s_list = ServerModel.objects.exclude(instance_type__isnull=True).values("instance_type").annotate(value=Count("instance_type")).order_by()
+        return [{"name":i.get("instance_type"),"value":i.get("value")} for i in s_list ]
+
+    def ServerChartByChargeType(self):
+        s_list = ServerModel.objects.exclude(charge_type__isnull=True).values("charge_type").annotate(value=Count("charge_type")).order_by()
+        return [{"name":k,"value":i.get("value")} for i in s_list for j,k in dict(ServerModel.CHARGE_TYPE_CHOICES).items() if i.get("charge_type")==j]
+
+    def ServerChartByStatus(self):
+        s_list = ServerModel.objects.exclude(status__isnull=True).values("status").annotate(value=Count("status")).order_by()
+        return [{"name":i.get("status"),"value":i.get("value")} for i in s_list ]
 
 
 def GetServerInfoFromApi(private_ip,server_aliyun_obj):
@@ -39,8 +54,8 @@ def GetServerInfoFromApi(private_ip,server_aliyun_obj):
         server_aliyun_obj.mem = '%.2f GB' %(server_info_aliyun["Memory"]/1024.0)
         server_aliyun_obj.charge_type = server_info_aliyun["InstanceChargeType"]
         server_aliyun_obj.status = server_info_aliyun["Status"]
-        server_aliyun_obj.online_time = server_info_aliyun["CreationTime"]
-        server_aliyun_obj.expired_time = server_info_aliyun["ExpiredTime"]
+        server_aliyun_obj.online_time = utc_to_local_T(server_info_aliyun["CreationTime"])
+        server_aliyun_obj.expired_time = utc_to_local_T(server_info_aliyun["ExpiredTime"])
     except Exception as e:
         ret["result"] = 1
         ret["msg"] = "aliyun api 某个属性失败，请查看日志"
@@ -101,9 +116,14 @@ class ServerAliyunListView(LoginRequiredMixin,ListView):
     ordering = 'id'
     page_total = 11
 
+    sic = ServerInfoCharts()
+
     def get_context_data(self,**kwargs):
         context = super(ServerAliyunListView,self).get_context_data(**kwargs)
         context['page_range'] = self.get_page_range(context['page_obj'])
+        context['server_chart_by_instance_type'] = self.sic.ServerChartByInstanceType()
+        context['server_chart_by_charge_type'] = self.sic.ServerChartByChargeType()
+        context['server_chart_by_status'] = self.sic.ServerChartByStatus()
         # request.GET 是获取QueryDict对象,也即是前端传过来的所有参数,由于QueryDict对象是只读的,所有要使用copy方法,赋值一份出来,才能进行修改
         search_data = self.request.GET.copy()
         try:
@@ -244,13 +264,13 @@ class ServerAliyunInfoView(LoginRequiredMixin,View):
             server_aliyun_info["renewal_type"] = server_aliyun_obj.get_renewal_type_display()
             server_aliyun_info["disk"] = server_aliyun_info["disk"].replace("</br>","\n")
             if server_aliyun_info.get("expired_time"):
-                server_aliyun_info["expired_time"] = utc_to_local(server_aliyun_info["expired_time"]).strftime("%Y-%m-%d %X")
+                server_aliyun_info["expired_time"] = server_aliyun_info["expired_time"]
             if server_aliyun_info.get("offline_time"):
-                server_aliyun_info["offline_time"] = utc_to_local(server_aliyun_info["offline_time"]).strftime("%Y-%m-%d %X")
+                server_aliyun_info["offline_time"] = server_aliyun_info["offline_time"]
             if server_aliyun_info.get("online_time"):
-                server_aliyun_info["online_time"] = utc_to_local(server_aliyun_info["online_time"]).strftime("%Y-%m-%d %X")
+                server_aliyun_info["online_time"] = server_aliyun_info["online_time"]
             if server_aliyun_info.get("last_update_time"):
-                server_aliyun_info["last_update_time"] = utc_to_local(server_aliyun_info["last_update_time"]).strftime("%Y-%m-%d %X")
+                server_aliyun_info["last_update_time"] = server_aliyun_info["last_update_time"]
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = "模型对象转dict失败" 
@@ -449,7 +469,6 @@ class ServerIdcListView(LoginRequiredMixin,View):
             except Exception as e:
                 wslog_error().error("服务器 %s 在 zabbix 中不存在" %(server_obj.private_ip))
                 server["monitor_status"] = "1"
-            server["last_update_time"] = utc_to_local(server["last_update_time"]).strftime("%Y-%m-%d %X")
 
         return JsonResponse(server_idc_list,safe=False)
 
@@ -597,13 +616,13 @@ class ServerIdcInfoView(LoginRequiredMixin,View):
 
             server_idc_info["disk"] = server_idc_info["disk"].replace("</br>","\n")
             if server_idc_info.get("expired_time"):
-                server_idc_info["expired_time"] = utc_to_local(server_idc_info["expired_time"]).strftime("%Y-%m-%d %X")
+                server_idc_info["expired_time"] = server_idc_info["expired_time"]
             if server_idc_info.get("offline_time"):
-                server_idc_info["offline_time"] = utc_to_local(server_idc_info["offline_time"]).strftime("%Y-%m-%d %X")
+                server_idc_info["offline_time"] = server_idc_info["offline_time"]
             if server_idc_info.get("online_time"):
-                server_idc_info["online_time"] = utc_to_local(server_idc_info["online_time"]).strftime("%Y-%m-%d %X")
+                server_idc_info["online_time"] = server_idc_info["online_time"]
             if server_idc_info.get("last_update_time"):
-                server_idc_info["last_update_time"] = utc_to_local(server_idc_info["last_update_time"]).strftime("%Y-%m-%d %X")
+                server_idc_info["last_update_time"] = server_idc_info["last_update_time"]
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = "模型对象转dict失败" 

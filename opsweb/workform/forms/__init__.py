@@ -69,7 +69,7 @@ class SqlWorkFormAddForm(PubWorkFormAddForm):
 
 class OthersWorkFormAddForm(PubWorkFormAddForm):
     class Meta(PubWorkFormAddForm.Meta):
-        exclude = ["module_name","sql","sql_detail","sql_file_url"]
+        exclude = ["module_name","reason","sql","sql_detail","sql_file_url"]
 
 class WorkFormApprovalForm(forms.Form):
     result = forms.ChoiceField(required=True,choices=ApprovalFormModel.RESULT_CHOICES,error_messages={"required":"必须选择一个审批结果"})

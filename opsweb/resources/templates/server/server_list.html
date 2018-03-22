@@ -6,6 +6,27 @@
 
 {% block body %} 
 
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="font-size:18px">
+                <i class="fa fa-database"></i>  服务器分类统计
+            </div>
+            <div class="panel-body">
+                <div class="col-lg-4">
+                    <div id="server_chart_by_instance_type" style="height:200px;width:300px;margin: auto;"></div>
+                </div>
+                <div class="col-lg-4">
+                    <div id="server_chart_by_charge_type" style="height:200px;width:300px;margin: auto;"></div>
+                </div>
+                <div class="col-lg-4">
+                    <div id="server_chart_by_status" style="height:200px;width:300px;margin: auto;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
     <ul id="myTabs" class="nav nav-tabs nav-justified" role="tablist">
         <li role="presentation" class="active">
@@ -1184,6 +1205,74 @@ function datatable_list(){
       }
   })
 };
+
+var ServerChartByInstanceType = echarts.init(document.getElementById('server_chart_by_instance_type'),'light');
+var ServerChartByChargeType = echarts.init(document.getElementById('server_chart_by_charge_type'),'light');
+var ServerChartByStatus = echarts.init(document.getElementById('server_chart_by_status'),'light');
+
+var option = {
+    color: ['#39cccc','#f39c12','#dd4b39','#3c8dbc','#00c0ef'],
+    title: {
+        text: '',
+        left: 'center',
+        textStyle: {
+            fontSize: 13,
+        },
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    series: [
+        {
+            name:'',
+            type:'pie',
+            radius: ['30%', '60%'],
+            data:[]
+        }
+    ]
+};
+
+ServerChartByInstanceType.setOption(option);
+ServerChartByChargeType.setOption(option);
+ServerChartByStatus.setOption(option);
+
+ServerChartByInstanceType.setOption({
+    title:{
+        text: '规格分布图',
+    },
+    series: [
+        {
+            name: '规格',
+            data: {{ server_chart_by_instance_type |safe }},
+        },
+    ]
+});
+
+ServerChartByChargeType.setOption({
+    title:{
+        text: '付费类型图',
+    },
+    series: [
+        {
+            name: '付费类型',
+            data: {{ server_chart_by_charge_type |safe }},
+        },
+    ]
+});
+
+ServerChartByStatus.setOption({
+    title:{
+        text: '状态分布图',
+    },
+    series: [
+        {
+            name: '状态',
+            data: {{ server_chart_by_status |safe }},
+        },
+    ]
+});
+
 
 </script>
 

@@ -1,0 +1,212 @@
+{% extends "public/layout.html" %}
+
+{% load poll_extras %}
+
+{% block breadcrumb %}
+发布系统 / <strong class="active">发布历史</strong>
+{% endblock %}
+
+{% block css %}
+<style>
+    pre {color: #23c6c8;}
+</style>
+{% endblock %}
+
+{% block body %} 
+
+<div class="col-sm-12">
+    <table class="table table-striped table-bordered table-hover " id="EditTable">
+        <caption>
+            <div>
+                <form class="form-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary" style="float:right">搜索</button>
+                    <div class="form-group" style="text-align:right;float: right;margin-right: 10px;">
+                        <input type="text" class="form-control" name="search" value="{{ search }}" placeholder="应用名 | IP地址 | 版本号">
+                    </div>
+                </form> 
+            </div>
+        </caption>  
+        <thead>
+            <tr>
+                <th class="text-center">应用名</th>
+                <th class="text-center">IP 地址</th>
+                <th class="text-center">类型</th>
+                <th class="text-center">环境</th>
+                <th class="text-center">状态</th>
+                <th class="text-center">版本号</th>
+                <th class="text-center">执行时间</th>
+                <th class="text-center">执行人</th>
+                <th class="text-center">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ph in object_list %}
+            <tr class="gradeX">
+                <td class="text-center" style="vertical-align: middle"><strong>{{ ph.module_name.name }}</strong></td>
+                <td class="text-center">
+                    {% for s in ph.ip.all %}
+                        {{ s.private_ip }}</br>
+                    {% endfor %}
+                </td>
+                {% if ph.type == 'publish' %}
+                    <td class="text-center" style="vertical-align: middle"><span class="badge label-primary">{{ ph.get_type_display }}</span></td>
+                {% else %}
+                    <td class="text-center" style="vertical-align: middle"><span class="badge label-warning">{{ ph.get_type_display }}</span></td>
+                {% endif %}
+                <td class="text-center" style="vertical-align: middle">{{ ph.get_env_display }}</td>
+                {% if ph.status == 'success' %}
+                    <td class="text-center"><span class="badge label-info">{{ ph.get_status_display }}</span></td>
+                {% else %}
+                    <td class="text-center"><span class="badge label-danger">{{ ph.get_status_display }}</span></td>
+                {% endif %}
+                <td class="text-center" style="vertical-align: middle">{{ ph.version_now.version }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ ph.pub_time|date:"Y-m-d H:i:s" }}</td>
+                <td class="text-center" style="vertical-align: middle">{{ ph.pub_user.userextend.cn_name }}</td>
+                <td class="text-center" style="vertical-align: middle">
+                    <button data-id="{{ ph.id }}" class="btn btn-sm btn-info detail">详情</button>
+                    <button data-id="{{ ph.id }}" class="btn btn-sm btn-danger del-btn">删除</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- 列表分页 -->
+    <div class="text-center">
+        <ul class="pagination">
+            <li class="disabled"><a href="#">总页数: {{ page_obj.paginator.num_pages }}</a></li>
+
+            {% if page_obj.number != 1 %}
+                <li><a href={% url "publish_list" %}?page=1{{ search_uri }}>首页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">首页</a></li>
+            {% endif %}
+
+            {% if page_obj.has_previous %}
+                <li><a href={% url "publish_list" %}?page={{ page_obj.previous_page_number }}{{ search_uri }}>上一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">上一页</a></li>
+            {% endif %}
+
+            {% for page in page_range %}
+               {% if page == page_obj.number %}
+                  <li class="active"><a href={% url "publish_list" %}?page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% else %}
+                  <li><a href={% url "publish_list" %}?page={{ page }}{{ search_uri }}>{{ page }}</a></li>
+               {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href={% url "publish_list" %}?page={{ page_obj.next_page_number }}{{ search_uri }}>下一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">下一页</a></li>
+            {% endif %}
+            
+            {% if page_obj.number != page_obj.paginator.num_pages %}
+                <li><a href={% url "publish_list" %}?page={{ page_obj.paginator.num_pages }}{{ search_uri }}>末页</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">末页</a></li>
+            {% endif %}
+
+            <li class="disabled"><a href="#">总条数: {{ page_obj.paginator.count }}</a></li>
+        </ul>
+    </div>
+    <!-- 分页结束 -->    
+
+
+    <!-- 详情模态框 -->
+    <div class="modal fade"  id ="DetailModal">   
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">发布/回滚 操作日志</h4>
+                </div>
+                <div class="modal-body">
+                    <div style="background-color:black;bottom:36px;height:calc(100vh - 200px);resize:none;overFlow-x:scroll;overFlow-y:scroll">
+                        <div id="result" style="margin-left: 25px;margin-right: 20px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary exit-btn" data-dismiss="modal">退出</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <!-- 删除模态框 -->
+    <div class="modal fade" id='DeleteModal'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">删除</h4>
+                </div>
+                <div class="modal-body">
+                    <p style="color:red"><b>你确认要删除吗?</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-warning del-sure" data-id=''>确认</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+
+<!--详情-->
+$(".detail").click(function(){
+    var id = $(this).attr("data-id")
+    var url = "{% url 'publish_info' %}?id="+id
+    $.getJSON(url,function(data){
+        if(data.result==0){
+            $("#result").html(data.msg) 
+        }else{
+            swal("OH,My God",data.msg,"error")
+        }
+    });
+    $("#DetailModal").modal("show")
+});
+
+<!--删除-->
+$(".del-btn").click(function(){
+    var id = $(this).attr("data-id")
+    var data = $(this).attr("data-del")
+    $(".del-sure").attr('data-id',id)
+    $("#DeleteModal").modal("show")
+});
+
+$(".del-sure").click(function(){
+   var id = $(this).attr('data-id')
+   var url = "{% url 'publish_delete' %}"
+   $('#DeleteModal').modal('hide')
+   $.post(url,{"id": id},function(data){
+       if(data.result==0){
+           swal({
+             title:"Good",
+             text:data.msg,
+             type:'success',
+             confirmButtonText:"确定"
+             },
+             function(){
+                location.reload()
+           })
+       }else{
+            swal("OH,My God",data.msg,"error")
+       };
+   });
+   return false;
+});
+
+</script>
+
+{% endblock %}

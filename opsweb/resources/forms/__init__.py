@@ -121,14 +121,15 @@ class ServerIdcUpdateForm(ServerAliyunUpdateForm):
 ''' cmdb 的添加和修改均使用此 form '''
 class CmdbAddForm(forms.Form):
     name = forms.CharField(required=True,max_length=50,error_messages={"required":"应用名称不能为空","max_length":"应用名称不能超过50字符"})
-    describe = forms.CharField(required=False,max_length=200,error_messages={"invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
-    path = forms.CharField(required=True,max_length=200,error_messages={"required":"必须输入应用部署路径","invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
-    script = forms.CharField(required=True,max_length=200,error_messages={"required":"必须输入应用的启动脚本","invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
+    describe = forms.CharField(required=False,max_length=200,error_messages={"max_length":"描述不允许超过200字符"})
+    path = forms.CharField(required=True,max_length=200,error_messages={"required":"必须输入应用部署路径","max_length":"不允许超过200字符"})
+    script = forms.CharField(required=True,max_length=200,error_messages={"required":"必须输入应用的启动脚本","max_length":"不允许超过200字符"})
+    ansible_playbook = forms.CharField(required=False,max_length=200,error_messages={"max_length":"ansible-playbook不允许超过200字符"})
     type = forms.ChoiceField(required=True,choices=CmdbModel.TYPE_CHOICES,error_messages={"required":"必须选择一个类型"})
     env = forms.ChoiceField(required=True,choices=CmdbModel.ENV_CHOICES,error_messages={"required":"必须选择一个所属环境"})
     way = forms.ChoiceField(required=True,choices=CmdbModel.WAY_CHOICES,error_messages={"required":"必须选择一个部署方式"})
-    log = forms.CharField(required=False,max_length=200,error_messages={"invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
-    ports = forms.CharField(required=False,max_length=200,error_messages={"invalid":"这个字段的值无效","max_length":"不允许超过200字符"})
+    log = forms.CharField(required=False,max_length=200,error_messages={"max_length":"日志不允许超过200字符"})
+    ports = forms.CharField(required=False,max_length=200,error_messages={"max_length":"端口不允许超过200字符"})
     status = forms.ChoiceField(required=True,choices=CmdbModel.STATUS_CHOICES,error_messages={"required":"必须选择一个状态"})
 
 

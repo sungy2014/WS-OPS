@@ -31,9 +31,6 @@
   .nav-label {font-size: 16px}
 </style>
 
-<style type="text/css">
-</style>
-
 {% block css %} 
 {% endblock%}
 
@@ -65,7 +62,7 @@
 <script src='/static/js/opsweb.js'></script>
 <script src="/static/plugin/metismenu/metismenu.min.js"></script>
 <script src="/static/plugin/chosen/chosen.jquery.min.js"></script>
-<script src="/static/plugin/echarts-3.7.2/echarts.min.js"></script>
+<script src="/static/plugin/echarts-4.0.4/echarts.min.js"></script>
 
 <!--官方 JS 部分结束-->
 
@@ -178,7 +175,7 @@
 	        <a href="{% url 'publish_pub' %}">自动化发布</a>
         </li>
         <li> 
-	        <a href="#">发布历史</a>
+	        <a href="{% url 'publish_list' %}">发布历史</a>
         </li>
     </ul>
 </li>

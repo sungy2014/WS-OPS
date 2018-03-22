@@ -8,6 +8,25 @@
 
 {% block body %} 
 
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="font-size:18px">
+                <i class="fa fa-database"></i>  CMDB分类统计
+            </div>
+            <div class="panel-body">
+                <div class="col-lg-6">
+                    <div id="cmdb_chart_by_way" style="height:200px;width:300px;margin: auto;"></div>
+                </div>
+                <div class="col-lg-6">
+                    <div id="cmdb_chart_by_status" style="height:200px;width:300px;margin: auto;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="col-sm-12">
     <table class="table table-striped table-bordered table-hover " id="EditTable">
         <caption>
@@ -26,11 +45,11 @@
             <tr>
                 <th class="text-center">应用名</th>
                 <th class="text-center">IP 地址</th>
+                <th class="text-center">版本号</th>
                 <th class="text-center">描述</th>
                 <th class="text-center">类型</th>
                 <th class="text-center">环境</th>
                 <th class="text-center">部署方式</th>
-                <th class="text-center">部署路径</th>
                 <th class="text-center">启动脚本</th>
                 <th class="text-center">开启的端口</th>
                 <th class="text-center">状态</th>
@@ -47,11 +66,11 @@
                         {{ s.private_ip }}</br>
                     {% endfor %}
                 </td>
+                <td class="text-center" style="vertical-align: middle">{{ cmdb |get_version|safe }}</td>
                 <td class="text-center" style="vertical-align: middle">{{ cmdb.describe|truncatechars:10 }}</td>
                 <td class="text-center" style="vertical-align: middle">{{ cmdb.get_type_display }}</td>
                 <td class="text-center" style="vertical-align: middle">{{ cmdb.get_env_display }}</td>
                 <td class="text-center" style="vertical-align: middle">{{ cmdb.get_way_display }}</td>
-                <td class="text-center" style="vertical-align: middle">{{ cmdb.path|truncatechars:30 }}</td>
                 <td class="text-center" style="vertical-align: middle">{{ cmdb.script|truncatechars:30 }}</td>
                 <td class="text-center" style="vertical-align: middle">{{ cmdb.ports |replace_to_br:";"|safe }}</td>
                 {% if cmdb.status == '0' %}
@@ -140,12 +159,12 @@
                         <div class="hr-line-dashed"></div>
                         <div class="form-inline row">
                             <div class="form-group col-sm-6">
-                                <label for="type" style="width:30%" class="control-label text-right">所属环境 &nbsp<span class="red-fonts ">*</span></label>
+                                <label for="env" style="width:30%" class="control-label text-right">所属环境 &nbsp<span class="red-fonts ">*</span></label>
                                 &nbsp<select name="env" id="env_update" style="width:65%" class="form-control choices" aria-required="true">
                                 </select>
                             </div>
                             <div class="form-group col-sm-6">
-                                <label for="type" style="width:30%" class="control-label text-right">部署方式 &nbsp<span class="red-fonts ">*</span></label>
+                                <label for="way" style="width:30%" class="control-label text-right">部署方式 &nbsp<span class="red-fonts ">*</span></label>
                                 <select name="way" id="way_update" style="width:65%" class="form-control choices" aria-required="true">
                                 </select>
                             </div>
@@ -161,6 +180,15 @@
                             <div class="form-group col-sm-6">
                                 <label for="type" style="width:30%" class="control-label text-right">应用类型 &nbsp<span class="red-fonts ">*</span></label>
                                 <select name="type" id="type_update" style="width:65%" class="form-control choices" aria-required="true">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="dev_team" style="width:15%" class="control-label text-right">管理组 &nbsp</label>
+                                <select name="dev_team" id="dev_team_update" style="width:79%" multiple="multiple" class="form-control" aria-required="true">
                                 </select>
                             </div>
                         </div>
@@ -186,6 +214,14 @@
                             <div class="form-group col-sm-12">
                                 <label for="script" style="width:15%" class="control-label text-right">启动脚本 &nbsp<span class="red-fonts">*</span></label>
                                 <input name="script" id="script_update" placeholder="script" type="text" class="form-control" style="width: 79%;" aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                            <div class="form-group col-sm-12">
+                                <label for="ansible_playbook" style="width:15%" class="control-label text-right">发布脚本 &nbsp</span></label>
+                                <input name="ansible_playbook" id="ansible_playbook_update" type="text" class="form-control" style="width: 79%;" aria-required="true">
                             </div>
                         </div>
 
@@ -278,6 +314,14 @@
                         <div class="hr-line-dashed"></div>
                         <div class="form-inline row">  
                             <div class="form-group col-sm-12">
+                                <label for="dev_team" style="width:15%" class="control-label text-right">管理组 <span class="red-fonts">*&nbsp</span></label>
+                                <input id='dev_team_detail' name="dev_team" style="width: 79%;" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">  
+                            <div class="form-group col-sm-12">
                                 <label for="path" style="width:15%" class="control-label text-right">部署路径 <span class="red-fonts">*&nbsp</span></label>
                                 <input id='path_detail' name="path" style="width: 79%;" type="text" class="form-control" aria-required="true" readonly>
                             </div>
@@ -288,6 +332,14 @@
                              <div class="form-group col-sm-12">
                                 <label for="script" style="width:15%" class="control-label text-right">启动脚本 <span class="red-fonts">*&nbsp</span></label>
                                 <input id='script_detail' style="width: 79%;" name="script" type="text" class="form-control" aria-required="true" readonly>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-inline row">
+                             <div class="form-group col-sm-12">
+                                <label for="ansible_playbook" style="width:15%" class="control-label text-right">发布脚本 &nbsp</label>
+                                <input id='ansible_playbook_detail' style="width: 79%;" name="ansible_playbook" type="text" class="form-control" aria-required="true" readonly>
                             </div>
                         </div>
 
@@ -409,6 +461,16 @@ $.getJSON("{% url 'get_cmdb_way' %}",function(data){
     $("#way_update").multiselect('rebuild')
 });
 
+$.getJSON("{% url 'get_group_info' %}",function(data){
+    var group_str = ''
+    $.each(data,function(k,v){
+        group_str += '<option value='+v.id+'>'+v.name+'</option>'
+    });
+    $("#dev_team_update").append(group_str)
+    $("#dev_team_update").multiselect('rebuild')
+});
+
+
 <!--详情-->
 $(".cmdb_detail").click(function(){
     var id = $(this).attr("data-id")
@@ -424,10 +486,12 @@ $(".cmdb_detail").click(function(){
             $("#ips_detail").val(data.ips)
             $("#ports_detail").val(data.ports)
             $("#env_detail").val(data.env)
+            $("#dev_team_detail").val(data.dev_team)
             $("#type_detail").val(data.type)
             $("#path_detail").val(data.path)
             $("#log_detail").val(data.log)
             $("#script_detail").val(data.script)
+            $("#ansible_playbook_detail").val(data.ansible_playbook)
             $("#describe_detail").val(data.describe)
             $("#online_time_detail").val(data.online_time)
             $("#offline_time_detail").val(data.offline_time)
@@ -445,8 +509,13 @@ $(".cmdb_detail").click(function(){
 <!--更新-->
 $(document).on('click',".cmdb_update",function(){
     $("#status_update input").removeAttr("checked");
-    $(".choices").removeAttr("selected");
-    $(".choices").removeAttr("disabled");
+    $(".choices option").each(function(element) {
+        $(this).removeAttr('selected').prop('selected', false);
+    });
+    $("#dev_team_update option").each(function(element){
+        $(this).removeAttr('selected').prop('selected', false);
+    });
+    $(".choices option").removeAttr("disabled");
     $("#ips_update").multiselect('refresh')
     $("#ips_update").empty()
     var id = $(this).attr("data-id")
@@ -459,6 +528,7 @@ $(document).on('click',".cmdb_update",function(){
             $("#ports_update").val(data.ports)
             $("#path_update").val(data.path)
             $("#log_update").val(data.log)
+            $("#ansible_playbook_update").val(data.ansible_playbook)
             $("#script_update").val(data.script)
             $("#describe_update").val(data.describe)
             $("#status_update input[value='"+data.status+"']").prop("checked",true)
@@ -475,8 +545,12 @@ $(document).on('click',".cmdb_update",function(){
                 }
             })
             $("#ips_update").append(ip_str)
+
+            $.each(data.dev_team,function(k,v){
+                $("#dev_team_update option[value='"+ v.id +"']").prop("selected",true)
+            });
+            $(".choices,#dev_team_update").multiselect('rebuild')
             $("#UpdateModal").modal("show")
-            $(".choices").multiselect('rebuild')
         }else{
             swal("OH,My God",data.msg,"error")
         }
@@ -488,7 +562,19 @@ $(".choices").multiselect({
     maxHeight: 200,
     buttonWidth: '65%',
     nonSelectedText: '请选择 IP 地址',
-    delimiterText: ';',
+    delimiterText: ' ; ',
+    selectedClass: 'multiselect-selected',
+    enableCaseInsensitiveFiltering: true,
+    disableIfEmpty: true,
+});
+
+$("#dev_team_update").multiselect({
+    enableFiltering: true,
+    maxHeight: 200,
+    buttonWidth: '79%',
+    nonSelectedText: '请选择管理组',
+    delimiterText: ' ; ',
+    numberDisplayed: 5 ,
     selectedClass: 'multiselect-selected',
     enableCaseInsensitiveFiltering: true,
     disableIfEmpty: true,
@@ -545,6 +631,59 @@ $(".del-sure").click(function(){
        };
    });
    return false;
+});
+
+var CmdbChartByWay = echarts.init(document.getElementById('cmdb_chart_by_way'),'light');
+var CmdbChartByStatus = echarts.init(document.getElementById('cmdb_chart_by_status'),'light');
+
+var option = {
+    color: ['#39cccc','#f39c12','#dd4b39','#3c8dbc','#00c0ef'],
+    title: {
+        text: '',
+        left: 'center',
+        textStyle: {
+            fontSize: 13,
+        },
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    series: [
+        {
+            name:'',
+            type:'pie',
+            radius: ['30%', '60%'],
+            data:[]
+        }
+    ]
+};
+
+CmdbChartByWay.setOption(option);
+CmdbChartByStatus.setOption(option);
+
+CmdbChartByWay.setOption({
+    title:{
+        text: '部署方式分布图',
+    },
+    series: [
+        {
+            name: '规格',
+            data: {{ cmdb_chart_by_way |safe }},
+        },
+    ]
+});
+
+CmdbChartByStatus.setOption({
+    title:{
+        text: '状态分布图',
+    },
+    series: [
+        {
+            name: '状态',
+            data: {{ cmdb_chart_by_status |safe }},
+        },
+    ]
 });
 
 

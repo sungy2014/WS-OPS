@@ -15,7 +15,7 @@ class GetServerStatisticView(LoginRequiredMixin,View):
         try:
             ssbd_obj = ServerStatisticByDayModel.objects.get(myday__exact=my_yesterday)
         except ServerStatisticByDayModel.DoesNotExist:
-            wslog_error().error("模型 ServerStatisticByDayModel 获取对象 %s 失败,不存在这个对象" %(myday))
+            wslog_error().error("模型 ServerStatisticByDayModel 获取对象 %s 失败,不存在这个对象" %(my_yesterday))
             count_yesterday = 0
         else:
             count_yesterday = ssbd_obj.count
@@ -29,7 +29,7 @@ class GetCmdbStatisticView(LoginRequiredMixin,View):
         try:
             csbd_obj = CmdbStatisticByDayModel.objects.get(myday__exact=my_yesterday)
         except CmdbStatisticByDayModel.DoesNotExist:
-            wslog_error().error("模型 CmdbStatisticByDayModel 获取对象 %s 失败,不存在这个对象" %(myday))
+            wslog_error().error("模型 CmdbStatisticByDayModel 获取对象 %s 失败,不存在这个对象" %(my_yesterday))
             count_yesterday = 0
         else:
             count_yesterday = csbd_obj.count

@@ -9,6 +9,18 @@ from dashboard.utils.utc_to_local import utc_to_local
 import json
 from django.forms.models import model_to_dict
 from django.db.models import Q
+from django.db.models import Count
+from django.contrib.auth.models import Group
+
+
+class CmdbInfoCharts(object):
+    def CmdbChartByWay(self):
+        c_list = CmdbModel.objects.exclude(way__isnull=True).values("way").annotate(value=Count("id")).order_by() 
+        return [{"name":k,"value":i.get("value")} for i in c_list for j,k in dict(CmdbModel.WAY_CHOICES).items() if i.get("way")==j] 
+
+    def CmdbChartByStatus(self):
+        c_list = CmdbModel.objects.exclude(status__isnull=True).values("status").annotate(value=Count("id")).order_by() 
+        return [{"name":k,"value":i.get("value")} for i in c_list for j,k in dict(CmdbModel.STATUS_CHOICES).items() if i.get("status")==j] 
 
 def GetCmdbObj(cid,ret):
     try:
@@ -33,11 +45,10 @@ def CmdbIpsUpdate(ips,cmdb_obj,ret):
     except Exception as e:
         ret["result"] = 1
         ret["msg"] = "ServerModel 查询对象失败，请刷新并重新选择IP地址"
-        wslog_error().error("ServerModel 查询对象地址失败" %(e.args))
+        wslog_error().error("ServerModel 查询对象地址失败, 错误信息: %s" %(e.args))
         return ret
 
     try:
-        cmdb_obj.save()
         cmdb_obj.ips.set(server_obj_list)
     except Exception as e:
         ret["result"] = 1
@@ -46,15 +57,39 @@ def CmdbIpsUpdate(ips,cmdb_obj,ret):
     finally:
         return ret
 
+def CmdbDevTeamUpdate(group_list,cmdb_obj,ret):
+    if not group_list:
+        return ret
+
+    try:
+        group_obj_list = [Group.objects.get(id__exact=int(gid)) for gid in group_list]
+    except Exception as e:
+        ret["result"] = 1
+        ret["msg"] = "Group 查询对象失败，请刷新并重新选择管理组"
+        wslog_error().error("Group 查询对象地址失败, 错误信息: %s" %(e.args))
+        return ret
+
+    try:
+        cmdb_obj.dev_team.set(group_obj_list)
+    except Exception as e:
+        ret["result"] = 1
+        ret["msg"] = "CmdbModel模型对象: %s 关联 Group 失败,请查看日志" %(cmdb_obj.name)
+        wslog_error().error("CmdbModel 模型对象: %s 关联 Group 失败,错误信息: %s" %(cmdb_obj.name,e.args))
+    finally:
+        return ret
+
 class CmdbListView(LoginRequiredMixin,ListView):
     template_name = "cmdb/cmdb_list.html"
     model = CmdbModel
     paginate_by = 10
-
     page_total = 11
+
+    cc = CmdbInfoCharts()
 
     def get_context_data(self,**kwargs):
         context = super(CmdbListView,self).get_context_data(**kwargs)
+        context['cmdb_chart_by_way'] = self.cc.CmdbChartByWay()
+        context['cmdb_chart_by_status'] = self.cc.CmdbChartByStatus()
         context['page_range'] = self.get_page_range(context['page_obj'])
         # request.GET 是获取QueryDict对象,也即是前端传过来的所有参数,由于QueryDict对象是只读的,所有要使用copy方法,赋值一份出来,才能进行修改
         search_data = self.request.GET.copy()
@@ -184,12 +219,13 @@ class CmdbChangeView(LoginRequiredMixin,View):
            del cmdb_info["offline_time"]
            cmdb_info["ips"] = [i["id"] for i in cmdb_obj.ips.values("id")]
            cmdb_info["ips_list"] = ips_list
+           cmdb_info["dev_team"] = list(cmdb_obj.dev_team.values("id"))
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = "CmdbModel 模型对象 %s 转为 dict 失败,请查看日志" %(cmdb_obj.name)
             wslog_error().error("CmdbModel 模型对象 %s 转为 dict 失败,错误信息: %s" %(cmdb_obj.name,e.args))
         else:
-            ret["msg"] = "CmdbModel 模型对象 %s 转为 dict 成功" %(cmdb_obj.name)
+            ret["msg"] = "CmdbModel 模型对象 %s 转 dict 处理成功" %(cmdb_obj.name)
             wslog_info().info("CmdbModel 模型对象 %s 转 dict 处理成功，可以提交给前端" %(cmdb_obj.name))
             ret["cmdb_info"] = cmdb_info
 
@@ -228,8 +264,9 @@ class CmdbChangeView(LoginRequiredMixin,View):
            cmdb_obj.log = cmdb_update_form.cleaned_data.get("log")
            cmdb_obj.ports = cmdb_update_form.cleaned_data.get("ports")
            cmdb_obj.script = cmdb_update_form.cleaned_data.get("script")
+           cmdb_obj.ansible_playbook = cmdb_update_form.cleaned_data.get("ansible_playbook")
            cmdb_obj.status = cmdb_update_form.cleaned_data.get("status")
-           cmdb_obj.save(update_fields=["env","type","way","describe","path","log","ports","script","status","last_update_time"])
+           cmdb_obj.save(update_fields=["env","type","way","describe","path","log","ports","script","ansible_playbook","status","last_update_time"])
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = "CmdbModel 模型对象更新失败,请查看日志" %(cmdb_obj.name)
@@ -239,13 +276,19 @@ class CmdbChangeView(LoginRequiredMixin,View):
         ips = request.POST.getlist("ips")
         ret = CmdbIpsUpdate(ips,cmdb_obj,ret)
 
+        if ret["result"] == 1:
+            return JsonResponse(ret)
+
+        group_list = request.POST.getlist("dev_team")
+        ret = CmdbDevTeamUpdate(group_list,cmdb_obj,ret)
+
         if ret["result"] == 0:
             ret["msg"] = "cmdb 模型对象: %s 更新成功" %(cmdb_obj.name)
             wslog_info().info("CmdbModel 模型对象: %s 更新成功" %(cmdb_obj.name))
 
         return JsonResponse(ret)
 
-
+''' cmdb 详情 '''
 class CmdbInfoView(LoginRequiredMixin,View):
 
     def get(self,request):
@@ -263,14 +306,15 @@ class CmdbInfoView(LoginRequiredMixin,View):
             cmdb_info["env"] = cmdb_obj.get_env_display()
             cmdb_info["type"] = cmdb_obj.get_type_display()
             cmdb_info["way"] = cmdb_obj.get_way_display()
+            cmdb_info["dev_team"] = ' ; '.join([i.get("name") for i in cmdb_obj.dev_team.values("name")])
             cmdb_info["ips"] = "\n".join([ip["private_ip"] for ip in list(cmdb_obj.ips.values("private_ip"))])
             cmdb_info["ports"] = cmdb_obj.ports.replace(";","\n")
             if cmdb_info.get("online_time"):
-                cmdb_info["online_time"] = utc_to_local(cmdb_info["online_time"]).strftime("%Y-%m-%d %X")
+                cmdb_info["online_time"] = cmdb_info["online_time"]
             if cmdb_info.get("offline_time"):
-                cmdb_info["offline_time"] = utc_to_local(cmdb_info["offline_time"]).strftime("%Y-%m-%d %X")
+                cmdb_info["offline_time"] = cmdb_info["offline_time"]
             if cmdb_info.get("last_update_time"):
-                cmdb_info["last_update_time"] = utc_to_local(cmdb_info["last_update_time"]).strftime("%Y-%m-%d %X")
+                cmdb_info["last_update_time"] = cmdb_info["last_update_time"]
         except Exception as e:
             ret["result"] = 1
             ret["msg"] = "CmdbModel 对象 %s 转为 dict 失败,请查看日志" %(cmdb_obj.name)
@@ -283,7 +327,7 @@ class CmdbInfoView(LoginRequiredMixin,View):
         
         return JsonResponse(ret)
 
-
+''' cmdb 删除 '''
 class CmdbDeleteView(LoginRequiredMixin,View):
     permission_required = "resources.delete_cmdbmodel"
 

@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="/static/plugin/AdminLte/css/ionicons.min.css">
 <link rel="stylesheet" href="/static/plugin/AdminLte/css/_all-skins.min.css">
 <link rel="stylesheet" href="/static/plugin/AdminLte/css/AdminLTE.min.css">
-
 {% endblock %}
 
 {% block breadcrumb %}
@@ -51,14 +50,14 @@ dashboard
           <!-- small box -->
         <div class="small-box bg-yellow">
             <div class="inner">
-                <h3 id="pub_count">44</h3>
-                <p>发布总数</p>
+                <h3 id="pub_count">{{ workform_count_today }}</h3>
+                <p>今日工单总数</p>
             </div>
             <div class="icon" style="top: 2px">
                 <i class="ion ion-settings"></i>
             </div>
             <div id="pub_compared_with_yesterday" class="small-box-footer" style="text-align: left;text-indent: 10px;">
-                <span >相比昨日增加: -5 </span>
+                <span >相比昨日增加: 2 </span>
                 <a href="{% url 'cmdb_list' %}" style="float:right; margin-right: 10px; color: #eee">详情 <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
@@ -82,13 +81,31 @@ dashboard
     </div>
 </div>
 
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="font-size:18px">
+                <i class="fa fa-database"></i> 运维工单周统计
+            </div>
+            <div class="panel-body">
+                <div class="col-lg-4">
+                    <div id="workform_chart_by_type" style="height:200px;width:300px;margin: auto;"></div>
+                </div>                                                                                  
+                <div class="col-lg-4">
+                    <div id="workform_chart_by_reason" style="height:200px;width:300px;margin: auto;"></div>
+                </div>                                                                                  
+                <div class="col-lg-4">
+                    <div id="workform_chart_by_module" style="height:200px;width:300px;margin: auto;"></div>
+                </div>                                                                                  
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
 
 {% block js %}
-<script src="/static/plugin/AdminLte/js/adminlte.min.js"></script>
-<script src="/static/plugin/AdminLte/js/demo.js"></script>
-<script src="/static/plugin/AdminLte/js/fastclick.js"></script>
-<script src="/static/plugin/AdminLte/js/jquery.slimscroll.min.js"></script>
 
 <script>
 
@@ -102,5 +119,72 @@ $.getJSON("{% url 'get_cmdb_statistic' %}",function(data){
     $("#cmdb_compared_with_yesterday span").append(data.compared_with_yesterday)
 });
 
+var WorkFormChartByType = echarts.init(document.getElementById('workform_chart_by_type'),'light');
+var WorkFormChartByReason = echarts.init(document.getElementById('workform_chart_by_reason'),'light');
+var WorkFormChartByModule = echarts.init(document.getElementById('workform_chart_by_module'),'light');
+
+var option = {
+    title: {
+        text: '',
+        left: 'center',
+        textStyle: {
+            fontSize: 10,
+        },
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    <!--color: ['#00a65a','#d2d6de','#00c0ef','#39cccc','#f39c1','#605ca8','#ff851b'],-->
+    series: [
+        {
+            name:'',
+            type:'pie',
+            radius: ['30%', '60%'],
+            data:[]
+        }
+    ]
+};
+
+
+WorkFormChartByType.setOption(option);
+WorkFormChartByReason.setOption(option);
+WorkFormChartByModule.setOption(option);
+
+WorkFormChartByType.setOption({
+    title:{
+        text: '工单类型统计',
+    },
+    series: [
+        {
+            name: '类型',
+            data: {{ workform_type_echart_data |safe }},
+        },
+    ]
+});
+
+WorkFormChartByReason.setOption({
+    title:{
+        text: '发布/SQL上线原因统计',
+    },
+    series: [
+        {
+            name: '原因',
+            data: {{ workform_reason_echart_data |safe }},
+        },
+    ]
+});
+
+WorkFormChartByModule.setOption({
+    title:{
+        text: '发布模块TOP10统计',
+    },
+    series: [
+        {
+            name: '模块',
+            data: {{ workform_module_echart_data |safe }},
+        },
+    ]
+});
 </script>
 {% endblock %}
