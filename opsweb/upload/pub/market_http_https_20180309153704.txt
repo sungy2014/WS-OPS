@@ -1,2 +1,0 @@
-
-UPDATE market_db.activity_full_gift SET item_image = REPLACE(item_image, 'http://', 'https://');
