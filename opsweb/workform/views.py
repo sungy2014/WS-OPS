@@ -14,6 +14,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User,Group
 from dashboard.utils.utc_to_local import utc_to_local
 from dashboard.utils.ws_mail_send import mail_send
+from workform.tasks import workform_mail_send
 
 ''' 添加 发布工单 '''
 class PubWorkFormAddView(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
@@ -225,7 +226,12 @@ class WorkFormAddBaseView(LoginRequiredMixin,View):
                             <p>URL链接: <a href="http://%s" target="_blank">点击跳转</a></p>''' %(workform_obj.title,
                                                                                             workform_obj.process_step.step,
                                                                                             request.get_host() + reverse("my_workform_list"))
-            mail_send(email_subject,email_content,approver_can_email_list,html_content=email_content)
+            #mail_send(email_subject,email_content,approver_can_email_list,html_content=email_content)
+            ''' 邮件的异步操作 '''
+            try:
+                workform_mail_send.delay(email_subject,email_content,approver_can_email_list,html_content=email_content)
+            except Exception as e:
+                pass
 
         return JsonResponse(ret)
 
@@ -501,11 +507,17 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             ret["result"] = 1
             ret["msg"] = "审批失败，更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 出现异常,请联系运维同事" %(wf_id,process_next_id)
             wslog_error().error("用户 %s 审批失败,更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 出现异常,错误信息: %s" %(request.user.username,wf_id,process_next_id,e.args))
-        else:
-            ret["msg"] = "更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 成功" %(wf_id,process_next_id)
-            wslog_info().info("用户 %s 更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 成功" %(request.user.username,wf_id,process_next_id)) 
-            email_subject = '[%s]:%s' %(wf_obj.type.cn_name,wf_obj.title)
-            mail_send(email_subject,email_content,approver_can_email_list,html_content=email_content)
+            return JsonResponse(ret)
+        
+        ret["msg"] = "更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 成功" %(wf_id,process_next_id)
+        wslog_info().info("用户 %s 更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 成功" %(request.user.username,wf_id,process_next_id)) 
+        email_subject = '[%s]:%s' %(wf_obj.type.cn_name,wf_obj.title)
+        #mail_send(email_subject,email_content,approver_can_email_list,html_content=email_content)
+        ''' 邮件的异步操作 '''
+        try:
+            workform_mail_send.delay(email_subject,email_content,approver_can_email_list,html_content=email_content)
+        except Exception as e:
+            pass
 
         return JsonResponse(ret)
 

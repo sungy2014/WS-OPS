@@ -1,426 +1,506 @@
-2018-03-22 13:29:01,120-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/workform/views.py-[line:392]-用户 Lin.Liang 审批失败,WorkFormModel模型对象id: 231 流程进度已不是提交时的进度: process_step_id 为 4
-2018-03-22 13:30:05,059-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 13:30:05,411-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 13:30:05,577-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 13:30:05,642-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 13:30:16,341-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 3CA504DE-897A-4735-94A3-48093A04720D
-2018-03-22 13:30:48,662-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 13:30:48,663-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 13:31:28,294-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 13:31:28,295-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 13:40:15,625-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: FEDF61F7-5735-4C9C-9F1A-91F129D31038
-2018-03-22 13:40:50,365-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 13:40:50,366-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 13:41:29,457-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 13:41:29,457-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 13:45:03,156-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 13:45:03,333-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 13:45:03,466-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 13:45:03,516-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 13:50:18,166-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: E704A5F8-8EC1-4050-B65E-7F452961C172
-2018-03-22 13:50:49,994-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 13:50:49,995-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 13:51:29,336-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 13:51:29,336-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 14:00:03,715-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 14:00:04,055-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 14:00:04,212-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 14:00:04,273-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 14:00:16,649-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 1AECA091-0655-44D5-AB0F-AE400FA9D8A1
-2018-03-22 14:00:52,638-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 14:00:52,638-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 14:01:34,615-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 14:01:34,615-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 14:10:15,653-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 6E723981-7C5B-49E3-9C00-944DB08F6A40
-2018-03-22 14:10:46,791-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 14:10:46,792-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 14:11:26,438-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 14:11:26,438-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 14:15:03,253-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 14:15:03,466-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 14:15:03,636-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 14:15:03,691-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 14:20:14,720-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: A078CEBE-6C2A-4936-A17E-0C93796A7480
-2018-03-22 14:20:49,443-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 14:20:49,444-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 14:21:29,814-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 14:21:29,814-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 14:30:04,790-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 14:30:05,142-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 14:30:05,334-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 14:30:05,450-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 14:30:16,015-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 8B757E01-0A16-4A63-AF5F-9D634D175735
-2018-03-22 14:30:47,560-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 14:30:47,560-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 14:31:28,443-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 14:31:28,443-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 14:36:18,693-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.82 在 zabbix 中不存在
-2018-03-22 14:36:18,706-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.77 在 zabbix 中不存在
-2018-03-22 14:36:18,724-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.81 在 zabbix 中不存在
-2018-03-22 14:36:18,745-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.76 在 zabbix 中不存在
-2018-03-22 14:36:18,752-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.75 在 zabbix 中不存在
-2018-03-22 14:36:18,756-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.79 在 zabbix 中不存在
-2018-03-22 14:36:21,583-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.82 在 zabbix 中不存在
-2018-03-22 14:36:21,598-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.77 在 zabbix 中不存在
-2018-03-22 14:36:21,616-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.81 在 zabbix 中不存在
-2018-03-22 14:36:21,634-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.76 在 zabbix 中不存在
-2018-03-22 14:36:21,639-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.75 在 zabbix 中不存在
-2018-03-22 14:36:21,643-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.79 在 zabbix 中不存在
-2018-03-22 14:40:14,903-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 3816DF6A-2210-4BD6-B5D9-6BA34F507AA5
-2018-03-22 14:40:46,370-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 14:40:46,370-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 14:41:26,581-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 14:41:26,581-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 14:45:03,419-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 14:45:03,635-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 14:45:03,775-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 14:45:03,824-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 14:45:51,001-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.82 在 zabbix 中不存在
-2018-03-22 14:45:51,014-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.77 在 zabbix 中不存在
-2018-03-22 14:45:51,032-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.81 在 zabbix 中不存在
-2018-03-22 14:45:51,051-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.76 在 zabbix 中不存在
-2018-03-22 14:45:51,056-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.75 在 zabbix 中不存在
-2018-03-22 14:45:51,060-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:470]-服务器 10.82.40.79 在 zabbix 中不存在
-2018-03-22 14:50:15,487-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: FDAB55C1-BC32-41AA-8D27-E7EE6A80CAB4
-2018-03-22 14:50:48,162-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 14:50:48,162-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 14:51:28,921-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 14:51:28,922-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 15:00:05,511-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 15:00:05,949-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 15:00:06,152-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 15:00:06,212-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 15:00:17,210-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: C069AF0F-558E-4060-90CA-352A4893CDE6
-2018-03-22 15:00:51,025-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 15:00:51,025-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 15:01:34,207-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 15:01:34,207-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 15:10:16,116-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 303B5744-869F-4612-B123-8BFB4810A866
-2018-03-22 15:10:48,568-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 15:10:48,569-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 15:11:30,125-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 15:11:30,126-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 15:15:02,718-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 15:15:02,916-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 15:15:03,063-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 15:15:03,124-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 15:20:15,954-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: CB2DB329-AE59-451E-8B56-A977B01DA0F5
-2018-03-22 15:20:48,238-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 15:20:48,238-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 15:21:28,907-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 15:21:28,908-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 15:30:05,723-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 15:30:05,988-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 15:30:06,228-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 15:30:06,320-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 15:30:17,079-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 35C1C077-153C-4620-AB4C-4A2F832B53D8
-2018-03-22 15:30:50,689-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 15:30:50,689-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 15:31:32,954-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 15:31:32,955-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 15:40:14,573-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 9F6130C4-FB94-46AF-BBAA-C4F38A069E9C
-2018-03-22 15:40:46,166-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 15:40:46,167-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 15:41:26,695-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 15:41:26,695-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 15:45:03,312-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 15:45:03,521-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 15:45:03,649-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 15:45:03,700-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 15:50:14,126-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: B057FD90-62C7-47BD-87D5-418DB02078FF
-2018-03-22 15:50:45,233-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 15:50:45,233-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 15:51:24,458-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 15:51:24,458-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 16:00:04,903-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 16:00:05,312-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 16:00:05,540-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 16:00:05,625-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 16:00:16,927-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: D30AA492-BBE7-4ED2-B9AB-4092C1E147F2
-2018-03-22 16:00:49,467-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 16:00:49,468-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 16:01:29,548-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 16:01:29,548-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 16:10:15,659-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 5E7E6C67-59B1-475C-9AF6-2CA4765CF724
-2018-03-22 16:10:48,585-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 16:10:48,586-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 16:11:28,385-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 16:11:28,385-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 16:15:03,406-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 16:15:03,629-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 16:15:03,787-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 16:15:03,847-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 16:20:14,674-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 4D80BED1-8411-458E-AE87-4765D87BD055
-2018-03-22 16:20:45,753-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 16:20:45,754-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 16:21:25,103-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 16:21:25,104-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 16:30:04,154-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 16:30:04,439-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 16:30:04,596-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 16:30:04,677-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 16:30:15,987-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: DE2EB474-5EE1-4654-835E-68CFF5956DCD
-2018-03-22 16:30:48,175-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 16:30:48,176-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 16:31:28,696-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 16:31:28,697-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 16:40:14,803-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 2488FC89-2A31-4CAA-B41F-3A81B89A9FE8
-2018-03-22 16:40:49,002-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 16:40:49,003-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 16:41:31,458-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 16:41:31,458-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 16:45:02,502-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 16:45:02,702-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 16:45:02,852-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 16:45:02,901-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 16:50:14,036-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 5E46078E-52CB-4C2C-ABC7-A200CF6E67EF
-2018-03-22 16:50:45,437-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 16:50:45,438-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 16:51:27,810-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 16:51:27,810-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 17:00:04,039-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 17:00:04,323-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 17:00:04,466-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 17:00:04,515-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 17:00:15,989-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: BA853E9F-5DBC-4DD4-85DD-1E4EDA1F0F1B
-2018-03-22 17:00:51,505-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 17:00:51,505-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 17:01:32,285-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 17:01:32,285-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 17:10:15,374-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 2D88D073-C7B9-42BD-A15E-C112766575F1
-2018-03-22 17:10:47,630-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 17:10:47,631-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 17:11:30,181-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 17:11:30,181-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 17:15:03,531-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 17:15:03,738-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 17:15:03,879-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 17:15:03,935-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 17:20:15,594-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 86C8DCD0-0AA0-4734-8448-3D5677B1FEB0
-2018-03-22 17:20:47,574-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 17:20:47,574-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 17:21:27,792-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 17:21:27,792-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 17:30:04,978-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 17:30:05,289-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 17:30:05,526-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 17:30:05,644-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 17:30:16,247-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 2B0822E3-4F47-49CA-8E21-26252563AD96
-2018-03-22 17:30:47,415-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 17:30:47,415-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 17:31:27,676-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 17:31:27,676-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 17:40:14,599-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: C2DAC36C-D919-4FB2-9ADD-94463421AC89
-2018-03-22 17:40:45,679-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 17:40:45,679-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 17:41:26,045-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 17:41:26,045-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 17:45:03,278-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 17:45:03,471-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 17:45:03,599-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 17:45:03,651-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 17:50:15,543-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: BC6B05D6-C2D1-47EA-AD94-0931BB88C438
-2018-03-22 17:50:46,535-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 17:50:46,535-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 17:51:26,233-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 17:51:26,234-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 18:00:04,455-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 18:00:04,746-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 18:00:04,928-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 18:00:04,984-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 18:00:17,360-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: D7D64879-8F54-4E44-B734-D877BCD76B7B
-2018-03-22 18:00:51,499-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 18:00:51,499-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 18:01:31,620-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 18:01:31,620-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 18:10:15,556-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 9982D29C-8427-4D71-B0AB-AE2CD6B8AD09
-2018-03-22 18:10:47,331-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 18:10:47,331-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 18:11:29,423-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 18:11:29,424-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 18:15:03,215-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 18:15:03,431-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 18:15:03,581-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 18:15:03,637-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 18:20:15,098-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 2F7EB5E7-98DB-4F7F-B462-D87921A5F9E8
-2018-03-22 18:20:47,494-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 18:20:47,494-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 18:21:26,854-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 18:21:26,854-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 18:30:04,348-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 18:30:04,566-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 18:30:04,810-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 18:30:04,899-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 18:30:15,977-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 18660DBA-5FA0-4C4C-BEE4-9A7AAD33A3CF
-2018-03-22 18:30:47,053-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 18:30:47,054-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 18:31:26,988-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 18:31:26,989-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 18:40:15,028-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: F99AA728-2987-48EF-9AFF-812CCD525D65
-2018-03-22 18:40:46,264-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 18:40:46,264-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 18:41:26,239-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 18:41:26,239-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 18:45:03,097-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 18:45:03,308-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 18:45:03,450-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 18:45:03,502-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 18:50:14,605-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 250189AC-F03B-493E-B4B0-85C012D34A0A
-2018-03-22 18:50:42,219-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 18:50:42,219-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.134.142 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 18:50:45,424-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 18:50:45,425-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 18:51:24,979-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 18:51:24,980-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 19:00:04,583-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 19:00:04,918-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 19:00:05,077-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 19:00:05,123-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 19:00:16,270-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 0C3E022C-E3F9-4373-B97C-D481FC7918B7
-2018-03-22 19:00:49,059-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 19:00:49,060-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 19:01:28,158-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 19:01:28,159-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 19:10:15,536-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: F5D7A7CF-71C5-41EC-83EB-75ED916FF4F1
-2018-03-22 19:10:47,524-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 19:10:47,524-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 19:11:26,965-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 19:11:26,965-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 19:15:03,421-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 19:15:03,618-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 19:15:03,748-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 19:15:03,805-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 19:20:15,207-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 69990560-D912-4C31-88D9-1912AA847F1A
-2018-03-22 19:20:47,264-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 19:20:47,264-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 19:21:29,347-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 19:21:29,347-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 19:30:03,579-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 19:30:03,811-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 19:30:04,013-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 19:30:04,085-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 19:30:16,373-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: B0D14ABE-BA10-4530-A873-5750637EA1FE
-2018-03-22 19:30:47,684-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 19:30:47,684-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 19:31:29,057-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 19:31:29,058-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 19:40:15,668-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: D288D26D-9BC3-463E-93CF-AA99FD2CEC70
-2018-03-22 19:40:48,598-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 19:40:48,598-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 19:41:28,356-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 19:41:28,356-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 19:45:03,534-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 19:45:03,728-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 19:45:03,880-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 19:45:03,929-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 19:50:14,860-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 5EB1CD21-3685-4B76-9699-D1424E2E3775
-2018-03-22 19:50:46,911-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 19:50:46,911-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 19:51:25,900-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 19:51:25,900-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 20:00:04,605-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 20:00:04,877-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 20:00:05,110-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 20:00:05,162-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 20:00:16,171-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: E6522D3D-C44E-45A2-93E0-BE22B466D18B
-2018-03-22 20:00:49,806-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 20:00:49,807-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 20:01:31,971-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 20:01:31,972-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 20:10:15,744-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 91C1D5C4-E69A-463E-AB19-B544F4859FFF
-2018-03-22 20:10:47,828-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 20:10:47,828-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 20:11:27,344-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 20:11:27,344-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 20:15:02,589-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 20:15:02,785-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 20:15:02,913-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 20:15:02,965-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 20:20:14,272-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 2A692BB4-3B19-4BF6-9338-5D5C90DFA247
-2018-03-22 20:20:47,821-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 20:20:47,821-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 20:21:28,545-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 20:21:28,545-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 20:30:03,633-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 20:30:03,814-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 20:30:03,935-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 20:30:03,981-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 20:30:15,901-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: B2DD99B5-107C-451D-8247-E6B621ACA1EC
-2018-03-22 20:30:47,316-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 20:30:47,316-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 20:31:27,023-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 20:31:27,023-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 20:40:15,869-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 5F279084-224E-4F40-8521-40930AA68D43
-2018-03-22 20:40:47,719-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 20:40:47,719-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 20:41:28,629-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 20:41:28,630-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 20:45:03,086-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 20:45:03,302-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 20:45:03,447-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 20:45:03,502-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 20:50:15,406-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: F22D11AD-AEAF-4BA3-98AD-8E359BD7E788
-2018-03-22 20:50:48,522-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 20:50:48,522-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 20:51:29,913-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 20:51:29,913-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 21:00:04,729-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 21:00:05,043-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 21:00:05,209-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 21:00:05,303-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 21:00:17,676-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: DC483DF2-514A-4A6B-B645-BE077BE4C99C
-2018-03-22 21:00:49,428-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 21:00:49,429-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 21:01:31,948-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 21:01:31,948-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 21:10:15,382-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: F41D6A95-0CD8-4220-9AD8-7A38868F2BF7
-2018-03-22 21:10:46,588-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 21:10:46,588-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 21:11:26,617-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 21:11:26,617-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 21:15:03,470-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 21:15:03,681-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 21:15:03,820-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 21:15:03,874-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 21:20:15,045-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: B4C93914-6E99-4A19-8813-86F08C52343C
-2018-03-22 21:20:47,291-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 21:20:47,291-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 21:21:28,475-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 21:21:28,476-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 21:30:03,911-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 21:30:04,132-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 21:30:04,275-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 21:30:04,336-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 21:30:16,093-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: AA4053F4-EE5A-4BC7-9C9E-FED790647A8E
-2018-03-22 21:30:48,227-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 21:30:48,228-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 21:31:29,088-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 21:31:29,088-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 21:40:15,172-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 1C77E33F-07F9-4282-BD75-F5565E51DF60
-2018-03-22 21:40:45,938-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 21:40:45,938-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 21:41:30,533-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 21:41:30,533-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 21:45:03,149-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 21:45:03,403-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 21:45:03,561-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 21:45:03,629-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 21:50:14,661-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: CBDEEB33-FBEE-46DB-8115-D6F0B0EA0CF8
-2018-03-22 21:50:47,592-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 21:50:47,592-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 21:51:27,363-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 21:51:27,363-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 22:00:04,522-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
-2018-03-22 22:00:04,783-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
-2018-03-22 22:00:04,949-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
-2018-03-22 22:00:05,012-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
-2018-03-22 22:00:17,104-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: CC306A29-186F-4DF3-AA4A-8A64DD6D1F8C
-2018-03-22 22:00:49,638-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 22:00:49,639-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 22:01:30,256-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 22:01:30,256-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 22:10:15,700-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 393DDCAB-64C7-4435-A852-011E52FCEFC6
-2018-03-22 22:10:47,777-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 22:10:47,777-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
-2018-03-22 22:11:27,607-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
-2018-03-22 22:11:27,608-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 00:00:17,385-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 1AFDAA4C-DEE4-4C08-831F-314732C239B0
+2018-03-27 00:00:50,809-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 00:00:50,810-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 00:01:31,490-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 00:01:31,490-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 00:10:15,190-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: E10B42D9-F2FC-45C9-BB8B-B32F505F8F62
+2018-03-27 00:10:46,815-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 00:10:46,815-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 00:11:28,435-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 00:11:28,436-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 00:15:03,342-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 00:15:03,551-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 00:15:03,701-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 00:15:03,753-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 00:20:15,704-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 5CE28ACF-8330-4F9D-A3A5-A6D018C2C41D
+2018-03-27 00:20:48,050-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 00:20:48,050-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 00:21:28,833-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 00:21:28,833-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 00:30:04,601-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 00:30:04,835-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 00:30:04,989-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 00:30:05,038-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 00:30:15,999-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 047C9FEE-B355-4C4D-9EAF-271E88264528
+2018-03-27 00:30:48,271-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 00:30:48,271-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 00:31:31,111-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 00:31:31,112-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 00:40:15,948-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 3AADF90F-559C-428B-AC9D-9766C8FA1EF1
+2018-03-27 00:40:47,873-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 00:40:47,874-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 00:41:28,044-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 00:41:28,044-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 00:45:03,431-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 00:45:03,647-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 00:45:03,788-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 00:45:03,841-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 00:50:15,271-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: A46BA131-98EF-4728-8299-4BE20FB2B0F2
+2018-03-27 00:50:47,460-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 00:50:47,461-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 00:51:28,401-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 00:51:28,401-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 01:00:04,115-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 01:00:04,306-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 01:00:04,448-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 01:00:04,495-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 01:00:25,956-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: AEE0864E-9F29-4854-B736-5DAD86B397C9
+2018-03-27 01:00:58,758-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 01:00:58,758-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 01:01:39,956-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 01:01:39,957-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 01:10:15,243-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 46F8EE3B-1CBB-497E-A37B-9D86BA3C69E7
+2018-03-27 01:10:47,790-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 01:10:47,790-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 01:11:29,006-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 01:11:29,007-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 01:15:02,964-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 01:15:03,157-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 01:15:03,298-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 01:15:03,351-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 01:20:15,810-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 8BCFE1BC-7BD8-4DDB-A339-0CBE25DF3CCE
+2018-03-27 01:20:51,827-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 01:20:51,827-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 01:21:33,808-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 01:21:33,808-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 01:30:04,946-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 01:30:05,178-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 01:30:05,368-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 01:30:05,451-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 01:30:17,237-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 0D6F7CD3-B273-44FC-ADFB-4581285F89B9
+2018-03-27 01:30:49,306-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 01:30:49,306-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 01:31:29,465-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 01:31:29,466-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 01:40:14,733-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 164C7EF8-1263-47AB-9047-D290AAA76BAE
+2018-03-27 01:40:47,221-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 01:40:47,222-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 01:41:28,099-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 01:41:28,100-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 01:45:03,425-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 01:45:03,615-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 01:45:03,747-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 01:45:03,798-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 01:50:16,598-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: B9C7B810-8EAC-43AD-85CE-6A158C89B59B
+2018-03-27 01:50:49,225-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 01:50:49,225-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 01:51:29,895-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 01:51:29,896-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 02:00:04,571-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 02:00:04,807-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 02:00:04,952-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 02:00:04,999-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 02:00:16,161-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 6287A27C-EFAB-4955-8676-88840A3D957F
+2018-03-27 02:00:48,768-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 02:00:48,769-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 02:01:32,926-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 02:01:32,926-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 02:10:15,123-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 97070D23-B42A-4C9F-AC4A-AF7B3AEAE7BD
+2018-03-27 02:10:47,622-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 02:10:47,622-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 02:11:28,124-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 02:11:28,124-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 02:15:03,094-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 02:15:03,296-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 02:15:03,417-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 02:15:03,463-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 02:20:15,113-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 8F707C91-E267-480A-9099-380325654473
+2018-03-27 02:20:47,575-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 02:20:47,576-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 02:21:28,478-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 02:21:28,478-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 02:30:04,520-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 02:30:04,728-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 02:30:04,898-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 02:30:04,975-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 02:30:19,171-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: AFC74D07-A301-4781-86C2-5FBED49C9559
+2018-03-27 02:31:00,930-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 02:31:00,931-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 02:31:56,758-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 02:31:56,758-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 02:40:15,049-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 61A93AB5-788A-4D1A-8499-C53ADF029A10
+2018-03-27 02:40:46,018-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 02:40:46,019-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 02:41:26,971-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 02:41:26,972-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 02:45:02,750-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 02:45:02,940-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 02:45:03,083-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 02:45:03,129-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 02:50:15,663-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: B2C55B91-9EDB-48E0-BD3F-86410032296E
+2018-03-27 02:50:47,580-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 02:50:47,581-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 02:51:27,950-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 02:51:27,950-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 03:00:03,700-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 03:00:03,981-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 03:00:04,099-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 03:00:04,170-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 03:00:25,329-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 21A19B80-2AC2-4075-A3E8-44DAB154CFE9
+2018-03-27 03:00:57,131-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 03:00:57,132-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 03:01:37,310-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 03:01:37,310-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 03:10:16,893-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: F6ECFF17-C616-4F1B-9120-EC8EB3030B30
+2018-03-27 03:10:50,183-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 03:10:50,183-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 03:11:30,219-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 03:11:30,220-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 03:15:03,088-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 03:15:03,266-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 03:15:03,389-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 03:15:03,436-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 03:20:15,262-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: FE40B725-7F8E-41ED-9617-29AB5CB3C65F
+2018-03-27 03:20:47,256-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 03:20:47,256-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 03:21:30,438-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 03:21:30,439-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 03:30:04,874-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 03:30:05,388-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 03:30:05,873-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 03:30:05,958-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 03:30:17,575-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 1A77750C-7B40-4155-9D2C-D7FA3966E59C
+2018-03-27 03:30:49,603-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 03:30:49,603-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 03:31:29,432-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 03:31:29,432-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 03:40:26,910-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: DAACBA46-0CD1-4432-94A8-D6EBC7F712CB
+2018-03-27 03:41:19,742-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 03:41:19,743-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 03:42:17,004-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 03:42:17,004-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 03:45:03,036-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 03:45:03,219-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 03:45:03,353-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 03:45:03,400-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 03:50:16,652-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 75C36B74-F826-4FA0-9202-DE3E166EBE45
+2018-03-27 03:50:48,100-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 03:50:48,101-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 03:51:28,371-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 03:51:28,371-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 04:00:04,318-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 04:00:04,668-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 04:00:04,894-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 04:00:04,947-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 04:00:14,672-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 400 Error:InvalidParameter The instance Id 'i-2zednvbin1s1aicwimg2' does not exist. RequestID: E80F9920-806E-4EB3-9207-D7FE7A24F8A7
+2018-03-27 04:00:14,672-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.134.172 自动刷新失败,错误信息: aliyun api 获取续费状态失败，请查看日志
+2018-03-27 04:00:24,120-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 8E67BCB1-EF35-4D00-B7FA-0D7F3F0F44A7
+2018-03-27 04:00:54,558-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 04:00:54,558-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 04:01:33,960-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 04:01:33,961-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 04:10:14,717-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 05EF82AA-E34A-46E8-BE13-FD1556BFB467
+2018-03-27 04:10:44,652-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 04:10:44,653-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 04:11:23,118-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 04:11:23,119-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 04:15:03,294-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 04:15:03,502-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 04:15:03,633-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 04:15:03,679-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 04:20:15,865-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 56C84B7D-D80B-4EC0-8B72-149D5C2A35A9
+2018-03-27 04:20:48,493-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 04:20:48,493-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 04:21:29,582-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 04:21:29,583-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 04:30:04,759-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 04:30:04,968-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 04:30:05,129-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 04:30:05,238-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 04:30:19,362-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: DC8B9879-E35D-46AD-8CF4-0CA19486A99C
+2018-03-27 04:31:02,369-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 04:31:02,370-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 04:31:42,454-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 04:31:42,454-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 04:40:14,137-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 181DE616-2A68-4FF0-A80E-D38D9AFE5526
+2018-03-27 04:40:44,901-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 04:40:44,902-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 04:41:25,885-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 04:41:25,885-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 04:45:02,673-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 04:45:02,890-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 04:45:03,064-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 04:45:03,120-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 04:50:15,203-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 969BE2E5-8CF8-4AF2-BB10-E5B616F116A5
+2018-03-27 04:50:47,611-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 04:50:47,611-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 04:51:26,823-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 04:51:26,823-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 05:00:03,522-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 05:00:03,892-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 05:00:04,238-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 05:00:04,375-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 05:00:17,150-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 0CAD700D-7352-4D69-8F27-1A56DAE971EB
+2018-03-27 05:00:49,915-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 05:00:49,915-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 05:01:29,493-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 05:01:29,493-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 05:10:15,377-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: A959C8C6-87F3-4275-8293-429E6C2EA8F2
+2018-03-27 05:10:45,388-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 05:10:45,388-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 05:11:23,780-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 05:11:23,781-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 05:15:02,886-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 05:15:03,070-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 05:15:03,193-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 05:15:03,239-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 05:20:15,549-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: AC23DFE6-C5DF-405E-9ECB-CEAE08CE1EBF
+2018-03-27 05:20:46,510-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 05:20:46,510-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 05:21:26,175-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 05:21:26,175-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 05:30:04,634-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 05:30:05,008-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 05:30:05,339-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 05:30:05,554-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 05:30:16,016-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 6DD9CA5D-5661-498E-9734-9A28AECF95FA
+2018-03-27 05:30:45,626-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 05:30:45,626-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 05:31:24,927-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 05:31:24,927-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 05:40:14,927-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 657810E8-C6A1-4F1B-94CA-27D60A35691D
+2018-03-27 05:40:46,633-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 05:40:46,633-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 05:41:25,635-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 05:41:25,635-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 05:45:02,960-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 05:45:03,160-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 05:45:03,297-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 05:45:03,346-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 05:50:14,578-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 51E4A295-7F0B-4D8D-BAE5-3E694141EE13
+2018-03-27 05:50:45,308-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 05:50:45,308-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 05:51:23,466-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 05:51:23,467-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 06:00:05,425-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 06:00:05,904-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 06:00:06,152-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 06:00:06,266-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 06:00:16,298-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: B104A14E-03F5-4EC0-88D9-764870E8147F
+2018-03-27 06:00:46,814-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 06:00:46,814-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 06:01:27,462-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 06:01:27,463-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 06:10:16,413-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 6BD74BF8-DFFF-41E2-8739-C74D75300ECD
+2018-03-27 06:10:47,761-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 06:10:47,761-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 06:11:27,210-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 06:11:27,211-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 06:15:03,114-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 06:15:03,322-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 06:15:03,457-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 06:15:03,506-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 06:20:15,755-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 7C883E8D-3515-4BBD-9072-12CEBEAF55F7
+2018-03-27 06:20:46,377-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 06:20:46,377-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 06:21:26,738-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 06:21:26,738-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 06:30:04,034-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 06:30:04,393-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 06:30:04,632-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 06:30:04,683-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 06:30:15,604-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: E3D345EF-CC51-4A64-9FA5-202C3E86C02F
+2018-03-27 06:30:46,274-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 06:30:46,274-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 06:31:26,954-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 06:31:26,955-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 06:40:14,799-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 2F182AF9-4E9D-4A54-8FF3-F2186D81DF55
+2018-03-27 06:40:45,180-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 06:40:45,180-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 06:41:24,594-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 06:41:24,594-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 06:45:03,271-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 06:45:03,473-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 06:45:03,595-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 06:45:03,658-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 06:50:17,691-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: EA184D44-87D9-425D-9219-BB97B99D5AA7
+2018-03-27 06:50:47,932-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 06:50:47,932-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 06:51:26,555-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 06:51:26,555-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 07:00:04,322-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 07:00:04,551-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 07:00:04,691-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 07:00:04,759-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 07:00:16,378-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: FA6FD184-B4C5-47C5-957C-00CB1DB784A4
+2018-03-27 07:00:47,041-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 07:00:47,042-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 07:01:29,143-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 07:01:29,144-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 07:10:15,992-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: B5C1F5D6-5F68-4995-87F6-8391999957C9
+2018-03-27 07:10:46,022-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 07:10:46,022-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 07:11:24,963-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 07:11:24,964-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 07:15:02,989-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 07:15:03,177-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 07:15:03,320-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 07:15:03,374-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 07:20:14,386-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 3DB78046-6C98-49C7-AEF0-B07E3EEB8249
+2018-03-27 07:20:46,324-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 07:20:46,325-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 07:21:26,639-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 07:21:26,640-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 07:30:03,116-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 07:30:03,328-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 07:30:03,446-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 07:30:03,490-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 07:30:15,587-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 8D31C92E-1D87-4423-A6C8-64D7BC44A6BD
+2018-03-27 07:30:46,139-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 07:30:46,139-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 07:31:25,210-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 07:31:25,211-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 07:40:14,620-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: CC1FDBD8-A20E-4B74-AB7B-9C5A2B29E8AA
+2018-03-27 07:40:44,676-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 07:40:44,676-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 07:41:24,478-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 07:41:24,478-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 07:45:03,191-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 07:45:03,381-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 07:45:03,507-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 07:45:03,553-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 07:50:16,475-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: EF8FD6E9-62F9-4CC1-8B15-141A333EE29A
+2018-03-27 07:50:48,429-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 07:50:48,430-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 07:51:28,164-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 07:51:28,164-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 08:00:05,050-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 08:00:05,322-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 08:00:05,450-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 08:00:05,507-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 08:00:16,826-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: F483FC0D-4BE2-42AE-A601-490C13D8B0FB
+2018-03-27 08:00:47,636-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 08:00:47,637-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 08:01:27,476-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 08:01:27,476-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 08:10:14,918-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: F027EFCF-9526-48DD-B413-EFF96A16F5D0
+2018-03-27 08:10:47,498-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 08:10:47,499-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 08:11:27,573-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 08:11:27,574-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 08:15:03,392-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 08:15:03,580-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 08:15:03,716-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 08:15:03,769-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 08:20:15,221-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 92389A36-E2BF-4499-9B91-167B8D85D5FB
+2018-03-27 08:20:46,345-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 08:20:46,345-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 08:21:26,147-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 08:21:26,147-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 08:30:04,132-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 08:30:04,366-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 08:30:04,501-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 08:30:04,568-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 08:30:15,721-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 94108C91-8421-430A-8F27-B192EF354EE0
+2018-03-27 08:30:50,026-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 08:30:50,026-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 08:31:29,037-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 08:31:29,037-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 08:40:15,107-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 0152B928-E8C1-4BBA-9145-79274AEB092D
+2018-03-27 08:40:46,854-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 08:40:46,855-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 08:41:26,744-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 08:41:26,745-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 08:45:03,010-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 08:45:03,202-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 08:45:03,347-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 08:45:03,398-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 08:50:15,507-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: BD4CEA58-1F42-4F91-BB3D-A2E85ADFD58C
+2018-03-27 08:50:46,437-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 08:50:46,438-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 08:51:28,856-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 08:51:28,857-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 09:00:03,750-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 09:00:03,914-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 09:00:04,027-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 09:00:04,069-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 09:00:17,525-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 538D9B33-D78F-4176-857C-5BB92B58C0B4
+2018-03-27 09:00:50,082-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 09:00:50,083-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 09:01:31,455-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 09:01:31,455-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 09:10:15,345-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: A5D37A5C-E41B-441A-9E30-E935768880CD
+2018-03-27 09:10:45,851-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 09:10:45,852-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 09:11:25,914-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 09:11:25,915-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 09:15:03,232-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 09:15:03,410-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 09:15:03,543-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 09:15:03,588-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 09:20:14,597-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: C93B332F-20BF-4A4B-BA51-CC9BA7AB3E85
+2018-03-27 09:20:45,754-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 09:20:45,755-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 09:21:27,444-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 09:21:27,444-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 09:30:04,346-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 09:30:04,649-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 09:30:04,974-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 09:30:05,057-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 09:30:16,218-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: B258C548-D9B7-4757-A3E3-C7B09957252A
+2018-03-27 09:30:48,923-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 09:30:48,923-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 09:31:29,850-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 09:31:29,850-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 09:40:18,919-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 3B995D83-5425-4867-80B3-87D722FC3E34
+2018-03-27 09:40:50,699-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 09:40:50,699-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 09:41:31,806-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 09:41:31,807-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 09:45:02,651-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 09:45:02,840-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 09:45:02,979-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 09:45:03,033-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 09:50:15,098-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: BD8EADF4-FFEB-4678-B674-68B772ED2387
+2018-03-27 09:50:48,640-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 09:50:48,641-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 09:51:30,171-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 09:51:30,171-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 10:00:04,169-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 10:00:04,534-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 10:00:04,663-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 10:00:04,720-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 10:00:16,518-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: D41953FB-8F3C-4433-BD0A-0B63E85D0604
+2018-03-27 10:00:47,695-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 10:00:47,696-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 10:01:29,018-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 10:01:29,019-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 10:10:15,532-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 6B7EF3ED-DA96-48AD-879F-51F57CE82987
+2018-03-27 10:10:47,272-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 10:10:47,273-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 10:11:27,910-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 10:11:27,911-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 10:15:03,276-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 10:15:03,476-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 10:15:03,606-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 10:15:03,657-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 10:20:15,628-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 53AFBB2A-1186-4FC9-B602-18CEF1B51097
+2018-03-27 10:20:47,222-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 10:20:47,223-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 10:21:18,947-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 400 Error:InvalidParameter The instance Id 'i-2ze8pmxwulw7xosgg0bp' does not exist. RequestID: B7B2859F-B6A7-4688-A07D-D3508F9F1554
+2018-03-27 10:21:18,947-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.134.71 自动刷新失败,错误信息: aliyun api 获取续费状态失败，请查看日志
+2018-03-27 10:21:37,464-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 10:21:37,464-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 10:30:06,616-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 10:30:06,957-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 10:30:07,154-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 10:30:07,226-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 10:30:17,512-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 42C1442D-6691-42C3-B31E-C6BDB96C2E0D
+2018-03-27 10:30:49,000-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 10:30:49,000-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 10:31:29,176-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 10:31:29,177-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 10:40:15,838-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: FE32976F-E196-4E43-A951-D0A6BB418940
+2018-03-27 10:40:48,817-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 10:40:48,818-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 10:41:30,698-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 10:41:30,699-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 10:45:03,158-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.86 实例名 mysql1 格式不正确
+2018-03-27 10:45:03,367-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.24 实例名 webproxytoidc 格式不正确
+2018-03-27 10:45:03,501-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.90 实例名 mysql3 格式不正确
+2018-03-27 10:45:03,549-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:94]-该服务器: 172.17.134.89 实例名 mysql2 格式不正确
+2018-03-27 10:50:16,115-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/api/thirdapi/aliyun_describe_instance.py-[line:67]-HTTP Status: 403 Error:ChargeTypeViolation Pay-As-You-Go instances do not support this operation. RequestID: 9FA4C90B-10BA-47FE-9784-E1F7AAD26D88
+2018-03-27 10:50:47,950-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 10:50:47,950-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.122 自动刷新失败,错误信息: ansible api 调用失败，请查看日志
+2018-03-27 10:51:29,613-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/server/__init__.py-[line:85]-("'ResultCallback' object has no attribute 'data'",)
+2018-03-27 10:51:29,614-[ERROR]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:31]-服务器: 172.17.92.123 自动刷新失败,错误信息: ansible api 调用失败，请查看日志

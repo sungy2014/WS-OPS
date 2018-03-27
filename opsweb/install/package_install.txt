@@ -1,3 +1,6 @@
+## 安装 mysql 客户端
+pip install pymysql==0.8.0
+
 ## 安装阿里云 pyhton SDK
 pip install aliyun-python-sdk-core-v3
 pip install aliyun-python-sdk-ecs

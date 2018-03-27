@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_crontab',
     'captcha',
+    'djcelery',
     'accounts',
     'dashboard',
     'resources',
@@ -265,3 +266,15 @@ else:
 EMAIL_HOST = 'smtp.163.com'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
+
+## celery 配置
+import  djcelery
+djcelery.setup_loader()
+BROKER_URL = 'redis://172.17.134.23:6379/6'
+BROKER_TRANSPORT = 'redis'
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
+CELERY_ENABLE_UTC = False
+CELERY_TIMEZONE = 'Asia/Shanghai'
+CELERYD_MAX_TASKS_PER_CHILD = 10
+CELERYD_LOG_FILE = os.path.join(BASE_DIR,'logs','celery.log')
