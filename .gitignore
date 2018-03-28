@@ -1,8 +1,0 @@
-## 忽略目录
-opsweb_dev/
-opsweb/logs/
-opsweb/upload/
-opsweb/publish/history/
-opsweb/dbmanager/
-
-## 忽略文件
