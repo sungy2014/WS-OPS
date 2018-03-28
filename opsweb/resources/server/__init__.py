@@ -634,16 +634,16 @@ class ServerIdcInfoView(LoginRequiredMixin,View):
 
 ''' IDC 服务器刷新; 这个视图 是接收 IDC 跳板机上手动 post 过来的数据 '''
 class ServerIdcRefreshView(View):
-    permission_required = "resources.change_servermodel"
+    #permission_required = "resources.change_servermodel"
 
     def post(self,request):
         ret = {"result":0,"msg":None}
 
         ## ajax 请求的权限验证
-        if not request.user.has_perm(self.permission_required):
-            ret["result"] = 1
-            ret["msg"] = "Sorry,你没有'更新 server 模型对象'的权限,请联系运维!"
-            return JsonResponse(ret)
+        #if not request.user.has_perm(self.permission_required):
+        #    ret["result"] = 1
+        #    ret["msg"] = "Sorry,你没有'更新 server 模型对象'的权限,请联系运维!"
+        #    return JsonResponse(ret)
 
         server_info = request.POST.dict()
         if not server_info:

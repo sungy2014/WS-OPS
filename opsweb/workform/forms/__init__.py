@@ -7,7 +7,7 @@ class PubWorkFormAddForm(ModelForm):
     sql_file_url = forms.CharField(required=False) 
     class Meta:
         model = WorkFormModel
-        fields = ["title","level","reason","detail","module_name","sql","sql_detail","sql_file_url"] 
+        fields = ["title","level","reason","detail","module_name","sql","database_name","sql_detail","sql_file_url"] 
         error_messages = {
             "title" : {
                 "required": "'工单主题'不能为空",
@@ -29,6 +29,9 @@ class PubWorkFormAddForm(ModelForm):
             },
             "sql": {
                 "required": "必须选择是否存在'SQL'",
+            },
+            "database_name": {
+                "required": "选择需要操作的数据库",
             },
             "sql_detail": {
                 "max_length": "'sql详情'字符串长度必须小于1000",
@@ -53,13 +56,13 @@ class PubWorkFormAddForm(ModelForm):
         cleaned_data = self.cleaned_data
         if self.is_valid():
             if cleaned_data.get('sql') == 'yes':
-                if cleaned_data.get('sql_detail') or cleaned_data.get('sql_file_url'):
+                if cleaned_data.get('sql_detail') or cleaned_data.get('sql_file_url') or cleaned_data.get('database_name'):
                     return cleaned_data
                 else:
-                    raise forms.ValidationError("既然选择了'存在SQL',就必须填写'SQL详情'或者上传'SQL附件'")
+                    raise forms.ValidationError("既然选择了'存在SQL',就必须选择数据库及填写'SQL详情'或者上传'SQL附件'")
             else:
                 if cleaned_data.get('sql_detail') or cleaned_data.get('sql_file_url'):
-                    raise forms.ValidationError("既然选择了'不存在SQL',就不能填写'SQL详情'或者上传'SQL附件'")
+                    raise forms.ValidationError("既然选择了'不存在SQL',就不能选择数据库及填写'SQL详情'或者上传'SQL附件'")
                 else:
                     return cleaned_data
                 

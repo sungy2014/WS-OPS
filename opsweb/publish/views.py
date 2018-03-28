@@ -14,6 +14,8 @@ from datetime import *
 from django.db.models import Q
 from accounts.permission.permission_required_mixin import PermissionRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from publish.tasks import dingding_msg_send,wx_msg_send
+from django.urls import reverse
 
 
 history_dir = os.path.dirname(os.path.realpath(__file__)) + '/history/'
@@ -62,14 +64,29 @@ class PublishAnsiblePlaybookView(LoginRequiredMixin,View):
         if shell_returncode != 0:
             if 'fatal' in lines_str or 'ERROR!' in lines_str:
                 ph_obj.status = 'failure'
+                pic_url = 'https://image.watsons.com.cn/failed_2.png'
                 ret["errcode"] = 1
             else:
                 ph_obj.status = 'success'
+                pic_url = 'https://image.watsons.com.cn/success_2.png'
                 ret["errcode"] = 0
 
             ph_obj.save(update_fields=["status"])
+            try:
+                dingding_title = "应用 %s: %s" %(ph_obj.get_type_display(),ph_obj.module_name.name)
+                dingding_text = "发布 IP: %s \n发布人: %s \n发布时间: %s \n发布状态: %s" %(' , '.join([i.get("private_ip") for i in ph_obj.ip.values("private_ip")]),\
+                                                                          ph_obj.pub_user.userextend.cn_name,\
+                                                                          ph_obj.pub_time.strftime("%Y-%m-%d %X"), \
+                                                                          ph_obj.status
+                                                                          )
+                dingding_messageUrl = "%s" %(request.get_host() + reverse("publish_list"))
+                data = {"title":dingding_title,"text":dingding_text ,"messageUrl":dingding_messageUrl,"picUrl":pic_url}
+                wx_data = {"title":dingding_title,"content":dingding_text.replace("\n","<br>"),"url":dingding_messageUrl}
+                dingding_msg_send.delay(data)
+                wx_msg_send.delay(wx_data)
+            except:
+                pass
         return JsonResponse(ret)
-
 
     def post(self,request):
         ret = {"result":0}

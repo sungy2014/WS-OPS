@@ -74,6 +74,13 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                        <label for="pub_database_name" class="col-sm-2 control-label">数据库名称<span class="red-fonts ">*</span></label>
+                           <div class="col-sm-8">
+                           <select name="database_name" id="pub_database_name" class="form-control">
+                           </select>
+                           </div>
+                        </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <label for="sql_detail" class="col-sm-2 control-label">SQL详情</label>
@@ -128,6 +135,23 @@
 {% block js %}
 
 <script>
+$.getJSON("{% url 'get_database_name' %}",function(data){
+    var str=''
+        $.each(data,function(k,v){
+        str += '<option value="'+v.name+'">'+v.name+'</option>'
+    });
+    $("#pub_database_name").append(str)
+    $("#pub_database_name").multiselect('rebuild')
+});
+
+$("#pub_database_name").multiselect({
+    enableFiltering: true,
+    maxHeight: 200,
+    buttonWidth: '100%',
+    delimiterText: ' -> ',
+    selectedClass: 'multiselect-selected',
+    enableCaseInsensitiveFiltering: true,
+});
 
 $('#fileupload').click(function(){
     $(".file_already_upload,.files_upload_url").remove()

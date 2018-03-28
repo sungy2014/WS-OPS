@@ -6,6 +6,8 @@ from datetime import *
 from dashboard.utils.wslog import wslog_error,wslog_info
 from resources.models import ServerModel,CmdbModel,ServerStatisticByDayModel,CmdbStatisticByDayModel
 from resources.server import GetServerInfoFromApi
+from django.contrib.auth.models import Group
+
 
 ''' 阿里云服务器自动添加 '''
 def ServerAliyunAutoAddCrontab():

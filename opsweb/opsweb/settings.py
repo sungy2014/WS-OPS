@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_crontab',
+    'dbmanager',
     'captcha',
     'djcelery',
     'accounts',
@@ -274,6 +275,7 @@ BROKER_URL = 'redis://172.17.134.23:6379/6'
 BROKER_TRANSPORT = 'redis'
 CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
+CELERY_ACCEPT_CONTENT = ['pickle', 'json']
 CELERY_ENABLE_UTC = False
 CELERY_TIMEZONE = 'Asia/Shanghai'
 CELERYD_MAX_TASKS_PER_CHILD = 10
