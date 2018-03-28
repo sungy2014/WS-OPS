@@ -3849,3 +3849,6 @@
 2018-03-28 10:41:17,346-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:36]-服务器: 172.17.134.76 自动刷新成功
 2018-03-28 10:41:18,588-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:36]-服务器: 172.17.134.58 自动刷新成功
 2018-03-28 10:41:20,488-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:36]-服务器: 172.17.134.30 自动刷新成功
+2018-03-28 10:45:03,111-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:86]-该服务器: 172.17.134.17 状态 Stopped 所以需要删除其关联的CMDB
+2018-03-28 10:45:03,408-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:86]-该服务器: 172.17.92.122 状态 None 所以需要删除其关联的CMDB
+2018-03-28 10:45:03,718-[INFO]-/ops-data/zp/haha/mysite-11/opsweb/resources/cron.py-[line:86]-该服务器: 172.17.92.123 状态 None 所以需要删除其关联的CMDB
