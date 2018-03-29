@@ -145,7 +145,7 @@ $("#type,#module_name").change(function(){
             if(data.result==0){
                 data = data.version_list
                 $.each(data,function(k,v){
-                    version_str += '<option value='+v.id+'>'+v.version+'---'+v.pack_user+'</option>'
+                    version_str += '<option value='+v.id+'>'+v.version+'---'+v.pack_user+'---'+v.status+'</option>'
                 });
                 $("#version_noselect_id").after(version_str)
             }

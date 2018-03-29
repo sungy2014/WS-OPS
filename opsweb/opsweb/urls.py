@@ -23,7 +23,6 @@ from django.conf import settings
 urlpatterns = [
     url(r'^$', RedirectView.as_view(url="/dashboard/")),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^helloworld/', include("helloworld.urls")),
     url(r'^accounts/', include("accounts.urls")),
     url(r'^dashboard/', include("dashboard.urls")),
     url(r'^resources/', include("resources.urls")),

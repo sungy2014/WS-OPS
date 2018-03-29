@@ -64,9 +64,9 @@ class GetPublishVersionView(LoginRequiredMixin,View):
             return JsonResponse(ret)
         
         if type == 'publish':
-            ret["version_list"] = list(m_obj.publishversionmodel_set.filter(Q(status__exact="packed")|Q(status__exact="running")).order_by("-id")[:5].values("id","version","pack_user"))
+            ret["version_list"] = list(m_obj.publishversionmodel_set.filter(Q(status__exact="packed")|Q(status__exact="running")).order_by("-id")[:5].values("id","version","pack_user","status"))
         else:
-            ret["version_list"] = list(m_obj.publishversionmodel_set.filter(Q(status__exact="running")|Q(status__exact="run_pre")).order_by("-id")[:5].values("id","version","pack_user")) 
+            ret["version_list"] = list(m_obj.publishversionmodel_set.filter(Q(status__exact="running")|Q(status__exact="run_pre")).order_by("-id")[:5].values("id","version","pack_user","status")) 
 
         return JsonResponse(ret)
 

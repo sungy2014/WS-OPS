@@ -228,14 +228,18 @@ class WorkFormAddBaseView(LoginRequiredMixin,View):
                             <p>URL链接: <a href="http://%s" target="_blank">点击跳转</a></p>''' %(workform_obj.title,
                                                                                             workform_obj.process_step.step,
                                                                                             request.get_host() + reverse("my_workform_list"))
-            #mail_send(email_subject,email_content,["15018446704@163.com","172250732@qq.com"],html_content=email_content)
             try:
-                workform_mail_send.delay(email_subject,"hahahaahaha",["15018446704@163.com","172250732@qq.com"],html_content=email_content)
+                workform_mail_send.delay(email_subject,email_content,approver_can_email_list,html_content=email_content)
             except Exception as e:
                 pass
-        time_end = int(round(time.time() * 1000))
-        time_spend = time_end - time_begin
-        print("time_spend: ",time_spend)
+        try:
+            time_end = int(round(time.time() * 1000))
+            time_spend = time_end - time_begin
+        except:
+            pass
+        else:
+            ws_info().info("工单: %s 提交花费时间: %s ms" %(workform_obj.title,time_spend))
+
         return JsonResponse(ret)
 
 
@@ -515,9 +519,8 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
         ret["msg"] = "更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 成功" %(wf_id,process_next_id)
         wslog_info().info("用户 %s 更新 WorkFormModel 模型对象 id: %s 的工单为最新的流程进度: %s 成功" %(request.user.username,wf_id,process_next_id))
         email_subject = '[%s]:%s' %(wf_obj.type.cn_name,wf_obj.title)
-        mail_send(email_subject,email_content,approver_can_email_list,html_content=email_content)
         try:
-            workform_mail_send.delay(email_subject, "hahahaahaha", ["15018446704@163.com", "172250732@qq.com"],html_content=email_content)
+            workform_mail_send.delay(email_subject, email_content, approver_can_email_list,html_content=email_content)
         except Exception as e:
             pass
         return JsonResponse(ret)
