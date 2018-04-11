@@ -74,11 +74,12 @@ class PublishAnsiblePlaybookView(LoginRequiredMixin,View):
             ph_obj.save(update_fields=["status"])
             try:
                 dingding_title = "应用 %s: %s" %(ph_obj.get_type_display(),ph_obj.module_name.name)
-                dingding_text = "发布 IP: %s \n发布版本: %s \n发布状态: %s\n发布人: %s \n发布时间: %s " %( \
+                dingding_text = "发布 IP: %s \n发布版本: %s \n发布状态: %s\n发布人: %s \n打包人: %s \n发布时间: %s " %( \
                                                                                 ' , '.join([i.get("private_ip") for i in ph_obj.ip.values("private_ip")]), \
                                                                                 ph_obj.version_now.version,\
                                                                                 ph_obj.status,\
                                                                                 ph_obj.pub_user.userextend.cn_name,\
+                                                                                ph_obj.version_now.pack_user,\
                                                                                 ph_obj.pub_time.strftime("%Y-%m-%d %X")
                                                                                 )
 

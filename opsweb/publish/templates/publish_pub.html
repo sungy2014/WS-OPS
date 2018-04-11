@@ -154,7 +154,12 @@ $("#type,#module_name").change(function(){
     }
 });
 
+$("#ip").change(function(){
+    $("#pub_exec").prop("disabled",false)
+});
+
 $("#pub_exec").click(function(){
+    $(this).prop("disabled",true)
     var url = "{% url 'exec_ansible_playbook' %}"
     var str = $("#PubForm").serialize()
     if($("#module_name").val()&&$("#type").val()&&$("#env").val()&&$("#ip").val()&&$("#version").val()){

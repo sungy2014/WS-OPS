@@ -238,7 +238,7 @@ class WorkFormAddBaseView(LoginRequiredMixin,View):
         except:
             pass
         else:
-            ws_info().info("工单: %s 提交花费时间: %s ms" %(workform_obj.title,time_spend))
+            wslog_info().info("工单: %s 提交花费时间: %s ms" %(workform_obj.title,time_spend))
 
         return JsonResponse(ret)
 
@@ -347,7 +347,7 @@ class ApprovalWorkFormView(LoginRequiredMixin,View):
             return JsonResponse(ret)
 
         try:
-            wf_info = WorkFormModel.objects.filter(id__exact=wf_id).values("id","title","detail","applicant","module_name")[0]
+            wf_info = WorkFormModel.objects.filter(id__exact=wf_id).values("id","title","detail","applicant","module_name","sql","sql_detail","sql_file_url")[0]
             wf_info["level"] = wf_obj.get_level_display()
             wf_info["process"] = wf_obj.process_step.step
             wf_info["type_id"] = wf_obj.type.cn_name

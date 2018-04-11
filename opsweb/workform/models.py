@@ -95,7 +95,7 @@ class WorkFormModel(WorkFormBaseModel):
     type = models.ForeignKey(WorkFormTypeModel,verbose_name="工单类型,与工单类型表多对一关联",null=False)
     module_name = models.CharField("模块名称",max_length=500,null=True)
     sql = models.CharField("是否存在SQL",choices=SQL_CHOICES,max_length=10,null=False,default="no")
-    database_name = models.CharField("数据库名称",max_length=200,null=False,default="no")
+    database_name = models.CharField("数据库名称",max_length=200,null=True,blank=True)
     sql_detail = models.CharField("SQL语句",max_length=1000,null=True)
     sql_file_url = models.CharField("SQL附件的URL",max_length=1000,null=True)
     process_step = models.ForeignKey(ProcessModel,verbose_name="与流程步骤多对一关联",null=True)

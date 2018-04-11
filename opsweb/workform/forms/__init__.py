@@ -30,9 +30,6 @@ class PubWorkFormAddForm(ModelForm):
             "sql": {
                 "required": "必须选择是否存在'SQL'",
             },
-            "database_name": {
-                "required": "选择需要操作的数据库",
-            },
             "sql_detail": {
                 "max_length": "'sql详情'字符串长度必须小于1000",
             },
@@ -72,7 +69,7 @@ class SqlWorkFormAddForm(PubWorkFormAddForm):
 
 class OthersWorkFormAddForm(PubWorkFormAddForm):
     class Meta(PubWorkFormAddForm.Meta):
-        exclude = ["module_name","reason","sql","sql_detail","sql_file_url"]
+        exclude = ["module_name","reason","sql","sql_detail","sql_file_url","database_name"]
 
 class WorkFormApprovalForm(forms.Form):
     result = forms.ChoiceField(required=True,choices=ApprovalFormModel.RESULT_CHOICES,error_messages={"required":"必须选择一个审批结果"})

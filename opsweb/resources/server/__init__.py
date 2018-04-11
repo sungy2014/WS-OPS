@@ -62,17 +62,21 @@ def GetServerInfoFromApi(private_ip,server_aliyun_obj):
         wslog_error().error(e.args)
         return ret
 
-    server_renewal_status = AliyunDescribeInstanceAutoRenewAttribute(server_info_aliyun["InstanceId"])
-    if server_info_aliyun["InstanceChargeType"] == 'PostPaid':
-        server_aliyun_obj.renewal_type = 'RenewalByUsed'
-    elif server_renewal_status["result"] == 1:
-        ret["result"] = 1
-        ret["msg"] = "aliyun api 获取续费状态失败，请查看日志"
-        return ret
-    else:
-        server_aliyun_obj.renewal_type = server_renewal_status["data"]
 
-    if server_aliyun_obj.status == 'Running': 
+    if server_aliyun_obj.status == 'Running':
+
+        ''' 获取续费状态 '''
+        server_renewal_status = AliyunDescribeInstanceAutoRenewAttribute(server_info_aliyun["InstanceId"])
+        if server_info_aliyun["InstanceChargeType"] == 'PostPaid':
+            server_aliyun_obj.renewal_type = 'RenewalByUsed'
+        elif server_renewal_status["result"] == 1:
+            ret["result"] = 1
+            ret["msg"] = "aliyun api 获取续费状态失败，请查看日志"
+            return ret
+        else:
+            server_aliyun_obj.renewal_type = server_renewal_status["data"]
+
+        ''' 通过 ansible api 获取服务器信息 '''
         try:
             if private_ip == '172.17.134.23':
                 server_info_ansible = ansible_adhoc('setup','gather_subset=hardware',"127.0.0.1")["localhost"]['ansible_facts']
